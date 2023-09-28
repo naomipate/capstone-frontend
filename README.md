@@ -1,2 +1,2 @@
 # capstone-frontend
-Capstone Frontend worked on with Akira Brown, Onyx McQueen, Mussie Russom, and Michelle Harley
+Capstone Frontend worked on with Akira Brown, Chantal Gomez, Onyx McQueen, and Mussie Russom
