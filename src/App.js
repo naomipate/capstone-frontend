@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // COMPONENTS
 //import Example from "./components/Example/Example";
-import Login from "./components/Example/Login/Login";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
