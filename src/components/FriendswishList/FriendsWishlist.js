@@ -1,27 +1,49 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-// const Url = "http://localhost:8080";
+import "./FriendsWishlist.css";
 
-// function FriendsWishlist() {
-//   const { id } = useParams();
+const API_URL = process.env.REACT_APP_API_URL;
 
-//   const [wishlist, setWishlist] = useState([]);
+function FriendsWishlist() {
+  //   const API_URL = process.env.REACT_APP_API_URL;
 
-//   const navigate = useNavigate;
+  const { id } = useParams();
 
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-//   const fetchData = async () => {
-//     try {
-//       let result = await axios.get(Url / example);
+  //const [selectedFriend, setSelectedFriend] = useState(null);
+  const [wishlist, setWishlist] = useState([]);
 
-//       console.log(result);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// }
-// export default FriendsWishlist;
+  useEffect(() => {
+    if (id) {
+      fetchWishlist();
+    }
+  }, [id]);
+
+  const fetchWishlist = async () => {
+    try {
+      let response = await axios.get(`${API_URL}/example/${id}`);
+
+      console.log(response.data);
+      setWishlist(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return (
+    <div className="friends-container">
+      <div key={wishlist.id}>
+        <h2>List</h2>
+        <h2>{wishlist.name}</h2>
+        <p>{wishlist.dob}</p>
+        <p>{wishlist.wishlist_id}</p>
+      </div>
+      <div className="friends-buttons">
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+    </div>
+  );
+}
+export default FriendsWishlist;
