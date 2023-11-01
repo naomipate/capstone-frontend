@@ -1,0 +1,75 @@
+.search-page-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-page-content{
+    height: 600px;
+    width: 400px;
+    background-color: #e9e9e9;
+    border-radius: 25px;
+
+}
+
+.search-page-title{
+  font-family: 'Urbanist', sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .search-input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #ffffff;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 15em;
+    /* transition: all ease-in-out .5s; */
+    margin-right: -2rem;
+  }
+  
+  .search-input:hover, .search-input:focus {
+    box-shadow: 0 0 1em #00000013;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    background-color: #f0eeee;
+  }
+  
+  .search-input::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #ccc;
+  }
+  
+  .search-input:focus + .search-button {
+    background-color: #f0eeee;
+  }
+  
+  .search-button {
+    border: none;
+    background-color: #ffffff;
+    margin-top: .1em;
+  }
+  
+  .search-button:hover {
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: #b4b4b4;
+  }

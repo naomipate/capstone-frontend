@@ -1,0 +1,15 @@
+.results-list{
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #ffffff;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 15em;
+    margin: 30px auto 0 auto;
+    max-height: 380px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
