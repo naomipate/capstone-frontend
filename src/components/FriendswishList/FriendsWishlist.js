@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "./FriendsWishlist.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function FriendsWishlist() {
-  //   const API_URL = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
-  //const [selectedFriend, setSelectedFriend] = useState(null);
   const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
@@ -30,18 +29,50 @@ function FriendsWishlist() {
       console.log(err);
     }
   };
+  const deleteWishlistItem = async (id) => {
+    try {
+      const response = await axios.delete(`${API_URL}/example/${id}`);
+      console.log(response);
+      const { wishlist_id } = response.data;
+      alert(`Wishlist item ${wishlist_id} has been deleted`);
 
+      setWishlist(wishlist.filter((item) => item.id !== id));
+      navigate("/example");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
-    <div className="friends-container">
-      <div key={wishlist.id}>
+    <div className="friends-wishlist">
+      <div className="TitleBar" key={wishlist.id}>
         <h2>List</h2>
-        <h2>{wishlist.name}</h2>
-        <p>{wishlist.dob}</p>
-        <p>{wishlist.wishlist_id}</p>
+        <button className="AddButton">Add Item</button>
       </div>
-      <div className="friends-buttons">
-        <button>Edit</button>
-        <button>Delete</button>
+      <div className="WishlistItem">
+        <div className="ImageContainer">
+          <img
+            src="image-url.jpg"
+            alt="WishlitLink"
+            className="WishlistImage"
+          />
+        </div>
+        <div className="ItemInfo">
+          <h2>{wishlist.name}</h2>
+          <a href="" className="WishlistLink">
+            Link to Item
+          </a>
+          <p>{wishlist.wishlist_id}</p>
+        </div>
+
+        <div className="EditDeletButtons">
+          <button className="EditButton"> Edit</button>
+          <button
+            className="DeleteButton"
+            onClick={() => deleteWishlistItem(wishlist.id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

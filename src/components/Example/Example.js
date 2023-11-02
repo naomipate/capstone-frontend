@@ -8,17 +8,17 @@ function Example() {
   console.log(API_URL);
 
   useEffect(() => {
-    //fetchData();
+    fetchData();
   }, []);
 
-  //   async function fetchData() {
-  //     // We reach out to our .env file to get the API URL
-  //     // We use the "REACT_APP_" prefix to make sure that our variables are available in the frontend
-  //     const response = await axios.get(`${API_URL}/example`);
+  async function fetchData() {
+    // We reach out to our .env file to get the API URL
+    // We use the "REACT_APP_" prefix to make sure that our variables are available in the frontend
+    const response = await axios.get(`${API_URL}/example`);
 
-  //     // We set the data from the response to our "exampleData" state
-  //     setExampleData(response.data);
-  //   }
+    // We set the data from the response to our "exampleData" state
+    setExampleData(response.data);
+  }
 
   return (
     <div className="App">
