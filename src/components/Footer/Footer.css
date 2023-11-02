@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  color: white;
+  background-color: #333;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  /* border-top: 1px solid rgba(47, 46, 46, 0.685); */
+  height: 20px;
+  padding: 10px;
+  gap: 10px;
+}
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+.footer a:hover {
+  color: #f1ebfa;
+  text-decoration: underline;
+}
