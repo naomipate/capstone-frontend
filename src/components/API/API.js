@@ -1,4 +1,13 @@
-import Axios from './Axios';
+import Axios from "./Axios";
+
+async function createUser(data) {
+  try {
+    let result = await Axios.post("/user", data);
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
 
 async function getUserData(data){
     try {
@@ -10,5 +19,6 @@ async function getUserData(data){
 }
 
 export {
+createUser,
     getUserData
 }
