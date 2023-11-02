@@ -9,4 +9,16 @@ async function createUser(data) {
   }
 }
 
-export { createUser };
+async function getUserData(data){
+    try {
+        let result = await Axios.get(`/user/find-email`, data)
+        return result;
+    } catch (error) {
+        return error;
+    }
+}
+
+export {
+createUser,
+    getUserData
+}
