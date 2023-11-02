@@ -5,8 +5,16 @@ import "./Search.css";
 import SearchList from "./SearchList";
 
 function Search() {
+
+  // const API_URL = process.env.REACT_APP_API_URL;
   // const[ input, setInput] = useState("")
   // const[ results, setResults] = useState("")
+
+  // console.log(API_URL);
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   // async function fetchData() {
   //   try {
