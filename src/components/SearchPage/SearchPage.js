@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Search.css";
+import "./SearchPage.css";
 // import { SearchList } from "./SearchList"
 import SearchList from "./SearchList";
 import { getAllUsersAPI } from "../API/API";
@@ -53,6 +53,7 @@ function Search() {
             <input
               type="text"
               className="search-page-search-input"
+              placeholder="Search by username"
               value={input}
               onChange={(e) => handleChange(e.target.value)}
             ></input>

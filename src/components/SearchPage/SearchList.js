@@ -1,4 +1,5 @@
 import React from "react";
+import {Link } from "react-router-dom";
 import "./SearchList.css";
 
 function SearchList({ filteredUsers }) {
@@ -14,8 +15,10 @@ function SearchList({ filteredUsers }) {
               alt="..."
               style={{ maxHeight: "40px" }}
             />
-            <p className="search-list-profile-username">{user.user_name}</p>
-            
+            {/* <p className="search-list-profile-username">{user.user_name}</p> */}
+            <Link to={`/users/${user.id}/`} className="search-list-profile-username">
+            {user.user_name}
+            </Link>
           </div>
         );
       })}

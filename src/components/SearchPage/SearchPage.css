@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5em;
+    margin: 3em;
 }
 
 .search-page-content{
@@ -21,7 +21,7 @@
   color: #010101;
   /* letter-spacing: 2px; */
     text-align: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .search-box {
@@ -39,8 +39,7 @@
     color: #646464;
     padding: 0.7rem 1rem;
     border-radius: 30px;
-    width: 20em;
-    /* transition: all ease-in-out .5s; */
+    width: 60%;
     margin-right: -2.3rem;
   }
   
@@ -54,8 +53,9 @@
   }
   
   .search-page-search-input::-webkit-input-placeholder {
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 100;
-    color: #ccc;
+    color: #c1c1c1;
   }
   
   .search-page-search-input:focus + .search-page-search-button {
