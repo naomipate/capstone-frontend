@@ -9,6 +9,7 @@
 .TitleBar {
   display: flex;
   justify-content: space-between;
+  color: rgb(23, 22, 22);
   width: 100%;
   align-items: center;
   padding: 10px;
