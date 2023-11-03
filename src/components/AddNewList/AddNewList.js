@@ -1,32 +1,50 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import "./AddNewList.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function NewList() {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     itemName: "",
     imageUrl: "",
     itemLink: "",
   });
 
-  const handleInputChange = (e) => {
-    const name = e.target.name;
-    const value = e.targe.value;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
+  async function handleCreateWishlist(e) {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await axios.post(`${API_URL}/friendswishlist`, formData);
+
+      console.log(formData);
+      navigate(`/friendswishlist`);
+    } catch (e) {
+      console.log(e);
+    }
+    setFormData({
+      itemName: "",
+      imageUrl: "",
+      itemLink: "",
+    });
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
     <div className="list-form">
       <h2>Add item</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleCreateWishlist}>
         <div className="form-group">
           <label htmlFor="itemName">Item Name</label>
           <input
+            required
             type="text"
             id="itemName"
             name="itemName"
@@ -35,8 +53,9 @@ function NewList() {
           />
         </div>
         <div className="form-group">
-          <label hrmlFor="imageUrl">Item Url</label>
+          <label htmlFor="imageUrl">Item Url</label>
           <input
+            required
             type="text"
             id="imageUrl"
             name="imageUrl"
@@ -45,8 +64,9 @@ function NewList() {
           />
         </div>
         <div className="form-group">
-          <label hrmlFor="itemLink">Item Link</label>
+          <label htmlFor="itemLink">Item Link</label>
           <input
+            required
             type="text"
             id="itemLink"
             name="itemLink"

@@ -88,27 +88,3 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
-/* .friends-container {
-  display: flex;
-  justify-content: center;
-  align-content: end;
-  background: #f1ebfa;
-  padding: 100px 100px;
-}
-
-.friends-continer-list {
-  justify-content: flex-end;
-}
-
-.friends-container h2 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.friends-buttons {
-  display: grid;
-  align-content: space-evenly;
-  justify-content: right;
-} */

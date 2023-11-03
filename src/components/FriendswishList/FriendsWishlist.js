@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 import "./FriendsWishlist.css";
 
@@ -46,8 +46,11 @@ function FriendsWishlist() {
     <div className="friends-wishlist">
       <div className="TitleBar" key={wishlist.id}>
         <h2>List</h2>
-        <button className="AddButton">Add Item</button>
+        <Link to={"/Create-list"}>
+          <button>Add Item</button>
+        </Link>
       </div>
+      return (
       <div className="WishlistItem">
         <div className="ImageContainer">
           <img
@@ -65,7 +68,6 @@ function FriendsWishlist() {
         </div>
 
         <div className="EditDeletButtons">
-          <button className="EditButton"> Edit</button>
           <button
             className="DeleteButton"
             onClick={() => deleteWishlistItem(wishlist.id)}
@@ -74,6 +76,7 @@ function FriendsWishlist() {
           </button>
         </div>
       </div>
+      )
     </div>
   );
 }
