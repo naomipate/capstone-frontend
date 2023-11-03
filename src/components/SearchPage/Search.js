@@ -1,34 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Search.css";
-// import { getUserByName } from "../API/API";
 // import { SearchList } from "./SearchList"
 import SearchList from "./SearchList";
+import { getAllUsersAPI } from "../API/API";
 
 function Search() {
+  const [input, setInput] = useState("");
+  const [usersData, setUsersData] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
-  // const API_URL = process.env.REACT_APP_API_URL;
-  // const[ input, setInput] = useState("")
-  // const[ results, setResults] = useState("")
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
-  // console.log(API_URL);
+  async function fetchUsers() {
+    try {
+      let result = await getAllUsersAPI();
+      setUsersData(result.data);
+      // console.log(usersData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const handleChange = (value) => {
+    setInput(value);
+    fetchUsers(value);
+    handleFilter(value);
+  };
 
-  // async function fetchData() {
-  //   try {
-  //     let result = await getUserByName();
-
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // const handleChange = (value) => {
-  //   setInput(value)
-  //   fetchData(value)
-  // }
+  function handleFilter(input) {
+    let filtered = usersData.filter((user) => {
+      return user.user_name.toLowerCase().includes(input);
+    });
+    // console.log(filtered);
+    // setFilteredUsers([...usersData, filtered]);
+    setFilteredUsers(filtered);
+    // setUsersData(filtered)
+    // console.log(filteredUsers);
+    // console.log(usersData);
+  }
 
   return (
     <div className="search-page">
@@ -41,14 +52,14 @@ function Search() {
           <div className="search-box">
             <input
               type="text"
-              className="search-input"
-              // value={input}
-              // onChange={(e) => handleChange(e.target.value)}
+              className="search-page-search-input"
+              value={input}
+              onChange={(e) => handleChange(e.target.value)}
             ></input>
 
-            <button className="search-button">
+            <button className="search-page-search-button">
               <img
-                class="search-icon"
+                className="search-icon"
                 aria-hidden="true"
                 viewBox="0 0 24 24"
                 src="./images/search-icon.png"
@@ -58,7 +69,9 @@ function Search() {
             <div></div>
           </div>
           <div className="search-page-results">
-            <SearchList />
+            {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
+            {/* <SearchList filteredUsers={filteredUsers} /> */}
+
           </div>
         </div>
       </div>
