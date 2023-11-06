@@ -15,7 +15,7 @@ function Nav() {
         <NavLink to={"/login"}>Login</NavLink>
         <NavLink to={"/signup"}>Signup</NavLink>
         <NavLink to={"/about"}>About</NavLink>
-        <NavLink>Find Friend</NavLink>
+        <NavLink to={"/search-page"}>Find Friend</NavLink>
       </div>
     </header>
   );
