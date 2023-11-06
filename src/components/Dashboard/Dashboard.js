@@ -1,29 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "../API/Axios";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import "./Dashboard.css";
 
 function Dashboard() {
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+  useEffect(() => {
+    fetchData(id);
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      let response = await Axios.get(`/dashboard/${id}`);
+      console.log(response.data);
+      setUser(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div>
-      <div>Dashboard</div>
-      <Sidebar />
-      <Friends />
+    <div className="dashboard-container">
+      <div>Dashboard{console.log(user, user.connections)}</div>
+      <Sidebar user={user} />
+      <Friends connections={user.connections} />
     </div>
   );
 }
 
-function Sidebar() {
+function Sidebar({ user }) {
   return (
     <div>
       <div>Sidebar</div>
-      <UserDetails />
+      <UserDetails userDetails={user} />
       <SidebarNav />
     </div>
   );
 }
 
-function UserDetails() {
+function UserDetails({ userDetails }) {
   return (
     <div>
-      <div>User Details</div>
+      <div>
+        <h3>{userDetails.user_name}</h3>
+        <p>{userDetails.dob}</p>
+      </div>
       <Avatar />
     </div>
   );
@@ -34,7 +59,13 @@ function Avatar() {
 }
 
 function SidebarNav() {
-  return <div>Sidebar Nav</div>;
+  return (
+    <div>
+      Sidebar Nav
+      <div>Number of friends and link to friends list</div>
+      <div></div>
+    </div>
+  );
 }
 
 function Friends() {

@@ -1,7 +1,7 @@
 import "./Home.css";
 import React from "react";
 import MarketPageGifts from "../../Assets/MarketPageGifts.svg";
-import GiftuneLogo from "../../Assets/GiftuneLogo.png";
+import GiftuneLogo from "../../Assets/GiftuneLogo3Nav.png";
 function Home() {
   return (
     <div className="home">
