@@ -4,13 +4,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // COMPONENTS
 //import Example from "./components/Example/Example";
+import Nav from "./components/Nav/Nav";
+import Home from "./components/Home/Home";
+import Footer from "./components/Footer/Footer";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
     <Router>
+      <Nav />
       <Routes>
-        <Route path="/" element={<h1>Hello World!</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
