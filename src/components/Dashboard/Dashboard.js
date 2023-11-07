@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../API/Axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import Sidebar from "../Sidebar/Sidebar";
 
 function Dashboard() {
   const [user, setUser] = useState({});
@@ -26,18 +27,8 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div>Dashboard{console.log(user, user.connections)}</div>
-      <Sidebar user={user} />
       <Friends connections={user.connections} />
-    </div>
-  );
-}
-
-function Sidebar({ user }) {
-  return (
-    <div>
-      <div>Sidebar</div>
-      <UserDetails userDetails={user} />
-      <SidebarNav />
+      <Sidebar />
     </div>
   );
 }
@@ -56,16 +47,6 @@ function UserDetails({ userDetails }) {
 
 function Avatar() {
   return <div>Avatar</div>;
-}
-
-function SidebarNav() {
-  return (
-    <div>
-      Sidebar Nav
-      <div>Number of friends and link to friends list</div>
-      <div></div>
-    </div>
-  );
 }
 
 function Friends() {

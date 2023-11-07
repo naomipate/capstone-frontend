@@ -9,17 +9,12 @@ import "./Login.css";
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState({
-    email: "",
-  });
+  const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
 
-  function handleEmailChange(id, value) {
-    setEmail({
-      ...email,
-      [id]: value,
-    });
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
   }
 
   function handlePasswordChange(e) {
@@ -29,14 +24,14 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await getUserData(email);
-
+      let user = await getUserData(email);
+      console.log(user);
       setEmail({
         email: "",
       });
       setPassword("");
       alert("Login Success!");
-      navigate(`/dashboard`); // This is to go to the dashboard page.
+      navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
     } catch (error) {
       console.log(error);
     }
@@ -92,9 +87,9 @@ function Login() {
               type="text"
               className="Input"
               required
-              onChange={(e) => handleEmailChange(e.target.id, e.target.value)}
-              value={email.email}
-              placeholder="Email"
+              onChange={handleEmailChange}
+              value={email}
+              placeholder="E-mail"
               id="email"
             />
             <input
