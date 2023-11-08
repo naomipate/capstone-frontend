@@ -58,8 +58,8 @@
 }
 
 .hero-text h1 {
+  font-family: 'Aleo', serif;
   font-size: 4.5rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .hero-text p {
@@ -68,6 +68,7 @@
   width: 80%;
   margin: 0 auto;
   margin-bottom: 2rem;
+  font-family: 'Hepta Slab', serif;
 }
 
 .hero-text button {
@@ -81,4 +82,16 @@
 .hero-text button:hover {
   background-color: rgb(108, 72, 187);
   color: white;
+}
+
+.blockquote {
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.blockquote p {
+  color: black;
+  font-size: 35px;
+  font-family: 'Hepta Slab', serif;
 }

@@ -28,7 +28,10 @@ function Home() {
         </div>
       </div>
 
-      
+
+      <div className="blockquote">
+        <p>"Where heartfelt gifting meets perfect harmony"</p>
+      </div>
     </div>
   );
 }

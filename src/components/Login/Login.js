@@ -44,10 +44,9 @@ function Login() {
 
 
   return (
-    <div>
 
       <div className='form-box'>
-      <h1>Login</h1>
+        <h1>Login</h1>
         <form className='form' onSubmit={handleSubmit}>
           <span className='subtitle'>Login with your credentials here!</span>
           <div className='form-container'>
@@ -58,12 +57,10 @@ function Login() {
           <button>Login</button>
         </form>
         <div className='form-section'>
-          <p>Don't have an account yet? <Link to={'/'}>Sign up here</Link></p>
+          <p>Don't have an account yet? <Link to={'/signup'}>Sign up here</Link></p>
         </div>
       </div>
 
-
-    </div>
   )
 }
 
