@@ -5,6 +5,10 @@
   position: fixed;
   left: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  height: auto;
   width: 100vw;
   height: 20px;
   padding: 10px;
@@ -45,6 +49,7 @@
 
 
 .footer {
+  color: white;
   background-color: black;
   position: absolute;
   width: 100%;
@@ -55,14 +60,13 @@
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-items: center;
-  padding-bottom: 10px;
 }
 
 .footer-image {
-  border-radius: 30px;
   padding: 1rem;
   height: 60px;
   width: auto;
+  
 }
 
 .slogan {
@@ -72,6 +76,12 @@
   font-family: 'Hepta Slab', serif;
 }
 
+.brand {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 
 
 
@@ -79,6 +89,10 @@
 
 hr {
   width: 85%;
+}
+
+.bottom {
+  text-align: center;
 }
 
 .text {
@@ -91,11 +105,12 @@ hr {
 }
 
 .copyright {
+  margin: 0 auto;
   font-size: small;
   font-family: 'Hepta Slab', serif;
 }
 
-ul {
+.navLink {
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(4, 1fr);

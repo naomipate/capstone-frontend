@@ -1,8 +1,14 @@
 import "./Nav.css";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import GiftuneLogo from "../../Assets/GiftuneLogo.png";
+import GiftuneLogo from "../../Assets/GiftuneLogo3Nav.png";
+
 function Nav() {
+  const [showNav, setShowNav] = useState(false);
+
+  const toggleNav = () => {
+    setShowNav(!showNav);
+  };
   return (
     // <header className="topnav">
     //   <div className="left">

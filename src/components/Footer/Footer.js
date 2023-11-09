@@ -2,7 +2,7 @@ import "./Footer.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import GiftuneLogo from "../../Assets/GiftuneLogo.png"
+import GiftuneLogo from "../../Assets/GiftuneLogoFooter.png";
 
 function Footer() {
   return (
@@ -45,12 +45,12 @@ function Footer() {
     // </div>
     <div className="footer">
       <div className="content">
-        <div>
-        <img className="footer-image" src={GiftuneLogo} alt="Logo"/>
-        <p className="slogan">"Where heartfelt gifting meets perfect harmony."</p>
+        <div className="brand">
+          <img className="footer-image" src={GiftuneLogo} alt="Logo"/>
+          <p className="slogan">"Where heartfelt gifting meets perfect harmony."</p>
         </div>
         <div>
-          <ul>
+          <ul className="navLink">
             <li>
               <NavLink className="link" to={"/"}>Home</NavLink>
             </li>

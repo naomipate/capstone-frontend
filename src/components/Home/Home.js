@@ -1,8 +1,6 @@
 import "./Home.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import MarketPageGifts from "../../Assets/MarketPageGifts.svg";
-import GiftuneLogo from "../../Assets/GiftuneLogo.png";
 import GiftsAmico from "../../Assets/Gifts-amico.png";
 
 function Home() {
