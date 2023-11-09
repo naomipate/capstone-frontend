@@ -28,6 +28,7 @@ async function getAllUsersAPI() {
   }
 }
 async function getUserProfile(id) {
+  console.log(id, "API");
   try {
     let result = await Axios.get(`/dashboard/${id}`);
     return result;
