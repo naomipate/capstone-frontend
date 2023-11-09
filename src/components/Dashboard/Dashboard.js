@@ -16,12 +16,14 @@ function Dashboard() {
   const fetchData = async () => {
     try {
       let response = await Axios.get(`/dashboard/${id}`);
+      console.log(response.data);
       setUser(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
   };
+
   let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} />;
   });
@@ -29,7 +31,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div>Dashboard</div>
-      <UserDetails userDetails={user.userProfile} />
+      {user.userProfile && <UserDetails userDetails={user?.userProfile} />}
       {friendsList}
       <Sidebar />
     </div>
@@ -37,6 +39,7 @@ function Dashboard() {
 }
 
 function UserDetails({ userDetails }) {
+  console.log(userDetails);
   let { first_name, last_name, dob } = userDetails;
   let date = new Date(dob);
   return (
