@@ -27,12 +27,12 @@ function App() {
       <Nav />
       <Sidebar />
       <Routes>
-      <Route path="/users/:id/friends" element={<FriendList/>} />
         <Route path="/search-page" element={<SearchPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/:id" element={<Dashboard />} />
+        <Route path="/dashboard/:id/friends" element={<FriendList />} />
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
         <Route path="/create-list" element={<NewList />} />
       </Routes>
