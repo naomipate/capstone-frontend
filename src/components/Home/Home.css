@@ -43,7 +43,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif");
 
   /* Set a specific height */
-  height: 30rem;
+  height: fit-content;
 
   /* Position and center the image to scale nicely on all screens */
   background-position: center;
@@ -55,7 +55,7 @@
 
 .hero-text {
   text-align: center;
-  padding: 3.5rem;
+  padding: 70px;
 }
 
 .hero-text h1 {
@@ -98,6 +98,10 @@
 }
 
 .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
   width: 85%;
   margin: 0 auto;
   margin-bottom: 50px;
@@ -113,4 +117,47 @@
 .image {
   width: 505px;
   height: auto;
+}
+
+@media (max-width: 690px) {
+  .content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .text-container {
+    margin-bottom: 20px; /* Add some spacing between text and image */
+  }
+  
+  .text-content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .image-container {
+    text-align: center; /* Center the image within the container */
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-text {
+    text-align: center;
+    padding: 0%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 900px){
+  .content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    align-items: center;
+  }
 }

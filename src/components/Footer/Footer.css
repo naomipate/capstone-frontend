@@ -55,7 +55,7 @@
   width: 100%;
 }
 
-.content {
+.footerContent {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
@@ -128,5 +128,12 @@ hr {
 
 .link:hover {
   color: orange;
+}
+
+@media (max-width: 900px){
+  .footerContent{
+    display: flex;
+    flex-direction: column;
+  }
 }
 

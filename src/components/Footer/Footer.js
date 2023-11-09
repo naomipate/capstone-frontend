@@ -44,7 +44,7 @@ function Footer() {
     //   </div>
     // </div>
     <div className="footer">
-      <div className="content">
+      <div className="footerContent">
         <div className="brand">
           <img className="footer-image" src={GiftuneLogo} alt="Logo"/>
           <p className="slogan">"Where heartfelt gifting meets perfect harmony."</p>
