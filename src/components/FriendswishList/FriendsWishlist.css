@@ -89,3 +89,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.ErrorMsg {
+  color: rgb(23, 22, 22);
+}
