@@ -21,6 +21,8 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <Router>
       <Nav />
@@ -29,7 +31,7 @@ function App() {
         <Route path="/search-page" element={<SearchPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/dashboard/:id" element={<Dashboard />} />
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
         <Route path="/create-list" element={<NewList />} />

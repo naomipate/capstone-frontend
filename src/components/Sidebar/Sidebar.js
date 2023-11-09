@@ -4,24 +4,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import SidebarNav from "../SidebarNav/SidebarNav";
 
 function Sidebar() {
-  //   const [user, setUser] = useState({});
-  //   const navigate = useNavigate();
+  //   console.log(user);
+  useEffect(() => {
+    const user = JSON.parse(window.localStorage.getItem("user"));
+    console.log(user);
+  }, []);
 
-  //   const { id } = useParams();
-  //   useEffect(() => {
-  //     fetchData(id);
-  //   }, []);
-
-  //   const fetchData = async () => {
-  //     try {
-  //       let response = await Axios.get(`/dashboard/${id}`);
-  //       console.log(response.data);
-  //       setUser(response.data);
-  //       return response.data;
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
   return (
     <div>
       <div>Sidebar</div>
@@ -30,23 +18,20 @@ function Sidebar() {
     </div>
   );
 }
-
-// function UserDetails({ userDetails }) {
-//   console.log(userDetails);
-//   let { first_name, last_name, dob } = userDetails;
-//   let date = new Date(dob);
-//   return (
-//     <div>
-//       <div>
-//         <h3>
-//           {first_name} {last_name}
-//         </h3>
-//         <p>
-//           {date.getMonth()} {date.getFullYear()}
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
+function UserDetails({ userDetails }) {
+  console.log(userDetails);
+  let { first_name, last_name, dob } = userDetails;
+  let date = new Date(dob).toDateString().split(" ").splice(1, 2).join(" ");
+  return (
+    <div>
+      <div>
+        <h3>
+          {first_name} {last_name}
+        </h3>
+        <p>{date}</p>
+      </div>
+    </div>
+  );
+}
 
 export default Sidebar;

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
+import Sidebar from "../Sidebar/Sidebar";
+// import Giftune from "../../Assets/GiftuneLogo2.png";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -8,28 +10,30 @@ function Dashboard() {
 
   const { id } = useParams();
   useEffect(() => {
-    fetchData(id);
+    //     console.log(id);
+    fetchData();
   }, []);
 
-  const fetchData = async () => {
+  async function fetchData() {
     try {
+      console.log(id, "Dashboard");
       let response = await getUserProfile(id);
       console.log(response.data);
       setUser(response.data);
-      return response.data;
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} />;
   });
-  console.log(user, user.friendsOrderedByDOB);
+  // console.log(user, user.friendsOrderedByDOB);
   return (
     <div className="dashboard-container">
       <div>Dashboard</div>
       {friendsList}
+      <Sidebar />
     </div>
   );
 }
@@ -50,7 +54,10 @@ function Friend({ friendDetails }) {
         {first_name} {last_name}{" "}
       </div>
       <div className="friend-dob">{upcomingDate}</div>
-      <ul className="wishlist-items">{wishlistItem}</ul>
+      <ul className="wishlist-items">
+        <img />
+        {wishlistItem}
+      </ul>
     </div>
   );
 }
