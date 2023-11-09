@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Axios from "../API/Axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import "./Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState({});
-  const navigate = useNavigate();
 
   const { id } = useParams();
   useEffect(() => {
@@ -36,24 +34,29 @@ function Dashboard() {
   );
 }
 
-function Avatar() {
-  return <div>Avatar</div>;
-}
-
 function Friend({ friendDetails }) {
   let { first_name, last_name, dob, wishlist } = friendDetails;
   let date = new Date(dob);
+  let upcomingDate = date.toDateString().split(" ").splice(1, 2).join(" ");
   let wishlistItem = wishlist.map((item, index) => (
-    <li key={index}>{item.item_name}</li>
+    <li key={index}>
+      <a href={item.link}>{item.item_name}</a>
+    </li>
   ));
   return (
     <div className="friend-card">
-      <div>
-        {first_name} {last_name} {date.toLocaleDateString()}
+      <Avatar />
+      <div className="friend-name">
+        {first_name} {last_name}{" "}
       </div>
-      <ul>{wishlistItem}</ul>
+      <div className="friend-dob">{upcomingDate}</div>
+      <ul className="wishlist-items">{wishlistItem}</ul>
     </div>
   );
+}
+
+function Avatar() {
+  return <div>Avatar</div>;
 }
 
 export default Dashboard;
