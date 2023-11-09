@@ -21,7 +21,7 @@ function FriendsWishlist() {
 
   const fetchWishlist = async () => {
     try {
-      let response = await axios.get(`${API_URL}/example/${id}`);
+      let response = await axios.get(`${API_URL}/friendswishlist/${id}`);
 
       console.log(response.data);
       setWishlist(response.data);
@@ -31,12 +31,14 @@ function FriendsWishlist() {
   };
   const deleteWishlistItem = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/example/${id}`);
+      const response = await axios.delete(`${API_URL}/friendswishlist/${id}`);
       console.log(response);
       const { wishlist_id } = response.data;
       alert(`Wishlist item ${wishlist_id} has been deleted`);
 
-      setWishlist(wishlist.filter((item) => item.id !== id));
+      setWishlist((prevWishlist) =>
+        prevWishlist.filter((item) => item.id !== id)
+      );
       navigate("/example");
     } catch (err) {
       console.log(err);
@@ -50,33 +52,38 @@ function FriendsWishlist() {
           <button>Add Item</button>
         </Link>
       </div>
-      return (
-      <div className="WishlistItem">
-        <div className="ImageContainer">
-          <img
-            src="image-url.jpg"
-            alt="WishlitLink"
-            className="WishlistImage"
-          />
-        </div>
-        <div className="ItemInfo">
-          <h2>{wishlist.name}</h2>
-          <a href="" className="WishlistLink">
-            Link to Item
-          </a>
-          <p>{wishlist.wishlist_id}</p>
-        </div>
 
-        <div className="EditDeletButtons">
-          <button
-            className="DeleteButton"
-            onClick={() => deleteWishlistItem(wishlist.id)}
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-      )
+      {wishlist.length > 0 ? (
+        wishlist.map((item) => (
+          <div className="WishlistItem" key={item.id}>
+            <div className="ImageContainer">
+              <img
+                src="item.image-url.jpg"
+                alt="item.name"
+                className="WishlistImage"
+              />
+            </div>
+            <div className="ItemInfo">
+              <h2>{wishlist.name}</h2>
+              <a href={"item.itemLink"} className="WishlistLink">
+                Link to Item
+              </a>
+              <p>{item.wishlist.wishlist_id}</p>
+            </div>
+
+            <div className="EditDeletButtons">
+              <button
+                className="DeleteButton"
+                onClick={() => deleteWishlistItem(wishlist.id)}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p className="ErrorMsg">No wishlist items found.</p>
+      )}
     </div>
   );
 }
