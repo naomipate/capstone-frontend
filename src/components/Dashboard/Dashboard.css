@@ -1,8 +1,9 @@
 .dashboard-container {
+    display: grid;
     text-align: center;
     background-color: #f7a0a0;
 }
-.dashboard-container .friend-card{
+.dashboard-container .friend-card {
     padding: 15px;
     margin: 15px;
     border: solid  #EFBE00;

@@ -22,6 +22,8 @@ import Login from "./components/Login/Login";
 import FriendList from "./components/FriendList/FriendList";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <Router>
       <Nav />
@@ -30,7 +32,7 @@ function App() {
         <Route path="/search-page" element={<SearchPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/dashboard/:id" element={<Dashboard />} />
         <Route path="/dashboard/:id/friends" element={<FriendList />} />
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
