@@ -2,7 +2,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";
-import NewList from "./components/AddNewList/AddNewList";
+import UserWishlist from "./components/UserWishlist/UserWishlist";
+import NewWishlist from "./components/AddNewWishlist/AddNewWishlist";
 // COMPONENTS
 import SignUpPage from "./components/SignUpPage/Signup";
 import Nav from "./components/Nav/Nav";
@@ -19,7 +20,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
-        <Route path="/create-list" element={<NewList />} />
+        <Route path="/userwishlist" element={<UserWishlist />} />
+        <Route path="/create-wishlist" element={<NewWishlist />} />
+        <Route path="/edit-wishlist" element={<EditWishlist />} />
       </Routes>
       <Footer />
     </Router>

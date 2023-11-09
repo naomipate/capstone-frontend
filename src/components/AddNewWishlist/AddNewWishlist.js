@@ -18,10 +18,10 @@ function NewList() {
   async function handleCreateWishlist(e) {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/friendswishlist`, formData);
+      await axios.post(`${API_URL}/userwishlist`, formData);
 
       console.log(formData);
-      navigate(`/friendswishlist`);
+      navigate(`/userwishlist`);
     } catch (e) {
       console.log(e);
     }
