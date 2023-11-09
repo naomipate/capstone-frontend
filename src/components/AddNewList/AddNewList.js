@@ -53,7 +53,7 @@ function NewList() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="imageUrl">Item Url</label>
+          <label htmlFor="imageUrl">Image Url</label>
           <input
             required
             type="text"
