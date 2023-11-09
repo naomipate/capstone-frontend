@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../API/Axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { getUserProfile } from "../API/API";
 import "./Dashboard.css";
-import Sidebar from "../Sidebar/Sidebar";
 
 function Dashboard() {
   const [user, setUser] = useState({});
@@ -15,7 +15,7 @@ function Dashboard() {
 
   const fetchData = async () => {
     try {
-      let response = await Axios.get(`/dashboard/${id}`);
+      let response = await getUserProfile(id);
       console.log(response.data);
       setUser(response.data);
       return response.data;
@@ -24,23 +24,14 @@ function Dashboard() {
     }
   };
 
+  let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
+    return <Friend key={index} friendDetails={friendDetails} />;
+  });
+  console.log(user, user.friendsOrderedByDOB);
   return (
     <div className="dashboard-container">
-      <div>Dashboard{console.log(user, user.connections)}</div>
-      <Friends connections={user.connections} />
-      <Sidebar />
-    </div>
-  );
-}
-
-function UserDetails({ userDetails }) {
-  return (
-    <div>
-      <div>
-        <h3>{userDetails.user_name}</h3>
-        <p>{userDetails.dob}</p>
-      </div>
-      <Avatar />
+      <div>Dashboard</div>
+      {friendsList}
     </div>
   );
 }
@@ -49,38 +40,20 @@ function Avatar() {
   return <div>Avatar</div>;
 }
 
-function Friends() {
+function Friend({ friendDetails }) {
+  let { first_name, last_name, dob, wishlist } = friendDetails;
+  let date = new Date(dob);
+  let wishlistItem = wishlist.map((item, index) => (
+    <li key={index}>{item.item_name}</li>
+  ));
   return (
-    <div>
-      <div>Friends</div>
-      <Friend />
-      <Friend />
-      <Friend />
+    <div className="friend-card">
+      <div>
+        {first_name} {last_name} {date.toLocaleDateString()}
+      </div>
+      <ul>{wishlistItem}</ul>
     </div>
   );
-}
-
-function Friend() {
-  return (
-    <div>
-      <div>Friend</div>
-      <List />
-    </div>
-  );
-}
-
-function List() {
-  return (
-    <div>
-      <div>List</div>
-      <ListItem />
-      <ListItem />
-      <ListItem />
-    </div>
-  );
-}
-function ListItem() {
-  return <div>List Item</div>;
 }
 
 export default Dashboard;
