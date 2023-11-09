@@ -19,6 +19,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
+import FriendList from "./components/FriendList/FriendList";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/dashboard/:id" element={<Dashboard />} />
+        <Route path="/dashboard/:id/friends" element={<FriendList />} />
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
         <Route path="/create-list" element={<NewList />} />
       </Routes>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./SearchPage.css";
-// import { SearchList } from "./SearchList"
 import SearchList from "./SearchList";
 import { getAllUsersAPI } from "../API/API";
 
@@ -17,7 +16,7 @@ function Search() {
     try {
       let result = await getAllUsersAPI();
       setUsersData(result.data);
-      // console.log(usersData);
+
     } catch (error) {
       console.log(error);
     }
@@ -33,12 +32,8 @@ function Search() {
     let filtered = usersData.filter((user) => {
       return user.user_name.toLowerCase().includes(input);
     });
-    // console.log(filtered);
-    // setFilteredUsers([...usersData, filtered]);
+
     setFilteredUsers(filtered);
-    // setUsersData(filtered)
-    // console.log(filteredUsers);
-    // console.log(usersData);
   }
 
   return (
@@ -71,8 +66,6 @@ function Search() {
           </div>
           <div className="search-page-results">
             {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
-            {/* <SearchList filteredUsers={filteredUsers} /> */}
-
           </div>
         </div>
       </div>
