@@ -9,9 +9,10 @@ async function createUser(data) {
   }
 }
 
-async function getUserData(data) {
+async function getUserData(email) {
   try {
-    let result = await Axios.get(`/user/find-email`, data);
+    console.log(email);
+    let result = await Axios.get(`/users/find-email?email=${email}`);
     return result;
   } catch (error) {
     return error;
@@ -26,9 +27,14 @@ async function getAllUsersAPI() {
     return e;
   }
 }
+async function getUserProfile(id) {
+  console.log(id, "API");
+  try {
+    let result = await Axios.get(`/dashboard/${id}`);
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
 
-export { 
-  createUser, 
-  getUserData,
-  getAllUsersAPI,
- };
+export { createUser, getUserData, getAllUsersAPI, getUserProfile };

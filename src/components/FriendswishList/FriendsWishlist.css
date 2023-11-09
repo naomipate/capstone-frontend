@@ -1,0 +1,95 @@
+.FriendWishlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #6e1aec;
+}
+
+.TitleBar {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(23, 22, 22);
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.AddButton {
+  background-color: #9949ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.WishlistItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #f1ebfa;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  width: 80%;
+  margin-left: auto;
+}
+
+.ImageContainer {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border: 1px solid #999;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.WishlistImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ItemInfo {
+  flex-grow: 0.2;
+}
+
+.WishlistLink {
+  text-align: center;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.EditDeleteButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+.EditButton {
+  background-color: #9949ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.DeleteButton {
+  background-color: #ec5e6c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ErrorMsg {
+  color: rgb(23, 22, 22);
+}
