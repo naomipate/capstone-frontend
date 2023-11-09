@@ -1,11 +1,12 @@
 import "./Signup.css";
-
+import Alert from "../common/AlertModal/Alert";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUser } from "../API/API";
 
 function Signup() {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
   const [user, setUser] = useState({
     user_name: "",
     dob: "",
@@ -22,8 +23,11 @@ function Signup() {
         dob: "",
         email: "",
       });
-      alert("Signup Successful!");
-      navigate("/login");
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+        navigate("/login");
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -83,6 +87,7 @@ function Signup() {
           </p>
         </div>
       </form>
+      {show && <Alert message={"Successfull Signup"} />}
     </div>
   );
 }
