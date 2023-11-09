@@ -27,5 +27,13 @@ async function getAllUsersAPI() {
     return e;
   }
 }
+async function getUserProfile(id) {
+  try {
+    let result = await Axios.get(`/dashboard/${id}`);
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
 
-export { createUser, getUserData, getAllUsersAPI };
+export { createUser, getUserData, getAllUsersAPI, getUserProfile };

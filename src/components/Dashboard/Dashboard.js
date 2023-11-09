@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../API/Axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { getUserProfile } from "../API/API";
 import "./Dashboard.css";
-import Sidebar from "../Sidebar/Sidebar";
 
 function Dashboard() {
   const [user, setUser] = useState({});
@@ -15,7 +15,7 @@ function Dashboard() {
 
   const fetchData = async () => {
     try {
-      let response = await Axios.get(`/dashboard/${id}`);
+      let response = await getUserProfile(id);
       console.log(response.data);
       setUser(response.data);
       return response.data;
@@ -31,26 +31,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div>Dashboard</div>
-      {user.userProfile && <UserDetails userDetails={user?.userProfile} />}
       {friendsList}
-      <Sidebar />
-    </div>
-  );
-}
-
-function UserDetails({ userDetails }) {
-  console.log(userDetails);
-  let { first_name, last_name, dob } = userDetails;
-  let date = new Date(dob);
-  return (
-    <div>
-      <div>
-        <h3>
-          {first_name} {last_name}
-        </h3>
-        <p>{date.toLocaleDateString()}</p>
-      </div>
-      <Avatar />
     </div>
   );
 }
