@@ -27,8 +27,28 @@ async function getAllUsersAPI() {
   }
 }
 
+async function getAllFriendsFromUser(id) {
+  try {
+    let result = await Axios.get(`/users/${id}/friends`, id);
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
+
+async function getFriendsWishlist(id) {
+  try {
+    let result = await Axios.get(`/users/${id}/friends-wish-list`, id);
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
 export { 
   createUser, 
   getUserData,
   getAllUsersAPI,
+  getAllFriendsFromUser,
+  getFriendsWishlist,
+  
  };

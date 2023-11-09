@@ -9,16 +9,18 @@ import Nav from "./components/Nav/Nav";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
+import FriendList from "./components/FriendList/FriendList";
 
 function App() {
   return (
     <Router>
       <Nav />
       <Routes>
-        <Route path="/search-page" element={<SearchPage/>} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login/>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/search-page" element={<SearchPage/>} />
+      <Route path="/users/:id/friends" element={<FriendList/>} />
       </Routes>
       <Footer />
     </Router>
