@@ -10,7 +10,6 @@ function Dashboard() {
 
   const { id } = useParams();
   useEffect(() => {
-    //     console.log(id);
     fetchData();
   }, []);
 

@@ -9,10 +9,10 @@ async function createUser(data) {
   }
 }
 
-async function getUserData({ email }) {
+async function getUserData(email) {
   try {
     console.log(email);
-    let result = await Axios.get(`/users/find-email`, { email });
+    let result = await Axios.get(`/users/find-email`, { email: email });
     return result;
   } catch (error) {
     return error;
