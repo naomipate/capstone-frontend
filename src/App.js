@@ -35,7 +35,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard/:id" element={<Dashboard />} />
         {/* <Route path="/friendswishlist" element={<FriendsWishlist />} /> */}
-        <Route path="/userwishlist" element={<UserWishlist />} />
+        <Route path="/userwishlist/:id" element={<UserWishlist />} />
         <Route path="/create-wishlist" element={<AddWishlist />} />
         <Route path="/edit-wishlist/:id/edit" element={<EditWishlist />} />
       </Routes>
