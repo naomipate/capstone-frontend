@@ -24,20 +24,20 @@ function Dashboard() {
     }
   }
 
-  const endOfYearCalc = (dob) => {
-    let date = new Date(dob);
-    // Now: Calc the current time
-    let currentDateInMilli = Date.now();
-    let currentDate = new Date(currentDateInMilli);
-    // EndOfYear: Calc the time at the end of the year
-    let endOfYear = new Date(
-      `${currentDate.getFullYear()}-12-31T23:59:59.599-05:00`
-    );
-    let endOfYearInMilli = endOfYear.getTime();
-    // EndOfYear - now = Time before the end of the year
-    return endOfYearInMilli - currentDateInMilli;
-    // Sort by this ^^^^^
-  };
+  // const endOfYearCalc = (dob) => {
+  //   let date = new Date(dob);
+  //   // Now: Calc the current time
+  //   let currentDateInMilli = Date.now();
+  //   let currentDate = new Date(currentDateInMilli);
+  //   // EndOfYear: Calc the time at the end of the year
+  //   let endOfYear = new Date(
+  //     `${currentDate.getFullYear()}-12-31T23:59:59.599-05:00`
+  //   );
+  //   let endOfYearInMilli = endOfYear.getTime();
+  //   // EndOfYear - now = Time before the end of the year
+  //   return endOfYearInMilli - currentDateInMilli;
+  //   // Sort by this ^^^^^
+  // };
 
   let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} />;
@@ -59,7 +59,7 @@ function Friend({ friendDetails }) {
       <a href={item.link}>{item.item_name}</a>
     </li>
   ));
-  let upcomingDate = date.toDateString().split(" ").splice(1, 2).join(" ");
+  // let upcomingDate = date.toDateString().split(" ").splice(1, 2).join(" ");
   return (
     <div className="friend-card">
       <div className="friend-details">
@@ -70,7 +70,7 @@ function Friend({ friendDetails }) {
           </div>
         </div>
 
-        <div className="friend-dob">{upcomingDate}</div>
+        <div className="friend-dob">upcomingDate</div>
       </div>
       <ul className="wishlist-items">
         <img />
