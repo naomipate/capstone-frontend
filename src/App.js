@@ -24,16 +24,23 @@ import FriendList from "./components/FriendList/FriendList";
 function App() {
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    let userFromStorage = localStorage.getItem("user");
+    let storedUser = JSON.parse(userFromStorage);
+    setUser(storedUser);
+  }, []);
+
+  console.log(user);
   return (
     <Router>
       <Nav />
-      <Sidebar />
+      {user && <Sidebar />}
       <Routes>
         <Route path="/search-page" element={<SearchPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/dashboard/:id" element={<Dashboard />} />
+        <Route path="/dashboard/:id" element={<Dashboard user={user} />} />
         <Route path="/dashboard/:id/friends" element={<FriendList />} />
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
         <Route path="/create-list" element={<NewList />} />
