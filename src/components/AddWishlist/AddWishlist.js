@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import "./AddNewList.css";
+import "./AddWishlist.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function NewList() {
+function AddWishlist() {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -55,7 +55,6 @@ function NewList() {
         <div className="form-group">
           <label htmlFor="imageUrl">Image Url</label>
           <input
-            required
             type="text"
             id="imageUrl"
             name="imageUrl"
@@ -82,4 +81,4 @@ function NewList() {
   );
 }
 
-export default NewList;
+export default AddWishlist;
