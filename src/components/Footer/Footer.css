@@ -1,81 +1,82 @@
 .footer {
-  display: block;
-  /* position: absolute; */
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #111;
-  height: auto;
-  width: 100vw;
-  padding-top: 40px;
-  color: #fff;
-  & .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    & .title {
-      font-size: 2.1rem;
-      font-weight: 500;
-      text-transform: capitalize;
-      line-height: 3rem;
-    }
-    & .text {
-      max-width: 500px;
-      margin: 10px auto;
-      line-height: 28px;
-      font-size: 14px;
-      color: #cacdd2;
-    }
-  }
-  & .bottom {
-    background: #000;
-    /* width: 100vw; */
-    padding: 20px;
-    padding-bottom: 40px;
-    text-align: center;
-    & .copyright {
-      float: left;
-      font-size: 14px;
-      word-spacing: 2px;
-      text-transform: capitalize;
-      & .copy-link {
-        color: #44bae8;
-        font-size: 16px;
-        text-decoration: none;
-      }
-      & span {
-        text-transform: uppercase;
-        opacity: 0.4;
-        font-weight: 200;
-      }
-    }
-    & .menu {
-      float: right;
-
-      & .list {
-        display: flex;
-        & .item {
-          padding-right: 10px;
-          display: block;
-          & .link {
-            color: #cfd2d6;
-            text-decoration: none;
-          }
-          & .link:hover {
-            color: #27bcda;
-          }
-        }
-      }
-    }
-  }
+  color: white;
+  background-color: black;
+  position: absolute;
+  width: 100%;
 }
 
-@media (max-width: 500px) {
-  .list {
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.footer-image {
+  padding: 1rem;
+  height: 60px;
+  width: auto;
+}
+
+.slogan {
+  width: 70%;
+  margin: 0 auto;
+  font-size: 12px;
+  font-family: "Hepta Slab", serif;
+}
+
+.brand {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+hr {
+  width: 85%;
+}
+
+.bottom {
+  text-align: center;
+}
+
+.text {
+  font-size: medium;
+  width: 60%;
+  margin: 0 auto;
+  font-family: "Hepta Slab", serif;
+  margin-bottom: 17px;
+  padding: 10px;
+}
+
+.copyright {
+  margin: 0 auto;
+  font-size: small;
+  font-family: "Hepta Slab", serif;
+}
+
+.navLink {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  list-style-type: none;
+  padding-left: 0;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  padding: 3px;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: orange;
+}
+
+@media (max-width: 900px) {
+  .footerContent {
     display: flex;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    flex-direction: column;
   }
 }

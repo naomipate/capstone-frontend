@@ -1,43 +1,21 @@
 import "./Nav.css";
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import GiftuneLogo from "../../Assets/GiftuneLogo3Nav.png";
 
 function Nav() {
-  const [showNav, setShowNav] = useState(false);
-
-  const toggleNav = () => {
-    setShowNav(!showNav);
-  };
   return (
-    <>
-      <nav className="navbar">
-        <div className="container">
-          <div className="logo">
-            <img src={GiftuneLogo} alt="NavLogo" />
-          </div>
-          <div className="menu-icon" onClick={toggleNav}>
-            ☰
-          </div>
-          <div className={`nav-elements ${showNav && "active"}`}>
-            <ul className="nav-list">
-              <li className="nav-item">
-                <NavLink to={"/"}>Home</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={"/login"}>Login</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={"/signup"}>Signup</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={"/about"}>About</NavLink>
-              </li>
-            </ul>
-          </div>
+    <div className="wrapper">
+      <header className="topnav">
+        <img src={GiftuneLogo} alt="logo" />
+        <div className="nav-links">
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/login"}>Login</NavLink>
+          <NavLink to={"/signup"}>Signup</NavLink>
+          <NavLink to={"/about"}>About</NavLink>
         </div>
-      </nav>
-    </>
+      </header>
+    </div>
   );
 }
 
