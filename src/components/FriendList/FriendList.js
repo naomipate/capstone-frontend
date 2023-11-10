@@ -4,7 +4,7 @@ import "./FriendList.css";
 import { getAllFriendsFromUser, getFriendsWishlist } from "../API/API";
 
 
-function FriendList() {
+function FriendList({user}) {
   const [friendsList, setFriendsList] = useState([]);
   const { id } = useParams();
 
@@ -18,12 +18,12 @@ function FriendList() {
       let result = await getAllFriendsFromUser();
 
       setFriendsList(result.data);
-      console.log(result.data)
+      // console.log(result.data)
 
     } catch (error) {
       console.log(error);
     }
-    
+
   }
   
 
