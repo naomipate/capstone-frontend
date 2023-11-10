@@ -6,7 +6,7 @@ import { getUserData } from "../API/API";
 
 import "./Login.css";
 
-function Login() {
+function Login({ setUser }) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -29,6 +29,8 @@ function Login() {
       setEmail({
         email: "",
       });
+      setUser(user);
+      window.localStorage.setItem("user", JSON.stringify(user.data));
       setPassword("");
       alert("Login Success!");
       navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.

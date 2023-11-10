@@ -1,10 +1,20 @@
 .dashboard-container {
+    display: grid;
     text-align: center;
-    color: black;
+    background-color: #f7a0a0;
 }
-.dashboard-container .friend-card{
+.dashboard-container .friend-card {
     padding: 15px;
     margin: 15px;
-    border: solid blue;
+    border: solid  #EFBE00;
     border-radius: 10px;
+    background-color: #c294fb;
+}
+.dashboard-container .friend-card .wishlist-items{
+    padding: 15px;
+    margin: 15px;
+    border: solid #FCCA07;
+    border-radius: 10px;
+    list-style-type: none;
+    background-color:#fcd94a;
 }

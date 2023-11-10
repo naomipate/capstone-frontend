@@ -4,44 +4,31 @@ import { useParams, useNavigate } from "react-router-dom";
 import SidebarNav from "../SidebarNav/SidebarNav";
 
 function Sidebar() {
-  const [user, setUser] = useState({});
-  const navigate = useNavigate();
-
-  const { id } = useParams();
+  //   console.log(user);
   useEffect(() => {
-    fetchData(id);
+    const user = JSON.parse(window.localStorage.getItem("user"));
+    console.log(user);
   }, []);
 
-  const fetchData = async () => {
-    try {
-      let response = await Axios.get(`/dashboard/${id}`);
-      console.log(response.data);
-      setUser(response.data);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div>
       <div>Sidebar</div>
-      {user.userProfile && <UserDetails userDetails={user?.userProfile} />}
+      {/* {user.userProfile && <UserDetails userDetails={user?.userProfile} />} */}
       <SidebarNav />
     </div>
   );
 }
-
 function UserDetails({ userDetails }) {
   console.log(userDetails);
   let { first_name, last_name, dob } = userDetails;
-  let date = new Date(dob);
+  let date = new Date(dob).toDateString().split(" ").splice(1, 2).join(" ");
   return (
     <div>
       <div>
         <h3>
           {first_name} {last_name}
         </h3>
-        <p>{date.toLocaleDateString()}</p>
+        <p>{date}</p>
       </div>
     </div>
   );
