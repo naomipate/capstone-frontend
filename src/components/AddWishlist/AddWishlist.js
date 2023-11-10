@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./AddWishlist.css";
 
@@ -15,22 +16,21 @@ function AddWishlist() {
     itemLink: "",
   });
 
-  async function handleCreateWishlist(e) {
-    e.preventDefault();
+  const handleCreateWishlist = async (formData) => {
     try {
       await axios.post(`${API_URL}/userwishlist`, formData);
+      alert("Wishlist item created successfully!");
+      setFormData({
+        itemName: "",
+        imageUrl: "",
+        itemLink: "",
+      });
 
-      console.log(formData);
       navigate(`/userwishlist`);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
-    setFormData({
-      itemName: "",
-      imageUrl: "",
-      itemLink: "",
-    });
-  }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,43 +40,7 @@ function AddWishlist() {
   return (
     <div className="list-form">
       <h2>Add item</h2>
-      <form onSubmit={handleCreateWishlist}>
-        <div className="form-group">
-          <label htmlFor="itemName">Item Name</label>
-          <input
-            required
-            type="text"
-            id="itemName"
-            name="itemName"
-            value={formData.itemName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="imageUrl">Image Url</label>
-          <input
-            type="text"
-            id="imageUrl"
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="itemLink">Item Link</label>
-          <input
-            required
-            type="text"
-            id="itemLink"
-            name="itemLink"
-            value={formData.itemLink}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button className="button-container" type="submit">
-          Submit
-        </button>
-      </form>
+      <WishlistForm onSubmit={handleCreateWishlist} />
     </div>
   );
 }
