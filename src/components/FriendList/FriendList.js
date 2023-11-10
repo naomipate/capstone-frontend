@@ -5,25 +5,26 @@ import { getAllFriendsFromUser, getFriendsWishlist } from "../API/API";
 
 
 function FriendList() {
-  // const [friendsList, setFriendsList] = useState([]);
-  // const { id } = useParams();
+  const [friendsList, setFriendsList] = useState([]);
+  const { id } = useParams();
 
 
-  // useEffect(() => {
-  //   fetchList();
-  // }, [id]);
+  useEffect(() => {
+    fetchList();
+  }, [id]);
 
-  // async function fetchList() {
-  //   try {
-  //     let result = await getAllFriendsFromUser();
+  async function fetchList() {
+    try {
+      let result = await getAllFriendsFromUser();
 
-  //     setFriendsList(result.data);
-  //     console.log(result.data)
+      setFriendsList(result.data);
+      console.log(result.data)
 
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
   
 
   return (

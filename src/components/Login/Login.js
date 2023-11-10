@@ -29,7 +29,7 @@ function Login({ setUser }) {
       setEmail({
         email: "",
       });
-      setUser(user);
+      setUser(user.data);
       window.localStorage.setItem("user", JSON.stringify(user.data));
       setPassword("");
       alert("Login Success!");
