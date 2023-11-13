@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65vh; /* Or any other appropriate height */
+  height: 65vh;
 }
 ​ .spinner-container {
   margin: 27vh auto;

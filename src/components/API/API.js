@@ -55,6 +55,7 @@ async function getAllFriendsFromUser(id) {
 //     return e;
 //   }
 // }
+
 export { 
   createUser, 
   getUserData,
