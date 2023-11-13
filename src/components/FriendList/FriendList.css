@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     /* margin: 3em; */
-
 }
 
 .friend-list-wrapper {
@@ -157,4 +156,9 @@
 .button-1:hover,
 .button-1:focus {
   background-color: rgba(229, 222, 222, 0.1);;
+}
+
+a.friend-list-link{
+  text-decoration: none;
+  color: #e3e3e3;
 }

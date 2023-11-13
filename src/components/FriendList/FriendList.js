@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import "./FriendList.css";
 import { getAllFriendsFromUser, getFriendsWishlist } from "../API/API";
 
-function FriendList({ user }) {
+function FriendList() {
   const [friendsList, setFriendsList] = useState([]);
 
   const { id } = useParams();
@@ -34,18 +34,21 @@ function FriendList({ user }) {
           </section>
           <section className="friend-list-bottom">
             <ul className="friend-list-users">
-              {friendsList.map(({ id, user_name, dob }) => {
+              {friendsList.map((user) => {
                 return (
-                  <li key={id} className="friend-list-user">
+                  
+                  <li key={user.id} className="friend-list-user">
+                    <Link to={`/dashboard/${id}/friends/${user.id}`} className="friend-list-link">
                     <div className="user-first-row">
-                      <span className="friend-list-user-name">{user_name}</span>
+                      <span className="friend-list-user-name">{user.user_name}</span>
                       <button className="button-1" role="button">
                         Unfollow
                       </button>
                     </div>
                     <div>
-                      <span className="user-occupation">{dob}</span>
+                      <span className="user-occupation">{user.dob}</span>
                     </div>
+                  </Link>
                   </li>
                 );
               })}
