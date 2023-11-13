@@ -1,0 +1,160 @@
+.friend-list-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin: 3em; */
+
+}
+
+.friend-list-wrapper {
+    width: 70rem;
+    height: 100%;
+    position: relative;
+    --white: #e3e3e3;
+    --bc: rgb(200, 154, 255);
+    --bc-al: rgb(153, 73, 255, 0.6);
+    margin: 15rem 3rem ;
+    max-width: 70rem;    
+  }
+  
+  .friend-list-card {
+    width: 100%;
+    /* max-width: 50rem; */
+    padding: 1rem 0;
+    display: grid;
+    grid-template-areas: "top" "bottom";
+    grid-template-rows: 20% 1fr;
+    border: 1px solid var(--bc-al);
+    border-radius: .75rem;
+    background: var(--bc-al);
+    color: var(--white);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 15px 30px -15px var(--bc-al);
+    isolation: isolate;
+  }
+  
+  .circle-1 {
+    position: absolute;
+    content: '';
+    width: 5rem;
+    height: 5rem;
+    left: 1rem;
+    top: 50%;
+    transform: translate(-50%);
+    background-color: var(--bc-al);
+    border-radius: 50%;
+    z-index: -10;
+  }
+  
+  .circle-2 {
+    position: absolute;
+    content: '';
+    width: 3rem;
+    height: 3rem;
+    right: -1rem;
+    top: 3rem;
+    background-color: var(--bc-al);
+    border-radius: 50%;
+    z-index: -10;
+  }
+  
+  .top {
+    padding: 2rem 4rem;
+    z-index: 1;
+  }
+  
+  .friend-list-bottom {
+    z-index: 2;
+  }
+  
+  .friend-list-users {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 0;
+  }
+
+  .user-first-row{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .friend-list-user {
+    /* width: 100%; */
+    padding: .75rem 4rem;
+    display: flex;
+    gap: .1rem;
+    flex-direction: column;
+    align-items: flex;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--bc-al);
+    position: relative;
+  }
+  
+  .friend-list-user:hover {
+    background-color: var(--bc-al);
+  }
+  
+  .friend-list-user:nth-last-child(1) {
+    border-bottom: none;
+  }
+  
+  .friend-list-user::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    left: 1.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--white);
+    border-radius: 50%;
+  }
+  
+  .friend-list-user-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .friend-list-user-occupation {
+    opacity: .8;
+  }
+  
+  .u-l {
+    font-size: 1.9rem;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  
+.button-1 {
+    background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-1:hover,
+.button-1:focus {
+  background-color: rgba(229, 222, 222, 0.1);;
+}

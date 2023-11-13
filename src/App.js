@@ -25,12 +25,13 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    let userFromStorage = localStorage.getItem("user");
+    let userFromStorage = window.localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
     setUser(storedUser);
   }, []);
 
   console.log(user);
+
   return (
     <Router>
       <Nav />
