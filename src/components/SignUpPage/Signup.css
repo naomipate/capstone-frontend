@@ -12,7 +12,7 @@
   flex-direction: column;
   padding: 32px 24px 24px;
   max-width: 300px;
-  background: #f1ebfa; /*#f1f7fe;*/
+  background: #f1ebfa;
   border-radius: 16px;
   color: #010101;
   & .title {
@@ -46,13 +46,13 @@
 .form-section {
   padding: 16px;
   font-size: 0.85rem;
-  background-color: #e5d8f9; /*#e0ecfb;*/
+  background-color: #e5d8f9;
   border-radius: 10px;
   box-shadow: rgb(0, 0, 0/8%) 0 -1px;
 
   & a {
     font-weight: bold;
-    color: #9949ff; /*#0066ff;*/
+    color: #9949ff;
     text-decoration: none;
     transition: color 0.3s ease;
   }
@@ -62,7 +62,7 @@
   }
 }
 .formBtn {
-  background-color: #9949ff; /*#0066ff;*/
+  background-color: #9949ff;
   color: #fff;
   border: 0;
   border-radius: 24px;
