@@ -1,5 +1,4 @@
 .dashboard-container {
-    display: grid;
     text-align: center;
     background-color: #f7a0a0;
 }
@@ -10,6 +9,17 @@
     border-radius: 10px;
     background-color: #c294fb;
 }
+
+.dashboard-container .friend-card .friend-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.dashboard-container .friend-card .friend-avatar-name {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .dashboard-container .friend-card .wishlist-items{
     padding: 15px;
     margin: 15px;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./WishlistForm.css";
 
 function WishlistForm({ onSubmit, initialValues }) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialValues || {});
 
@@ -20,25 +20,23 @@ function WishlistForm({ onSubmit, initialValues }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
-    navigate(`/userwishlist`);
+    navigate(`/userwishlist/2`);
   };
 
   return (
-    // <div className="list-form">
-    //   <h2>Add item</h2>
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="itemName">Item Name</label>
         <input
           required
           type="text"
-          id="itemName"
-          name="itemName"
-          value={formData.itemName || ""}
+          id="item_name"
+          name="item_name"
+          value={formData.item_name || ""}
           onChange={handleInputChange}
         />
       </div>
-      <div className="form-group">
+      {/* <div className="form-group">
         <label htmlFor="imageUrl">Image Url</label>
         <input
           type="text"
@@ -47,15 +45,15 @@ function WishlistForm({ onSubmit, initialValues }) {
           value={formData.imageUrl || ""}
           onChange={handleInputChange}
         />
-      </div>
+      </div> */}
       <div className="form-group">
         <label htmlFor="itemLink">Item Link</label>
         <input
           required
           type="text"
-          id="itemLink"
-          name="itemLink"
-          value={formData.itemLink || ""}
+          id="link"
+          name="link"
+          value={formData.link || ""}
           onChange={handleInputChange}
         />
       </div>
@@ -63,7 +61,6 @@ function WishlistForm({ onSubmit, initialValues }) {
         Submit
       </button>
     </form>
-    // </div>
   );
 }
 export default WishlistForm;

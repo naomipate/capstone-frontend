@@ -9,17 +9,18 @@ function EditWishlist() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [wishlist, setWishlist] = useState({
-    itemName: "",
-    imageUrl: "",
-    itemLink: "",
+  const [formData, setFormData] = useState({
+    item_name: "",
+    // imageUrl: "",
+    link: "",
   });
 
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
         const response = await axios.get(`/${API_URL}/userwishlist/${id}`);
-        setWishlist(response.data[0]);
+        setFormData(response.data[0]);
+        navigate(`/userWishlist/${id}`);
       } catch (error) {
         console.log(error);
       }
@@ -27,9 +28,9 @@ function EditWishlist() {
     fetchWishlist();
   }, [id]);
 
-  const handleEditWishlist = async (formData) => {
+  const handleEditWishlist = async () => {
     try {
-      await axios.put(`/${API_URL}/userwishlist/${id}`, formData);
+      await axios.put(`/${API_URL}/userwishlist/${id}/edit`, formData);
       alert("Wishlist item updated successfully");
       navigate(`/userwishlist`);
     } catch (err) {
@@ -37,29 +38,10 @@ function EditWishlist() {
     }
   };
 
-  //   const updateWishlist = async (id, updatedWishlist) => {
-  //     try {
-  //       await axios.put(`${API_URL}/wishlist/${id}`, updatedWishlist);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   async function handleSubmit(e) {
-  //     e.preventDefault();
-  //     try {
-  //       await updateWishlist(id);
-
-  //       navigate(`/wishList/${id}`);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-
   return (
     <div className="list-form">
-      <h2>Edit item</h2>
-      <WishlistForm onSubmit={handleEditWishlist} wishlist={wishlist} />
+      <h2>item</h2>
+      <WishlistForm onSubmit={handleEditWishlist} wishlist={formData} />
     </div>
   );
 }

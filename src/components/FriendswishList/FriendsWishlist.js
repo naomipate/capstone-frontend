@@ -48,9 +48,9 @@ function FriendsWishlist() {
     <div className="friends-wishlist">
       <div className="TitleBar" key={wishlist.id}>
         <h2>List</h2>
-        <Link to={"/Create-list"}>
+        {/* <Link to={"/Create-list"}>
           <button>Add Item</button>
-        </Link>
+        </Link> */}
       </div>
 
       {wishlist.length > 0 ? (

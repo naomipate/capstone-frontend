@@ -8,12 +8,13 @@
 
 .TitleBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin-left: 80px;
   color: rgb(23, 22, 22);
   width: 100%;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px solid #926262;
 }
 
 .AddButton {
@@ -29,10 +30,11 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #f1ebfa;
+  justify-items: flex-start;
+  background-color: #efe5fc;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 10px;
   border-radius: 4px;
   width: 80%;
   margin-left: auto;

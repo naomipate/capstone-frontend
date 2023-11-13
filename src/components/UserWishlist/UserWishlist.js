@@ -15,6 +15,8 @@ function UserWishlist() {
   const [formData, setFormData] = useState([]);
   const [editingItemId, setEditingItemId] = useState(null);
 
+  const [selectedItem, setSelectedItem] = useState(null);
+
   useEffect(() => {
     if (id) {
       fetchWishlist(id);
@@ -24,8 +26,6 @@ function UserWishlist() {
   const fetchWishlist = async () => {
     try {
       let response = await axios.get(`${API_URL}/userwishlist/${id}`);
-
-      console.log(response.data);
       setFormData(response.data);
     } catch (err) {
       console.log(err);
@@ -35,25 +35,41 @@ function UserWishlist() {
   const deleteWishlistItem = async (id) => {
     try {
       const response = await axios.delete(`${API_URL}/userwishlist/${id}`);
-
-      const { wishlist_id } = response.data;
-      alert(`Wishlist item ${wishlist_id} has been deleted`);
-
+      const { item_name } = response.data;
+      alert(`Wishlist item ${item_name} has been deleted`);
       setFormData((prevWishlist) =>
         prevWishlist.filter((item) => item.id !== id)
       );
-      navigate("/userwishlist");
+      navigate(`/userwishlist/2`);
     } catch (err) {
       console.log(err);
     }
   };
 
+  const handleEditClick = (id) => {
+    setEditingItemId(id);
+    const selectedItem = formData.find((item) => item.id === id);
+    setSelectedItem(selectedItem);
+    if (selectedItem) {
+      setFormData(selectedItem);
+      console.log(editingItemId);
+    }
+  };
+
   const handleEditSubmit = async (formData) => {
+    console.log("FormData before submit:", formData);
+
     try {
-      await axios.put(`${API_URL}/userwishlist/${editingItemId}`);
+      let response = await axios.put(
+        `${API_URL}/userwishlist/${editingItemId}`,
+        formData
+      );
+      console.log("Server Response:", response.data);
+
       alert(`Wishlist item updated successfully.`);
       setEditingItemId(null);
       fetchWishlist();
+      navigate(`/userwishlist/${id}`);
     } catch (err) {
       console.log(err);
     }
@@ -64,11 +80,11 @@ function UserWishlist() {
       await axios.post(`${API_URL}/userwishlist`, formData);
       alert("Wishlist item created successfully!");
       setFormData({
-        itemName: "",
-        imageUrl: "",
-        itemLink: "",
+        user_id: 2,
+        item_name: "",
+        // imageUrl: "",
+        link: "",
       });
-
       navigate(`/userwishlist`);
     } catch (err) {
       console.log(err);
@@ -79,36 +95,39 @@ function UserWishlist() {
     <div className="user-wishlist">
       <div className="TitleBar" key={formData.id}>
         <h2>List</h2>
-        <Link to={"/Create-wishlist"}>
+        <Link to={`/userwishlist/new?id=${id}`}>
           <button>Add Item</button>
         </Link>
       </div>
 
-      <WishlistForm
-        onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
-        initialValues={
-          editingItemId
-            ? formData.find((item) => item.id === editingItemId)
-            : null
-        }
-      />
+      {(editingItemId !== null || formData.length === 0) && (
+        <WishlistForm
+          onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
+          initialValues={editingItemId ? selectedItem || {} : {}}
+        />
+      )}
 
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
             <div className="ImageContainer">
-              <img src={item.Image} alt={item.name} className="WishlistImage" />
+              <img
+                src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
+                alt={item.name}
+                className="WishlistImage"
+              />
             </div>
             <div className="ItemInfo">
               <h2>{item.item_name}</h2>
-              <a href={item.link} className="WishlistLink"></a>
-              <p>{item.wishlist_id}</p>
+            </div>
+            <div>
+              <a href={item.link} className="WishlistLink">
+                Link
+              </a>
             </div>
 
             <div className="EditDeletButtons">
-              <button>
-                <Link to={`/userwishlist/${id}/edit`}>Edit</Link>
-              </button>
+              <button onClick={() => handleEditClick(item.id)}>Edit</button>
               <button
                 className="DeleteButton"
                 onClick={() => deleteWishlistItem(item.id)}
@@ -124,4 +143,5 @@ function UserWishlist() {
     </div>
   );
 }
+
 export default UserWishlist;

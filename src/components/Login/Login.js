@@ -29,7 +29,7 @@ function Login({ setUser }) {
       setEmail({
         email: "",
       });
-      setUser(user);
+      setUser(user.data);
       window.localStorage.setItem("user", JSON.stringify(user.data));
       setPassword("");
       alert("Login Success!");
@@ -41,45 +41,6 @@ function Login({ setUser }) {
 
   return (
     <>
-      {/* <div className="formBox">
-        <h1 className="Title">Login</h1>
-        <form className="Container" onSubmit={handleSubmit}>
-          <span className="Subtitle">Login with your credentials here!</span>
-          <div className="InputGroup">
-            <input
-              type="text"
-              className="Input"
-              placeholder="Email"
-              id="email"
-              // value={email.email}
-              // onChange={(e) => handleEmailChange(e.target.id, e.target.value)}
-              required
-            />
-            <br />
-            <input
-              type="text"
-              className="Input"
-              placeholder="Password"
-              id="password"
-              // value={password}
-              // onChange={handlePasswordChange}
-              required
-            />
-          </div>
-          <button type="submit" className="btn">
-            Login
-          </button>
-        </form>
-        <div className="Section">
-          <p className="Text">
-            Don't have an account yet?{" "}
-            <Link to={"/"} className="Link">
-              Sign up here
-            </Link>
-          </p>
-        </div>
-      </div> */}
-      <br />
       <div className="formBox">
         <form onSubmit={handleSubmit} className="Container">
           <span className="Title">Login</span>
