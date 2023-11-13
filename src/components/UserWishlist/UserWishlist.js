@@ -64,7 +64,7 @@ function UserWishlist() {
         `${API_URL}/userwishlist/${editingItemId}`,
         formData
       );
-      console.log("Server Response:", response.data);
+      // console.log("Server Response:", response.data);
 
       alert(`Wishlist item updated successfully.`);
       setEditingItemId(null);

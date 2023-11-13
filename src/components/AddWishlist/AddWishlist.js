@@ -18,7 +18,7 @@ function AddWishlist() {
     link: "",
   });
 
-  const handleCreateWishlist = async () => {
+  const handleCreateWishlist = async (formData) => {
     try {
       const response = await axios.post(`${API_URL}/userwishlist`, formData);
       console.log("Server Response after adding:", response.data);
@@ -30,6 +30,8 @@ function AddWishlist() {
         // imageUrl: "",
         link: "",
       });
+
+      navigate(`/userwishlist/2`);
     } catch (err) {
       console.log(err);
     }
