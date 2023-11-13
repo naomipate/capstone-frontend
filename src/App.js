@@ -9,8 +9,11 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";
-import NewList from "./components/AddNewList/AddNewList";
+// import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";
+import UserWishlist from "./components/UserWishlist/UserWishlist";
+import EditWishlist from "./components/EditWishlist/EditWishlist";
+import AddWishlist from "./components/AddWishlist/AddWishlist";
+
 // COMPONENTS
 import SignUpPage from "./components/SignUpPage/Signup";
 import SearchPage from "./components/SearchPage/SearchPage";
@@ -40,10 +43,12 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
+        {/* <Route path="/friendswishlist" element={<FriendsWishlist />} /> */}
+        <Route path="/userwishlist/new" element={<AddWishlist />} />
+        <Route path="/userwishlist/:id" element={<UserWishlist />} />
+        <Route path="/userwishlist/:id/edit" element={<EditWishlist />} />
         <Route path="/dashboard/:id" element={<Dashboard user={user} />} />
         <Route path="/dashboard/:id/friends" element={<FriendList />} />
-        <Route path="/friendswishlist" element={<FriendsWishlist />} />
-        <Route path="/create-list" element={<NewList />} />
       </Routes>
       <Footer />
     </Router>
