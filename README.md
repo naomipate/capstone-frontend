@@ -6,9 +6,9 @@ An app designed to keep you on top of your loved ones’ upcoming birthdays wher
 - Instructions to get the application up and running
 
 ### Deployed Links
-frontend: ()[]
-backend: ()[]
-database:()[]
+frontend: [Giftune on Netlify](https://giftune.netlify.app/)
+backend: [Giftune on Render](https://capstone-backend-er7b.onrender.com)
+database: []()
 
 #### Blockers we had during development
 - Basic SQL queries everyone needed weren't made beforehand and we had multiple queries doing the same thing. We did some cleanup and fixed that as a group.
