@@ -1,9 +1,19 @@
 # Giftune Frontend
 An app designed to keep you on top of your loved ones’ upcoming birthdays where you can effortlessly select the perfect gift from a diverse array of options provided by your loved one's wishlist.
 
-## Giftune instructions
+## Giftune instructions (local host)
 
-- Instructions to get the application up and running
+1. In command line, navigate to 'capstone-backend'
+2. Insert command 'npm install'
+3. Insert command 'npm run pg:init'
+4. Insert command 'npm run dev'
+
+   Now for the Frontend
+5. In command line, navigate to 'capstone-frontend'
+6. Insert command 'npm install'
+7. Insert command 'npm start' or 'npm run start'
+
+   Application will now open in a new tab on your default browser with URL 'http://localhost:3000/'
 
 ### Deployed Links
 frontend: [Giftune on Netlify](https://giftune.netlify.app/)
