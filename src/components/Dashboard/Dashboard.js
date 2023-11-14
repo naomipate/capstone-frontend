@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
-import Sidebar from "../Sidebar/Sidebar";
-// import Giftune from "../../Assets/GiftuneLogo2.png";
+import Giftune from "../../Assets/GituneLogoImage.png";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -39,27 +38,18 @@ function Dashboard() {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      // console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear.getTime();
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      // console.log(upcomingDateWithNextYear.getTime());
       return upcomingDateWithNextYear.getTime();
     }
   };
   user?.friendsOrderedByDOB?.forEach((friend) => {
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
-  // console.log(user);
-
-  // console.log(upcomingDateCalc(datesArr[0]))
-
-  // let formatDate = datesArr.map((item) => upcomingDateCalc(item))
-  // let sortedArr = formatDate.sort((a,b)=> new Date(a)- new Date(b))
-  // console.log(sortedArr)
 
   let sortedFriends = user?.friendsOrderedByDOB?.sort((a, b) => {
     return a.dobInMili - b.dobInMili;
@@ -70,12 +60,11 @@ function Dashboard() {
   let friendsList = sortedFriends?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} />;
   });
-  // console.log(user, user?.friendsOrderedByDOB);
+
   return (
     <div className="dashboard-container">
       <div>Dashboard</div>
       {friendsList}
-      <Sidebar />
     </div>
   );
 }
@@ -84,6 +73,7 @@ function Friend({ friendDetails }) {
   let { first_name, last_name, dob, wishlist } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
+      <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
       <a href={item.link}>{item.item_name}</a>
     </li>
   ));
@@ -105,10 +95,7 @@ function Friend({ friendDetails }) {
 
         <div className="friend-dob">{upcomingDate}</div>
       </div>
-      <ul className="wishlist-items">
-        <img />
-        {wishlistItem}
-      </ul>
+      <ul className="wishlist-items">{wishlistItem}</ul>
     </div>
   );
 }
