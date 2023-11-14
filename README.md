@@ -1,3 +1,20 @@
+# Giftune Frontend
+An app designed to keep you on top of your loved ones’ upcoming birthdays where you can effortlessly select the perfect gift from a diverse array of options provided by your loved one's wishlist.
+
+## Giftune instructions
+
+- Instructions to get the application up and running
+
+### Deployed Links
+frontend: ()[]
+backend: ()[]
+database:()[]
+
+#### Blockers we had during development
+- Basic SQL queries everyone needed weren't made beforehand and we had multiple queries doing the same thing. We did some cleanup and fixed that as a group.
+- At one point we needed to figure out how to store the user login in local storage or in state on App.js so we could get the user information passed around properly and make a conditional for the sidebar that should only show up after you log in. We asked Instructor Pak for help on this since we were at a loss to get this working. We ended up storing the user in both local storage and in state.
+- Logic for maipulating the upcoming dates and sorting them was confusing and a couple of us put our heads together to work it out and then used chatgpt to clean up the code a bit before we finished making it more efficient.
+
 # React Skeleton
 
 This is a skeleton for a frontend web application using React. It is intended to be used as a starting point for new projects. It is not intended to be a production-ready application.
