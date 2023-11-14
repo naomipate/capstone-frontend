@@ -39,7 +39,7 @@ async function getUserProfile(id) {
 
 async function getAllFriendsFromUser(id) {
   try {
-    let result = await Axios.get(`/dashboard/${id}/friends`, id);
+    let result = await Axios.get(`/dashboard/${id}/friends`);
     return result;
   } catch (e) {
     return e;
