@@ -64,7 +64,7 @@ function UserWishlist() {
         `${API_URL}/userwishlist/${editingItemId}`,
         formData
       );
-      // console.log("Server Response:", response.data);
+      console.log("Server Response:", response.data);
 
       alert(`Wishlist item updated successfully.`);
       setEditingItemId(null);
@@ -77,7 +77,7 @@ function UserWishlist() {
 
   const handleCreateWishlist = async (formData) => {
     try {
-      await axios.post(`${API_URL}/userwishlist`, formData);
+      await axios.post(`${API_URL}/userwishlist/${id}`, formData);
       alert("Wishlist item created successfully!");
       setFormData({
         user_id: 2,
@@ -94,7 +94,7 @@ function UserWishlist() {
   return (
     <div className="user-wishlist">
       <div className="TitleBar" key={formData.id}>
-        <h2>List</h2>
+        <h2>My List</h2>
         <Link to={`/userwishlist/new?id=${id}`}>
           <button>Add Item</button>
         </Link>
@@ -117,12 +117,9 @@ function UserWishlist() {
                 className="WishlistImage"
               />
             </div>
-            <div className="ItemInfo">
-              <h2>{item.item_name}</h2>
-            </div>
             <div>
               <a href={item.link} className="WishlistLink">
-                Link
+                {item.item_name}
               </a>
             </div>
 
