@@ -1,5 +1,6 @@
 .friend-list-container{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     /* margin: 3em; */
@@ -9,11 +10,11 @@
     width: 70rem;
     height: 100%;
     position: relative;
-    --white: #e3e3e3;
+    --white: #303030;
     --bc: rgb(200, 154, 255);
-    --bc-al: rgb(153, 73, 255, 0.6);
-    margin: 15rem 3rem ;
-    max-width: 70rem;    
+    --bc-al: rgb(153, 73, 255, 0.1);
+    margin: 5rem 3rem;
+    max-width: 60rem;    
   }
   
   .friend-list-card {
@@ -89,6 +90,17 @@
     position: relative;
   }
   
+  .friend-list-profile-img-placeholder{
+    width: 60px;
+    height: 60px;
+    background-color: #cbcbcb;
+    border-radius: 50%;
+    margin-top: 3px;
+    margin-right: 20px;
+    box-shadow:  5px 5px 10px #f2e3fc,
+                 -5px -5px 10px #f6e7ff;
+  }
+  
   .friend-list-user:hover {
     background-color: var(--bc-al);
   }
@@ -97,7 +109,8 @@
     border-bottom: none;
   }
   
-  .friend-list-user::before {
+  /* .friend-list-user::before {
+    list-style-type: none;
     content: '';
     position: absolute;
     width: 5px;
@@ -107,6 +120,13 @@
     transform: translateY(-50%);
     background-color: var(--white);
     border-radius: 50%;
+  } */
+
+  .user-first-row-left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
   }
   
   .friend-list-user-name {
@@ -126,12 +146,13 @@
   }
 
   
-.button-1 {
-    background-color: rgba(51, 51, 51, 0.05);
+.button-1-friend-list {
+  margin-top: 30px;
+  background-color: rgba(105, 0, 243, 0.5);
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -140,12 +161,12 @@
   height: 40px;
   line-height: 20px;
   list-style: none;
-  margin: 0;
+  /* margin: 0; */
   outline: none;
   padding: 10px 16px;
   position: relative;
   text-align: center;
-  text-decoration: none;
+  /* text-friend-list-users: none; */
   transition: color 100ms;
   vertical-align: baseline;
   user-select: none;
@@ -153,12 +174,12 @@
   touch-action: manipulation;
 }
 
-.button-1:hover,
-.button-1:focus {
-  background-color: rgba(229, 222, 222, 0.1);;
+.button-1-friend-list:hover,
+.button-1-friend-list:focus {
+  background-color: rgba(180, 67, 255, 0.1);
 }
 
 a.friend-list-link{
   text-decoration: none;
-  color: #e3e3e3;
+  color: #303030;
 }

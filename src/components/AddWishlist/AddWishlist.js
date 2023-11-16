@@ -1,6 +1,7 @@
+   /* eslint-disable padded-blocks */
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./AddWishlist.css";
@@ -9,7 +10,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function AddWishlist() {
   let navigate = useNavigate();
-  const { id } = useParams();
+  
+  // const { id } = useParams();
 
   const [formData, setFormData] = useState({
     user_id: 2,
