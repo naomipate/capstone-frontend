@@ -37,9 +37,19 @@
 }
 
 
+.friend-wishlist-list-container{
+  position: relative;
+  margin-top: 40px;
+}
+
+
 .friend-wishlist-list-item{
   margin: 2rem;
   list-style-type: none;
+  /* border-radius: 15px;
+background: #ede7f4;
+box-shadow:  5px 5px 10px #e8e2ef,
+             -5px -5px 10px #f2ecf9; */
 }
 
 
@@ -243,4 +253,24 @@
   border: solid rgb(247, 139, 139);
   border-width: 0 0.15em 0.15em 0;
   transform: rotate(45deg);
+ }
+
+ /* ------------------reminder---------------- */
+
+ .friend-wishlist-reminder-box{
+  width: 340px;
+  height: 50px;
+  background-color:  #fedbdb;
+  border-radius: 15px;
+  position: absolute;
+  margin-left: 60px;
+
+ }
+
+ .friend-wishlist-reminder{
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  margin-top: 6px;
+  color: #ff2020;
  }

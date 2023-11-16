@@ -40,7 +40,14 @@ function FriendsProfile() {
           <p>{friendInfoProfile.dob}</p>
         </div>
       </div>
-      <div className="friend-wishlist-list-container">
+        <div className="friend-wishlist-list-container">
+        <div>
+        {FriendsProfileWishlist.length > 0 ?
+        <div className="friend-wishlist-reminder-box">
+            <p className="friend-wishlist-reminder">Reminder to check off the item once you buy!!</p>
+            </div>
+          : ""}
+        </div>
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
             return <FriendsProfileWishlist item={item}  />;

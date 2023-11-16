@@ -23,8 +23,7 @@ function FriendsProfileWishlist({item}) {
             <div class="checkmark"></div>
           </label>
 
-          <div className="notititle">{item.item_name}</div>
-
+          <div className="notititle">{item.item_name.charAt(0).toUpperCase() + item.item_name.slice(1)}</div>
           <Link to={item.link} className="friend-wish-list-item-link">
             <button className="button-1">Buy Item</button>
           </Link>
