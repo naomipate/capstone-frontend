@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Axios from "../API/Axios";
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
+// import Axios from "../API/Axios";
+// import { useParams, useNavigate } from "react-router-dom";
 
 function SidebarNav() {
   // const [user, setUser] = useState({});

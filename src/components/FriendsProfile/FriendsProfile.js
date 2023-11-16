@@ -20,9 +20,6 @@ function FriendsProfile() {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
-      //   console.log(result.data);
-      //   console.log(result.data.friendProfile);
-      //   console.log(result.data.friendsWishlist);
     } catch (error) {
       console.log(error);
     }

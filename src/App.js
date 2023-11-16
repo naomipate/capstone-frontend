@@ -1,12 +1,10 @@
 // DEPENDENCIES
 import React, { useEffect, useState } from "react";
-import Axios from "./components/API/Axios";
+// import Axios from "./components/API/Axios";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useParams,
-  useNavigate,
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 // import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";

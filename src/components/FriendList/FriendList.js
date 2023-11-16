@@ -1,7 +1,8 @@
+   /* eslint-disable padded-blocks */
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./FriendList.css";
-import { getAllFriendsFromUser, getFriendsWishlist } from "../API/API";
+import { getAllFriendsFromUser } from "../API/API";
 
 function FriendList() {
   const [friendsList, setFriendsList] = useState([]);
@@ -10,7 +11,7 @@ function FriendList() {
 
   useEffect(() => {
     fetchList();
-  }, []);
+  }, [id]);
 
   async function fetchList() {
     try {

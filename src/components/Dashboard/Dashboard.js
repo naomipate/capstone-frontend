@@ -1,3 +1,4 @@
+   /* eslint-disable padded-blocks */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
@@ -11,7 +12,7 @@ function Dashboard() {
   const { id } = useParams();
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   async function fetchData() {
     try {
