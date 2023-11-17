@@ -1,7 +1,8 @@
+   /* eslint-disable padded-blocks */
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./FriendList.css";
-import { getAllFriendsFromUser, getFriendsWishlist } from "../API/API";
+import { getAllFriendsFromUser } from "../API/API";
 
 function FriendList() {
   const [friendsList, setFriendsList] = useState([]);
@@ -10,7 +11,7 @@ function FriendList() {
 
   useEffect(() => {
     fetchList();
-  }, []);
+  }, [id]);
 
   async function fetchList() {
     try {
@@ -36,19 +37,26 @@ function FriendList() {
             <ul className="friend-list-users">
               {friendsList.map((user) => {
                 return (
-                  
                   <li key={user.id} className="friend-list-user">
-                    <Link to={`/dashboard/${id}/friends/${user.id}`} className="friend-list-link">
-                    <div className="user-first-row">
-                      <span className="friend-list-user-name">{user.user_name}</span>
-                      <button className="button-1" role="button">
-                        Unfollow
-                      </button>
-                    </div>
-                    <div>
-                      <span className="user-occupation">{user.dob}</span>
-                    </div>
-                  </Link>
+                    <Link
+                      to={`/dashboard/${id}/friends/${user.user_id}`}
+                      className="friend-list-link"
+                    >
+                      <div className="user-first-row">
+                        <div className="user-first-row-left">
+                          <div className="friend-list-profile-img-placeholder"></div>
+                          <span className="friend-list-user-name">
+                            {user.user_name}
+                          </span>
+                        </div>
+                        <button className="button-1-friend-list" role="button">
+                          Unfollow
+                        </button>
+                      </div>
+                      <div>
+                        <span className="user-occupation">{user.dob}</span>
+                      </div>
+                    </Link>
                   </li>
                 );
               })}

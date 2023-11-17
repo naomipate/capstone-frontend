@@ -24,20 +24,19 @@ function WishlistForm({ onSubmit, initialValues }) {
   };
 
   return (
-    <div className="list-form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="itemName">Item Name</label>
-          <input
-            required
-            type="text"
-            id="item_name"
-            name="item_name"
-            value={formData.item_name || ""}
-            onChange={handleInputChange}
-          />
-        </div>
-        {/* <div className="form-group">
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="itemName">Item Name</label>
+        <input
+          required
+          type="text"
+          id="item_name"
+          name="item_name"
+          value={formData.item_name || ""}
+          onChange={handleInputChange}
+        />
+      </div>
+      {/* <div className="form-group">
         <label htmlFor="imageUrl">Image Url</label>
         <input
           type="text"
@@ -47,22 +46,21 @@ function WishlistForm({ onSubmit, initialValues }) {
           onChange={handleInputChange}
         />
       </div> */}
-        <div className="form-group">
-          <label htmlFor="itemLink">Item Link</label>
-          <input
-            required
-            type="text"
-            id="link"
-            name="link"
-            value={formData.link || ""}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button className="button-container" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
+      <div className="form-group">
+        <label htmlFor="itemLink">Item Link</label>
+        <input
+          required
+          type="text"
+          id="link"
+          name="link"
+          value={formData.link || ""}
+          onChange={handleInputChange}
+        />
+      </div>
+      <button className="button-container" type="submit">
+        Submit
+      </button>
+    </form>
   );
 }
 export default WishlistForm;
