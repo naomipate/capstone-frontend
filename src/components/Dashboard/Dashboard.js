@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
-import Sidebar from "../Sidebar/Sidebar";
-// import Giftune from "../../Assets/GiftuneLogo2.png";
+import Giftune from "../../Assets/GituneLogoImage.png";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -24,42 +23,66 @@ function Dashboard() {
     }
   }
 
-  // const endOfYearCalc = (dob) => {
-  //   let date = new Date(dob);
-  //   // Now: Calc the current time
-  //   let currentDateInMilli = Date.now();
-  //   let currentDate = new Date(currentDateInMilli);
-  //   // EndOfYear: Calc the time at the end of the year
-  //   let endOfYear = new Date(
-  //     `${currentDate.getFullYear()}-12-31T23:59:59.599-05:00`
-  //   );
-  //   let endOfYearInMilli = endOfYear.getTime();
-  //   // EndOfYear - now = Time before the end of the year
-  //   return endOfYearInMilli - currentDateInMilli;
-  //   // Sort by this ^^^^^
-  // };
+  // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
+  const upcomingDateCalc = (dob) => {
+    // Now: Calc the current time.
+    let currentDate = new Date(Date.now());
+    // DOB date
+    let date = new Date(dob);
+    // UpcomingDOBDate: calc dates with current year attached.
+    let upcomingDateWithCurrentYear = new Date(
+      date.setFullYear(currentDate.getFullYear())
+    );
+    // UpcomingDate - now = Time before each date.
+    let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
+    // Sort by this ^^^^^
+    if (upcomingDateDiff > 0) {
+      // positive is in the current year
+      return upcomingDateWithCurrentYear.getTime();
+    } else {
+      // negative is next year
+      let upcomingDateWithNextYear = new Date(
+        date.setFullYear(currentDate.getFullYear() + 1)
+      );
+      return upcomingDateWithNextYear.getTime();
+    }
+  };
+  user?.friendsOrderedByDOB?.forEach((friend) => {
+    friend.dobInMili = upcomingDateCalc(friend.dob);
+  });
 
-  let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
+  let sortedFriends = user?.friendsOrderedByDOB?.sort((a, b) => {
+    return a.dobInMili - b.dobInMili;
+  });
+
+  console.log("Sorted Friends: ", sortedFriends);
+
+  let friendsList = sortedFriends?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} />;
   });
-  // console.log(user, user.friendsOrderedByDOB);
+
   return (
     <div className="dashboard-container">
       <div>Dashboard</div>
       {friendsList}
-      <Sidebar />
     </div>
   );
 }
 
 function Friend({ friendDetails }) {
-  let { first_name, last_name, wishlist } = friendDetails;
+  let { first_name, last_name, dob, wishlist } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
+      <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
       <a href={item.link}>{item.item_name}</a>
     </li>
   ));
-  // let upcomingDate = date.toDateString().split(" ").splice(1, 2).join(" ");
+
+  let upcomingDate = new Date(dob)
+    .toDateString()
+    .split(" ")
+    .splice(1, 2)
+    .join(" ");
   return (
     <div className="friend-card">
       <div className="friend-details">
@@ -70,12 +93,9 @@ function Friend({ friendDetails }) {
           </div>
         </div>
 
-        <div className="friend-dob">upcomingDate</div>
+        <div className="friend-dob">{upcomingDate}</div>
       </div>
-      <ul className="wishlist-items">
-        <img />
-        {wishlistItem}
-      </ul>
+      <ul className="wishlist-items">{wishlistItem}</ul>
     </div>
   );
 }
