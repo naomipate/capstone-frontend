@@ -39,28 +39,27 @@ async function getUserProfile(id) {
 
 async function getAllFriendsFromUser(id) {
   try {
-    let result = await Axios.get(`/dashboard/${id}/friends`, id);
+    let result = await Axios.get(`/dashboard/${id}/friends`);
     return result;
   } catch (e) {
     return e;
   }
 }
 
-//Queries need to be thought out 
-// async function getFriendsWishlist(id) {
-//   try {
-//     let result = await Axios.get(`/dashboard/${id}/friends/`, id);
-//     return result;
-//   } catch (e) {
-//     return e;
-//   }
-// }
+async function getFriendsAndTheirWishlists(id, friendId) {
+  try {
+    let result = await Axios.get(`/dashboard/${id}/friends/${friendId}`, id, friendId);
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
 
 export { 
   createUser, 
   getUserData,
   getAllUsersAPI,
   getAllFriendsFromUser,
-  // getFriendsWishlist,
+  getFriendsAndTheirWishlists,
   getUserProfile
  };
