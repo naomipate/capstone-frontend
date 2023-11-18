@@ -12,7 +12,7 @@ async function createUser(data) {
 async function getUserData(email) {
   try {
     console.log(email);
-    let result = await Axios.post(`/users/find-email`, {email:email});
+    let result = await Axios.post(`/users/find-email`, { email: email });
     return result;
   } catch (error) {
     return error;
@@ -48,18 +48,22 @@ async function getAllFriendsFromUser(id) {
 
 async function getFriendsAndTheirWishlists(id, friendId) {
   try {
-    let result = await Axios.get(`/dashboard/${id}/friends/${friendId}`, id, friendId);
+    let result = await Axios.get(
+      `/dashboard/${id}/friends/${friendId}`,
+      id,
+      friendId
+    );
     return result;
   } catch (e) {
     return e;
   }
 }
 
-export { 
-  createUser, 
+export {
+  createUser,
   getUserData,
   getAllUsersAPI,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
-  getUserProfile
- };
+  getUserProfile,
+};
