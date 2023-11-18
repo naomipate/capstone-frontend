@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./WishlistForm.css";
 
-function WishlistForm({ onSubmit, initialValues }) {
+function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
+  const { id } = useParams();
+
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState(initialValues || {});
-
   useEffect(() => {
-    setFormData(initialValues || {});
+    setFormData(initialValues);
   }, [initialValues]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("wishlistForm", formData);
     onSubmit(formData);
-    navigate(`/userwishlist/2`);
+    navigate(`/dashboard/${id}/userwishlist`);
   };
 
   return (
@@ -33,8 +35,8 @@ function WishlistForm({ onSubmit, initialValues }) {
             type="text"
             id="item_name"
             name="item_name"
-            value={formData.item_name || ""}
-            onChange={handleInputChange}
+            value={formData?.item_name || ""}
+            onChange={(e) => handleInputChange(e)}
           />
         </div>
         {/* <div className="form-group">
@@ -54,8 +56,8 @@ function WishlistForm({ onSubmit, initialValues }) {
             type="text"
             id="link"
             name="link"
-            value={formData.link || ""}
-            onChange={handleInputChange}
+            value={formData?.link || ""}
+            onChange={(e) => handleInputChange(e)}
           />
         </div>
         <button className="button-container" type="submit">

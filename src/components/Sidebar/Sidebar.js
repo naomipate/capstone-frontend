@@ -7,7 +7,7 @@ function Sidebar() {
   //   console.log(user);
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
-    console.log(user);
+    // console.log(user);
   }, []);
 
   return (

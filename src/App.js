@@ -33,7 +33,7 @@ function App() {
     setUser(storedUser);
   }, []);
 
-  console.log(user);
+  // console.log(user);
   return (
     <Router>
       <Nav />
@@ -44,9 +44,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         {/* <Route path="/friendswishlist" element={<FriendsWishlist />} /> */}
-        <Route path="/userwishlist/new" element={<AddWishlist />} />
-        <Route path="/userwishlist/:id" element={<UserWishlist />} />
-        <Route path="/userwishlist/:id/edit" element={<EditWishlist />} />
+        <Route
+          path="/dashboard/:id/new"
+          element={<AddWishlist user={user} />}
+        />
+        <Route
+          path="/dashboard/:id/userwishlist"
+          element={<UserWishlist user={user} />}
+        />
+        <Route path="/dashboard/:id/edit" element={<EditWishlist />} />
         <Route path="/dashboard/:id" element={<Dashboard user={user} />} />
         <Route path="/dashboard/:id/friends" element={<FriendList />} />
       </Routes>

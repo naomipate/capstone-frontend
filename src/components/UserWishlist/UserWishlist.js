@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function UserWishlist() {
+function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
-  const { id } = useParams();
+  console.log(user);
+  const user_id = user?.id;
+  console.log(user_id);
 
   const [formData, setFormData] = useState([]);
   const [editingItemId, setEditingItemId] = useState(null);
@@ -18,74 +20,51 @@ function UserWishlist() {
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    if (id) {
-      fetchWishlist(id);
+    if (user_id) {
+      fetchWishlist();
     }
-  }, [id]);
+  }, [user_id]);
 
   const fetchWishlist = async () => {
     try {
-      let response = await axios.get(`${API_URL}/userwishlist/${id}`);
+      let response = await axios.get(`${API_URL}/userwishlist/${user_id}`);
       setFormData(response.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const deleteWishlistItem = async (id) => {
+  const deleteWishlistItem = async (itemId) => {
     try {
-      const response = await axios.delete(`${API_URL}/userwishlist/${id}`);
-      const { item_name } = response.data;
-      alert(`Wishlist item ${item_name} has been deleted`);
-      setFormData((prevWishlist) =>
-        prevWishlist.filter((item) => item.id !== id)
-      );
-      navigate(`/userwishlist/2`);
+      await axios.delete(`${API_URL}/userwishlist/${itemId}`);
+      alert(`Wishlist item has been deleted`);
+      let filterdList = formData.filter((item) => item.id !== itemId);
+      console.log(filterdList);
+      setFormData(filterdList);
+
+      navigate(`/dashboard/${user_id}/userwishlist`);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleEditClick = (id) => {
-    setEditingItemId(id);
-    const selectedItem = formData.find((item) => item.id === id);
+  const handleEditClick = (itemId) => {
+    setEditingItemId(itemId);
+    const selectedItem = formData.find((item) => item.id === itemId);
     setSelectedItem(selectedItem);
     if (selectedItem) {
       setFormData(selectedItem);
-      console.log(editingItemId);
     }
   };
 
   const handleEditSubmit = async (formData) => {
-    console.log("FormData before submit:", formData);
-
     try {
-      let response = await axios.put(
-        `${API_URL}/userwishlist/${editingItemId}`,
-        formData
-      );
-      console.log("Server Response:", response.data);
+      await axios.put(`${API_URL}/userwishlist/${editingItemId}`, formData);
 
       alert(`Wishlist item updated successfully.`);
       setEditingItemId(null);
       fetchWishlist();
-      navigate(`/userwishlist/${id}`);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleCreateWishlist = async (formData) => {
-    try {
-      await axios.post(`${API_URL}/userwishlist/${id}`, formData);
-      alert("Wishlist item created successfully!");
-      setFormData({
-        user_id: 2,
-        item_name: "",
-        // imageUrl: "",
-        link: "",
-      });
-      navigate(`/userwishlist`);
+      navigate(`/dashboard/${user_id}/userwishlist`);
     } catch (err) {
       console.log(err);
     }
@@ -94,8 +73,8 @@ function UserWishlist() {
   return (
     <div className="user-wishlist">
       <div className="TitleBar" key={formData.id}>
-        <h2>My List</h2>
-        <Link to={`/userwishlist/new?id=${id}`}>
+        <h2>List</h2>
+        <Link to={`/dashboard/${user_id}/new`}>
           <button>Add Item</button>
         </Link>
       </div>
@@ -103,20 +82,25 @@ function UserWishlist() {
       {(editingItemId !== null || formData.length === 0) && (
         <WishlistForm
           onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
-          initialValues={editingItemId ? selectedItem || {} : {}}
+          initialValues={editingItemId ? selectedItem : {}}
+          setFormData={setFormData}
+          formData={formData}
         />
       )}
 
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
-            <div className="ImageContainer">
+            {/* <div className="ImageContainer">
               <img
                 src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
                 alt={item.name}
                 className="WishlistImage"
               />
-            </div>
+            </div> */}
+            {/* <div className="ItemInfo">
+              <h2>{item.item_name}</h2>
+            </div> */}
             <div>
               <a href={item.link} className="WishlistLink">
                 {item.item_name}
