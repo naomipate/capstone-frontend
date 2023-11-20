@@ -7,7 +7,7 @@
 }
 
 .friend-list-wrapper {
-    width: 70rem;
+    width: 50rem;
     height: 100%;
     position: relative;
     --white: #303030;
@@ -97,8 +97,12 @@
     border-radius: 50%;
     margin-top: 3px;
     margin-right: 20px;
+    /* background: #e0e0e0;
     box-shadow:  5px 5px 10px #f2e3fc,
-                 -5px -5px 10px #f6e7ff;
+                 -5px -5px 10px #f6e7ff; */
+    background: #e0e0e0;
+    box-shadow:  5px 5px 10px #caa5ff,
+                  -5px -5px 10px #f8f0fd;
   }
   
   .friend-list-user:hover {
@@ -145,10 +149,10 @@
     font-style: italic;
   }
 
-  
+  /*---------------------Button--------------------  */
 .button-1-friend-list {
   margin-top: 30px;
-  background-color: rgba(105, 0, 243, 0.5);
+  /* background-color: rgba(105, 0, 243, 0.5); */
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -166,7 +170,6 @@
   padding: 10px 16px;
   position: relative;
   text-align: center;
-  /* text-friend-list-users: none; */
   transition: color 100ms;
   vertical-align: baseline;
   user-select: none;
