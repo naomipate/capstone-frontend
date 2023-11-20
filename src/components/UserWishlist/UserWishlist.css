@@ -73,17 +73,17 @@
   margin-right: 10px;
 }
 .EditButton {
-  background-color: none;
+  background-color: #9949ff;
   color: #fff;
   border: none;
-  padding: 0;
-  margin-bottom: 0;
+  padding: 8px 16px;
+  margin-bottom: 4px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .DeleteButton {
-  background-color: none;
+  background-color: #ec5e6c;
   color: #fff;
   border: none;
   padding: 8px 16px;

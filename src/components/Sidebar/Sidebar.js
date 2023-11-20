@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Axios from "../API/Axios";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+// import Axios from "../API/Axios";
+// import { useParams, useNavigate } from "react-router-dom";
 import SidebarNav from "../SidebarNav/SidebarNav";
 
 function Sidebar() {
   //   console.log(user);
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
-    console.log(user);
+    // console.log(user);
   }, []);
 
   return (
