@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "./FriendsWishlist.css";
 
@@ -48,9 +48,9 @@ function FriendsWishlist() {
     <div className="friends-wishlist">
       <div className="TitleBar" key={wishlist.id}>
         <h2>List</h2>
-        <Link to={"/Create-list"}>
+        {/* <Link to={"/Create-list"}>
           <button>Add Item</button>
-        </Link>
+        </Link> */}
       </div>
 
       {wishlist.length > 0 ? (

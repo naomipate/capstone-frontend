@@ -1,0 +1,313 @@
+.friend-profile-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  margin: 5rem 3rem;
+
+}
+
+
+.friend-profile-info-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50rem;
+  padding-bottom: 50px;
+  border-bottom: solid 1px #d9d9d9;
+}
+
+.friend-wishlist-ul{
+  padding-inline-start: 0px;
+}
+
+.friend-wishlist-top-left-side{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.profile-img-placeholder{
+  width: 110px;
+  height: 110px;
+  margin-top: 3px;
+  margin-right: 20px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  box-shadow:  5px 5px 10px #ffe9e9,
+               -5px -5px 10px #ffffe7;
+}
+
+
+.friend-wishlist-list-container{
+  position: relative;
+  margin-top: 40px;
+}
+
+
+.friend-wishlist-list-item{
+  margin: 2rem;
+  list-style-type: none;
+  /* border-radius: 15px;
+background: #ede7f4;
+box-shadow:  5px 5px 10px #e8e2ef,
+             -5px -5px 10px #f2ecf9; */
+}
+
+
+.friend-wish-list {
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    position: relative;
+    width: 50rem;
+
+    height: 8rem;
+    background: #f1ebfa;
+    border-radius: 1rem;
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    --gradient: linear-gradient(to bottom, #962eff, #983dff, #b861ff);
+    --color: #32a6ff
+  }
+  
+  .friend-wish-list:before {
+    position: absolute;
+    content: "";
+    inset: 0.0625rem;
+    border-radius: 0.9375rem;
+    background: #f1ebfa;
+    z-index: 2
+  }
+  
+  .friend-wish-list:after {
+    position: absolute;
+    content: "";
+    width: 0.25rem;
+    inset: 0.65rem auto 0.65rem 0.5rem;
+    border-radius: 0.125rem;
+    background: var(--gradient);
+    transition: transform 300ms ease;
+    z-index: 4;
+  }
+  
+  .friend-wish-list:hover:after {
+    transform: translateX(0.15rem)
+  }
+  
+  .notititle {
+    color: #303030;
+    /* padding: 0.65rem 0.25rem 0.4rem 1.25rem; */
+    font-weight: 500;
+    font-size: 1.3rem;
+    transition: transform 300ms ease;
+    z-index: 5;
+  }
+  
+  .friend-wish-list:hover .notititle {
+    transform: translateX(0.15rem)
+  }
+  
+  .notibody {
+    display: flex;
+    margin: auto 0 auto 0;
+    justify-content: space-evenly;
+    color: #ededed;
+    padding: 0 1.25rem;
+    transition: transform 300ms ease;
+    z-index: 5;
+    height: 27px;
+    width: auto;
+  }
+  
+  .friend-wish-list:hover .notibody {
+    transform: translateX(0.25rem)
+  }
+  
+  .notiglow,
+  .notiborderglow {
+    position: absolute;
+    width: 20rem;
+    height: 20rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle closest-side at center, white, transparent);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  
+  .notiglow {
+    z-index: 3;
+  }
+  
+  .notiborderglow {
+    z-index: 1;
+  }
+  
+  .friend-wish-list:hover .notiglow {
+    opacity: 0.1
+  }
+  
+  .friend-wish-list:hover .notiborderglow {
+    opacity: 0.1
+  }
+  
+  .note {
+    color: var(--color);
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 0.9rem;
+    width: 75%;
+  }
+
+  a.friend-wish-list-item-link{
+    text-decoration: none;
+    color: #e3e3e3;
+  }
+
+  /* -------------------------button--------------------------- */
+  .button-1 {
+  background-color: rgba(105, 0, 243, 0.5);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-1:hover,
+.button-1:focus {
+  background-color: rgba(180, 67, 255, 0.1);
+
+}
+
+/*-------------------------- check box-------------------------- */
+
+/* Hide the default checkbox */
+.container-checkmark input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+ }
+ 
+ .container-checkmark {
+  border-radius: 9px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  box-shadow: rgba(139, 18, 113, 0.2) 0px 8px 24px;
+  background-image: linear-gradient(45deg, #f3d5f7, #fbf6e7, #e6fcf5);
+ }
+ 
+ /* Create a custom checkbox */
+ .checkmark {
+  border-radius: 9px;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: linear-gradient(45deg, #f8e7fa, #fbf6e7, #e6fcf5);
+ }
+ 
+ /* Create the checkmark/indicator (hidden when not checked) */
+ .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+ }
+ 
+ /* Show the checkmark when checked */
+ .container-checkmark input:checked ~ .checkmark:after {
+  display: block;
+ }
+ 
+ /* Style the checkmark/indicator */
+ .container-checkmark .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid rgb(247, 139, 139);
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+ }
+
+ /* ------------------reminder---------------- */
+
+ .friend-wishlist-reminder-box{
+  width: 340px;
+  height: 50px;
+  background-color:  #fedbdb;
+  border-radius: 15px;
+  position: absolute;
+  margin-left: 60px;
+
+ }
+
+ .friend-wishlist-reminder{
+  display: flex;
+  font-size: 15px;
+  justify-content: center;
+  margin-top: 6px;
+  color: #ff2020;
+ }
+
+   /*---------------------Button--------------------  */
+.button-friend-profile {
+  /* margin-top: 30px; */
+  /* background-color: rgba(105, 0, 243, 0.5); */
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  /* margin: 0; */
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* background-color: #FD4848; */
+  background-color: #d9d9d9;
+}
+
+.button-friend-profile:hover,
+.button-friend-profile:focus {
+  /* background-color: rgba(180, 67, 255, 0.1); */
+  background-color: #FD4848;
+}

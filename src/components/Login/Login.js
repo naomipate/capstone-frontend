@@ -40,7 +40,7 @@ function Login({ setUser }) {
   }
 
   return (
-      <>
+    <>
       <div className="formBox">
         <form onSubmit={handleSubmit} className="Container">
           <span className="Title">Login</span>
@@ -78,7 +78,7 @@ function Login({ setUser }) {
         </form>
       </div>
     </>
-  )
+  );
 }
 
 export default Login;
