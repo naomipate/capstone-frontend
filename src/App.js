@@ -23,6 +23,8 @@ import Login from "./components/Login/Login";
 import FriendList from "./components/FriendList/FriendList";
 import FriendsProfile from "./components/FriendsProfile/FriendsProfile";
 
+import './App.css';
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -36,6 +38,7 @@ function App() {
   return (
     <Router>
       <Nav />
+      <main className="page-content">
       {user && <Sidebar />}
       <Routes>
         <Route path="/search-page" element={<SearchPage />} />
@@ -56,6 +59,7 @@ function App() {
         <Route path="/dashboard/:id/friends" element={<FriendList />} />
         <Route path="/dashboard/:id/friends/:friendId" element={<FriendsProfile />} />
       </Routes>
+      </main>
       <Footer />
     </Router>
   );
