@@ -67,7 +67,7 @@ function Dashboard() {
 
 function Friend({ friendDetails, id }) {
   console.log(friendDetails);
-  let { first_name, last_name, wishlist, user_name } = friendDetails;
+  let { first_name, last_name, wishlist, user_name, dob } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
       <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
@@ -109,7 +109,7 @@ function Friend({ friendDetails, id }) {
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">{user_name}</p>
           </div>
-          <p className="dashboard-card-text">Birthday Date Here🎉</p>
+          <p className="dashboard-card-text">{upcomingDate}</p>
         </div>
       </Link>
     </div>
