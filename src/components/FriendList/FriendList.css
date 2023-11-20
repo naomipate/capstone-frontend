@@ -79,7 +79,6 @@
   }
   
   .friend-list-user {
-    /* width: 100%; */
     padding: .75rem 4rem;
     display: flex;
     gap: .1rem;
@@ -185,4 +184,58 @@
 a.friend-list-link{
   text-decoration: none;
   color: #303030;
+}
+
+@media only screen and (max-width: 900px ) {
+  .friend-list-wrapper {
+    width: 80%;
+    /* margin: 10px; */
+    display: flex;
+    justify-content: center;
+    /* height: 150px ; */
+  }
+
+  .button-1-friend-list{
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px ) {
+  .friend-list-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .friend-list-user{
+    /* width: 68%; */
+    padding: 20px;
+  }
+}
+
+
+@media only screen and (max-width: 380px ) {
+  .friend-list-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .friend-list-user{
+    padding: 10px;
+  }
+  .user-first-row{
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+  
+  .button-1-friend-list{
+    width: 10rem;
+  }
+  
+  .user-dob{
+    display: flex;
+    justify-content: center;
+  }
 }
