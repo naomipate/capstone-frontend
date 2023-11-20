@@ -21,6 +21,8 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 import FriendList from "./components/FriendList/FriendList";
 
+import './App.css';
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -34,6 +36,7 @@ function App() {
   return (
     <Router>
       <Nav />
+      <main className="page-content">
       {user && <Sidebar />}
       <Routes>
         <Route path="/search-page" element={<SearchPage />} />
@@ -45,6 +48,7 @@ function App() {
         <Route path="/friendswishlist" element={<FriendsWishlist />} />
         <Route path="/create-list" element={<NewList />} />
       </Routes>
+      </main>
       <Footer />
     </Router>
   );

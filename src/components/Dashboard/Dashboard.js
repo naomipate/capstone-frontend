@@ -19,6 +19,7 @@ function Dashboard() {
       let response = await getUserProfile(id);
       console.log(response.data);
       setUser(response.data);
+      console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +48,7 @@ function Dashboard() {
     <div className="dashboard-container">
       <div>Dashboard</div>
       {friendsList}
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 }
