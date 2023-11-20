@@ -58,7 +58,30 @@ async function getFriendsAndTheirWishlists(id, friendId) {
     return e;
   }
 }
-
+async function getNotificationById(id) {
+  try {
+    let result = await Axios.get(`/notification/${id}`);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function newNotification(data) {
+  try {
+    let result = await Axios.post(`/notification/new-notification`, data);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function deleteNotification(id) {
+  try {
+    let result = await Axios.delete(`/notification/${id}`);
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
 export {
   createUser,
   getUserData,

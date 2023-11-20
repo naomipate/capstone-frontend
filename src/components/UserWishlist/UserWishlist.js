@@ -1,12 +1,12 @@
 /* eslint-disable padded-blocks */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import Axios from ".././API/Axios";
 import { useNavigate, Link } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
+// const API_URL = process.env.REACT_APP_API_URL;
 
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
 
   const fetchWishlist = async () => {
     try {
-      let response = await axios.get(`${API_URL}/userwishlist/${user_id}`);
+      let response = await Axios.get(`/userwishlist/${user_id}`);
       setFormData(response.data);
     } catch (err) {
       console.log(err);
@@ -37,7 +37,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
 
   const deleteWishlistItem = async (itemId) => {
     try {
-      await axios.delete(`${API_URL}/userwishlist/${itemId}`);
+      await Axios.delete(`/userwishlist/${itemId}`);
       alert(`Wishlist item has been deleted`);
       let filterdList = formData.filter((item) => item.id !== itemId);
       console.log(filterdList);
@@ -60,7 +60,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
 
   const handleEditSubmit = async (formData) => {
     try {
-      await axios.put(`${API_URL}/userwishlist/${editingItemId}`, formData);
+      await Axios.put(`/userwishlist/${editingItemId}`, formData);
 
       alert(`Wishlist item updated successfully.`);
       setEditingItemId(null);

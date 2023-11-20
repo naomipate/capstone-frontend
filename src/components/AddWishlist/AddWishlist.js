@@ -1,6 +1,6 @@
 /* eslint-disable padded-blocks */
 import React, { useState } from "react";
-import axios from "axios";
+import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
@@ -26,7 +26,7 @@ function AddWishlist({ user }) {
     console.log("New formatData", formatData);
 
     try {
-      await axios.post(`${API_URL}/userwishlist`, formatData);
+      await Axios.post(`/userwishlist`, formatData);
 
       alert("Wishlist created successfully!");
       setFormData({

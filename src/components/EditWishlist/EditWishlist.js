@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "../AddWishlist/AddWishlist.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
+// const API_URL = process.env.REACT_APP_API_URL;
 
 function EditWishlist() {
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ function EditWishlist() {
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await axios.get(
-          `/${API_URL}/dashboard/${id}/userwishlist/${item_id}`
+        const response = await Axios.get(
+          `/dashboard/${id}/userwishlist/${item_id}`
         );
         setFormData(response.data[0]);
         navigate(`/dashboard/${id}/userwishlist`);
@@ -34,7 +34,7 @@ function EditWishlist() {
 
   const handleEditWishlist = async () => {
     try {
-      await axios.put(`/${API_URL}/userwishlist/${id}/edit`, formData);
+      await Axios.get(`/userwishlist/${id}/edit`, formData);
       alert("Wishlist item updated successfully");
       navigate(`/dashboard/${id}/userwishlist`);
     } catch (err) {
