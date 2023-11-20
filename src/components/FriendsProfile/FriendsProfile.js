@@ -30,11 +30,15 @@ function FriendsProfile() {
       <div className="friend-profile-info-top">
         <div className="friend-wishlist-top-left-side">
           <div className="profile-img-placeholder"></div>
+          <div>
           <h2>{friendInfoProfile.user_name}</h2>
+          <p>Firstname Lastname</p>
+          </div>
         </div>
         
         <div className="friend-wishlist-top-right-side">
           <p>{friendInfoProfile.dob}</p>
+          <button className="button-friend-profile">Unfollow</button>
         </div>
       </div>
         <div className="friend-wishlist-list-container">

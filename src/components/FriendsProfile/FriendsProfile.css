@@ -11,9 +11,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 40rem;
+  width: 50rem;
   padding-bottom: 50px;
-  border-bottom: solid 1.5px #dcb8ff;
+  border-bottom: solid 1px #d9d9d9;
 }
 
 .friend-wishlist-ul{
@@ -26,14 +26,14 @@
 }
 
 .profile-img-placeholder{
-  width: 60px;
-  height: 60px;
+  width: 110px;
+  height: 110px;
   margin-top: 3px;
   margin-right: 20px;
   border-radius: 50%;
   background: #e0e0e0;
-  box-shadow:  5px 5px 10px #ffeeee,
-               -5px -5px 10px #fdfdf0;
+  box-shadow:  5px 5px 10px #ffe9e9,
+               -5px -5px 10px #ffffe7;
 }
 
 
@@ -58,7 +58,8 @@ box-shadow:  5px 5px 10px #e8e2ef,
     flex-direction: column;
     isolation: isolate;
     position: relative;
-    width: 40rem;
+    width: 50rem;
+
     height: 8rem;
     background: #f1ebfa;
     border-radius: 1rem;
@@ -274,3 +275,39 @@ box-shadow:  5px 5px 10px #e8e2ef,
   margin-top: 6px;
   color: #ff2020;
  }
+
+   /*---------------------Button--------------------  */
+.button-friend-profile {
+  /* margin-top: 30px; */
+  /* background-color: rgba(105, 0, 243, 0.5); */
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  /* margin: 0; */
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* background-color: #FD4848; */
+  background-color: #d9d9d9;
+}
+
+.button-friend-profile:hover,
+.button-friend-profile:focus {
+  /* background-color: rgba(180, 67, 255, 0.1); */
+  background-color: #FD4848;
+}

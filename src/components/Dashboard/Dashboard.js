@@ -1,6 +1,6 @@
-   /* eslint-disable padded-blocks */
+/* eslint-disable padded-blocks */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import Giftune from "../../Assets/GituneLogoImage.png";
 import "./Dashboard.css";
@@ -15,9 +15,9 @@ function Dashboard() {
 
   async function fetchData() {
     try {
-      console.log(id, "Dashboard");
+      // console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      console.log(response.data);
+      // console.log(response.data);
       setUser(response.data);
     } catch (error) {
       console.log(error);
@@ -52,26 +52,22 @@ function Dashboard() {
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
 
-  let sortedFriends = user?.friendsOrderedByDOB?.sort((a, b) => {
-    return a.dobInMili - b.dobInMili;
-  });
-
-  console.log("Sorted Friends: ", sortedFriends);
-
-  let friendsList = sortedFriends?.map((friendDetails, index) => {
-    return <Friend key={index} friendDetails={friendDetails} />;
+  let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
+    return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
   return (
     <div className="dashboard-container">
-      <div>Dashboard</div>
+      {/* <div>Dashboard</div> */}
       {friendsList}
+      {/* <Sidebar /> */}
     </div>
   );
 }
 
-function Friend({ friendDetails }) {
-  let { first_name, last_name, dob, wishlist } = friendDetails;
+function Friend({ friendDetails, id }) {
+  console.log(friendDetails);
+  let { first_name, last_name, wishlist, user_name } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
       <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
@@ -85,18 +81,37 @@ function Friend({ friendDetails }) {
     .splice(1, 2)
     .join(" ");
   return (
-    <div className="friend-card">
-      <div className="friend-details">
-        <div className="friend-avatar-name">
-          <Avatar />
-          <div className="friend-name">
-            {first_name} {last_name}{" "}
-          </div>
-        </div>
+    // <div className="friend-card">
+    //   <div className="friend-details">
+    //     <div className="friend-avatar-name">
+    //       <Avatar />
+    //       <div className="friend-name">
+    //         {first_name} {last_name}{" "}
+    //       </div>
+    //     </div>
 
-        <div className="friend-dob">{upcomingDate}</div>
-      </div>
-      <ul className="wishlist-items">{wishlistItem}</ul>
+    //     <div className="friend-dob">upcomingDate</div>
+    //   </div>
+    //   <ul className="wishlist-items">
+    //     <img />
+    //     {wishlistItem}
+    //   </ul>
+    // </div>
+
+    // -----------------------------------------------------------------
+    <div className="dashboard-friend-card-container">
+      <Link
+        to={`/dashboard/${id}/friends/${wishlist[0].user_id}`}
+        className="friend-list-link"
+      >
+        <div className="dashboard-friend-card-top">
+          <div className="dashboard-friend-card-left">
+            <div className="dashboard-img-placeholder"></div>
+            <p className="dashboard-card-name">{user_name}</p>
+          </div>
+          <p className="dashboard-card-text">Birthday Date Here🎉</p>
+        </div>
+      </Link>
     </div>
   );
 }
