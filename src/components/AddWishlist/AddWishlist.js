@@ -4,10 +4,6 @@ import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
-import "./AddWishlist.css";
-
-const API_URL = process.env.REACT_APP_API_URL;
-
 function AddWishlist({ user }) {
   let navigate = useNavigate();
   const { id } = user;

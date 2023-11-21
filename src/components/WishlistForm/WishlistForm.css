@@ -34,18 +34,3 @@ h2 {
 
   border-bottom: 1px solid #eee;
 }
-.button-container {
-  display: flex;
-  justify-content: flex-end;
-}
-button {
-  background-color: none;
-  border-style: none;
-  cursor: pointer;
-  color: #7a7272;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
