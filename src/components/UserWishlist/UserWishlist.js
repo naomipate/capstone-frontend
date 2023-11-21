@@ -6,8 +6,6 @@ import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
 
-// const API_URL = process.env.REACT_APP_API_URL;
-
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
