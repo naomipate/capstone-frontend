@@ -34,7 +34,7 @@ h2 {
 
   border-bottom: 1px solid #eee;
 }
-.button-container {
+/* .button-container {
   display: flex;
   justify-content: flex-end;
 }
@@ -48,4 +48,4 @@ button {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-}
+} */

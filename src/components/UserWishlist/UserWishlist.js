@@ -74,7 +74,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
   return (
     <div className="user-wishlist">
       <div className="TitleBar" key={formData.id}>
-        <h2>List</h2>
+        <h2>Wishlist</h2>
         <Link to={`/dashboard/${user_id}/new`}>
           <button>Add Item</button>
         </Link>
@@ -92,24 +92,22 @@ function UserWishlist({ handleCreateWishlist, user }) {
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
-            {/* <div className="ImageContainer">
-              <img
-                src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
-                alt={item.name}
-                className="WishlistImage"
-              />
-            </div> */}
-            {/* <div className="ItemInfo">
-              <h2>{item.item_name}</h2>
-            </div> */}
+            <div className="ImageContainer">
+              <img src={`#`} alt={item.name} className="WishlistImage" />
+            </div>
             <div>
               <a href={item.link} className="WishlistLink">
-                Link
+                {item.item_name}
               </a>
             </div>
 
             <div className="EditDeletButtons">
-              <button onClick={() => handleEditClick(item.id)}>Edit</button>
+              <button
+                className="EditButton"
+                onClick={() => handleEditClick(item.id)}
+              >
+                Edit
+              </button>
               <button
                 className="DeleteButton"
                 onClick={() => deleteWishlistItem(item.id)}
