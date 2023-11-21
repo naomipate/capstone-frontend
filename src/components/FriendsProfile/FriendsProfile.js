@@ -9,7 +9,6 @@ function FriendsProfile() {
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
 
   const { id, friendId } = useParams();
-  console.log(id, friendId);
 
   useEffect(() => {
     fetchList();
@@ -20,6 +19,8 @@ function FriendsProfile() {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
+
+      console.log(result.data.friendProfile);
     } catch (error) {
       console.log(error);
     }
@@ -29,29 +30,32 @@ function FriendsProfile() {
     <div className="friend-profile-container">
       <div className="friend-profile-info-top">
         <div className="friend-wishlist-top-left-side">
-          <div className="profile-img-placeholder"></div>
-          <div>
-          <h2>{friendInfoProfile.user_name}</h2>
-          <p>Firstname Lastname</p>
+          <img
+            alt="friend-user-profile"
+            className="friend-user-profile"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdhnWROHccYu5AG4Ahi_WnaQgxINV9abPz1MqdYXFwT4txCA5"
+          />
+          <div className="friend-user-names">
+            <h2>{friendInfoProfile.user_name}</h2>
+            <p>{friendInfoProfile.first_name} {friendInfoProfile.last_name}</p>
+            <p className="friend-user-dob">
+            {new Date(friendInfoProfile.dob)
+              .toDateString()
+              .split(" ")
+              .splice(1, 2)
+              .join(" ")}
+          </p>
           </div>
         </div>
-        
+
         <div className="friend-wishlist-top-right-side">
-          <p>{friendInfoProfile.dob}</p>
           <button className="button-friend-profile">Unfollow</button>
         </div>
       </div>
-        <div className="friend-wishlist-list-container">
-        <div>
-        {FriendsProfileWishlist.length > 0 ?
-        <div className="friend-wishlist-reminder-box">
-            <p className="friend-wishlist-reminder">Reminder to check off the item once you buy!!</p>
-            </div>
-          : ""}
-        </div>
+      <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
-            return <FriendsProfileWishlist item={item}  />;
+            return <FriendsProfileWishlist item={item} />;
           })}
         </ul>
       </div>
