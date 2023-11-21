@@ -1,16 +1,12 @@
 // DEPENDENCIES
 import React, { useEffect, useState } from "react";
 // import Axios from "./components/API/Axios";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 // import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";
 import UserWishlist from "./components/UserWishlist/UserWishlist";
-import EditWishlist from "./components/EditWishlist/EditWishlist";
 import AddWishlist from "./components/AddWishlist/AddWishlist";
+import EditWishlist from "./components/EditWishList/EditWishList";
 
 // COMPONENTS
 import SignUpPage from "./components/SignUpPage/Signup";
@@ -54,7 +50,10 @@ function App() {
         <Route path="/dashboard/:id/edit" element={<EditWishlist />} />
         <Route path="/dashboard/:id" element={<Dashboard user={user} />} />
         <Route path="/dashboard/:id/friends" element={<FriendList />} />
-        <Route path="/dashboard/:id/friends/:friendId" element={<FriendsProfile />} />
+        <Route
+          path="/dashboard/:id/friends/:friendId"
+          element={<FriendsProfile />}
+        />
       </Routes>
       <Footer />
     </Router>

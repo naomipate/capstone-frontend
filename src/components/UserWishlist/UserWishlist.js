@@ -91,7 +91,16 @@ function UserWishlist({ handleCreateWishlist, user }) {
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
             <div className="ImageContainer">
-              <img src={`#`} alt={item.name} className="WishlistImage" />
+              {/* <img */}
+              <img
+                id="giftune-wishlist-item-logo"
+                src="/static/media/GituneLogoImage.7847034e605fdb56fa84.png"
+                alt="Giftune"
+              ></img>
+              src={"/Assets/GiftuneLogoImage"}
+              alt={item.name}
+              className="WishlistImage"
+              {/* /> */}
             </div>
             <div>
               <a href={item.link} className="WishlistLink">

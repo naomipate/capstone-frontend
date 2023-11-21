@@ -53,10 +53,8 @@
 
 .ImageContainer {
   width: 70px;
-  height: 70px;
+  height: 55px;
   overflow: hidden;
-  border: 1px solid #999;
-  border-radius: 4px;
   margin-right: 10px;
 }
 
