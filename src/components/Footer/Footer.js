@@ -43,7 +43,7 @@ function Footer() {
     //     </div>
     //   </div>
     // </div>
-    <div className="footer">
+    <footer className="footer">
       <div className="footerContent">
         <div className="brand">
           <img className="footer-image" src={GiftuneLogo} alt="Logo"/>
@@ -74,7 +74,7 @@ function Footer() {
         </p>
         <p className="copyright">copyright ©</p>
       </div>
-    </div>
+    </footer>
   );
   // <div className="footer">© Giftune Inc 2023</div>;
 }

@@ -14,13 +14,13 @@ function FriendsProfileWishlist({item}) {
         <div className="notiborderglow"></div>
 
         <div className="notibody">
-          <label class="container-checkmark">
+          <label className="container-checkmark">
             <input
               checked={checkMark}
               type="checkbox"
               onClick={(e) => setCheckMark(!checkMark)}
             />
-            <div class="checkmark"></div>
+            <div className="checkmark"></div>
           </label>
 
           <div className="notititle">{item.item_name.charAt(0).toUpperCase() + item.item_name.slice(1)}</div>
