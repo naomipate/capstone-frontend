@@ -6,6 +6,7 @@ import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
 
+
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
@@ -90,6 +91,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
+
             <div className="ImageContainer">
               {/* <img */}
               <img
@@ -102,6 +104,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
               className="WishlistImage"
               {/* /> */}
             </div>
+
             <div>
               <a href={item.link} className="WishlistLink">
                 {item.item_name}

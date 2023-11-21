@@ -4,6 +4,8 @@ import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
+
+
 function AddWishlist({ user }) {
   let navigate = useNavigate();
   const { id } = user;
