@@ -1,47 +1,40 @@
-   /* eslint-disable padded-blocks */
+/* eslint-disable padded-blocks */
 import React, { useState } from "react";
-import axios from "axios";
+import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
-import "./AddWishlist.css";
-
-const API_URL = process.env.REACT_APP_API_URL;
-
-function AddWishlist() {
+function AddWishlist({ user }) {
   let navigate = useNavigate();
-  
-  // const { id } = useParams();
+  const { id } = user;
 
   const [formData, setFormData] = useState({
-    user_id: 2,
+    user_id: id,
     item_name: "",
     // imageUrl: "",
     link: "",
   });
 
-  const handleCreateWishlist = async (formData) => {
-    try {
-      const response = await axios.post(`${API_URL}/userwishlist`, formData);
-      console.log("Server Response after adding:", response.data);
+  const handleCreateWishlist = async () => {
+    console.log(formData);
+    let formatData = formData;
+    formatData.user_id = id;
+    console.log("New formatData", formatData);
 
-      alert("Wishlist item created successfully!");
+    try {
+      await Axios.post(`/userwishlist`, formatData);
+
+      alert("Wishlist created successfully!");
       setFormData({
-        user_id: 2,
+        user_id: id,
         item_name: "",
         // imageUrl: "",
         link: "",
       });
-
-      navigate(`/userwishlist/2`);
+      navigate(`/dashboard/${id}/userwishlist`);
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   return (
@@ -49,10 +42,10 @@ function AddWishlist() {
       <h2>Add item</h2>
       <WishlistForm
         onSubmit={handleCreateWishlist}
-        handleInputChange={handleInputChange}
+        formData={formData}
+        setFormData={setFormData}
       />
     </div>
   );
 }
-
 export default AddWishlist;

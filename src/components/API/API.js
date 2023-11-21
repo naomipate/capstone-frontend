@@ -48,13 +48,16 @@ async function getAllFriendsFromUser(id) {
 
 async function getFriendsAndTheirWishlists(id, friendId) {
   try {
-    let result = await Axios.get(`/dashboard/${id}/friends/${friendId}`, id, friendId);
+    let result = await Axios.get(
+      `/dashboard/${id}/friends/${friendId}`,
+      id,
+      friendId
+    );
     return result;
   } catch (e) {
     return e;
   }
 }
-
 async function getNotificationById(id) {
   try {
     let result = await Axios.get(`/notification/${id}`);
@@ -79,12 +82,11 @@ async function deleteNotification(id) {
     return error;
   }
 }
-
 export {
   createUser,
   getUserData,
   getAllUsersAPI,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
-  getUserProfile
- };
+  getUserProfile,
+};
