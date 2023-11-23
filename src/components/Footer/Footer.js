@@ -67,7 +67,7 @@ function Footer({ user, setUser }) {
             {user ? (
               <li>
                 <NavLink className={"link"} to={"/"} onClick={handleLogOut}>
-                  Log out
+                  Logout
                 </NavLink>
               </li>
             ) : (

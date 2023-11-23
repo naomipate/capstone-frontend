@@ -17,7 +17,7 @@ function Nav({ user, setUser }) {
         <NavLink to={"/"}>Home</NavLink>
         {user ? (
           <NavLink to={"/"} onClick={handleLogOut}>
-            Log out
+            Logout
           </NavLink>
         ) : (
           <>
