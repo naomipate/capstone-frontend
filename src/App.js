@@ -59,7 +59,7 @@ function App() {
           />
         </Routes>
       </main>
-      <Footer />
+      <Footer user={user} setUser={setUser} />
     </Router>
   );
 }
