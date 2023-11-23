@@ -6,6 +6,7 @@ import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
 
+
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
@@ -72,7 +73,9 @@ function UserWishlist({ handleCreateWishlist, user }) {
   return (
     <div className="user-wishlist">
       <div className="TitleBar" key={formData.id}>
+
         <h2>Wishlist</h2>
+
         <Link to={`/dashboard/${user_id}/new`}>
           <button>Add Item</button>
         </Link>
@@ -90,18 +93,17 @@ function UserWishlist({ handleCreateWishlist, user }) {
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
-            <div className="ImageContainer">
-              {/* <img */}
+
+            {/* <div className="ImageContainer">
               <img
-                id="giftune-wishlist-item-logo"
-                src="/static/media/GituneLogoImage.7847034e605fdb56fa84.png"
-                alt="Giftune"
-              ></img>
-              src={"/Assets/GiftuneLogoImage"}
-              alt={item.name}
-              className="WishlistImage"
-              {/* /> */}
-            </div>
+                src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
+                alt={item.name}
+                className="WishlistImage"
+              />
+            </div> */}
+            {/* <div className="ItemInfo">
+              <h2>{item.item_name}</h2>
+            </div> */}
             <div>
               <a href={item.link} className="WishlistLink">
                 {item.item_name}
