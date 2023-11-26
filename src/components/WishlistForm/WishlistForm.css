@@ -29,8 +29,32 @@ h2 {
 
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   height: 15px;
 
   border-bottom: 1px solid #eee;
+}
+
+@media screen and (max-width: 800px) {
+  .list-form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-form {
+    width: 60%;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
+  .form-group {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .list-form {
+    width: 50%;
+  }
 }

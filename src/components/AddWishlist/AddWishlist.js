@@ -16,10 +16,8 @@ function AddWishlist({ user }) {
   });
 
   const handleCreateWishlist = async () => {
-    console.log(formData);
     let formatData = formData;
     formatData.user_id = id;
-    console.log("New formatData", formatData);
 
     try {
       await Axios.post(`/userwishlist`, formatData);

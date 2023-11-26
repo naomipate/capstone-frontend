@@ -53,10 +53,8 @@
 
 .ImageContainer {
   width: 70px;
-  height: 70px;
+  height: 55px;
   overflow: hidden;
-  border: 1px solid #999;
-  border-radius: 4px;
   margin-right: 10px;
 }
 
@@ -124,4 +122,21 @@
 
 .ErrorMsg {
   color: rgb(23, 22, 22);
+}
+
+@media screen and (max-width: 800px) {
+  .WishlistItem {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .WishlistItem {
+    width: 90%;
+  }
+  .EditDeleteButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
