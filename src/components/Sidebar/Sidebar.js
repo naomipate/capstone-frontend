@@ -4,12 +4,6 @@ import React, { useEffect } from "react";
 import SidebarNav from "../SidebarNav/SidebarNav";
 
 function Sidebar() {
-  //   console.log(user);
-  useEffect(() => {
-    const user = JSON.parse(window.localStorage.getItem("user"));
-    // console.log(user);
-  }, []);
-
   return (
     <>
       <SidebarNav />
