@@ -123,3 +123,20 @@
 .ErrorMsg {
   color: rgb(23, 22, 22);
 }
+
+@media screen and (max-width: 800px) {
+  .WishlistItem {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .WishlistItem {
+    width: 90%;
+  }
+  .EditDeleteButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}

@@ -23,7 +23,6 @@ function FriendsWishlist() {
     try {
       let response = await axios.get(`${API_URL}/friendswishlist/${id}`);
 
-      console.log(response.data);
       setWishlist(response.data);
     } catch (err) {
       console.log(err);

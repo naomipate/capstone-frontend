@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate, Link } from "react-router-dom";
+import GiftuneImg from "../../Assets/GituneLogoImage.png";
+
 import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
@@ -9,9 +11,7 @@ import "./UserWishlist.css";
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
-  console.log(user);
   const user_id = user?.id;
-  console.log(user_id);
 
   const [formData, setFormData] = useState([]);
   const [editingItemId, setEditingItemId] = useState(null);
@@ -38,7 +38,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
       await Axios.delete(`/userwishlist/${itemId}`);
       alert(`Wishlist item has been deleted`);
       let filterdList = formData.filter((item) => item.id !== itemId);
-      console.log(filterdList);
+
       setFormData(filterdList);
 
       navigate(`/dashboard/${user_id}/userwishlist`);
@@ -91,16 +91,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
             <div className="ImageContainer">
-              {/* <img */}
-              <img
-                id="giftune-wishlist-item-logo"
-                src="/static/media/GituneLogoImage.7847034e605fdb56fa84.png"
-                alt="Giftune"
-              ></img>
-              src={"/Assets/GiftuneLogoImage"}
-              alt={item.name}
-              className="WishlistImage"
-              {/* /> */}
+              <img src={GiftuneImg} alt={item.name} className="WishlistImage" />
             </div>
             <div>
               <a href={item.link} className="WishlistLink">
