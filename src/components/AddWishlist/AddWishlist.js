@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
-// import UserWishlist from "../UserWishlist/UserWishlist";
+import UserWishlist from "../UserWishlist/UserWishlist";
 
 function AddWishlist({ user, fetchWishlist }) {
   let navigate = useNavigate();
@@ -12,6 +12,7 @@ function AddWishlist({ user, fetchWishlist }) {
   const [formData, setFormData] = useState({
     user_id: id,
     item_name: "",
+    is_bought: "",
     // imageUrl: "",
     link: "",
   });
@@ -28,6 +29,7 @@ function AddWishlist({ user, fetchWishlist }) {
       setFormData({
         user_id: id,
         item_name: "",
+        is_bought: "",
         // imageUrl: "",
         link: "",
       });
