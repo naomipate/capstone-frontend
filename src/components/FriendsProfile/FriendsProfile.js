@@ -11,8 +11,8 @@ function FriendsProfile() {
   const { id, friendId } = useParams();
 
   useEffect(() => {
-    // eslint-disable-next-line
     fetchList();
+    // eslint-disable-next-line
   }, []);
 
   async function fetchList() {
