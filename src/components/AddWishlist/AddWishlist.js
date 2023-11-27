@@ -11,7 +11,6 @@ function AddWishlist({ user, fetchWishlist }) {
   const [formData, setFormData] = useState({
     user_id: id,
     item_name: "",
-    is_bought: "",
     // imageUrl: "",
     link: "",
   });
@@ -28,7 +27,6 @@ function AddWishlist({ user, fetchWishlist }) {
       setFormData({
         user_id: id,
         item_name: "",
-        is_bought: "",
         // imageUrl: "",
         link: "",
       });
