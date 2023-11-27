@@ -13,8 +13,8 @@ function FriendsProfile() {
 
 
   useEffect(() => {
-    // eslint-disable-next-line
     fetchList();
+    // eslint-disable-next-line
   }, []);
 
   async function fetchList() {
