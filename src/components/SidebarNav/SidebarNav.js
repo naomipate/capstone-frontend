@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../API/Axios";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
-
+import Notification from "../Notification/Notification";
 import { getAllFriendsFromUser, getUserProfile } from "../API/API";
 
 import "./SidebarNav.css";
@@ -61,7 +61,7 @@ function SidebarNav() {
         <img
           className="sidebarImage"
           src="https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2022%2F1119%2Fr1093133_1296x1296_1%2D1.jpg"
-          alt="defaultImage"
+          alt="profile_img"
         />
         <h2 className="sidebarUsername">{user.user_name}</h2>
         <p className="sidebarBirthday">
@@ -71,13 +71,17 @@ function SidebarNav() {
         <div className="sidebarListContainer">
           <ul className="sidebarList">
             <li className="sidebarItem">
-              <NavLink>Friends: {friendsCount ? friendsCount : 0}</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/friends`}>
+                Friends: {friendsCount ? friendsCount : 0}
+              </NavLink>
             </li>
             <li className="sidebarItem">
-              <NavLink>Wish List</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/userwishlist`}>
+                Wish List
+              </NavLink>
             </li>
             <li className="sidebarItem">
-              <NavLink>Notifications</NavLink>
+              <Notification />
             </li>
           </ul>
         </div>
