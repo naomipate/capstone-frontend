@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 // import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";
 import UserWishlist from "./components/UserWishlist/UserWishlist";
-import EditWishlist from "./components/EditWishlist/EditWishlist";
 import AddWishlist from "./components/AddWishlist/AddWishlist";
+import EditWishlist from "./components/EditWishlist/EditWishlist";
 
 // COMPONENTS
 import SignUpPage from "./components/SignUpPage/Signup";
