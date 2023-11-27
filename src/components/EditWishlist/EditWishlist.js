@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
+
 function EditWishlist() {
   const navigate = useNavigate();
   const { id, item_id } = useParams();
