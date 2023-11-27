@@ -1,10 +1,8 @@
-/* eslint-disable padded-blocks */
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./FriendList.css";
 import { getAllFriendsFromUser } from "../API/API";
 import FriendInList from "./FriendInList/FriendInList";
-import { Axios } from "axios";
 
 function FriendList() {
   const [input, setInput] = useState("");
@@ -14,8 +12,9 @@ function FriendList() {
   const { id } = useParams();
 
   useEffect(() => {
+    // eslint-disable-next-line
     fetchUsers();
-  }, [id]);
+  }, []);
 
   async function fetchUsers() {
     try {
@@ -69,7 +68,11 @@ function FriendList() {
               />
             </button>
           </div>
-          {input === "" ? <FriendInList id={id} friendsList={friendsFromUser} /> : <FriendInList id={id} friendsList={filteredFriends} />}
+          {input === "" ? (
+            <FriendInList id={id} friendsList={friendsFromUser} />
+          ) : (
+            <FriendInList id={id} friendsList={filteredFriends} />
+          )}
         </div>
       </div>
     </div>
