@@ -89,4 +89,7 @@ export {
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
   getUserProfile,
+  getNotificationById,
+  newNotification,
+  deleteNotification,
 };

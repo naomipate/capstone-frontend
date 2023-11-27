@@ -93,7 +93,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
-
             {/* <div className="ImageContainer">
               <img
                 src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
