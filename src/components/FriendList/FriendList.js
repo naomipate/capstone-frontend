@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./FriendList.css";
 import { getAllFriendsFromUser } from "../API/API";
+import { Axios } from "axios";
 
 function FriendList() {
   const [friendsList, setFriendsList] = useState([]);
@@ -49,9 +50,13 @@ function FriendList() {
                             {user.user_name}
                           </span>
                         </div>
-                        <button className="button-1-friend-list" role="button">
+                        {/* <button
+                          className="button-1-friend-list"
+                          role="button"
+                          onClick={() => handleDeleteFriend(user.user_id)}
+                        >
                           Unfollow
-                        </button>
+                        </button> */}
                       </div>
                       <div>
                         <span className="user-dob">

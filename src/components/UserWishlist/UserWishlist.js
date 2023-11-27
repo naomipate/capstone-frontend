@@ -73,9 +73,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
   return (
     <div className="user-wishlist">
       <div className="TitleBar" key={formData.id}>
-
         <h2>Wishlist</h2>
-
         <Link to={`/dashboard/${user_id}/new`}>
           <button>Add Item</button>
         </Link>
