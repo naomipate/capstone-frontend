@@ -33,7 +33,7 @@ function App() {
   // console.log(user);
   return (
     <Router>
-      <Nav />
+      <Nav user={user} setUser={setUser} />
       <main className={user ? "page-content" : ""}>
         {user && <Sidebar />}
         <Routes>
@@ -59,7 +59,7 @@ function App() {
           />
         </Routes>
       </main>
-      <Footer />
+      <Footer user={user} setUser={setUser} />
     </Router>
   );
 }
