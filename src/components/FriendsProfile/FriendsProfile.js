@@ -11,6 +11,7 @@ function FriendsProfile() {
   const { id, friendId } = useParams();
 
   useEffect(() => {
+    // eslint-disable-next-line
     fetchList();
   }, []);
 
@@ -37,14 +38,16 @@ function FriendsProfile() {
           />
           <div className="friend-user-names">
             <h2>{friendInfoProfile.user_name}</h2>
-            <p>{friendInfoProfile.first_name} {friendInfoProfile.last_name}</p>
+            <p>
+              {friendInfoProfile.first_name} {friendInfoProfile.last_name}
+            </p>
             <p className="friend-user-dob">
-            {new Date(friendInfoProfile.dob)
-              .toDateString()
-              .split(" ")
-              .splice(1, 2)
-              .join(" ")}
-          </p>
+              {new Date(friendInfoProfile.dob)
+                .toDateString()
+                .split(" ")
+                .splice(1, 2)
+                .join(" ")}
+            </p>
           </div>
         </div>
 
