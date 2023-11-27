@@ -13,14 +13,13 @@ function FriendsProfile() {
 
 
   useEffect(() => {
-    fetchList();
     // eslint-disable-next-line
+    fetchList();
   }, []);
 
   async function fetchList() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
-      // console.log(result.data);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
 
@@ -50,14 +49,16 @@ function FriendsProfile() {
           />
           <div className="friend-user-names">
             <h2>{friendInfoProfile.user_name}</h2>
-            <p>{friendInfoProfile.first_name} {friendInfoProfile.last_name}</p>
+            <p>
+              {friendInfoProfile.first_name} {friendInfoProfile.last_name}
+            </p>
             <p className="friend-user-dob">
-            {new Date(friendInfoProfile.dob)
-              .toDateString()
-              .split(" ")
-              .splice(1, 2)
-              .join(" ")}
-          </p>
+              {new Date(friendInfoProfile.dob)
+                .toDateString()
+                .split(" ")
+                .splice(1, 2)
+                .join(" ")}
+            </p>
           </div>
         </div>
 
