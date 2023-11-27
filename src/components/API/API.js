@@ -101,4 +101,5 @@ export {
   getNotificationById,
   newNotification,
   deleteNotification,
+  deleteFriend,
 };
