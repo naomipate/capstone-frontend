@@ -71,6 +71,12 @@ function SidebarNav() {
         <div className="sidebarListContainer">
           <ul className="sidebarList">
             <li className="sidebarItem">
+              <NavLink to={`/dashboard/${user?.id}`}>Dashboard</NavLink>
+            </li>
+            <li className="sidebarItem">
+              <NavLink to={`/search-page`}>Find Friends</NavLink>
+            </li>
+            <li className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}/friends`}>
                 Friends: {friendsCount ? friendsCount : 0}
               </NavLink>
