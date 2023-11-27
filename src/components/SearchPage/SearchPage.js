@@ -51,7 +51,7 @@ function Search() {
               placeholder="Search by username"
               value={input}
               onChange={(e) => handleChange(e.target.value)}
-            ></input>
+            />
 
             <button className="search-page-search-button">
               <img
