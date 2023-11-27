@@ -2,17 +2,16 @@
 import React, { useEffect, useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate, Link } from "react-router-dom";
+import GiftuneImg from "../../Assets/GituneLogoImage.png";
+
 import WishlistForm from "../WishlistForm/WishlistForm";
 
 import "./UserWishlist.css";
 
-
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
-  console.log(user);
   const user_id = user?.id;
-  console.log(user_id);
 
   const [formData, setFormData] = useState([]);
   const [editingItemId, setEditingItemId] = useState(null);
@@ -39,7 +38,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
       await Axios.delete(`/userwishlist/${itemId}`);
       alert(`Wishlist item has been deleted`);
       let filterdList = formData.filter((item) => item.id !== itemId);
-      console.log(filterdList);
+
       setFormData(filterdList);
 
       navigate(`/dashboard/${user_id}/userwishlist`);
@@ -91,16 +90,9 @@ function UserWishlist({ handleCreateWishlist, user }) {
       {formData.length > 0 ? (
         formData.map((item) => (
           <div className="WishlistItem" key={item.id}>
-            {/* <div className="ImageContainer">
-              <img
-                src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
-                alt={item.name}
-                className="WishlistImage"
-              />
-            </div> */}
-            {/* <div className="ItemInfo">
-              <h2>{item.item_name}</h2>
-            </div> */}
+            <div className="ImageContainer">
+              <img src={GiftuneImg} alt={item.name} className="WishlistImage" />
+            </div>
             <div>
               <a href={item.link} className="WishlistLink">
                 {item.item_name}
