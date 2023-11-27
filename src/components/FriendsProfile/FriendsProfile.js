@@ -10,7 +10,7 @@ function FriendsProfile() {
   const navigate = useNavigate();
 
   const { id, friendId } = useParams();
-  // console.log(id, friendId);
+
 
   useEffect(() => {
     fetchList();
@@ -23,6 +23,8 @@ function FriendsProfile() {
       // console.log(result.data);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
+
+      console.log(result.data.friendProfile);
     } catch (error) {
       console.log(error);
     }
@@ -41,10 +43,21 @@ function FriendsProfile() {
     <div className="friend-profile-container">
       <div className="friend-profile-info-top">
         <div className="friend-wishlist-top-left-side">
-          <div className="profile-img-placeholder"></div>
-          <div>
+          <img
+            alt="friend-user-profile"
+            className="friend-user-profile"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdhnWROHccYu5AG4Ahi_WnaQgxINV9abPz1MqdYXFwT4txCA5"
+          />
+          <div className="friend-user-names">
             <h2>{friendInfoProfile.user_name}</h2>
-            <p>Firstname Lastname</p>
+            <p>{friendInfoProfile.first_name} {friendInfoProfile.last_name}</p>
+            <p className="friend-user-dob">
+            {new Date(friendInfoProfile.dob)
+              .toDateString()
+              .split(" ")
+              .splice(1, 2)
+              .join(" ")}
+          </p>
           </div>
         </div>
 
@@ -70,6 +83,7 @@ function FriendsProfile() {
             ""
           )}
         </div>
+
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
             return <FriendsProfileWishlist item={item} />;

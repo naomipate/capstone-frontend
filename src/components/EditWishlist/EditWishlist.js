@@ -3,9 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
-import "../AddWishlist/AddWishlist.css";
-
-// const API_URL = process.env.REACT_APP_API_URL;
 
 function EditWishlist() {
   const navigate = useNavigate();
@@ -30,7 +27,7 @@ function EditWishlist() {
       }
     };
     fetchWishlist();
-  }, [id]);
+  }, [id, item_id, navigate]);
 
   const handleEditWishlist = async () => {
     try {

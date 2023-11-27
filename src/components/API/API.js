@@ -82,7 +82,6 @@ async function deleteNotification(id) {
     return error;
   }
 }
-
 async function deleteFriend(id, friendId) {
   try {
     let result = await Axios.delete(`/dashboard/${id}/friends/${friendId}`);
@@ -91,13 +90,15 @@ async function deleteFriend(id, friendId) {
     return error;
   }
 }
+
 export {
   createUser,
   getUserData,
   getAllUsersAPI,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
-  getNotificationById,
   getUserProfile,
-  deleteFriend,
+  getNotificationById,
+  newNotification,
+  deleteNotification,
 };

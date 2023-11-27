@@ -19,11 +19,11 @@ function FriendList() {
       let result = await getAllFriendsFromUser(id);
 
       setFriendsList(result.data);
-      console.log(result.data);
     } catch (error) {
       console.log(error);
     }
   }
+
 
   return (
     <div className="friend-list-container">
@@ -59,7 +59,13 @@ function FriendList() {
                         </button> */}
                       </div>
                       <div>
-                        <span className="user-occupation">{user.dob}</span>
+                        <span className="user-dob">
+                          {new Date(user.dob)
+                            .toDateString()
+                            .split(" ")
+                            .splice(1, 2)
+                            .join(" ")}
+                        </span>
                       </div>
                     </Link>
                   </li>
