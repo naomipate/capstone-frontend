@@ -67,3 +67,7 @@
   background: red;
   color: white;
 }
+
+.btnDecline {
+  border-style: none;
+}

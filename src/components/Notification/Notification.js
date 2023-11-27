@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getNotificationById } from "../API/API";
+import { getNotificationById, deleteNotification } from "../API/API";
 import "./Notification.css";
 function Notification() {
   const [notiData, setNotiData] = useState([]);
-  const { id } = useParams();
   const [show, setSetShow] = useState(false);
 
   useEffect(() => {
-    fetchData();
+    let userFromStorage = localStorage.getItem("user");
+    let storedUser = JSON.parse(userFromStorage);
+    fetchData(storedUser.id);
     // eslint-disable-next-line
   }, []);
-  async function fetchData() {
+  async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
       setNotiData(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function handleDeleteNoti(id) {
+    try {
+      deleteNotification(id);
+      let filterdNoti = notiData.filter((item) => item.id !== id);
+      setNotiData(filterdNoti);
     } catch (error) {
       console.log(error);
     }
@@ -26,20 +35,38 @@ function Notification() {
         <button className="dropBtn" onClick={() => setSetShow(!show)}>
           Notifications
         </button>
-        <span className="notiBadge">{notiData.length}</span>
+        {notiData.length > 0 ? (
+          <span className="notiBadge">{notiData.length}</span>
+        ) : (
+          <></>
+        )}
         <div className={`dropdownContent ${show ? "show" : ""}`}>
           <ul className="ContentList">
-            {notiData.map((item) => {
-              return (
-                <li className="dropdownItem" key={item.id}>
-                  <p>
-                    {`${item?.sender_name}: ${item?.messages}`}
-                    {/* <span>✅</span>
-                    <span>❌</span> */}
-                  </p>
-                </li>
-              );
-            })}
+            {notiData[0] ? (
+              <>
+                {notiData.map((item) => {
+                  return (
+                    <li className="dropdownItem" key={item.id}>
+                      <p>
+                        {`${item?.sender_name}: ${item?.messages}`}
+                        <button className="btnAccept">✅</button>
+                        <button
+                          className="btnDecline"
+                          type="button"
+                          onClick={() => handleDeleteNoti(item.id)}
+                        >
+                          ❌
+                        </button>
+                      </p>
+                    </li>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <li className="dropdownItem">No new Notification</li>
+              </>
+            )}
           </ul>
         </div>
       </div>
