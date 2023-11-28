@@ -63,7 +63,6 @@ function FriendsProfile() {
         </div>
 
         <div className="friend-wishlist-top-right-side">
-          <p>{friendInfoProfile.dob}</p>
           <button
             className="button-friend-profile"
             onClick={handleDeleteFriend}
@@ -73,18 +72,6 @@ function FriendsProfile() {
         </div>
       </div>
       <div className="friend-wishlist-list-container">
-        <div>
-          {FriendsProfileWishlist.length > 0 ? (
-            <div className="friend-wishlist-reminder-box">
-              <p className="friend-wishlist-reminder">
-                Reminder to check off the item once you buy!!
-              </p>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
             return <FriendsProfileWishlist item={item} />;
