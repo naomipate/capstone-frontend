@@ -1,0 +1,39 @@
+.friend-list-bottom{
+  border: #000000 2px;
+  max-height: 550px;
+  overflow-y: auto;
+}
+
+.friend-list-bottom {
+  z-index: 2;
+}
+
+.user-dob{
+margin-left: 5rem;
+color: #646464;
+
+}
+
+  /* ------------------------ scroll bar --------------------- */
+
+  .friend-list-bottom::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+  
+  .friend-list-bottom::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: #F5F5F5;
+  }
+  
+  .friend-list-bottom::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #e9e1fd;
+  }
+
+
