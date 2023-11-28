@@ -1,3 +1,4 @@
+/* eslint-disable padded-blocks */
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -10,6 +11,7 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
 
   useEffect(() => {
     setFormData(initialValues);
+    // eslint-disable-next-line
   }, [initialValues]);
 
   const handleInputChange = (e) => {
@@ -38,16 +40,6 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             onChange={(e) => handleInputChange(e)}
           />
         </div>
-        {/* <div className="form-group">
-        <label htmlFor="imageUrl">Image Url</label>
-        <input
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          value={formData.imageUrl || ""}
-          onChange={handleInputChange}
-        />
-      </div> */}
         <div className="form-group">
           <label htmlFor="itemLink">Item Link</label>
           <input

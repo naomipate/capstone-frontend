@@ -11,13 +11,12 @@ function Dashboard() {
   const { id } = useParams();
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   async function fetchData() {
     try {
-      // console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      // console.log(response.data);
       setUser(response.data);
       console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
@@ -57,13 +56,7 @@ function Dashboard() {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
-  return (
-    <div className="dashboard-container">
-      {/* <div>Dashboard</div> */}
-      {friendsList}
-      {/* <Sidebar /> */}
-    </div>
-  );
+  return <div className="dashboard-container">{friendsList}</div>;
 }
 
 function Friend({ friendDetails, id }) {
@@ -82,24 +75,6 @@ function Friend({ friendDetails, id }) {
     .splice(1, 2)
     .join(" ");
   return (
-    // <div className="friend-card">
-    //   <div className="friend-details">
-    //     <div className="friend-avatar-name">
-    //       <Avatar />
-    //       <div className="friend-name">
-    //         {first_name} {last_name}{" "}
-    //       </div>
-    //     </div>
-
-    //     <div className="friend-dob">upcomingDate</div>
-    //   </div>
-    //   <ul className="wishlist-items">
-    //     <img />
-    //     {wishlistItem}
-    //   </ul>
-    // </div>
-
-    // -----------------------------------------------------------------
     <div className="dashboard-friend-card-container">
       <Link
         to={`/dashboard/${id}/friends/${wishlist[0].user_id}`}
@@ -115,10 +90,6 @@ function Friend({ friendDetails, id }) {
       </Link>
     </div>
   );
-}
-
-function Avatar() {
-  return <div>Avatar</div>;
 }
 
 export default Dashboard;

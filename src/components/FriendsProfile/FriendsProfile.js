@@ -11,7 +11,6 @@ function FriendsProfile() {
 
   const { id, friendId } = useParams();
 
-
   useEffect(() => {
     fetchList();
     // eslint-disable-next-line
@@ -22,8 +21,6 @@ function FriendsProfile() {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
-
-      console.log(result.data.friendProfile);
     } catch (error) {
       console.log(error);
     }

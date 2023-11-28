@@ -6,7 +6,6 @@ function SearchList({ filteredUsers }) {
   return (
     <div className="search-list-results-container">
       {filteredUsers.map((user, index) => {
-        console.log(user);
         return (
           <div key={index} className="search-list-result">
             <img
@@ -15,9 +14,11 @@ function SearchList({ filteredUsers }) {
               alt="..."
               style={{ maxHeight: "40px" }}
             />
-            {/* <p className="search-list-profile-username">{user.user_name}</p> */}
-            <Link to={`/users/${user.id}/`} className="search-list-profile-username">
-            {user.user_name}
+            <Link
+              to={`/users/${user.id}/`}
+              className="search-list-profile-username"
+            >
+              {user.user_name}
             </Link>
           </div>
         );

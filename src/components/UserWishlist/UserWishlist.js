@@ -22,6 +22,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
     if (user_id) {
       fetchWishlist();
     }
+    // eslint-disable-next-line
   }, [user_id]);
 
   const fetchWishlist = async () => {
