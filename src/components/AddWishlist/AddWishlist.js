@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
+import "./AddWishList.css"
 
 
 
@@ -40,13 +41,15 @@ function AddWishlist({ user }) {
   };
 
   return (
-    <div className="">
-      <h2>Add item</h2>
+    <div className="add-wishlist-page">
+      <div className="add-wishlist-page-container">
+      <h2 className="add-wishlist-title">Add item</h2>
       <WishlistForm
         onSubmit={handleCreateWishlist}
         formData={formData}
         setFormData={setFormData}
       />
+      </div>
     </div>
   );
 }
