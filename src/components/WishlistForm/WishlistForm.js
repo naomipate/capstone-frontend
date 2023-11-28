@@ -14,13 +14,12 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("wishlistForm", formData);
+
     onSubmit(formData);
     navigate(`/dashboard/${id}/userwishlist`);
   };
