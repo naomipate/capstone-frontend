@@ -11,7 +11,7 @@ function FriendsProfile() {
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
 
   const { id, friendId } = useParams();
-  
+
   let navigate = useNavigate();
 
 
@@ -66,7 +66,6 @@ function FriendsProfile() {
         </div>
 
         <div className="friend-wishlist-top-right-side">
-          <p>{friendInfoProfile.dob}</p>
           <button
             className="button-friend-profile"
             onClick={handleDeleteFriend}
@@ -74,33 +73,21 @@ function FriendsProfile() {
             Unfollow
           </button>
         </div>
-        <IconContext.Provider
-        value={{ size: "2rem" }}
-      >
-        <div onClick={() => navigate(-1)} className="back-left-arrow-container">
-          <TbArrowLeft />
-        </div>
-      </IconContext.Provider>
       </div>
       <div className="friend-wishlist-list-container">
-        <div>
-          {FriendsProfileWishlist.length > 0 ? (
-            <div className="friend-wishlist-reminder-box">
-              <p className="friend-wishlist-reminder">
-                Reminder to check off the item once you buy!!
-              </p>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
             return <FriendsProfileWishlist item={item} />;
           })}
         </ul>
       </div>
+      <IconContext.Provider
+        value={{ size: "2rem" }}
+      >
+        <div onClick={() => navigate(-1)} className="back-left-arrow-container">
+          <TbArrowLeft />
+        </div>
+      </IconContext.Provider>
     </div>
   );
 }
