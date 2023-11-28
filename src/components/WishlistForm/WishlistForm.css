@@ -1,4 +1,4 @@
-.list-form {
+/* .list-form {
   background: #f1ebfa;
   width: 500px;
   margin: 0 auto;
@@ -8,11 +8,7 @@
   text-align: center;
   position: relative;
 }
-h2 {
-  color: black;
-  margin-top: 0;
-  text-align: center;
-}
+
 .form-group {
   color: black;
   margin-bottom: 15px;
@@ -29,25 +25,95 @@ h2 {
 
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   height: 15px;
 
   border-bottom: 1px solid #eee;
+} */
+
+.list-form {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
 }
 
-.button-container {
-  display: flex;
-  justify-content: flex-end;
+.list-form label {
+  color: black;
 }
-button {
-  background-color: none;
-  border-style: none;
-  cursor: pointer;
-  color: #7a7272;
-  padding: 10px 20px;
+
+.list-form .wish-list-form-title {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 12px;
+  font-weight: bold;
+  display: block;
+}
+
+.list-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-form label {
+  margin-bottom: 10px;
+}
+
+
+.list-form input, .list-form textarea {
+  padding: 10px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.list-form button[type="submit"] {
+  background-color: #8b25ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  width: 100px;
 }
+
+.list-form button[type="submit"]:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+@media screen and (max-width: 800px) {
+  .list-form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-form {
+    width: 60%;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
+  .form-group {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .list-form {
+    width: 50%;
+  }
+}
+
+
+
+
 

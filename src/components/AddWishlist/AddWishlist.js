@@ -40,7 +40,7 @@ function AddWishlist({ user }) {
   };
 
   return (
-    <div className="list-form">
+    <div className="">
       <h2>Add item</h2>
       <WishlistForm
         onSubmit={handleCreateWishlist}

@@ -29,7 +29,7 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
     <div className="list-form">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="itemName">Item Name</label>
+          <label htmlFor="itemName" className="wish-list-form-title">Item Name</label>
           <input
             required
             type="text"
@@ -38,6 +38,19 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             value={formData?.item_name || ""}
             onChange={(e) => handleInputChange(e)}
           />
+
+          <label htmlFor="itemLink" className="wish-list-form-title">Item Link</label>
+          <input
+            required
+            type="text"
+            id="link"
+            name="link"
+            value={formData?.link || ""}
+            onChange={(e) => handleInputChange(e)}
+          />
+          <button className="button-container" type="submit">
+            Submit
+          </button>
         </div>
         {/* <div className="form-group">
         <label htmlFor="imageUrl">Image Url</label>
@@ -49,20 +62,6 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
           onChange={handleInputChange}
         />
       </div> */}
-        <div className="form-group">
-          <label htmlFor="itemLink">Item Link</label>
-          <input
-            required
-            type="text"
-            id="link"
-            name="link"
-            value={formData?.link || ""}
-            onChange={(e) => handleInputChange(e)}
-          />
-        </div>
-        <button className="button-container" type="submit">
-          Submit
-        </button>
       </form>
     </div>
   );
