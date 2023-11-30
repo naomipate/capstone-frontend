@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./SearchList.css";
+import SearchListBtn from "./SearchListBtn";
 
 function SearchList({ filteredUsers }) {
   return (
@@ -20,6 +21,7 @@ function SearchList({ filteredUsers }) {
             >
               {user.user_name}
             </Link>
+            <SearchListBtn targetUser={user} />
           </div>
         );
       })}
