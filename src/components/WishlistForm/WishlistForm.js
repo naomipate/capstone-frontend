@@ -27,10 +27,10 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
   };
 
   return (
-    <div className="list-form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="itemName">Item Name</label>
+    <div className="wish-list-form-container">
+      <form onSubmit={handleSubmit} class="wish-list-form">
+        <div className="wish-list-form-group"> 
+          <label htmlFor="itemName" className="wish-list-form-title">Item</label>
           <input
             required
             type="text"
@@ -38,7 +38,25 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             name="item_name"
             value={formData?.item_name || ""}
             onChange={(e) => handleInputChange(e)}
+            className="wish-list-form-input"
           />
+
+
+          <label htmlFor="itemLink" className="wish-list-form-title">Link</label>
+          <input
+            required
+            type="text"
+            id="link"
+            name="link"
+            value={formData?.link || ""}
+            onChange={(e) => handleInputChange(e)}
+            className="wish-list-form-input"
+          />
+          <button className="wish-list-button-container" type="submit">
+            Submit
+          </button>
+
+
         </div>
         <div className="form-group">
           <label htmlFor="itemLink">Item Link</label>
@@ -53,7 +71,7 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
         </div>
         <button className="button-container" type="submit">
           Submit
-        </button>
+
       </form>
     </div>
   );

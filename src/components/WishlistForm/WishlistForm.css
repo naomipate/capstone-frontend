@@ -1,4 +1,4 @@
-.list-form {
+/* .list-form {
   background: #f1ebfa;
   width: 500px;
   margin: 0 auto;
@@ -8,11 +8,7 @@
   text-align: center;
   position: relative;
 }
-h2 {
-  color: black;
-  margin-top: 0;
-  text-align: center;
-}
+
 .form-group {
   color: black;
   margin-bottom: 15px;
@@ -33,7 +29,90 @@ h2 {
   height: 15px;
 
   border-bottom: 1px solid #eee;
+} */
+
+.wish-list-form-container{
+  display: flex;
+  justify-content: center;
+  margin: 2rem 3rem;
 }
+.wish-list-form {
+  width: 60%;
+  background-color: #fff;
+  padding: 32px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #212121;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  /* box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168); */
+}
+
+.wish-list-form-container button:active {
+  scale: 0.95;
+}
+
+
+.wish-list-form-container .wish-list-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.wish-list-form-container .wish-list-form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wish-list-form-title {
+  display: flex;
+  justify-content: flex-start;
+  margin: 15px 0px 3px 10px;
+  font-weight: bold;
+}
+
+.wish-list-form-input {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+
+}
+
+.wish-list-form-container .wish-list-form-group input::placeholder {
+  opacity: 0.5;
+}
+
+.wish-list-form-container .wish-list-form-group input:focus {
+  outline: none;
+  border-color: #dbc2ff;
+}
+
+.wish-list-form-container .wish-list-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: inherit;
+  color: #fff;
+  background-color: #ae35ff;
+  border: none;
+  padding: 12px 16px;
+  font-size: inherit;
+  gap: 8px;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168);
+  width: 20%;
+}
+
+.wish-list-form-container .wish-list-button-container:hover {
+  background-color: #e6d4ff;
+}
+
 
 @media screen and (max-width: 800px) {
   .list-form {
@@ -47,8 +126,8 @@ h2 {
   }
   h2 {
     font-size: 1.1rem;
-  }
-  .form-group {
+
+  .wish-list-form-group{
     font-size: 0.9rem;
   }
 }
@@ -57,4 +136,4 @@ h2 {
   .list-form {
     width: 50%;
   }
-}
+
