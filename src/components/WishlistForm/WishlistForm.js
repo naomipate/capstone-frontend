@@ -25,45 +25,40 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
   };
 
   return (
-    // <div className="list-form">
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="itemName">Item Name</label>
-        <input
-          required
-          type="text"
-          id="item_name"
-          name="item_name"
-          value={formData?.item_name || ""}
-          onChange={(e) => handleInputChange(e)}
-        />
-      </div>
-      {/* <div className="form-group">
-        <label htmlFor="imageUrl">Image Url</label>
-        <input
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          value={formData.imageUrl || ""}
-          onChange={handleInputChange}
-        />
-      </div> */}
-      <div className="form-group">
-        <label htmlFor="itemLink">Item Link</label>
-        <input
-          required
-          type="text"
-          id="link"
-          name="link"
-          value={formData?.link || ""}
-          onChange={(e) => handleInputChange(e)}
-        />
-      </div>
-      <button className="button-container" type="submit">
-        Submit
-      </button>
-    </form>
-    // </div>
+    <div className="wish-list-form-container">
+      <form onSubmit={handleSubmit} class="wish-list-form">
+        <div className="wish-list-form-group">
+          <label htmlFor="itemName" className="wish-list-form-title">
+            Item
+          </label>
+          <input
+            required
+            type="text"
+            id="item_name"
+            name="item_name"
+            value={formData?.item_name || ""}
+            onChange={(e) => handleInputChange(e)}
+            className="wish-list-form-input"
+          />
+
+          <label htmlFor="itemLink" className="wish-list-form-title">
+            Link
+          </label>
+          <input
+            required
+            type="text"
+            id="link"
+            name="link"
+            value={formData?.link || ""}
+            onChange={(e) => handleInputChange(e)}
+            className="wish-list-form-input"
+          />
+          <button className="wish-list-button-container" type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 export default WishlistForm;

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishlist";
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
+import { TbArrowLeft } from "react-icons/tb";
+import { IconContext } from "react-icons";
 import "./FriendsProfile.css";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
-  const navigate = useNavigate();
 
   const { id, friendId } = useParams();
+
+  let navigate = useNavigate();
 
 
   useEffect(() => {
@@ -63,7 +66,6 @@ function FriendsProfile() {
         </div>
 
         <div className="friend-wishlist-top-right-side">
-          <p>{friendInfoProfile.dob}</p>
           <button
             className="button-friend-profile"
             onClick={handleDeleteFriend}
@@ -73,24 +75,19 @@ function FriendsProfile() {
         </div>
       </div>
       <div className="friend-wishlist-list-container">
-        <div>
-          {FriendsProfileWishlist.length > 0 ? (
-            <div className="friend-wishlist-reminder-box">
-              <p className="friend-wishlist-reminder">
-                Reminder to check off the item once you buy!!
-              </p>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
             return <FriendsProfileWishlist item={item} />;
           })}
         </ul>
       </div>
+      <IconContext.Provider
+        value={{ size: "2rem" }}
+      >
+        <div onClick={() => navigate(-1)} className="back-left-arrow-container">
+          <TbArrowLeft />
+        </div>
+      </IconContext.Provider>
     </div>
   );
 }
