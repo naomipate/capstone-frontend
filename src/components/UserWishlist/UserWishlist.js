@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import GiftuneImg from "../../Assets/GituneLogoImage.png";
 
 import WishlistForm from "../WishlistForm/WishlistForm";
-
+import WishListItem from "./UserWishListItem/WishListItem";
 import "./UserWishlist.css";
 
 function UserWishlist({ handleCreateWishlist, user }) {
@@ -71,54 +71,36 @@ function UserWishlist({ handleCreateWishlist, user }) {
   };
 
   return (
-    <div className="user-wishlist">
-      <div className="TitleBar" key={formData.id}>
-        <h2>Wishlist</h2>
-        <Link to={`/dashboard/${user_id}/new`}>
-          <button>Add Item</button>
-        </Link>
+    <div className="user-wishlist-container">
+      <div className="user-wishlist">
+        <div className="TitleBar" key={formData.id}>
+          <h2>Wishlist</h2>
+          <Link to={`/dashboard/${user_id}/new`}>
+            <button>Add Item</button>
+          </Link>
+        </div>
+
+        {(editingItemId !== null || formData.length === 0) && (
+          <WishlistForm
+            onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
+            initialValues={editingItemId ? selectedItem : {}}
+            setFormData={setFormData}
+            formData={formData}
+          />
+        )}
+
+        {formData.length > 0 ? (
+          formData.map((item) => (
+            <WishListItem
+              item={item}
+              deleteWishlistItem={deleteWishlistItem}
+              handleEditClick={handleEditClick}
+            />
+          ))
+        ) : (
+          <p className="ErrorMsg">No wishlist items found.</p>
+        )}
       </div>
-
-      {(editingItemId !== null || formData.length === 0) && (
-        <WishlistForm
-          onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
-          initialValues={editingItemId ? selectedItem : {}}
-          setFormData={setFormData}
-          formData={formData}
-        />
-      )}
-
-      {formData.length > 0 ? (
-        formData.map((item) => (
-          <div className="WishlistItem" key={item.id}>
-            <div className="ImageContainer">
-              <img src={GiftuneImg} alt={item.name} className="WishlistImage" />
-            </div>
-            <div>
-              <a href={item.link} className="WishlistLink">
-                {item.item_name}
-              </a>
-            </div>
-
-            <div className="EditDeletButtons">
-              <button
-                className="EditButton"
-                onClick={() => handleEditClick(item.id)}
-              >
-                Edit
-              </button>
-              <button
-                className="DeleteButton"
-                onClick={() => deleteWishlistItem(item.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))
-      ) : (
-        <p className="ErrorMsg">No wishlist items found.</p>
-      )}
     </div>
   );
 }
