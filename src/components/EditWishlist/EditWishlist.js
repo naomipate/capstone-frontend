@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
-import "./EditWishlist.css"
-
+import "./EditWishlist.css";
 
 function EditWishlist() {
   const navigate = useNavigate();
@@ -11,7 +10,6 @@ function EditWishlist() {
 
   const [formData, setFormData] = useState({
     item_name: "",
-    // imageUrl: "",
     link: "",
   });
 

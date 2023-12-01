@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate, Link } from "react-router-dom";
-import GiftuneImg from "../../Assets/GituneLogoImage.png";
 
 import WishlistForm from "../WishlistForm/WishlistForm";
 import WishListItem from "./UserWishListItem/WishListItem";
+
 import "./UserWishlist.css";
 
 function UserWishlist({ handleCreateWishlist, user }) {

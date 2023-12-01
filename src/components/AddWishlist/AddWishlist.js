@@ -3,18 +3,15 @@ import React, { useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
-import "./AddWishList.css"
+import "./AddWishList.css";
 
-
-
-function AddWishlist({ user }) {
+function AddWishlist({ user, fetchWishlilst }) {
   let navigate = useNavigate();
   const { id } = user;
 
   const [formData, setFormData] = useState({
     user_id: id,
     item_name: "",
-    // imageUrl: "",
     link: "",
   });
 
@@ -25,11 +22,12 @@ function AddWishlist({ user }) {
     try {
       await Axios.post(`/userwishlist`, formatData);
 
+      fetchWishlilst();
       alert("Wishlist created successfully!");
+
       setFormData({
         user_id: id,
         item_name: "",
-        // imageUrl: "",
         link: "",
       });
       navigate(`/dashboard/${id}/userwishlist`);
@@ -41,12 +39,12 @@ function AddWishlist({ user }) {
   return (
     <div className="add-wishlist-page">
       <div className="add-wishlist-page-container">
-      <h2 className="add-wishlist-title">Add item</h2>
-      <WishlistForm
-        onSubmit={handleCreateWishlist}
-        formData={formData}
-        setFormData={setFormData}
-      />
+        <h2 className="add-wishlist-title">Add item</h2>
+        <WishlistForm
+          onSubmit={handleCreateWishlist}
+          formData={formData}
+          setFormData={setFormData}
+        />
       </div>
     </div>
   );
