@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
-
+import "./EditWishlist.css";
 
 function EditWishlist() {
   const navigate = useNavigate();
@@ -10,7 +10,6 @@ function EditWishlist() {
 
   const [formData, setFormData] = useState({
     item_name: "",
-    // imageUrl: "",
     link: "",
   });
 
@@ -40,7 +39,7 @@ function EditWishlist() {
   };
 
   return (
-    <div className="list-form">
+    <div className="edit-wishlist-page-container">
       <h2>item</h2>
       <WishlistForm onSubmit={handleEditWishlist} wishlist={formData} />
     </div>
