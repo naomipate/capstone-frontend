@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
 
+import "./EditWishlist.css";
+
 function EditWishlist() {
   const navigate = useNavigate();
   const { id, item_id } = useParams();
@@ -38,7 +40,7 @@ function EditWishlist() {
   };
 
   return (
-    <div className="list-form">
+    <div className="edit-wishlist-page-container">
       <h2>item</h2>
       <WishlistForm onSubmit={handleEditWishlist} wishlist={formData} />
     </div>

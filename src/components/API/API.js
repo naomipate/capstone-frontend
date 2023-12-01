@@ -88,6 +88,16 @@ async function deleteFriend(id, friendId) {
     return error;
   }
 }
+async function updateItemBoughtByItemId( itemId, is_bought) {
+  console.log("is bought on api call", is_bought);
+  try {
+    let result = await Axios.put(`/dashboard/item-details`, {id:itemId, is_bought:is_bought} );
+    console.log(result.data);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
 
 export {
   createUser,
@@ -100,4 +110,5 @@ export {
   newNotification,
   deleteNotification,
   deleteFriend,
+  updateItemBoughtByItemId
 };
