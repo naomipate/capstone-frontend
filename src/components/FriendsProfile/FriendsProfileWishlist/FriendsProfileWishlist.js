@@ -1,13 +1,29 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti"
+import { updateItemBoughtByItemId } from "../../API/API";
 
-function FriendsProfileWishlist({ item }) {
-  const [checkMark, setCheckMark] = useState(false);
+function FriendsProfileWishlist({item}) {
+  const [is_bought, setis_bought] = useState(item.is_bought);
+
+  let item_id = item.id
+
+  const updateItem = async () => {
+    try {
+      let result = await updateItemBoughtByItemId(item_id, !is_bought);
+      console.log(result.is_bought);
+      setis_bought(!is_bought);
+      confettiTrue()
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  console.log(item_id, is_bought);
 
   function confettiTrue(){
-    if(checkMark === false){
+    if(is_bought === false){
       return confetti({
         particleCount: 100,
         spread: 70,
@@ -15,7 +31,6 @@ function FriendsProfileWishlist({ item }) {
       });
     }
   }
-
 
   return (
     <li key={item.id} className="friend-wishlist-list-item">
@@ -27,11 +42,11 @@ function FriendsProfileWishlist({ item }) {
           <div className="notibody">
             <label className="container-checkmark">
               <input
-                checked={checkMark}
+                checked={is_bought}
                 type="checkbox"
                 // onClick={(e) => setCheckMark(!checkMark)}
-                onChange={(e) => setCheckMark(!checkMark)}
-                onClick={(e) => confettiTrue() }
+                onChange={updateItem}
+                // onClick={(e) => confettiTrue()}
               />
               <div className="checkmark"></div>
             </label>
@@ -43,11 +58,11 @@ function FriendsProfileWishlist({ item }) {
             </Link>
           </div>
         </div>
-        <div className="right" style={ checkMark ? { visibility: "hidden" } : {visibility: "visible"} }>
+        <div className="right" style={ is_bought ? { visibility: "hidden" } : {visibility: "visible"} }>
         <div className="text-content">
           <h3>Come back to check off once you buy!</h3>
         </div>
-        <i className="tooltip-triangle" style={ checkMark ? { visibility: "hidden" } : {visibility: "visible"} }></i>
+        <i className="tooltip-triangle" style={ is_bought ? { visibility: "hidden" } : {visibility: "visible"} }></i>
       </div>
       </div>
     </li>
