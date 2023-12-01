@@ -8,7 +8,7 @@
 
 .friend-list-wrapper {
     width: 50rem;
-    height: 100%;
+    /* height: 100%; */
     position: relative;
     --white: #303030;
     --bc: rgb(200, 154, 255);
@@ -21,9 +21,9 @@
     width: 100%;
     /* max-width: 50rem; */
     padding: 1rem 0;
-    display: grid;
-    grid-template-areas: "top" "bottom";
-    grid-template-rows: 20% 1fr;
+    /* display: grid; */
+    /* grid-template-areas: "top" "bottom";
+    grid-template-rows: 20% 1fr; */
     border: 1px solid var(--bc-al);
     border-radius: .75rem;
     background: var(--bc-al);
@@ -31,7 +31,66 @@
     backdrop-filter: blur(14px);
     box-shadow: 0 15px 30px -15px var(--bc-al);
     isolation: isolate;
+    height: 45rem;    
+
   }
+
+  /* -------------------search bar-------------------- */
+  .friends-list-search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .friends-list-search-input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #ffffff;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 2rem;
+    border-radius: 30px;
+    width: 50%;
+    margin-right: -2.3rem;
+  }
+  
+  .friends-list-search-input:hover, .friends-list-search-input:focus {
+    box-shadow: 0 0 1em #00000013;
+  }
+  
+  .friends-list-search-input:focus {
+    outline: none;
+    background-color: #ffffff;
+  }
+  
+  .friends-list-search-input::-webkit-input-placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    color: #c1c1c1;
+  }
+  
+  .friends-list-search-input:focus + .friends-list-search-button {
+    background-color: #ffffff;
+  }
+  
+  .friends-list-search-button {
+    border: none;
+    background-color: #ffffff;
+    margin-top: .1em;
+  }
+  
+  .friends-list-search-button:hover {
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: #b4b4b4;
+  }
+
   
   .circle-1 {
     position: absolute;
@@ -61,11 +120,11 @@
   .top {
     padding: 2rem 4rem;
     z-index: 1;
+    display: flex;
+    justify-content: center;
   }
   
-  .friend-list-bottom {
-    z-index: 2;
-  }
+
   
   .friend-list-users {
     display: flex;
@@ -79,7 +138,6 @@
   }
   
   .friend-list-user {
-    /* width: 100%; */
     padding: .75rem 4rem;
     display: flex;
     gap: .1rem;
@@ -147,12 +205,13 @@
     font-size: 1.9rem;
     font-weight: 700;
     font-style: italic;
+
   }
 
   /*---------------------Button--------------------  */
 .button-1-friend-list {
   margin-top: 30px;
-  /* background-color: rgba(105, 0, 243, 0.5); */
+  background-color: rgba(105, 0, 243, 0.5);
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -185,4 +244,55 @@
 a.friend-list-link{
   text-decoration: none;
   color: #303030;
+}
+
+@media only screen and (max-width: 900px ) {
+  .friend-list-wrapper {
+    width: 80%;
+    /* margin: 10px; */
+    display: flex;
+    justify-content: center;
+    /* height: 150px ; */
+  }
+
+  .button-1-friend-list{
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 500px ) {
+  .friend-list-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .friend-list-user{
+    /* width: 68%; */
+    padding: 20px;
+  }
+}
+
+
+@media only screen and (max-width: 380px ) {
+  .friend-list-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .friend-list-user{
+    padding: 10px;
+  }
+  .user-first-row{
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+  
+  .button-1-friend-list{
+    width: 10rem;
+  }
+  
+
 }

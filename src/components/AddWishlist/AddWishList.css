@@ -1,0 +1,27 @@
+.add-wishlist-page{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 5rem 3rem;
+}
+
+.add-wishlist-page-container{
+    width: 50rem;
+    height: 40rem;
+    margin: 0; 
+}
+
+.add-wishlist-title{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px ;
+    color: rgb(23, 22, 22);
+    width: 100%;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #b3b3b3;
+}
+
+
+
+

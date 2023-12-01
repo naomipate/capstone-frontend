@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
+import "./EditWishlist.css"
 
-import "../AddWishlist/AddWishlist.css";
-
-const API_URL = process.env.REACT_APP_API_URL;
 
 function EditWishlist() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, item_id } = useParams();
 
   const [formData, setFormData] = useState({
     item_name: "",
@@ -20,28 +18,30 @@ function EditWishlist() {
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await axios.get(`/${API_URL}/userwishlist/${id}`);
+        const response = await Axios.get(
+          `/dashboard/${id}/userwishlist/${item_id}`
+        );
         setFormData(response.data[0]);
-        navigate(`/userWishlist/${id}`);
+        navigate(`/dashboard/${id}/userwishlist`);
       } catch (error) {
         console.log(error);
       }
     };
     fetchWishlist();
-  }, [id]);
+  }, [id, item_id, navigate]);
 
   const handleEditWishlist = async () => {
     try {
-      await axios.put(`/${API_URL}/userwishlist/${id}/edit`, formData);
+      await Axios.get(`/userwishlist/${id}/edit`, formData);
       alert("Wishlist item updated successfully");
-      navigate(`/userwishlist`);
+      navigate(`/dashboard/${id}/userwishlist`);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className="list-form">
+    <div className="edit-wishlist-page-container">
       <h2>item</h2>
       <WishlistForm onSubmit={handleEditWishlist} wishlist={formData} />
     </div>

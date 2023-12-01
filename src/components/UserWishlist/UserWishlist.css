@@ -1,24 +1,40 @@
-.UserWishlist {
+.user-wishlist-container{
   display: flex;
+  align-items: center;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: #6e1aec;
+  margin: 5rem 3rem;
+}
+
+
+.user-wishlist{
+  width: 50rem;
+  height: 40rem;
+  margin: 0;
+
 }
 
 .TitleBar {
   display: flex;
-  justify-content: space-around;
-  margin-left: 80px;
+  justify-content: space-between;
+  margin-bottom: 30px ;
   color: rgb(23, 22, 22);
   width: 100%;
   align-items: center;
-  padding: 10px;
-  border-bottom: 2px solid #926262;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #b3b3b3;
+  /* width: 80%; */
 }
 
-.AddButton {
-  background-color: #9949ff;
+.TitleBar h2 {
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.TitleBar button {
+  background-color: #a769f8;
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -26,72 +42,25 @@
   cursor: pointer;
 }
 
-.WishlistItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  justify-items: flex-start;
-  background-color: #efe5fc;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 10px;
-  border-radius: 4px;
-  width: 80%;
-  margin-left: auto;
-}
 
-.ImageContainer {
-  width: 70px;
-  height: 70px;
-  overflow: hidden;
-  border: 1px solid #999;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.WishlistImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.ItemInfo {
-  flex-grow: 0.2;
-}
-
-.WishlistLink {
-  text-align: center;
-  font-weight: bold;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.EditDeleteButtons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 10px;
-}
-.EditButton {
-  background-color: #9949ff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  margin-bottom: 4px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.DeleteButton {
-  background-color: #ec5e6c;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  margin: 4px;
-  border-radius: 4px;
-  cursor: pointer;
-}
 
 .ErrorMsg {
   color: rgb(23, 22, 22);
+}
+
+@media screen and (max-width: 800px) {
+  .WishlistItem {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .WishlistItem {
+    width: 90%;
+  }
+  .EditDeleteButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }

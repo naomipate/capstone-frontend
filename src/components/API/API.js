@@ -48,13 +48,16 @@ async function getAllFriendsFromUser(id) {
 
 async function getFriendsAndTheirWishlists(id, friendId) {
   try {
-    let result = await Axios.get(`/dashboard/${id}/friends/${friendId}`, id, friendId);
+    let result = await Axios.get(
+      `/dashboard/${id}/friends/${friendId}`,
+      id,
+      friendId
+    );
     return result;
   } catch (e) {
     return e;
   }
 }
-
 async function getNotificationById(id) {
   try {
     let result = await Axios.get(`/notification/${id}`);
@@ -74,7 +77,25 @@ async function newNotification(data) {
 async function deleteNotification(id) {
   try {
     let result = await Axios.delete(`/notification/${id}`);
-    return result;
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function deleteFriend(id, friendId) {
+  try {
+    let result = await Axios.delete(`/dashboard/${id}/friends/${friendId}`);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function updateItemBoughtByItemId( itemId, is_bought) {
+  console.log("is bought on api call", is_bought);
+  try {
+    let result = await Axios.put(`/dashboard/item-details`, {id:itemId, is_bought:is_bought} );
+    console.log(result.data);
+    return result.data;
   } catch (error) {
     return error;
   }
@@ -86,5 +107,10 @@ export {
   getAllUsersAPI,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
-  getUserProfile
- };
+  getUserProfile,
+  getNotificationById,
+  newNotification,
+  deleteNotification,
+  deleteFriend,
+  updateItemBoughtByItemId
+};

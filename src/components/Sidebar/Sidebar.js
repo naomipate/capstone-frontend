@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import SidebarNav from "../SidebarNav/SidebarNav";
 
 function Sidebar() {
-
   return (
     <>
       <SidebarNav />
