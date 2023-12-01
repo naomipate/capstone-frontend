@@ -77,7 +77,7 @@ function FriendsProfile() {
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
-            return <FriendsProfileWishlist item={item} />;
+            return <FriendsProfileWishlist item={item} key={item.id} />;
           })}
         </ul>
       </div>
