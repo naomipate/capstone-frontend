@@ -46,6 +46,7 @@
     border-radius: 10px;
     border: 2px solid #f5ebff;
     margin: 20px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px, rgba(17, 17, 26, 0.02) 0px 4px 8px;
   }
 
 .dashboard-friend-card-container:hover{
@@ -149,7 +150,7 @@
 }
 
 #daynum{
-  font-size: 6rem;
+  font-size: 8rem;
 }
 
 .month-and-year{
@@ -172,7 +173,7 @@
 .card {
   position: relative;
   width: 350px;
-  height: 240px;
+  height: 280px;
   background: linear-gradient(to bottom left, #c23eff, #ff3232);
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
   z-index: 1;
