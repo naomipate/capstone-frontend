@@ -25,7 +25,6 @@ function Login({ setUser }) {
     e.preventDefault();
     try {
       let user = await getUserData(email);
-      console.log(user);
       setEmail({
         email: "",
       });
