@@ -3,12 +3,15 @@ import Alert from "../common/AlertModal/Alert";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUser } from "../API/API";
+import { toast } from "react-toastify";
 
 function Signup() {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [show] = useState(false);
   const [user, setUser] = useState({
     user_name: "",
+    first_name: "",
+    last_name: "",
     dob: "",
     email: "",
   });
@@ -20,16 +23,26 @@ function Signup() {
 
       setUser({
         user_name: "",
+        first_name: "",
+        last_name: "",
         dob: "",
         email: "",
       });
-      setShow(true);
-      setTimeout(() => {
-        setShow(false);
-        navigate("/login");
-      }, 3000);
+
+      //TODO Import react toastify and add firstname and lastname to the user data in the form
+      // setShow(true);
+      // setTimeout(() => {
+      //   setShow(false);
+      //   navigate("/login");
+      // }, 3000);
+      toast.success("Signup Successful", toast.POSITION.TOP_CENTER);
+      navigate("/login");
     } catch (error) {
       console.log(error);
+      toast.error(
+        "Please fill out the form correctly",
+        toast.POSITION.TOP_CENTER
+      );
     }
   }
   function handleOnChange(id, value) {
@@ -53,6 +66,24 @@ function Signup() {
             required
             onChange={(e) => handleOnChange(e.target.id, e.target.value)}
             value={user.user_name}
+          />
+          <input
+            type="text"
+            className="input"
+            placeholder="First Name"
+            id="first_name"
+            required
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+            value={user.first_name}
+          />
+          <input
+            type="text"
+            className="input"
+            placeholder="Last Name"
+            id="last_name"
+            required
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+            value={user.last_name}
           />
           <input
             type="email"

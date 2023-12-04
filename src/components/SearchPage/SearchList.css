@@ -48,8 +48,20 @@
 }
 
 a.search-list-profile-username {
+  width: 60px;
   margin-top: 10px;
   margin-left: 20px;
   text-decoration: none;
   color: rgb(73, 73, 73);
+}
+
+.btn {
+  text-align: center;
+  margin: 5px 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #9949ff;
+  max-width: 250px;
+  height: 30px;
 }

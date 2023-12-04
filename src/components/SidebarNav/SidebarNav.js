@@ -13,7 +13,7 @@ function SidebarNav() {
     try {
       // Query for this function, can be done with SELECT COUNT(id) FROM friends_list
       let result = await getUserProfile(user.id);
-      setFriendsCount(result.data.friendsOrderedByDOB.length);
+      setFriendsCount(result.data?.friendsOrderedByDOB?.length);
     } catch (error) {
       console.log(error);
     }
