@@ -14,7 +14,6 @@
 }
 
 .friend-list-firstname-lastname{
-/* margin-left: 5rem; */
 color: #a0a0a0;
 }
 
@@ -29,13 +28,11 @@ color: #a0a0a0;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  /* padding-bottom: 15px; */
 }
 
   /*---------------------Button--------------------  */
   .button-1-friend-list {
     align-items: center;
-    /* margin-top: 30px; */
     background-color: rgba(105, 0, 243, 0.5);
     border-radius: 8px;
     border-style: none;
@@ -49,7 +46,6 @@ color: #a0a0a0;
     height: 40px;
     line-height: 20px;
     list-style: none;
-    /* margin: 0; */
     outline: none;
     padding: 10px 16px;
     position: relative;
