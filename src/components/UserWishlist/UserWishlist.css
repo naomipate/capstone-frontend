@@ -44,6 +44,13 @@
   color: rgb(23, 22, 22);
 }
 
+.back-left-arrow-container {
+  display: flex;
+  align-items: center;
+  width: 50rem;
+  padding: 25px;
+}
+
 @media screen and (max-width: 800px) {
   .WishlistItem {
     width: 80%;
@@ -58,5 +65,9 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+<<<<<<< HEAD
   }
+=======
+
+>>>>>>> b9ef6619d8fd52a42bc4465de5b452042b23f4b3
 }
