@@ -1,97 +1,94 @@
-.user-wishlist-item-container{
-    display: flex;
-    border-radius: 12px;
-    background: #f1ebfa;
-    margin-bottom: 15px;
-  }
+.user-wishlist-item-container {
+  display: flex;
+  border-radius: 12px;
+  background: #f1ebfa;
+  margin-bottom: 15px;
+}
 
-  .list-item-body{
-    /* display: flex;
+.list-item-body {
+  /* display: flex;
     flex-direction: column; */
-    width: 50rem;
-    height: 8rem;
-    border-radius: 1rem;
-    overflow: hidden;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
-    --gradient: linear-gradient(to bottom, #962eff, #983dff, #b861ff);
-  }
+  width: 50rem;
+  height: 8rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  --gradient: linear-gradient(to bottom, #962eff, #983dff, #b861ff);
+}
 
-  .list-item-content{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    margin: 0 auto 0 auto;
-    justify-content: space-evenly;
-    padding: 0 1.25rem;
-    height: 27px;
-    width: auto;
-    align-items: center;
-    color: #1d1d1d;
-    padding-top: 30px;
-  }
-  
-  .ImageContainer {
-    width: 70px;
-    height: 55px;
-    overflow: hidden;
-    margin-right: 10px;
-  }
-  
-  .WishlistImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .list-item-name-and-link{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.list-item-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin: 0 auto 0 auto;
+  justify-content: space-evenly;
+  padding: 0 1.25rem;
+  height: 27px;
+  width: auto;
+  align-items: center;
+  color: #1d1d1d;
+  padding-top: 30px;
+}
 
-  }
-  .list-item-name-and-link p {
-    text-align: left;
-    font-weight: bold;
-    color: #1d1d1d;
-    text-decoration: none;
+.ImageContainer {
+  width: 70px;
+  height: 55px;
+  overflow: hidden;
+  margin-right: 10px;
+}
 
-  }
-  .WishlistLink{
-    text-align: left;
-    color: #1d1d1d;
-    text-decoration: none;
-  }
-  
-  .ItemInfo {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-  
-  .EditDeleteButtons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .wishlistItem button {
-    background-color: #9949ff;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    margin-bottom: 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .EditButton,
-  .DeleteButton {
-    background-color: transparent;
-    color: #a769f8;
-    border: none;
-    padding: 8px 16px;
-    margin: 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
+.WishlistImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.list-item-name-and-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.list-item-name-and-link p {
+  text-align: left;
+  font-weight: bold;
+  color: #1d1d1d;
+  text-decoration: none;
+}
+.WishlistLink {
+  text-align: left;
+  color: #1d1d1d;
+  text-decoration: none;
+}
+
+.ItemInfo {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.EditDeleteButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.wishlistItem button {
+  background-color: #9949ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.EditButton,
+.DeleteButton {
+  background-color: transparent;
+  color: #a769f8;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

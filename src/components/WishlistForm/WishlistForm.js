@@ -59,16 +59,6 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             Submit
           </button>
         </div>
-        {/* <div className="form-group">
-        <label htmlFor="imageUrl">Image Url</label>
-        <input
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          value={formData.imageUrl || ""}
-          onChange={handleInputChange}
-        />
-      </div> */}
       </form>
     </div>
   );
