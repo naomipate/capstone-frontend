@@ -6,6 +6,7 @@ import Giftune from "../../Assets/GituneLogoImage.png";
 import "./Dashboard.css";
 
 function Dashboard() {
+  
   const [user, setUser] = useState({});
   const [time, setTime] = useState(null);
   const [dayNameVisual, setDayName] = useState(null);
