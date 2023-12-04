@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate, Link } from "react-router-dom";
+import { TbArrowLeft } from "react-icons/tb";
+import { IconContext } from "react-icons";
 
 import WishlistForm from "../WishlistForm/WishlistForm";
 import WishListItem from "./UserWishListItem/WishListItem";
@@ -99,6 +101,14 @@ function UserWishlist({ handleCreateWishlist, user }) {
         ) : (
           <p className="ErrorMsg">No wishlist items found.</p>
         )}
+        <IconContext.Provider value={{ size: "2rem" }}>
+          <div
+            onClick={() => navigate(-1)}
+            className="back-left-arrow-container"
+          >
+            <TbArrowLeft />
+          </div>
+        </IconContext.Provider>
       </div>
     </div>
   );
