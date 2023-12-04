@@ -7,10 +7,17 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState({});
+  const [time, setTime] = useState(null);
+  const [dayNameVisual, setDayName] = useState(null);
+  const [dayNumVisual, setDayNum] = useState(null);
+  const [monthVisual, setMonth] = useState(null);
+  const [yearVisual, setYear] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
     fetchData();
+    showTime();
+    updateDate();
   }, [id]);
 
   async function fetchData() {
@@ -59,10 +66,92 @@ function Dashboard() {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
+  // --------------time clock css
+  // Time
+  function showTime() {
+    let time = new Date();
+    time = setTime(
+      time.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    );
+    setTimeout(showTime, 1000);
+  }
+
+  // Date
+  function updateDate() {
+    let today = new Date();
+
+    // return number
+    let dayName = today.getDay(),
+      dayNum = today.getDate(),
+      month = today.getMonth(),
+      year = today.getFullYear();
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dayWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    setDayName(dayWeek[dayName]);
+    setDayNum(dayNum);
+    setMonth(months[month]);
+    setYear(year);
+  }
+
   return (
     <div className="dashboard-container">
-      {/* <div>Dashboard</div> */}
-      {friendsList}
+      <div class="card">
+        <div class="card__content">
+          <div className="dashboard-date-container">
+            <div className="display-date">
+              <p className="todays-date-heading">Today's Date</p>
+              <hr className="dashboard-hr"/>
+              <span id="daynum">{dayNumVisual}</span>
+              <div className="bottom-date-card">
+                <div id="day">{dayNameVisual}</div>
+                {"  "}
+                <div className="month-and-year">
+                <div id="month">{monthVisual}</div>
+                <div id="year">{yearVisual}</div>
+                </div>
+
+              </div>
+            </div>
+            {/* <div className="display-time">{time}</div> */}
+          </div>
+        </div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+      </div>
+      <div className="dashboard-main-section">
+        <p className="dashboard-heading">Upcoming Dates</p>
+        {friendsList}
+      </div>
+      
+
       {/* <Sidebar /> */}
     </div>
   );
@@ -101,7 +190,7 @@ function calculateZodiacSign(dob) {
 }
 
 function Friend({ friendDetails, id }) {
-  console.log(friendDetails);
+  // console.log(friendDetails);
   let { first_name, last_name, wishlist, user_name, dob } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
