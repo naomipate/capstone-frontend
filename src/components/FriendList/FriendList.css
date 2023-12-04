@@ -3,12 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin: 3em; */
 }
 
 .friend-list-wrapper {
     width: 50rem;
-    /* height: 100%; */
     position: relative;
     --white: #303030;
     --bc: rgb(200, 154, 255);
@@ -19,11 +17,7 @@
   
   .friend-list-card {
     width: 100%;
-    /* max-width: 50rem; */
     padding: 1rem 0;
-    /* display: grid; */
-    /* grid-template-areas: "top" "bottom";
-    grid-template-rows: 20% 1fr; */
     border: 1px solid var(--bc-al);
     border-radius: .75rem;
     background: var(--bc-al);
@@ -155,9 +149,6 @@
     border-radius: 50%;
     margin-top: 3px;
     margin-right: 20px;
-    /* background: #e0e0e0;
-    box-shadow:  5px 5px 10px #f2e3fc,
-                 -5px -5px 10px #f6e7ff; */
     background: #e0e0e0;
     box-shadow:  5px 5px 10px #caa5ff,
                   -5px -5px 10px #f8f0fd;
@@ -170,19 +161,6 @@
   .friend-list-user:nth-last-child(1) {
     border-bottom: none;
   }
-  
-  /* .friend-list-user::before {
-    list-style-type: none;
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    left: 1.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--white);
-    border-radius: 50%;
-  } */
 
 
   
@@ -208,10 +186,8 @@
 @media only screen and (max-width: 900px ) {
   .friend-list-wrapper {
     width: 80%;
-    /* margin: 10px; */
     display: flex;
     justify-content: center;
-    /* height: 150px ; */
   }
 
   .button-1-friend-list{
@@ -227,7 +203,6 @@
   }
 
   .friend-list-user{
-    /* width: 68%; */
     padding: 20px;
   }
 }
