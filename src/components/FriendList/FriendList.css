@@ -138,7 +138,7 @@
   }
   
   .friend-list-user {
-    padding: .75rem 4rem;
+    padding: 1.3rem 4rem;
     display: flex;
     gap: .1rem;
     flex-direction: column;
@@ -184,12 +184,7 @@
     border-radius: 50%;
   } */
 
-  .user-first-row-left{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 15px;
-  }
+
   
   .friend-list-user-name {
     font-size: 1.5rem;
@@ -208,43 +203,7 @@
 
   }
 
-  /*---------------------Button--------------------  */
-.button-1-friend-list {
-  margin-top: 30px;
-  background-color: rgba(105, 0, 243, 0.5);
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 20px;
-  list-style: none;
-  /* margin: 0; */
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-align: center;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
 
-.button-1-friend-list:hover,
-.button-1-friend-list:focus {
-  background-color: rgba(180, 67, 255, 0.1);
-}
-
-a.friend-list-link{
-  text-decoration: none;
-  color: #303030;
-}
 
 @media only screen and (max-width: 900px ) {
   .friend-list-wrapper {
