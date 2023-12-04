@@ -11,13 +11,12 @@ function Dashboard() {
   const { id } = useParams();
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   async function fetchData() {
     try {
-      // console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      // console.log(response.data);
       setUser(response.data);
       console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
@@ -59,13 +58,7 @@ function Dashboard() {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
-  return (
-    <div className="dashboard-container">
-      {/* <div>Dashboard</div> */}
-      {friendsList}
-      {/* <Sidebar /> */}
-    </div>
-  );
+  return <div className="dashboard-container">{friendsList}</div>;
 }
 
 function calculateZodiacSign(dob) {
@@ -133,10 +126,6 @@ function Friend({ friendDetails, id }) {
       </Link>
     </div>
   );
-}
-
-function Avatar() {
-  return <div>Avatar</div>;
 }
 
 export default Dashboard;
