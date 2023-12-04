@@ -59,6 +59,20 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             Submit
           </button>
         </div>
+        <div className="form-group">
+          <label htmlFor="itemLink">Item Link</label>
+          <input
+            required
+            type="text"
+            id="link"
+            name="link"
+            value={formData?.link || ""}
+            onChange={(e) => handleInputChange(e)}
+          />
+        </div>
+        <button className="button-container" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

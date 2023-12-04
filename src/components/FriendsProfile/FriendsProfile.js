@@ -12,7 +12,6 @@ function FriendsProfile() {
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
 
   const { id, friendId } = useParams();
-
   let navigate = useNavigate();
 
   useEffect(() => {
