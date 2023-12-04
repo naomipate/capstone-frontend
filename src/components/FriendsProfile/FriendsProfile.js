@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishlist";
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
+import { TbArrowLeft } from "react-icons/tb";
+import { IconContext } from "react-icons";
 import "./FriendsProfile.css";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
-  const navigate = useNavigate();
 
   const { id, friendId } = useParams();
+
+  let navigate = useNavigate();
 
 
   useEffect(() => {
@@ -74,10 +77,17 @@ function FriendsProfile() {
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
-            return <FriendsProfileWishlist item={item} />;
+            return <FriendsProfileWishlist item={item} key={item.id} />;
           })}
         </ul>
       </div>
+      <IconContext.Provider
+        value={{ size: "2rem" }}
+      >
+        <div onClick={() => navigate(-1)} className="back-left-arrow-container">
+          <TbArrowLeft />
+        </div>
+      </IconContext.Provider>
     </div>
   );
 }
