@@ -28,7 +28,7 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
 
   return (
     <div className="wish-list-form-container">
-      <form onSubmit={handleSubmit} class="wish-list-form">
+      <form onSubmit={handleSubmit} className="wish-list-form">
         <div className="wish-list-form-group">
           <label htmlFor="itemName" className="wish-list-form-title">
             Item

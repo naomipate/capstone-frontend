@@ -5,6 +5,7 @@ import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
 import { TbArrowLeft } from "react-icons/tb";
 import { IconContext } from "react-icons";
 import "./FriendsProfile.css";
+import { toast } from "react-toastify";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
@@ -31,7 +32,8 @@ function FriendsProfile() {
   async function handleDeleteFriend() {
     try {
       await deleteFriend(friendId, id);
-      alert("Friend Successfully Unfollowed");
+      // alert("Friend Successfully Unfollowed");
+      toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
       navigate(-1);
     } catch (error) {
       console.log(error);

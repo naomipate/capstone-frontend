@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getNotificationById, deleteNotification } from "../API/API";
+import { IoClose } from "react-icons/io5";
+import { FaCheck } from "react-icons/fa6";
+import {
+  getNotificationById,
+  deleteNotification,
+  addNewFriend,
+} from "../API/API";
+import { toast } from "react-toastify";
 import "./Notification.css";
 function Notification() {
   const [notiData, setNotiData] = useState([]);
@@ -22,10 +29,25 @@ function Notification() {
   }
   async function handleDeleteNoti(id) {
     try {
-      deleteNotification(id);
+      await deleteNotification(id);
       let filterdNoti = notiData.filter((item) => item.id !== id);
       setNotiData(filterdNoti);
     } catch (error) {
+      toast.error("Something Went Wrong", toast.POSITION.TOP_CENTER);
+      console.log(error);
+    }
+  }
+  async function handleAcceptFriendRequest(user_id, sender_id, item_id) {
+    const data = {
+      user_id: user_id,
+      sender_id: sender_id,
+    };
+    try {
+      await addNewFriend(data);
+      //await deleteNotification(item_id);
+      toast.success("You Are now Friends!", toast.POSITION.TOP_CENTER);
+    } catch (error) {
+      toast.error("Something Went Wrong", toast.POSITION.TOP_CENTER);
       console.log(error);
     }
   }
@@ -42,33 +64,42 @@ function Notification() {
           <></>
         )}
         <div className={`dropdownContent ${show ? "show" : ""}`}>
-          <ul className="ContentList">
+          <div className="ContentList">
             {notiData[0] ? (
               <>
                 {notiData.map((item) => {
                   return (
-                    <li className="dropdownItem" key={item.id}>
-                      <p>
-                        {`${item?.sender_name}: ${item?.messages}`}
-                        <button className="btnAccept">✅</button>
-                        <button
-                          className="btnDecline"
-                          type="button"
-                          onClick={() => handleDeleteNoti(item.id)}
-                        >
-                          ❌
-                        </button>
-                      </p>
-                    </li>
+                    <div className="dropdownItem" key={item.id}>
+                      {`${item?.sender_name}: ${item?.messages}`}
+                      <button
+                        className="bttn Accept"
+                        onClick={() =>
+                          handleAcceptFriendRequest(
+                            item.user_id,
+                            item.sender_id,
+                            item.id
+                          )
+                        }
+                      >
+                        <FaCheck />
+                      </button>
+                      <button
+                        className="bttn Decline"
+                        type="button"
+                        onClick={() => handleDeleteNoti(item.id)}
+                      >
+                        <IoClose />
+                      </button>
+                    </div>
                   );
                 })}
               </>
             ) : (
               <>
-                <li className="dropdownItem">No new Notification</li>
+                <div className="dropdownItem">No new Notification</div>
               </>
             )}
-          </ul>
+          </div>
         </div>
       </div>
     </>

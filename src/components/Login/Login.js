@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import { getUserData } from "../API/API";
 
 import "./Login.css";
@@ -31,9 +31,11 @@ function Login({ setUser }) {
       setUser(user.data);
       window.localStorage.setItem("user", JSON.stringify(user.data));
       setPassword("");
-      alert("Login Success!");
+      toast.success("Login Successful", toast.POSITION.TOP_CENTER);
+
       navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
     } catch (error) {
+      toast.error("User not found", toast.POSITION.TOP_CENTER);
       console.log(error);
     }
   }

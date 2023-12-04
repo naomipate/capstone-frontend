@@ -2,7 +2,7 @@ import Axios from "./Axios";
 
 async function createUser(data) {
   try {
-    let result = await Axios.post("/user", data);
+    let result = await Axios.post("/users", data);
     return result;
   } catch (error) {
     return error;
@@ -88,6 +88,14 @@ async function deleteFriend(id, friendId) {
     return error;
   }
 }
+async function addNewFriend(data) {
+  try {
+    let result = await Axios.post(`/dashboard/add-new-friend`, data);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
 
 export {
   createUser,
@@ -100,4 +108,5 @@ export {
   newNotification,
   deleteNotification,
   deleteFriend,
+  addNewFriend,
 };
