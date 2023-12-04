@@ -1,4 +1,4 @@
-.wish-list-form-container{
+.wish-list-form-container {
   display: flex;
   justify-content: center;
   margin: 2rem 3rem;
@@ -21,13 +21,12 @@
   scale: 0.95;
 }
 
-
 .wish-list-form-container .wish-list-form {
   display: flex;
   flex-direction: column;
 }
 
-.wish-list-form-container .wish-list-form-group{
+.wish-list-form-container .wish-list-form-group {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -45,7 +44,6 @@
   border-radius: 6px;
   font-family: inherit;
   border: 1px solid #ccc;
-
 }
 
 .wish-list-form-container .wish-list-form-group input::placeholder {
@@ -79,7 +77,6 @@
   background-color: #e6d4ff;
 }
 
-
 @media screen and (max-width: 800px) {
   .list-form {
     width: 90%;
@@ -93,7 +90,7 @@
   h2 {
     font-size: 1.1rem;
   }
-  .wish-list-form-group{
+  .wish-list-form-group {
     font-size: 0.9rem;
   }
 }
@@ -103,8 +100,3 @@
     width: 50%;
   }
 }
-
-
-
-
-

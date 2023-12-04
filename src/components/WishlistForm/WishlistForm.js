@@ -1,3 +1,4 @@
+/* eslint-disable padded-blocks */
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -10,26 +11,28 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
 
   useEffect(() => {
     setFormData(initialValues);
+    // eslint-disable-next-line
   }, [initialValues]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("wishlistForm", formData);
+
     onSubmit(formData);
     navigate(`/dashboard/${id}/userwishlist`);
   };
 
   return (
     <div className="wish-list-form-container">
-      <form onSubmit={handleSubmit} class="wish-list-form">
-        <div className="wish-list-form-group"> 
-          <label htmlFor="itemName" className="wish-list-form-title">Item</label>
+      <form onSubmit={handleSubmit} className="wish-list-form">
+        <div className="wish-list-form-group">
+          <label htmlFor="itemName" className="wish-list-form-title">
+            Item
+          </label>
           <input
             required
             type="text"
@@ -40,8 +43,9 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             className="wish-list-form-input"
           />
 
-
-          <label htmlFor="itemLink" className="wish-list-form-title">Link</label>
+          <label htmlFor="itemLink" className="wish-list-form-title">
+            Link
+          </label>
           <input
             required
             type="text"
@@ -54,8 +58,6 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
           <button className="wish-list-button-container" type="submit">
             Submit
           </button>
-
-
         </div>
       </form>
     </div>

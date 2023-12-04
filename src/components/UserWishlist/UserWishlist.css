@@ -1,4 +1,4 @@
-.user-wishlist-container{
+.user-wishlist-container {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7,18 +7,16 @@
   margin: 5rem 3rem;
 }
 
-
-.user-wishlist{
+.user-wishlist {
   width: 50rem;
   height: 40rem;
   margin: 0;
-
 }
 
 .TitleBar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px ;
+  margin-bottom: 30px;
   color: rgb(23, 22, 22);
   width: 100%;
   align-items: center;
@@ -42,10 +40,15 @@
   cursor: pointer;
 }
 
-
-
 .ErrorMsg {
   color: rgb(23, 22, 22);
+}
+
+.back-left-arrow-container {
+  display: flex;
+  align-items: center;
+  width: 50rem;
+  padding: 25px;
 }
 
 @media screen and (max-width: 800px) {

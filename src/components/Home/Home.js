@@ -6,18 +6,6 @@ import GiftsAmico from "../../Assets/Gifts-amico.png";
 function Home() {
   return (
     <div className="home">
-      {/* <div className="hero">
-        <img
-          alt="heroLogo"
-          src={GiftuneLogo}
-          height={"200px"}
-          width={"200px"}
-        />
-        <h2 className="hero-text">
-          Where heartfelt gifting meets perfect harmony
-        </h2>
-      </div> */}
-
       <div className="hero-image">
         <div className="hero-text">
           <h1>Welcome to Giftune!</h1>

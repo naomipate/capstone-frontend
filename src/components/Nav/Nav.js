@@ -14,13 +14,13 @@ function Nav({ user, setUser }) {
     <header className="topnav">
       <img src={GiftuneLogo} alt="logo" />
       <nav className="nav-links">
-        <NavLink to={"/"}>Home</NavLink>
         {user ? (
           <NavLink to={"/"} onClick={handleLogOut}>
             Logout
           </NavLink>
         ) : (
           <>
+            <NavLink to={"/"}>Home</NavLink>
             <NavLink to={"/login"}>Login</NavLink>
             <NavLink to={"/signup"}>Signup</NavLink>
           </>

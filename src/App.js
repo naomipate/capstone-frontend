@@ -1,9 +1,10 @@
 // DEPENDENCIES
 import React, { useEffect, useState } from "react";
-// import Axios from "./components/API/Axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 import Dashboard from "./components/Dashboard/Dashboard";
-// import FriendsWishlist from "./components/FriendswishList/FriendsWishlist";
 import UserWishlist from "./components/UserWishlist/UserWishlist";
 import AddWishlist from "./components/AddWishlist/AddWishlist";
 import EditWishlist from "./components/EditWishlist/EditWishlist";
@@ -30,9 +31,9 @@ function App() {
     setUser(storedUser);
   }, []);
 
-  // console.log(user);
   return (
     <Router>
+      <ToastContainer autoClose={3000} />
       <Nav user={user} setUser={setUser} />
       <main className={user ? "page-content" : ""}>
         {user && <Sidebar />}
@@ -41,7 +42,6 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          {/* <Route path="/friendswishlist" element={<FriendsWishlist />} /> */}
           <Route
             path="/dashboard/:id/new"
             element={<AddWishlist user={user} />}
