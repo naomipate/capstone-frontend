@@ -1,46 +1,7 @@
-/* .hero {
-  padding-top: 20px;
-  grid-area: hero;
-}
-.para {
-  grid-area: paragraph;
-  padding: 20px;
-  border: solid black;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  box-shadow: -10px 10px 5px #888888;
-}
-.Img {
-  grid-area: Img;
-}
-.home {
-  display: grid;
-  width: 100vw;
-  text-align: center;
-  gap: 10px;
-  grid-template-areas:
-    "hero hero hero"
-    "paragraph paragraph Img";
-}
-
-.hero-text {
-  font-style: italic;
-}
-.Img img {
-  width: 400px;
-  height: 500px;
-  border: 1px solid;
-  border-radius: 10px;
-  box-shadow: -5px 10px 5px #888888;
-}
-.Img {
-  padding-bottom: 20px;
-} */
-
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif");
 
   /* Set a specific height */
   height: fit-content;
@@ -59,7 +20,7 @@
 }
 
 .hero-text h1 {
-  font-family: 'Aleo', serif;
+  font-family: "Aleo", serif;
   font-size: 4.5rem;
 }
 
@@ -69,7 +30,7 @@
   width: 80%;
   margin: 0 auto;
   margin-bottom: 2rem;
-  font-family: 'Hepta Slab', serif;
+  font-family: "Hepta Slab", serif;
 }
 
 .hero-text button {
@@ -95,7 +56,7 @@
 .blockquote p {
   color: black;
   font-size: 35px;
-  font-family: 'Hepta Slab', serif;
+  font-family: "Hepta Slab", serif;
 }
 
 .content {
@@ -111,7 +72,7 @@
 
 .text-content {
   margin: 0 auto;
-  font-family: 'Hepta Slab', serif;
+  font-family: "Hepta Slab", serif;
   color: black;
 }
 
@@ -127,20 +88,20 @@
     justify-items: center;
     align-items: center;
   }
-  
+
   .text-container {
     margin-bottom: 20px; /* Add some spacing between text and image */
   }
-  
+
   .text-content {
     font-size: 14px;
     line-height: 1.6;
   }
-  
+
   .image-container {
     text-align: center; /* Center the image within the container */
   }
-  
+
   .image {
     max-width: 100%;
     height: auto;
@@ -154,7 +115,7 @@
   }
 }
 
-@media (max-width: 900px){
+@media (max-width: 900px) {
   .content {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
