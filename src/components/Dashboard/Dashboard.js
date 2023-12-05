@@ -7,17 +7,21 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState({});
+  const [time, setTime] = useState(null);
+  const [dayNameVisual, setDayName] = useState(null);
+  const [dayNumVisual, setDayNum] = useState(null);
+  const [monthVisual, setMonth] = useState(null);
+  const [yearVisual, setYear] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   async function fetchData() {
     try {
-      // console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      // console.log(response.data);
       setUser(response.data);
       console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
@@ -59,13 +63,7 @@ function Dashboard() {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
-  return (
-    <div className="dashboard-container">
-      {/* <div>Dashboard</div> */}
-      {friendsList}
-      {/* <Sidebar /> */}
-    </div>
-  );
+  return <div className="dashboard-container">{friendsList}</div>;
 }
 
 function calculateZodiacSign(dob) {
@@ -101,7 +99,7 @@ function calculateZodiacSign(dob) {
 }
 
 function Friend({ friendDetails, id }) {
-  console.log(friendDetails);
+  // console.log(friendDetails);
   let { first_name, last_name, wishlist, user_name, dob } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
@@ -133,10 +131,6 @@ function Friend({ friendDetails, id }) {
       </Link>
     </div>
   );
-}
-
-function Avatar() {
-  return <div>Avatar</div>;
 }
 
 export default Dashboard;
