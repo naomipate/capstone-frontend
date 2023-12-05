@@ -2,7 +2,7 @@ import Axios from "./Axios";
 
 async function createUser(data) {
   try {
-    let result = await Axios.post("/user", data);
+    let result = await Axios.post("/users", data);
     return result;
   } catch (error) {
     return error;
@@ -88,11 +88,23 @@ async function deleteFriend(id, friendId) {
     return error;
   }
 }
-async function updateItemBoughtByItemId( itemId, is_bought) {
+
+async function updateItemBoughtByItemId(itemId, is_bought) {
   console.log("is bought on api call", is_bought);
   try {
-    let result = await Axios.put(`/dashboard/item-details`, {id:itemId, is_bought:is_bought} );
+    let result = await Axios.put(`/dashboard/item-details`, {
+      id: itemId,
+      is_bought: is_bought,
+    });
     console.log(result.data);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function addNewFriend(data) {
+  try {
+    let result = await Axios.post(`/dashboard/add-new-friend`, data);
     return result.data;
   } catch (error) {
     return error;
@@ -110,5 +122,6 @@ export {
   newNotification,
   deleteNotification,
   deleteFriend,
-  updateItemBoughtByItemId
+  addNewFriend,
+  updateItemBoughtByItemId,
 };

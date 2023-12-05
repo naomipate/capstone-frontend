@@ -1,6 +1,9 @@
 // DEPENDENCIES
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 import Dashboard from "./components/Dashboard/Dashboard";
 import UserWishlist from "./components/UserWishlist/UserWishlist";
 import AddWishlist from "./components/AddWishlist/AddWishlist";
@@ -30,6 +33,7 @@ function App() {
 
   return (
     <Router>
+      <ToastContainer autoClose={3000} />
       <Nav user={user} setUser={setUser} />
       <main className={user ? "page-content" : ""}>
         {user && <Sidebar />}
