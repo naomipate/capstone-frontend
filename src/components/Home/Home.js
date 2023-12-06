@@ -2,11 +2,15 @@ import "./Home.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import GiftsAmico from "../../Assets/Gifts-amico.png";
+import couch from "../../Assets/couch.png";
+import bigGift from "../../Assets/big-gift.png";
+import calender from "../../Assets/calender.png";
 
 function Home() {
   return (
     <div className="home">
       <div className="hero-image">
+        {/* <img className="hero-image" src={torn} alt="gift pic" /> */}
         <div className="hero-text">
           <h1>Welcome to Giftune!</h1>
           <p>
@@ -14,8 +18,8 @@ function Home() {
             birthdays, where you can effortlessly select the perfect gift from a
             diverse array of options.
           </p>
-          <Link>
-            <button>Take Me Somewhere!</button>
+          <Link to={`/signup`}>
+            <button>Sign Me Up</button>
           </Link>
         </div>
       </div>
@@ -27,22 +31,23 @@ function Home() {
       <div className="content">
         <div className="">
           <p className="text-content">
-            Why do we use it? It is a long established fact that a reader will
-            be distracted by the readable content of a page when looking at its
-            layout. The point of using Lorem Ipsum is that it has a more-or-less
-            normal distribution of letters, as opposed to using 'Content here,
-            content here', making it look like readable English. Many desktop
-            publishing packages and web page editors now use Lorem Ipsum as
-            their default model text, and a search for 'lorem ipsum' will
-            uncover many web sites still in their infancy. Various versions have
-            evolved over the years, sometimes by accident, sometimes on purpose
-            (injected humour and the like).
+          Never miss your loved one's special day. Easily keep track of upcoming birthdays and pick out the perfect gift hassle-free.
+          </p>
+        </div>
+        <div className="image-container">
+          <img className="image" src={calender} alt="gift pic" />
+        </div>
+      </div>
+      <div className="content">
+      <div className="image-container">
+          <img className="image" src={couch} alt="gift pic" />
+        </div>
+        <div className="">
+          <p className="text-content">
+            No more unwanted gifts that keep piling up. Giftune relieves the tension within families and relationships.
           </p>
         </div>
 
-        <div className="image-container">
-          <img className="image" src={GiftsAmico} alt="gift pic" />
-        </div>
       </div>
     </div>
   );
