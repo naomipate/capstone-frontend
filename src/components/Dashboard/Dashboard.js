@@ -7,6 +7,11 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState({});
+  const [time, setTime] = useState(null);
+  const [dayNameVisual, setDayName] = useState(null);
+  const [dayNumVisual, setDayNum] = useState(null);
+  const [monthVisual, setMonth] = useState(null);
+  const [yearVisual, setYear] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
@@ -94,7 +99,7 @@ function calculateZodiacSign(dob) {
 }
 
 function Friend({ friendDetails, id }) {
-  console.log(friendDetails);
+  // console.log(friendDetails);
   let { first_name, last_name, wishlist, user_name, dob } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>

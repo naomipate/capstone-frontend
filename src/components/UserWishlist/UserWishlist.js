@@ -82,55 +82,38 @@ function UserWishlist({ handleCreateWishlist, user }) {
           </Link>
         </div>
 
-        {(editingItemId !== null || formData.length === 0) && (
+        {editingItemId !== null ? (
           <WishlistForm
             onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
             initialValues={editingItemId ? selectedItem : {}}
             setFormData={setFormData}
             formData={formData}
           />
-        )}
-
-        {formData.length > 0 ? (
-          formData.map((item) => (
-            <WishListItem
-              item={item}
-              deleteWishlistItem={deleteWishlistItem}
-              handleEditClick={handleEditClick}
-            />
-          ))
         ) : (
-          <p className="ErrorMsg">No wishlist items found.</p>
+          <>
+            {formData.length > 0 ? (
+              formData.map((item) => (
+                <WishListItem
+                  key={item.id}
+                  item={item}
+                  deleteWishlistItem={deleteWishlistItem}
+                  handleEditClick={handleEditClick}
+                />
+              ))
+            ) : (
+              <p className="ErrorMsg">No wishlist items found.</p>
+            )}
+          </>
         )}
         <IconContext.Provider value={{ size: "2rem" }}>
           <div
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(`/dashboard/${user_id}`)}
             className="back-left-arrow-container"
           >
             <TbArrowLeft />
           </div>
         </IconContext.Provider>
       </div>
-
-      {(editingItemId !== null || formData.length === 0) && (
-        <WishlistForm
-          onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
-          initialValues={editingItemId ? selectedItem : {}}
-          setFormData={setFormData}
-          formData={formData}
-        />
-      )}
-      {formData.length > 0 ? (
-        formData.map((item) => (
-          <WishListItem
-            item={item}
-            deleteWishlistItem={deleteWishlistItem}
-            handleEditClick={handleEditClick}
-          />
-        ))
-      ) : (
-        <p className="ErrorMsg">No wishlist items found.</p>
-      )}
     </div>
   );
 }
