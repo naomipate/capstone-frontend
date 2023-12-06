@@ -119,7 +119,6 @@ function Friend({ friendDetails, id }) {
           </div>
           <p className="dashboard-card-text">{upcomingBirthDate}</p>
           <p>{zodiac}</p>
-          {wishlistItem}
         </div>
       </Link>
     </div>
