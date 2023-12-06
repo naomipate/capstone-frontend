@@ -1,5 +1,6 @@
+/* eslint-disable padded-blocks */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import Giftune from "../../Assets/GituneLogoImage.png";
 import "./Dashboard.css";
@@ -10,14 +11,13 @@ function Dashboard() {
   const { id } = useParams();
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   async function fetchData() {
     try {
-      console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      console.log(response.data);
       setUser(response.data);
+      console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
       console.log(error);
     }
@@ -38,39 +38,60 @@ function Dashboard() {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
+      console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear.getTime();
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
+
       return upcomingDateWithNextYear.getTime();
     }
   };
+
+  function calculateZodiacSign(dobInMili) {
+    let dobDate = new Date(dobInMili);
+    const days = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
+    const signs = [
+      "Aquarius",
+      "Pisces",
+      "Aries",
+      "Taurus",
+      "Gemini",
+      "Cancer",
+      "Leo",
+      "Virgo",
+      "Libra",
+      "Scorpio",
+      "Sagittarius",
+      "Capricorn",
+    ];
+    let month = dobDate.getMonth();
+    let day = dobDate.getDate();
+    if (month == 0 && day <= 19) {
+      month = 11;
+    } else if (day < days[month]) {
+      month--;
+    }
+    return signs[month];
+  }
+
   user?.friendsOrderedByDOB?.forEach((friend) => {
     friend.dobInMili = upcomingDateCalc(friend.dob);
+    friend.zodiac = calculateZodiacSign(friend.dobInMili);
   });
 
-  let sortedFriends = user?.friendsOrderedByDOB?.sort((a, b) => {
-    return a.dobInMili - b.dobInMili;
+  let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
+    return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
-  console.log("Sorted Friends: ", sortedFriends);
-
-  let friendsList = sortedFriends?.map((friendDetails, index) => {
-    return <Friend key={index} friendDetails={friendDetails} />;
-  });
-
-  return (
-    <div className="dashboard-container">
-      <div>Dashboard</div>
-      {friendsList}
-    </div>
-  );
+  return <div className="dashboard-container">{friendsList}</div>;
 }
 
-function Friend({ friendDetails }) {
-  let { first_name, last_name, dob, wishlist } = friendDetails;
+function Friend({ friendDetails, id }) {
+  console.log(friendDetails);
+  let { first_name, last_name, wishlist, dobInMili, zodiac } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
       <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
@@ -78,24 +99,29 @@ function Friend({ friendDetails }) {
     </li>
   ));
 
-  let upcomingDate = new Date(dob)
+  let upcomingBirthDate = new Date(dobInMili)
     .toDateString()
     .split(" ")
     .splice(1, 2)
     .join(" ");
   return (
-    <div className="friend-card">
-      <div className="friend-details">
-        <div className="friend-avatar-name">
-          <Avatar />
-          <div className="friend-name">
-            {first_name} {last_name}{" "}
+    <div className="dashboard-friend-card-container">
+      <Link
+        to={`/dashboard/${id}/friends/${wishlist[0].user_id}`}
+        className="friend-list-link"
+      >
+        <div className="dashboard-friend-card-top">
+          <div className="dashboard-friend-card-left">
+            <div className="dashboard-img-placeholder"></div>
+            <p className="dashboard-card-name">
+              {first_name} {last_name}{" "}
+            </p>
           </div>
+          <p className="dashboard-card-text">{upcomingBirthDate}</p>
+          <p>{zodiac}</p>
+          {wishlistItem}
         </div>
-
-        <div className="friend-dob">{upcomingDate}</div>
-      </div>
-      <ul className="wishlist-items">{wishlistItem}</ul>
+      </Link>
     </div>
   );
 }
