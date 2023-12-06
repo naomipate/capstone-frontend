@@ -1,17 +1,14 @@
-.hero {
+/* .hero {
   padding-top: 20px;
   grid-area: hero;
 }
 .para {
   grid-area: paragraph;
-  /* padding-top: 10%; */
-  /* max-width: 200px; */
   padding: 20px;
   border: solid black;
   border-radius: 10px;
   margin-bottom: 20px;
   margin-left: 10px;
-  /* box-shadow: 5px 10px 8px 10px #888888; */
   box-shadow: -10px 10px 5px #888888;
 }
 .Img {
@@ -22,7 +19,6 @@
   width: 100vw;
   text-align: center;
   gap: 10px;
-  /* padding: 5px; */
   grid-template-areas:
     "hero hero hero"
     "paragraph paragraph Img";
@@ -34,14 +30,135 @@
 .Img img {
   width: 400px;
   height: 500px;
-  /* max-width: fit-content;
-  max-height: fit-content; */
-  /* padding-right: 20px; */
-  /* margin-right: 50px; */
   border: 1px solid;
   border-radius: 10px;
   box-shadow: -5px 10px 5px #888888;
 }
 .Img {
   padding-bottom: 20px;
+} */
+
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif");
+
+  /* Set a specific height */
+  height: fit-content;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: white;
+}
+
+.hero-text {
+  text-align: center;
+  padding: 70px;
+}
+
+.hero-text h1 {
+  font-family: 'Aleo', serif;
+  font-size: 4.5rem;
+}
+
+.hero-text p {
+  font-weight: bolder;
+  font-size: 18px;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  font-family: 'Hepta Slab', serif;
+}
+
+.hero-text button {
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: medium;
+  transition: 0.3s ease-in-out;
+}
+
+.hero-text button:hover {
+  background-color: rgb(108, 72, 187);
+  color: white;
+}
+
+.blockquote {
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.blockquote p {
+  color: black;
+  font-size: 35px;
+  font-family: 'Hepta Slab', serif;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  gap: 15px;
+}
+
+.text-content {
+  margin: 0 auto;
+  font-family: 'Hepta Slab', serif;
+  color: black;
+}
+
+.image {
+  width: 505px;
+  height: auto;
+}
+
+@media (max-width: 690px) {
+  .content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .text-container {
+    margin-bottom: 20px; /* Add some spacing between text and image */
+  }
+  
+  .text-content {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .image-container {
+    text-align: center; /* Center the image within the container */
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hero-text {
+    text-align: center;
+    padding: 0%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 900px){
+  .content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    align-items: center;
+  }
 }
