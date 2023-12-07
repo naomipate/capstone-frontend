@@ -60,6 +60,7 @@ color: #a0a0a0;
   .button-1-friend-list:hover,
   .button-1-friend-list:focus {
     background-color: rgba(180, 67, 255, 0.1);
+    color:rgb(120, 33, 208)
   }
   
   a.friend-list-link{
