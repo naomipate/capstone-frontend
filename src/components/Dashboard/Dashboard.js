@@ -3,15 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import Giftune from "../../Assets/GituneLogoImage.png";
+import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
 import "./Dashboard.css";
 
 function Dashboard() {
-  
   const [user, setUser] = useState({});
-  const [dayNameVisual, setDayNameVisual] = useState(null);
-  const [dayNumVisual, setDayNumVisual] = useState(null);
-  const [monthVisual, setMonthVisual] = useState(null);
-  const [yearVisual, setYearVisual] = useState(null);
+  let currentDate = new Date(Date.now()); // Time from system
 
   const { id } = useParams();
   useEffect(() => {
@@ -24,7 +21,6 @@ function Dashboard() {
     try {
       let response = await getUserProfile(id);
       setUser(response.data);
-      console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
       console.log(error);
     }
@@ -74,8 +70,6 @@ function Dashboard() {
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
-    // Now: Calc the current time.
-    let currentDate = new Date(Date.now());
     // DOB date
     let date = new Date(dob);
     // UpcomingDOBDate: calc dates with current year attached.
@@ -93,93 +87,73 @@ function Dashboard() {
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      console.log(calculateZodiacSign(upcomingDateWithNextYear));
-
       return upcomingDateWithNextYear.getTime();
     }
   };
-  user?.friendsOrderedByDOB?.forEach((friend) => {
-    friend.dobInMili = upcomingDateCalc(friend.dob);
-  });
 
-  let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
-    return <Friend key={index} friendDetails={friendDetails} id={id} />;
-  });
-
-  // Date
-  function updateDate() {
-    let today = new Date();
-  return <div className="dashboard-container">{friendsList}</div>;
-}
-
-function calculateZodiacSign(dob) {
-  let zodiacLookUp = {
-    capricorn: { start: "2022-12-22", end: "2023-01-19" },
-    aquarius: { start: "2023-01-20", end: "2023-02-18" },
-    pisces: { start: "2023-02-19", end: "2023-03-20" },
-    aries: { start: "2023-03-21", end: "2023-04-19" },
-    taurus: { start: "2023-04-20", end: "2023-05-20" },
-    gemini: { start: "2023-05-21", end: "2023-06-20" },
-    cancer: { start: "2023-06-21", end: "2023-07-22" },
-    leo: { start: "2023-07-23", end: "2023-08-22" },
-    virgo: { start: "2023-08-23", end: "2023-09-22" },
-    libra: { start: "2023-09-23", end: "2023-10-22" },
-    scorpio: { start: "2023-10-23", end: "2023-11-21" },
-    sagittarius: { start: "2023-11-22", end: "2023-12-21" },
-  };
-
-  let dobInMili = new Date(dob).getTime();
-  console.log(dobInMili);
-
-  for (let zodiac in zodiacLookUp) {
-    let start = new Date(zodiacLookUp[zodiac].start).getTime();
-    let end = new Date(zodiacLookUp[zodiac].end).getTime();
-
-    if (dobInMili >= start && dobInMili <= end) {
-      return zodiac;
-    }
-  }
-
-  return (
-    <div className="dashboard-container">
-      <div class="card">
-        <div class="card__content">
-          <div className="dashboard-date-container">
-            <div className="display-date">
-              <p className="todays-date-heading">Today's Date</p>
-              <hr className="dashboard-hr"/>
-              <span id="daynum">{dayNumVisual}</span>
-              <div className="bottom-date-card">
-                <div id="day">{dayNameVisual}</div>
-                {"  "}
-                <div className="month-and-year">
-                <div id="month">{monthVisual}</div>
-                <div id="year">{yearVisual}</div>
+  const todayDateCard = (currentDate) => {
+    // ---------------------------------------Date for card
+    let currentDateDayName = currentDate.toLocaleDateString("en-US", {
+        weekday: "long",
+      }), // Full Day name from time
+      currentDateDayNum = currentDate.toLocaleDateString("en-US", {
+        day: "numeric",
+      }), // Numeric day from time
+      currentDateMonth = currentDate.toLocaleDateString("en-US", {
+        month: "long",
+      }), // Full Month name from time
+      currentDateYear = currentDate.toLocaleDateString("en-US", {
+        year: "numeric",
+      }); // Full Year from time
+    return (
+      <div className="dashboard-container">
+        <div className="card">
+          <div className="card__content">
+            <div className="dashboard-date-container">
+              <div className="display-date">
+                <p className="todays-date-heading">Today's Date</p>
+                <hr className="dashboard-hr" />
+                <span id="daynum">{currentDateDayNum}</span>
+                <div className="bottom-date-card">
+                  <div id="day">{currentDateDayName}</div>
+                  {"  "}
+                  <div className="month-and-year">
+                    <div id="month">{currentDateMonth}</div>
+                    <div id="year">{currentDateYear}</div>
+                  </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
       </div>
+    );
+  };
+
+  user?.friendsOrderedByDOB?.forEach((friend) => {
+    friend.dobInMili = upcomingDateCalc(friend.dob);
+  });
+  let sortedfriendList = user?.friendsOrderedByDOB?.sort(
+    (a, b) => a.dobInMili - b.dobInMili
+  );
+
+  let friendsList = sortedfriendList?.map((friendDetails, index) => {
+    return <Friend key={index} friendDetails={friendDetails} id={id} />;
+  });
+
+  return (
+    <div>
+      {todayDateCard(currentDate)}
       <div className="dashboard-main-section">
         <p className="dashboard-heading">Upcoming Dates</p>
         {friendsList}
       </div>
-    
     </div>
   );
-  // Handles the case where the date falls outside the provided ranges
-  return "Unknown zodiac sign";
 }
 
 function Friend({ friendDetails, id }) {
-  // console.log(friendDetails);
-  let { first_name, last_name, wishlist, user_name, dob } = friendDetails;
+  let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
       <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
@@ -187,11 +161,18 @@ function Friend({ friendDetails, id }) {
     </li>
   ));
 
-  let upcomingDate = new Date(dob)
-    .toDateString()
-    .split(" ")
-    .splice(1, 2)
-    .join(" ");
+  let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    { day: "numeric" }
+  );
+
+  let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+    }
+  );
+
   return (
     <div className="dashboard-friend-card-container">
       <Link
@@ -205,7 +186,10 @@ function Friend({ friendDetails, id }) {
               {first_name} {last_name}{" "}
             </p>
           </div>
-          <p className="dashboard-card-text">{upcomingDate}</p>
+          <p className="dashboard-card-text">
+            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
+          </p>
+          <CalculateZodiacSign dobInMili={dobInMili} />
         </div>
       </Link>
     </div>

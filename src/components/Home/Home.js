@@ -29,7 +29,8 @@ function Home() {
       <div className="content">
         <div className="">
           <p className="text-content">
-          Never miss your loved one's special day. Easily keep track of upcoming birthdays and pick out the perfect gift hassle-free.
+            Never miss your loved one's special day. Easily keep track of
+            upcoming birthdays and pick out the perfect gift hassle-free.
           </p>
         </div>
         <div className="image-container">
@@ -37,15 +38,15 @@ function Home() {
         </div>
       </div>
       <div className="content">
-      <div className="image-container">
+        <div className="image-container">
           <img className="image" src={couch} alt="gift pic" />
         </div>
         <div className="">
           <p className="text-content">
-            No more unwanted gifts that keep piling up. Giftune relieves the tension within families and relationships.
+            No more unwanted gifts that keep piling up. Giftune relieves the
+            tension within families and relationships.
           </p>
         </div>
-
       </div>
     </div>
   );
