@@ -7,12 +7,66 @@
 .friend-list-bottom {
   z-index: 2;
 }
-
-.user-dob{
-margin-left: 5rem;
-color: #646464;
-
+.friend-list-all-names{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.friend-list-firstname-lastname{
+color: #a0a0a0;
+}
+
+.user-first-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-first-row-left{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+  /*---------------------Button--------------------  */
+  .button-1-friend-list {
+    align-items: center;
+    background-color: rgba(105, 0, 243, 0.5);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-1-friend-list:hover,
+  .button-1-friend-list:focus {
+    background-color: rgba(180, 67, 255, 0.1);
+    color:rgb(120, 33, 208)
+  }
+  
+  a.friend-list-link{
+    text-decoration: none;
+    color: #303030;
+  }
 
   /* ------------------------ scroll bar --------------------- */
 
