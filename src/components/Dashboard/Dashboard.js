@@ -8,7 +8,6 @@ import "./Dashboard.css";
 function Dashboard() {
   
   const [user, setUser] = useState({});
-  const [time, setTime] = useState(null);
   const [dayNameVisual, setDayName] = useState(null);
   const [dayNumVisual, setDayNum] = useState(null);
   const [monthVisual, setMonth] = useState(null);
@@ -17,7 +16,6 @@ function Dashboard() {
   const { id } = useParams();
   useEffect(() => {
     fetchData();
-    showTime();
     updateDate();
   }, [id]);
 
@@ -64,19 +62,6 @@ function Dashboard() {
   let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
-
-  // --------------time clock css
-  // Time
-  function showTime() {
-    let time = new Date();
-    time = setTime(
-      time.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    );
-    setTimeout(showTime, 1000);
-  }
 
   // Date
   function updateDate() {
