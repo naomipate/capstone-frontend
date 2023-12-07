@@ -126,6 +126,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
       {formData.length > 0 ? (
         formData.map((item) => (
           <WishListItem
+            key={item.id}
             item={item}
             deleteWishlistItem={deleteWishlistItem}
             handleEditClick={handleEditClick}

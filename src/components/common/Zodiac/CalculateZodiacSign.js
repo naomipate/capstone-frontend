@@ -31,7 +31,7 @@ function CalculateZodiacSign(dobInMili) {
   let month = dobDate.getMonth();
   let day = dobDate.getDate();
   // January is 0, December is 11, the smallest start date is the 19th.
-  if (month == 0 && day <= 19) {
+  if (month === 0 && day <= 19) {
     month = 11;
   } else if (day < days[month]) {
     month--;
