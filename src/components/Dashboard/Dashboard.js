@@ -186,8 +186,4 @@ function Friend({ friendDetails, id }) {
   );
 }
 
-function Avatar() {
-  return <div>Avatar</div>;
-}
-
 export default Dashboard;
