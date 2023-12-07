@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import Giftune from "../../Assets/GituneLogoImage.png";
+import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -15,11 +16,8 @@ function Dashboard() {
 
   async function fetchData() {
     try {
-      // console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      // console.log(response.data);
       setUser(response.data);
-      console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
       console.log(error);
     }
@@ -40,51 +38,24 @@ function Dashboard() {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear.getTime();
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-
       return upcomingDateWithNextYear.getTime();
     }
   };
 
-  function calculateZodiacSign(dobInMili) {
-    let dobDate = new Date(dobInMili);
-    const days = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
-    const signs = [
-      "Aquarius",
-      "Pisces",
-      "Aries",
-      "Taurus",
-      "Gemini",
-      "Cancer",
-      "Leo",
-      "Virgo",
-      "Libra",
-      "Scorpio",
-      "Sagittarius",
-      "Capricorn",
-    ];
-    let month = dobDate.getMonth();
-    let day = dobDate.getDate();
-    if (month == 0 && day <= 19) {
-      month = 11;
-    } else if (day < days[month]) {
-      month--;
-    }
-    return signs[month];
-  }
-
   user?.friendsOrderedByDOB?.forEach((friend) => {
     friend.dobInMili = upcomingDateCalc(friend.dob);
-    friend.zodiac = calculateZodiacSign(friend.dobInMili);
   });
+  let sortedfriendList = user?.friendsOrderedByDOB?.sort(
+    (a, b) => a.dobInMili - b.dobInMili
+  );
 
-  let friendsList = user?.friendsOrderedByDOB?.map((friendDetails, index) => {
+  let friendsList = sortedfriendList?.map((friendDetails, index) => {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
@@ -120,7 +91,7 @@ function Friend({ friendDetails, id }) {
             </p>
           </div>
           <p className="dashboard-card-text">{upcomingBirthDate}</p>
-          <p>{zodiac}</p>
+          <CalculateZodiacSign dobInMili={dobInMili} />
         </div>
       </Link>
     </div>
