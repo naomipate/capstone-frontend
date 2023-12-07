@@ -63,12 +63,14 @@ function Dashboard() {
       currentDateYear = currentDate.toLocaleDateString("en-US", {
         year: "numeric",
       }); // Full Year from time
+
+      
     return (
       <div className="dashboard-container">
-        <div className="card">
-          <div className="card__content">
-            <div className="dashboard-date-container">
-              <div className="display-date">
+      <div class="card">
+        <div class="card__content">
+          <div className="dashboard-date-container">
+          <div className="display-date">
                 <p className="todays-date-heading">Today's Date</p>
                 <hr className="dashboard-hr" />
                 <span id="daynum">{currentDateDayNum}</span>
@@ -81,10 +83,19 @@ function Dashboard() {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
       </div>
+      <div className="dashboard-main-section">
+        <p className="dashboard-heading">Upcoming Dates</p>
+        {friendsList}
+      </div>
+    
+    </div>
     );
   };
 
@@ -102,10 +113,6 @@ function Dashboard() {
   return (
     <div>
       {todayDateCard(currentDate)}
-      <div className="dashboard-main-section">
-        <p className="dashboard-heading">Upcoming Dates</p>
-        {friendsList}
-      </div>
     </div>
   );
 }

@@ -66,6 +66,10 @@
   gap: 20px;
 }
 
+a{
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 800px) {
   .dashboard-friend-card-container {
     width: 80%;
