@@ -13,6 +13,7 @@ function Dashboard() {
   const { id } = useParams();
   useEffect(() => {
     fetchData();
+    updateDate();
     // eslint-disable-next-line
   }, [id]);
 
@@ -24,6 +25,48 @@ function Dashboard() {
       console.log(error);
     }
   }
+
+  // ---------------------------------------Date for card
+   // Date
+   function updateDate() {
+    let today = new Date();
+
+    // return number
+    let dayName = today.getDay(),
+      dayNum = today.getDate(),
+      month = today.getMonth(),
+      year = today.getFullYear();
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dayWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    
+    setDayNameVisual(dayWeek[dayName]);
+    setDayNumVisual(dayNum);
+    setMonthVisual(months[month]);
+    setYearVisual(year);
+  }
+  // -------------------------------------------------
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
@@ -151,6 +194,7 @@ function Friend({ friendDetails, id }) {
       </Link>
     </div>
   );
+}
 }
 
 export default Dashboard;
