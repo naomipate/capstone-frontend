@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import UserWishlist from "./components/UserWishlist/UserWishlist";
 import AddWishlist from "./components/AddWishlist/AddWishlist";
 import EditWishlist from "./components/EditWishlist/EditWishlist";
+import FoundUser from "./components/FoundUser/FoundUser";
 
 // COMPONENTS
 import SignUpPage from "./components/SignUpPage/Signup";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/users/:id" element={<FoundUser />} />
           <Route
             path="/dashboard/:id/new"
             element={<AddWishlist user={user} />}
