@@ -17,13 +17,12 @@ function Dashboard() {
   useEffect(() => {
     fetchData();
     updateDate();
+    // eslint-disable-next-line
   }, [id]);
 
   async function fetchData() {
     try {
-      // console.log(id, "Dashboard");
       let response = await getUserProfile(id);
-      // console.log(response.data);
       setUser(response.data);
       console.log(response.data.friendsOrderedByDOB);
     } catch (error) {
@@ -52,6 +51,8 @@ function Dashboard() {
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
+      console.log(calculateZodiacSign(upcomingDateWithNextYear));
+
       return upcomingDateWithNextYear.getTime();
     }
   };
@@ -66,41 +67,35 @@ function Dashboard() {
   // Date
   function updateDate() {
     let today = new Date();
+  return <div className="dashboard-container">{friendsList}</div>;
+}
 
-    // return number
-    let dayName = today.getDay(),
-      dayNum = today.getDate(),
-      month = today.getMonth(),
-      year = today.getFullYear();
+function calculateZodiacSign(dob) {
+  let zodiacLookUp = {
+    capricorn: { start: "2022-12-22", end: "2023-01-19" },
+    aquarius: { start: "2023-01-20", end: "2023-02-18" },
+    pisces: { start: "2023-02-19", end: "2023-03-20" },
+    aries: { start: "2023-03-21", end: "2023-04-19" },
+    taurus: { start: "2023-04-20", end: "2023-05-20" },
+    gemini: { start: "2023-05-21", end: "2023-06-20" },
+    cancer: { start: "2023-06-21", end: "2023-07-22" },
+    leo: { start: "2023-07-23", end: "2023-08-22" },
+    virgo: { start: "2023-08-23", end: "2023-09-22" },
+    libra: { start: "2023-09-23", end: "2023-10-22" },
+    scorpio: { start: "2023-10-23", end: "2023-11-21" },
+    sagittarius: { start: "2023-11-22", end: "2023-12-21" },
+  };
 
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const dayWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+  let dobInMili = new Date(dob).getTime();
+  console.log(dobInMili);
 
-    setDayName(dayWeek[dayName]);
-    setDayNum(dayNum);
-    setMonth(months[month]);
-    setYear(year);
+  for (let zodiac in zodiacLookUp) {
+    let start = new Date(zodiacLookUp[zodiac].start).getTime();
+    let end = new Date(zodiacLookUp[zodiac].end).getTime();
+
+    if (dobInMili >= start && dobInMili <= end) {
+      return zodiac;
+    }
   }
 
   return (
@@ -136,6 +131,8 @@ function Dashboard() {
     
     </div>
   );
+  // Handles the case where the date falls outside the provided ranges
+  return "Unknown zodiac sign";
 }
 
 function Friend({ friendDetails, id }) {
@@ -162,7 +159,9 @@ function Friend({ friendDetails, id }) {
         <div className="dashboard-friend-card-top">
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
-            <p className="dashboard-card-name">{user_name}</p>
+            <p className="dashboard-card-name">
+              {first_name} {last_name}{" "}
+            </p>
           </div>
           <p className="dashboard-card-text">{upcomingDate}</p>
         </div>

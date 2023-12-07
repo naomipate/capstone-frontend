@@ -3,15 +3,13 @@ import "./WishListItem.css";
 import { IconContext } from "react-icons";
 import { TbEdit, TbTrash } from "react-icons/tb";
 
-function WishListItem({ item, handleEditClick, deleteWishlistItem}) {
+function WishListItem({ item, handleEditClick, deleteWishlistItem }) {
   return (
     <li key={item.id} className="user-wishlist-item-container">
       <div className="list-item-body">
         <div className="list-item-content">
           <div className="EditDeletButtons">
-            <IconContext.Provider
-              value={{ size: "2rem" }}
-            >
+            <IconContext.Provider value={{ size: "2rem" }}>
               <div>
                 <TbEdit
                   className="EditButton"
@@ -35,9 +33,7 @@ function WishListItem({ item, handleEditClick, deleteWishlistItem}) {
           </div>
 
           <div>
-            <IconContext.Provider
-              value={{ size: "2rem" }}
-            >
+            <IconContext.Provider value={{ size: "2rem" }}>
               <div>
                 <TbTrash
                   className="DeleteButton"
@@ -51,19 +47,5 @@ function WishListItem({ item, handleEditClick, deleteWishlistItem}) {
     </li>
   );
 }
-
-//     <div key={item.id} className="user-WishlistItem" >
-//     {/* <div className="ImageContainer">
-//       <img
-//         src={`https://images.pexels.com/photos/4397844/pexels-photo-4397844.jpeg?auto=compress&=tinysrgb&w=600`}
-//         alt={item.name}
-//         className="WishlistImage"
-//       />
-//     </div> */}
-//     {/* <div className="ItemInfo">
-//       <h2>{item.item_name}</h2>
-//     </div> */}
-
-//   </div>
 
 export default WishListItem;

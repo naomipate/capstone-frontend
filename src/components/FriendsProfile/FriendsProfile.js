@@ -5,15 +5,14 @@ import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
 import { TbArrowLeft } from "react-icons/tb";
 import { IconContext } from "react-icons";
 import "./FriendsProfile.css";
+import { toast } from "react-toastify";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
 
   const { id, friendId } = useParams();
-
   let navigate = useNavigate();
-
 
   useEffect(() => {
     fetchList();
@@ -25,8 +24,6 @@ function FriendsProfile() {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
-
-      console.log(result.data.friendProfile);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +31,8 @@ function FriendsProfile() {
   async function handleDeleteFriend() {
     try {
       await deleteFriend(friendId, id);
-      alert("Friend Successfully Unfollowed");
+      // alert("Friend Successfully Unfollowed");
+      toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -81,9 +79,7 @@ function FriendsProfile() {
           })}
         </ul>
       </div>
-      <IconContext.Provider
-        value={{ size: "2rem" }}
-      >
+      <IconContext.Provider value={{ size: "2rem" }}>
         <div onClick={() => navigate(-1)} className="back-left-arrow-container">
           <TbArrowLeft />
         </div>

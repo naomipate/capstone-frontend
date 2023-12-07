@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Axios from "../API/Axios";
-import { useParams, useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Notification from "../Notification/Notification";
-import { getAllFriendsFromUser, getUserProfile } from "../API/API";
+import { getUserProfile } from "../API/API";
 
 import "./SidebarNav.css";
 
@@ -14,8 +13,7 @@ function SidebarNav() {
     try {
       // Query for this function, can be done with SELECT COUNT(id) FROM friends_list
       let result = await getUserProfile(user.id);
-      console.log(result.data);
-      setFriendsCount(result.data.friendsOrderedByDOB.length);
+      setFriendsCount(result.data?.friendsOrderedByDOB?.length);
     } catch (error) {
       console.log(error);
     }
@@ -31,6 +29,7 @@ function SidebarNav() {
     if (Object.keys(user).length > 0) {
       fetchFriendsLength();
     }
+    // eslint-disable-next-line
   }, [user]);
 
   function formatDate(inputDate) {
@@ -48,15 +47,6 @@ function SidebarNav() {
 
   return (
     <div className="sidebar-nav-container">
-      {/* <div>
-        <img src=""/>
-        <h2 className="sidebarUsername">{user.user_name}</h2>
-        <ul className="sidebarList">
-          <li className="sidebarItem">{user.dob ? formatDate(user.dob) : ''} 🎈</li>
-          <li className="sidebarItem">{user.email}</li>
-          <li className="sidebarItem">Friends: {friendsCount ? friendsCount: 0}</li>
-        </ul>
-      </div> */}
       <div className="sidebarUserInfo">
         <img
           className="sidebarImage"
