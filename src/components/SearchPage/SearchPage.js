@@ -16,7 +16,6 @@ function Search() {
     try {
       let result = await getAllUsersAPI();
       setUsersData(result.data);
-
     } catch (error) {
       console.log(error);
     }
@@ -33,7 +32,7 @@ function Search() {
       return user.user_name.toLowerCase().includes(input);
     });
 
-    setFilteredUsers(filtered);
+    setFilteredUsers(filtered.sort());
   }
 
   return (

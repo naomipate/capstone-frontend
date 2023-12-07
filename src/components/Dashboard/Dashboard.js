@@ -8,10 +8,16 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState({});
+  const [time, setTime] = useState(null);
+  const [dayNameVisual, setDayName] = useState(null);
+  const [dayNumVisual, setDayNum] = useState(null);
+  const [monthVisual, setMonth] = useState(null);
+  const [yearVisual, setYear] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   async function fetchData() {
@@ -59,11 +65,41 @@ function Dashboard() {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
-  return <div className="dashboard-container">{friendsList}</div>;
+  return (
+    <div className="dashboard-container">
+      <div class="card">
+        <div class="card__content">
+          <div className="dashboard-date-container">
+            <div className="display-date">
+              <p className="todays-date-heading">Today's Date</p>
+              <hr className="dashboard-hr" />
+              <span id="daynum">{dayNumVisual}</span>
+              <div className="bottom-date-card">
+                <div id="day">{dayNameVisual}</div>
+                {"  "}
+                <div className="month-and-year">
+                  <div id="month">{monthVisual}</div>
+                  <div id="year">{yearVisual}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+      </div>
+      <div className="dashboard-main-section">
+        <p className="dashboard-heading">Upcoming Dates</p>
+        {friendsList}
+      </div>
+    </div>
+  );
 }
 
 function Friend({ friendDetails, id }) {
-  console.log(friendDetails);
+  // console.log(friendDetails);
   let { first_name, last_name, wishlist, dobInMili, zodiac } = friendDetails;
   let wishlistItem = wishlist.map((item, index) => (
     <li key={index}>
@@ -96,10 +132,6 @@ function Friend({ friendDetails, id }) {
       </Link>
     </div>
   );
-}
-
-function Avatar() {
-  return <div>Avatar</div>;
 }
 
 export default Dashboard;
