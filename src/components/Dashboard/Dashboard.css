@@ -6,33 +6,6 @@
     margin: 3rem 3rem;
 }
 
-/* .dashboard-container .friend-card {
-    padding: 15px;
-    margin: 15px;
-    border: solid  #EFBE00;
-    border-radius: 10px;
-    background-color: #c294fb;
-}
-
-.dashboard-container .friend-card .friend-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.dashboard-container .friend-card .friend-avatar-name {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.dashboard-container .friend-card .wishlist-items{
-    padding: 15px;
-    margin: 15px;
-    border: solid #FCCA07;
-    border-radius: 10px;
-    list-style-type: none;
-    background-color:#fcd94a;
-} */
-
 .dashboard-heading{
   margin: 60px 0px 10px 20px;
   color: #7d7d7d;
@@ -133,14 +106,6 @@
 
 }
 
-/* .display-time {
-  font-size: 5rem;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: ease-in-out 0.1s;
-  transition-property: background, box-shadow, color;
-} */
 .todays-date-heading{
   font-size: 20px;
 }

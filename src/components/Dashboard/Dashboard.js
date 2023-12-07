@@ -137,7 +137,6 @@ function Dashboard() {
 
               </div>
             </div>
-            {/* <div className="display-time">{time}</div> */}
           </div>
         </div>
         <div class="blob"></div>
@@ -149,9 +148,7 @@ function Dashboard() {
         <p className="dashboard-heading">Upcoming Dates</p>
         {friendsList}
       </div>
-      
-
-      {/* <Sidebar /> */}
+    
     </div>
   );
 }
@@ -172,24 +169,6 @@ function Friend({ friendDetails, id }) {
     .splice(1, 2)
     .join(" ");
   return (
-    // <div className="friend-card">
-    //   <div className="friend-details">
-    //     <div className="friend-avatar-name">
-    //       <Avatar />
-    //       <div className="friend-name">
-    //         {first_name} {last_name}{" "}
-    //       </div>
-    //     </div>
-
-    //     <div className="friend-dob">upcomingDate</div>
-    //   </div>
-    //   <ul className="wishlist-items">
-    //     <img />
-    //     {wishlistItem}
-    //   </ul>
-    // </div>
-
-    // -----------------------------------------------------------------
     <div className="dashboard-friend-card-container">
       <Link
         to={`/dashboard/${id}/friends/${wishlist[0].user_id}`}
