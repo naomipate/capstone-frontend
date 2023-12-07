@@ -6,6 +6,7 @@ import Giftune from "../../Assets/GituneLogoImage.png";
 import "./Dashboard.css";
 
 function Dashboard() {
+  
   const [user, setUser] = useState({});
   const [time, setTime] = useState(null);
   const [dayNameVisual, setDayName] = useState(null);
@@ -94,6 +95,39 @@ function calculateZodiacSign(dob) {
     }
   }
 
+  return (
+    <div className="dashboard-container">
+      <div class="card">
+        <div class="card__content">
+          <div className="dashboard-date-container">
+            <div className="display-date">
+              <p className="todays-date-heading">Today's Date</p>
+              <hr className="dashboard-hr"/>
+              <span id="daynum">{dayNumVisual}</span>
+              <div className="bottom-date-card">
+                <div id="day">{dayNameVisual}</div>
+                {"  "}
+                <div className="month-and-year">
+                <div id="month">{monthVisual}</div>
+                <div id="year">{yearVisual}</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+      </div>
+      <div className="dashboard-main-section">
+        <p className="dashboard-heading">Upcoming Dates</p>
+        {friendsList}
+      </div>
+    
+    </div>
+  );
   // Handles the case where the date falls outside the provided ranges
   return "Unknown zodiac sign";
 }
