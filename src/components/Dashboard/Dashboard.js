@@ -8,10 +8,10 @@ import "./Dashboard.css";
 function Dashboard() {
   
   const [user, setUser] = useState({});
-  const [dayNameVisual, setDayName] = useState(null);
-  const [dayNumVisual, setDayNum] = useState(null);
-  const [monthVisual, setMonth] = useState(null);
-  const [yearVisual, setYear] = useState(null);
+  const [dayNameVisual, setDayNameVisual] = useState(null);
+  const [dayNumVisual, setDayNumVisual] = useState(null);
+  const [monthVisual, setMonthVisual] = useState(null);
+  const [yearVisual, setYearVisual] = useState(null);
 
   const { id } = useParams();
   useEffect(() => {
@@ -29,6 +29,48 @@ function Dashboard() {
       console.log(error);
     }
   }
+
+  // ---------------------------------------Date for card
+   // Date
+   function updateDate() {
+    let today = new Date();
+
+    // return number
+    let dayName = today.getDay(),
+      dayNum = today.getDate(),
+      month = today.getMonth(),
+      year = today.getFullYear();
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dayWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    
+    setDayNameVisual(dayWeek[dayName]);
+    setDayNumVisual(dayNum);
+    setMonthVisual(months[month]);
+    setYearVisual(year);
+  }
+  // -------------------------------------------------
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
@@ -168,6 +210,7 @@ function Friend({ friendDetails, id }) {
       </Link>
     </div>
   );
+}
 }
 
 export default Dashboard;
