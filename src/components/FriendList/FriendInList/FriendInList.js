@@ -16,9 +16,14 @@ function FriendInList({ id, friendsList }) {
                 <div className="user-first-row">
                   <div className="user-first-row-left">
                     <div className="friend-list-profile-img-placeholder"></div>
-                    <span className="friend-list-user-name">
-                      {user.user_name}
-                    </span>
+                    <div className="friend-list-all-names">
+                      <span className="friend-list-user-name">
+                        {user.user_name}
+                      </span>
+                      <div className="friend-list-firstname-lastname">
+                        {user.first_name} {user.last_name}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="user-dob">
