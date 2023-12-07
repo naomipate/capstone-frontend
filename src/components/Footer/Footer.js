@@ -64,9 +64,12 @@ function Footer({ user, setUser }) {
           diverse array of options.
         </p>
         <p className="copyright">copyright ©</p>
+        < br/>
       </div>
     </footer>
   );
 }
+
+//
 
 export default Footer;
