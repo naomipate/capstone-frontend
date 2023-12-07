@@ -25,9 +25,13 @@ function FriendInList({ id, friendsList }) {
                       </div>
                     </div>
                   </div>
-                  <button className="button-1-friend-list" role="button">
-                    Unfollow
-                  </button>
+                </div>
+                <div className="user-dob">
+                  {new Date(user.dob)
+                    .toDateString()
+                    .split(" ")
+                    .splice(1, 2)
+                    .join(" ")}
                 </div>
               </Link>
             </li>

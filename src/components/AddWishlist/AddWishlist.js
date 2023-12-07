@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 import "./AddWishList.css";
 
-function AddWishlist({ user, fetchWishlilst }) {
+function AddWishlist({ user, fetchWishlist }) {
   let navigate = useNavigate();
   const { id } = user;
 
@@ -22,7 +22,7 @@ function AddWishlist({ user, fetchWishlilst }) {
     try {
       await Axios.post(`/userwishlist`, formatData);
 
-      fetchWishlilst();
+      fetchWishlist();
       alert("Wishlist created successfully!");
 
       setFormData({
