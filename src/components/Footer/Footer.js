@@ -70,4 +70,6 @@ function Footer({ user, setUser }) {
   );
 }
 
+//
+
 export default Footer;
