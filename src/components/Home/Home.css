@@ -1,7 +1,6 @@
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://i.pinimg.com/originals/eb/2a/8f/eb2a8f4ddfb50c23712a3cd0d5cc2a3a.gif");
+  background: url("../../Assets/torn.jpg");
 
   /* Set a specific height */
   height: fit-content;
@@ -11,7 +10,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  color: white;
+  color: rgb(255, 255, 255);
+  /* color: rgb(238, 231, 255); */
+
 }
 
 .hero-text {
@@ -21,16 +22,16 @@
 
 .hero-text h1 {
   font-family: "Aleo", serif;
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 .hero-text p {
   font-weight: bolder;
-  font-size: 18px;
-  width: 80%;
+  font-size: 20px;
+  width: 55%;
   margin: 0 auto;
   margin-bottom: 2rem;
-  font-family: "Hepta Slab", serif;
+  font-family: "Aleo", serif;
 }
 
 .hero-text button {
@@ -39,24 +40,28 @@
   padding: 15px 30px;
   font-size: medium;
   transition: 0.3s ease-in-out;
+  background-color:rgb(108, 72, 187);
+  color: #ffffff;
 }
 
 .hero-text button:hover {
-  background-color: rgb(108, 72, 187);
-  color: white;
+  background-color: rgb(243, 236, 255);
+  color:rgb(108, 72, 187);
 }
 
 .blockquote {
   width: 80%;
   margin: 0 auto;
-  padding: 40px 0;
+  /* padding: 40px 0; */
   text-align: center;
+  font-weight: bolder;
 }
 
 .blockquote p {
   color: black;
   font-size: 35px;
   font-family: "Hepta Slab", serif;
+  margin-bottom: 0;
 }
 
 .content {
@@ -64,16 +69,17 @@
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-items: center;
-  width: 85%;
+  width: 75%;
   margin: 0 auto;
-  margin-bottom: 50px;
-  gap: 15px;
+  /* margin-bottom: 50px; */
+  gap: 25px;
 }
 
 .text-content {
   margin: 0 auto;
   font-family: "Hepta Slab", serif;
   color: black;
+  font-size: 23px;
 }
 
 .image {
