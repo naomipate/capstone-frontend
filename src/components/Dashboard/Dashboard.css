@@ -66,6 +66,10 @@
   gap: 20px;
 }
 
+a{
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 800px) {
   .dashboard-friend-card-container {
     width: 80%;
@@ -91,7 +95,6 @@
   }
 }
 
-
 /* -------------------DATE CSS--------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
@@ -100,28 +103,27 @@
   margin: 0px 0px 0px 0px;
   font-size: 1rem;
   font-weight: 600;
-
 }
 
-.todays-date-heading{
+.todays-date-heading {
   font-size: 20px;
 }
 
-.dashboard-hr{
+.dashboard-hr {
   width: 90%;
 }
 
-#daynum{
+#daynum {
   font-size: 6rem;
 }
 
-.month-and-year{
+.month-and-year {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.bottom-date-card{
+.bottom-date-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -137,7 +139,8 @@
   width: 350px;
   height: 240px;
   background: linear-gradient(to bottom left, #c23eff, #ff3232);
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
   z-index: 1;
   border-radius: 21px;
   overflow: hidden;
@@ -145,7 +148,10 @@
 }
 
 .card__content {
-  background: linear-gradient(rgba(255, 255, 255, 0.15), rgba(150, 150, 150, 0.1));
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.15),
+    rgba(150, 150, 150, 0.1)
+  );
   z-index: 1;
   position: absolute;
   left: 0;

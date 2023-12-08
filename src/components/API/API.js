@@ -110,6 +110,22 @@ async function addNewFriend(data) {
     return error;
   }
 }
+async function getSpecificUser(id) {
+  try {
+    let result = await Axios.get(`/users/${id}`);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function getSpecificUserWishlist(id) {
+  try {
+    let result = await Axios.get(`/userwishlist/${id}`);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
 
 export {
   createUser,
@@ -124,4 +140,6 @@ export {
   deleteFriend,
   addNewFriend,
   updateItemBoughtByItemId,
+  getSpecificUser,
+  getSpecificUserWishlist,
 };

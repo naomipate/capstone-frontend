@@ -21,7 +21,7 @@ function Notification() {
   async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
-      //console.log(result);
+      console.log(result);
       setNotiData(result);
     } catch (error) {
       console.log(error);
