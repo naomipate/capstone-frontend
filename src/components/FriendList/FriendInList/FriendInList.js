@@ -26,13 +26,6 @@ function FriendInList({ id, friendsList }) {
                     </div>
                   </div>
                 </div>
-                <div className="user-dob">
-                  {new Date(user.dob)
-                    .toDateString()
-                    .split(" ")
-                    .splice(1, 2)
-                    .join(" ")}
-                </div>
               </Link>
             </li>
           );
