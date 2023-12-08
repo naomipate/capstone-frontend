@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
+import popSound from "../../../Assets/pop-sound.mp3"
 import { updateItemBoughtByItemId } from "../../API/API";
 
 function FriendsProfileWishlist({ item }) {
@@ -15,12 +16,19 @@ function FriendsProfileWishlist({ item }) {
       console.log(result.is_bought);
       setis_bought(!is_bought);
       confettiTrue();
+
     } catch (e) {
       console.log(e);
     }
   };
 
   console.log(item_id, is_bought);
+  
+  function playSound(){
+    if(is_bought === false){
+      new Audio(popSound).play()
+    }
+  }
 
   function confettiTrue() {
     if (is_bought === false) {
@@ -44,7 +52,7 @@ function FriendsProfileWishlist({ item }) {
               <input
                 checked={is_bought}
                 type="checkbox"
-                // onClick={(e) => setCheckMark(!checkMark)}
+                onClick={(e) => playSound()}
                 onChange={updateItem}
                 // onClick={(e) => confettiTrue()}
               />

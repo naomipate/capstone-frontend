@@ -1,7 +1,6 @@
 import "./Home.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import GiftsAmico from "../../Assets/Gifts-amico.png";
 import couch from "../../Assets/couch.png";
 import calender from "../../Assets/calender.png";
 

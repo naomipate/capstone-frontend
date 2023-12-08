@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SearchList.css";
 import SearchListBtn from "./SearchListBtn";
 
 function SearchList({ filteredUsers }) {
+  const [toggleFullView, setToggleFullView] = useState(false);
+  useEffect(() => {
+    let userFromStorage = localStorage.getItem("user");
+    let storedUser = JSON.parse(userFromStorage);
+    if (storedUser) setToggleFullView(true);
+  }, []);
+
   return (
     <div className="search-list-results-container">
       {filteredUsers.map((user, index) => {
@@ -21,7 +28,7 @@ function SearchList({ filteredUsers }) {
             >
               {user.user_name}
             </Link>
-            <SearchListBtn targetUser={user} />
+            {toggleFullView && <SearchListBtn targetUser={user} />}
           </div>
         );
       })}
