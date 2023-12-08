@@ -114,15 +114,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
           </div>
         </IconContext.Provider>
       </div>
-
-      {(editingItemId !== null || formData.length === 0) && (
-        <WishlistForm
-          onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
-          initialValues={editingItemId ? selectedItem : {}}
-          setFormData={setFormData}
-          formData={formData}
-        />
-      )}
     </div>
   );
 }
