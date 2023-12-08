@@ -1,16 +1,16 @@
 .dashboard-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin: 3rem 3rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 3rem 3rem;
 }
 
-.dashboard-heading{
+.dashboard-heading {
   margin: 60px 0px 10px 20px;
   color: #7d7d7d;
   font-size: 18px;
-
+}
 
 .dashboard-friend-card-container {
   width: 45rem;
@@ -19,7 +19,8 @@
   border-radius: 10px;
   border: 2px solid #f5ebff;
   margin: 20px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px, rgba(17, 17, 26, 0.02) 0px 4px 8px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
+    rgba(17, 17, 26, 0.02) 0px 4px 8px;
 }
 
 .dashboard-friend-card-container:hover {
@@ -35,18 +36,17 @@
   box-shadow: 5px 5px 10px #caa5ff, -5px -5px 10px #f8f0fd;
 }
 
- .dashboard-friend-card-top
- {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 15px;
-    justify-content: space-between;
-    margin: 10px 55px;
-    color: #232323;
-    width: 80%;
-  }
+.dashboard-friend-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 15px;
+  justify-content: space-between;
+  margin: 10px 55px;
+  color: #232323;
+  width: 80%;
+}
 
 .dashboard-card-text {
   font-size: 17px;
