@@ -41,6 +41,9 @@
     font-size: 0.9rem;
     padding: 8px 15px;
   }
+  & :nth-last-child(n-1) {
+    color: lightslategray;
+  }
 }
 
 .form-section {
@@ -74,5 +77,21 @@
 
   & :hover {
     background-color: #005ce6;
+  }
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: row;
+  max-height: 50px;
+  & .dateLabel {
+    background: none;
+    height: 40px;
+    outline: 0;
+    width: 30%;
+    padding: 8px 15px;
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
   }
 }

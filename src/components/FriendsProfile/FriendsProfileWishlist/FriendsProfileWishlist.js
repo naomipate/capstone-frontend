@@ -22,6 +22,7 @@ function FriendsProfileWishlist({ item }) {
     }
   };
 
+
   console.log(item_id, is_bought);
   
   function playSound(){

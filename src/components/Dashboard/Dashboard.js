@@ -25,7 +25,6 @@ function Dashboard() {
     }
   }
 
-
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
     // DOB date
@@ -64,38 +63,35 @@ function Dashboard() {
         year: "numeric",
       }); // Full Year from time
 
-      
     return (
       <div className="dashboard-container">
-      <div class="card">
-        <div class="card__content">
-          <div className="dashboard-date-container">
-          <div className="display-date">
+        <div className="card">
+          <div className="card__content">
+            <div className="dashboard-date-container">
+              <div className="display-date">
                 <p className="todays-date-heading">Today's Date</p>
                 <hr className="dashboard-hr" />
                 <span id="daynum">{currentDateDayNum}</span>
                 <div className="bottom-date-card">
                   <div id="day">{currentDateDayName}</div>
-                  {"  "}
                   <div className="month-and-year">
                     <div id="month">{currentDateMonth}</div>
                     <div id="year">{currentDateYear}</div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+          <div className="blob"></div>
+          <div className="blob"></div>
         </div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
+        <div className="dashboard-main-section">
+          <p className="dashboard-heading">Upcoming Dates</p>
+          {friendsList}
+        </div>
       </div>
-      <div className="dashboard-main-section">
-        <p className="dashboard-heading">Upcoming Dates</p>
-        {friendsList}
-      </div>
-    
-    </div>
     );
   };
 
@@ -110,11 +106,7 @@ function Dashboard() {
     return <Friend key={index} friendDetails={friendDetails} id={id} />;
   });
 
-  return (
-    <div>
-      {todayDateCard(currentDate)}
-    </div>
-  );
+  return <div>{todayDateCard(currentDate)}</div>;
 }
 
 function Friend({ friendDetails, id }) {

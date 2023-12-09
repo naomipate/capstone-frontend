@@ -71,6 +71,7 @@ function Login({ setUser }) {
           </button>
           <div className="Section">
             <p className="Text">
+              Don't have an account?{" "}
               <Link to={"/signup"} className="Link">
                 Sign up here
               </Link>

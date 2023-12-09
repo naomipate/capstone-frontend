@@ -100,14 +100,18 @@ function Signup() {
             placeholder="Password"
             required
           />
-          <input
-            type="date"
-            className="input"
-            id="dob"
-            required
-            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
-            value={user.dob}
-          />
+          <div className="dateContainer">
+            <label className="dateLabel">D.O.B:</label>
+            <input
+              type="date"
+              className="input"
+              id="dob"
+              required
+              placeholder="Date of Birth"
+              onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+              value={user.dob}
+            />
+          </div>
         </div>
         <button className="formBtn" type="submit">
           Sign Up
