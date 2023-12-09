@@ -20,7 +20,7 @@ function FriendsProfileWishlist({ item }) {
     }
   };
 
-  console.log(item_id, is_bought);
+  // console.log(item_id, is_bought);
 
   function confettiTrue() {
     if (is_bought === false) {
