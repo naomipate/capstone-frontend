@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoMdRefresh } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import {
@@ -11,17 +12,21 @@ import "./Notification.css";
 function Notification() {
   const [notiData, setNotiData] = useState([]);
   const [show, setSetShow] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState(0);
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
+    setCurrentUserId(storedUser.id);
     fetchData(storedUser.id);
     // eslint-disable-next-line
   }, []);
   async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
-      //console.log(result);
+      if (result?.response) {
+        setNotiData([]);
+      }
       setNotiData(result);
     } catch (error) {
       console.log(error);
@@ -42,9 +47,14 @@ function Notification() {
       user_id: user_id,
       sender_id: sender_id,
     };
+    const alternateData = {
+      user_id: sender_id,
+      sender_id: user_id,
+    };
     try {
       await addNewFriend(data);
-      //await deleteNotification(item_id);
+      await addNewFriend(alternateData);
+      await deleteNotification(item_id);
       toast.success("You Are now Friends!", toast.POSITION.TOP_CENTER);
     } catch (error) {
       toast.error("Something Went Wrong", toast.POSITION.TOP_CENTER);
@@ -65,32 +75,52 @@ function Notification() {
         )}
         <div className={`dropdownContent ${show ? "show" : ""}`}>
           <div className="ContentList">
+            <button
+              className={"refreshBtn"}
+              onClick={() => fetchData(currentUserId)}
+            >
+              <IoMdRefresh />
+            </button>
             {notiData[0] ? (
               <>
-                {notiData.map((item) => {
+                {notiData.map((item, index) => {
                   return (
-                    <div className="dropdownItem" key={item.id}>
-                      {`${item?.sender_name}: ${item?.messages}`}
-                      <button
-                        className="bttn Accept"
-                        onClick={() =>
-                          handleAcceptFriendRequest(
-                            item.user_id,
-                            item.sender_id,
-                            item.id
-                          )
-                        }
-                      >
-                        <FaCheck />
-                      </button>
-                      <button
-                        className="bttn Decline"
-                        type="button"
-                        onClick={() => handleDeleteNoti(item.id)}
-                      >
-                        <IoClose />
-                      </button>
-                    </div>
+                    <>
+                      {item.messages.includes("friends") ? (
+                        <div className="dropdownItem" key={item.id || index}>
+                          {`${item?.sender_name}: ${item?.messages}`}
+                          <button
+                            className="bttn Accept"
+                            onClick={() =>
+                              handleAcceptFriendRequest(
+                                item.user_id,
+                                item.sender_id,
+                                item.id
+                              )
+                            }
+                          >
+                            <FaCheck />
+                          </button>
+                          <button
+                            className="bttn Decline"
+                            type="button"
+                            onClick={() => handleDeleteNoti(item.id)}
+                          >
+                            <IoClose />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="dropdownItem" key={item.id || index}>
+                          {`${item?.sender_name}: ${item?.messages}`}
+                          <button
+                            className="bttn"
+                            onClick={() => handleDeleteNoti(item.id)}
+                          >
+                            <IoClose />
+                          </button>
+                        </div>
+                      )}
+                    </>
                   );
                 })}
               </>

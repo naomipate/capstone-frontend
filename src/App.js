@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Spinner from "./components/common/spinner/Spinner";
 
+
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
 const UserWishlist = React.lazy(() =>
   import("./components/UserWishlist/UserWishlist")
@@ -16,6 +17,8 @@ const AddWishlist = React.lazy(() =>
 const EditWishlist = React.lazy(() =>
   import("./components/EditWishlist/EditWishlist")
 );
+const FoundUser = React.lazy(()=> import("./components/FoundUser/FoundUser")) 
+
 
 // COMPONENTS
 const SignUpPage = React.lazy(() => import("./components/SignUpPage/Signup"));
@@ -55,6 +58,7 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/users/:id" element={<FoundUser />} />
             <Route
               path="/dashboard/:id/new"
               element={<AddWishlist user={user} />}
