@@ -6,6 +6,7 @@ import {
   getNotificationById,
   deleteNotification,
   addNewFriend,
+  deleteFriend,
 } from "../API/API";
 import { toast } from "react-toastify";
 import "./Notification.css";
@@ -32,9 +33,10 @@ function Notification() {
       console.log(error);
     }
   }
-  async function handleDeleteNoti(id) {
+  async function handleDeleteNoti(id, sender_id) {
     try {
       await deleteNotification(id);
+      await deleteFriend(sender_id, currentUserId);
       let filterdNoti = notiData.filter((item) => item.id !== id);
       setNotiData(filterdNoti);
     } catch (error) {
@@ -47,13 +49,13 @@ function Notification() {
       user_id: user_id,
       sender_id: sender_id,
     };
-    const alternateData = {
-      user_id: sender_id,
-      sender_id: user_id,
-    };
+    // const alternateData = {
+    //   user_id: sender_id,
+    //   sender_id: user_id,
+    // };
     try {
       await addNewFriend(data);
-      await addNewFriend(alternateData);
+      // await addNewFriend(alternateData);
       await deleteNotification(item_id);
       toast.success("You Are now Friends!", toast.POSITION.TOP_CENTER);
     } catch (error) {
@@ -104,7 +106,9 @@ function Notification() {
                           <button
                             className="bttn Decline"
                             type="button"
-                            onClick={() => handleDeleteNoti(item.id)}
+                            onClick={() =>
+                              handleDeleteNoti(item.id, item.sender_id)
+                            }
                           >
                             <IoClose />
                           </button>
