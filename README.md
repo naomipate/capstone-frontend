@@ -23,7 +23,10 @@ database: []()
 #### Blockers we had during development
 - Basic SQL queries everyone needed weren't made beforehand and we had multiple queries doing the same thing. We did some cleanup and fixed that as a group.
 - At one point we needed to figure out how to store the user login in local storage or in state on App.js so we could get the user information passed around properly and make a conditional for the sidebar that should only show up after you log in. We asked Instructor Pak for help on this since we were at a loss to get this working. We ended up storing the user in both local storage and in state.
-- Logic for maipulating the upcoming dates and sorting them was confusing and a couple of us put our heads together to work it out and then used chatgpt to clean up the code a bit before we finished making it more efficient.
+- Logic for mainpulating the upcoming dates and sorting them was confusing and a couple of us put our heads together to work it out and then used chatgpt to clean up the code a bit before we finished making it more efficient.
+- CSS was a constant issue we were working on because we'd think we were done and then we'd try the deployed website on a bigger screen and find something else we needed to make more responsive.
+- Bugs in CSS and functionality the weekend before needing to give a mock demo, everyone on the team had to jump in on a weekend  to fix the app together.
+- User profile images needed to be added but we couldn't use Multer without needing a cloud storage, so we came up with a set of images a user could choose from.
 
 # React Skeleton
 
