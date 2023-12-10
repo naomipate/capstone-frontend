@@ -7,17 +7,26 @@ import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
 import "./Dashboard.css";
 
 function Dashboard({ user }) {
+  let navigate = useNavigate();
+  const [dashboardId, setDashboardId] = useState(null);
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
 
+  console.log(user);
+
   useEffect(() => {
+    if (user === null) {
+      navigate("/login");
+    } else {
+    }
     fetchData();
     // eslint-disable-next-line
-  }, [user.id]);
+  }, [dashboardId]);
 
   async function fetchData() {
     try {
-      let response = await getUserProfile(user.id);
+      setDashboardId(user.id);
+      let response = await getUserProfile(dashboardId);
       setDashboardUser(response.data);
     } catch (error) {
       console.log(error);
