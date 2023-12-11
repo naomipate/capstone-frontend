@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Spinner from "./components/common/spinner/Spinner";
-
+import { RefreshContext } from "./components/common/context/context";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
 const UserWishlist = React.lazy(() =>
@@ -17,8 +17,7 @@ const AddWishlist = React.lazy(() =>
 const EditWishlist = React.lazy(() =>
   import("./components/EditWishlist/EditWishlist")
 );
-const FoundUser = React.lazy(()=> import("./components/FoundUser/FoundUser")) 
-
+const FoundUser = React.lazy(() => import("./components/FoundUser/FoundUser"));
 
 // COMPONENTS
 const SignUpPage = React.lazy(() => import("./components/SignUpPage/Signup"));
@@ -39,6 +38,11 @@ const FriendsProfile = React.lazy(() =>
 
 function App() {
   const [user, setUser] = useState(null);
+  const [toggleRefresh, setToggleRefresh] = useState(false);
+  const refreshContextValue = {
+    setToggleRefresh,
+    toggleRefresh,
+  };
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
@@ -52,7 +56,9 @@ function App() {
         <ToastContainer autoClose={3000} />
         <Nav user={user} setUser={setUser} />
         <main className={user ? "page-content" : ""}>
-          {user && <Sidebar />}
+          <RefreshContext.Provider value={refreshContextValue}>
+            {user && <Sidebar />}
+          </RefreshContext.Provider>
           <Routes>
             <Route path="/search-page" element={<SearchPage />} />
             <Route path="/signup" element={<SignUpPage />} />
@@ -69,10 +75,22 @@ function App() {
             />
             <Route path="/dashboard/:id/edit" element={<EditWishlist />} />
             <Route path="/dashboard/:id" element={<Dashboard user={user} />} />
-            <Route path="/dashboard/:id/friends" element={<FriendList />} />
+
+            <Route
+              path="/dashboard/:id/friends"
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <FriendList />
+                </RefreshContext.Provider>
+              }
+            />
             <Route
               path="/dashboard/:id/friends/:friendId"
-              element={<FriendsProfile />}
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <FriendsProfile />
+                </RefreshContext.Provider>
+              }
             />
           </Routes>
         </main>

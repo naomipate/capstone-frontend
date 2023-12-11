@@ -13,6 +13,7 @@ function FriendList() {
 
   useEffect(() => {
     fetchUsers();
+
     // eslint-disable-next-line
   }, []);
 

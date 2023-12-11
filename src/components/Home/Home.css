@@ -12,7 +12,6 @@
   position: relative;
   color: rgb(255, 255, 255);
   /* color: rgb(238, 231, 255); */
-
 }
 
 .hero-text {
@@ -40,13 +39,13 @@
   padding: 15px 30px;
   font-size: medium;
   transition: 0.3s ease-in-out;
-  background-color:rgb(108, 72, 187);
+  background-color: rgb(108, 72, 187);
   color: #ffffff;
 }
 
 .hero-text button:hover {
   background-color: rgb(243, 236, 255);
-  color:rgb(108, 72, 187);
+  color: rgb(108, 72, 187);
 }
 
 .blockquote {
@@ -102,6 +101,7 @@
   .text-content {
     font-size: 14px;
     line-height: 1.6;
+    margin-bottom: 30px;
   }
 
   .image-container {

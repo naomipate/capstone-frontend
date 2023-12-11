@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishlist";
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
@@ -6,14 +6,15 @@ import { TbArrowLeft } from "react-icons/tb";
 import { IconContext } from "react-icons";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
+import { RefreshContext } from "../common/context/context";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
+  const { setToggleRefresh } = useContext(RefreshContext);
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
-
   useEffect(() => {
     fetchList();
     // eslint-disable-next-line
@@ -31,8 +32,9 @@ function FriendsProfile() {
   async function handleDeleteFriend() {
     try {
       await deleteFriend(friendId, id);
-      // alert("Friend Successfully Unfollowed");
+      await deleteFriend(id, friendId);
       toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
+      setToggleRefresh(true);
       navigate(-1);
     } catch (error) {
       console.log(error);
