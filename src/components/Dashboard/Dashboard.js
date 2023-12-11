@@ -12,8 +12,6 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
 
-  console.log(user);
-
   useEffect(() => {
     if (user === null) {
       navigate("/login");
