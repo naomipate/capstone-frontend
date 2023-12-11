@@ -7,8 +7,12 @@ function Search() {
   const [input, setInput] = useState("");
   const [usersData, setUsersData] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [mainUser, setMainUser] = useState({});
 
   useEffect(() => {
+    let userFromStorage = localStorage.getItem("user");
+    let storedUser = JSON.parse(userFromStorage);
+    setMainUser(storedUser);
     fetchUsers();
   }, []);
 
@@ -31,7 +35,9 @@ function Search() {
     let filtered = usersData.filter((user) => {
       return user.user_name.toLowerCase().includes(input);
     });
-
+    filtered = filtered.filter((element) => {
+      return element.user_name !== mainUser.user_name;
+    });
     setFilteredUsers(filtered.sort());
   }
 

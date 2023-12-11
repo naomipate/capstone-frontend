@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  newNotification,
-  addNewFriend,
-  getAllFriendsFromUser,
-} from "../API/API";
+import { newNotification, getAllFriendsFromUser } from "../API/API";
 
 function SearchListBtn({ targetUser }) {
   const [toggleBtn, setToggleBtn] = useState(false);
