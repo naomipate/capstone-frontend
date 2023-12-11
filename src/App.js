@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Spinner from "./components/common/spinner/Spinner";
-
 import { RefreshContext } from "./components/common/context/context";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));

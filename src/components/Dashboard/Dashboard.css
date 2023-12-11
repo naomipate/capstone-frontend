@@ -66,7 +66,7 @@
   gap: 20px;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -114,7 +114,7 @@ a{
 }
 
 #daynum {
-  font-size: 6rem;
+  font-size: 5rem;
 }
 
 .month-and-year {
