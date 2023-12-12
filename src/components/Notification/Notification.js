@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { IoMdRefresh } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
@@ -10,10 +10,12 @@ import {
 } from "../API/API";
 import { toast } from "react-toastify";
 import "./Notification.css";
+import { RefreshContext } from "../common/context/context";
 function Notification() {
   const [notiData, setNotiData] = useState([]);
   const [show, setSetShow] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(0);
+  const { setToggleRefresh } = useContext(RefreshContext);
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
@@ -49,14 +51,15 @@ function Notification() {
       user_id: user_id,
       sender_id: sender_id,
     };
-    // const alternateData = {
-    //   user_id: sender_id,
-    //   sender_id: user_id,
-    // };
+    const alternateData = {
+      user_id: sender_id,
+      sender_id: user_id,
+    };
     try {
       await addNewFriend(data);
-      // await addNewFriend(alternateData);
+      await addNewFriend(alternateData);
       await deleteNotification(item_id);
+      setToggleRefresh(true);
       toast.success("You Are now Friends!", toast.POSITION.TOP_CENTER);
     } catch (error) {
       toast.error("Something Went Wrong", toast.POSITION.TOP_CENTER);
