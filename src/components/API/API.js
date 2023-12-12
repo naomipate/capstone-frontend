@@ -89,12 +89,12 @@ async function deleteFriend(id, friendId) {
   }
 }
 
-async function updateItemBoughtByItemId(itemId, is_bought) {
-  console.log("is bought on api call", is_bought);
+async function updateItemBoughtByItemId(itemId, is_bought, assigned_user) {
   try {
     let result = await Axios.put(`/dashboard/item-details`, {
       id: itemId,
       is_bought: is_bought,
+      assigned_user: assigned_user
     });
     console.log(result.data);
     return result.data;

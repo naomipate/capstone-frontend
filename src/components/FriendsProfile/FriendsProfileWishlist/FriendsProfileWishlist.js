@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useId } from "react";
+import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
-import popSound from "../../../Assets/pop-sound.mp3"
+import popSound from "../../../Assets/pop-sound.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
 function FriendsProfileWishlist({ item }) {
   const [is_bought, setis_bought] = useState(item.is_bought);
+  const [assigned_user, setAssigned_user] = useState(item.assigned_user);
 
-  let item_id = item.id;
+  const { id } = useParams();
 
   const updateItem = async () => {
+    setAssigned_user(id)
     try {
-      let result = await updateItemBoughtByItemId(item_id, !is_bought);
-      console.log(result.is_bought);
+      await updateItemBoughtByItemId(item.id, !is_bought, id);
       setis_bought(!is_bought);
       confettiTrue();
-
     } catch (e) {
       console.log(e);
     }
   };
 
-  console.log(item_id, is_bought);
-  
-  function playSound(){
-    if(is_bought === false){
-      new Audio(popSound).play()
+  console.log(item.id, !is_bought, assigned_user);
+
+  function playSound() {
+    if (is_bought === false) {
+      new Audio(popSound).play();
     }
   }
 
@@ -54,10 +54,12 @@ function FriendsProfileWishlist({ item }) {
                 type="checkbox"
                 onClick={(e) => playSound()}
                 onChange={updateItem}
-                // onClick={(e) => confettiTrue()}
+                disabled={assigned_user !== id ? true : false}
+                
               />
               <div className="checkmark"></div>
             </label>
+
             <div className="notititle">
               {item.item_name.charAt(0).toUpperCase() + item.item_name.slice(1)}
             </div>
