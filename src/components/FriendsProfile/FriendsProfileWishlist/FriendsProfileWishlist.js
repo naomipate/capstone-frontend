@@ -10,11 +10,12 @@ function FriendsProfileWishlist({ item }) {
   const [assigned_user, setAssigned_user] = useState(item.assigned_user);
 
   const { id } = useParams();
+  let userId = parseInt(id)
 
   const updateItem = async () => {
-    setAssigned_user(id);
+    setAssigned_user(userId);
     try {
-      await updateItemBoughtByItemId(item.id, !is_bought, id);
+      await updateItemBoughtByItemId(item.id, !is_bought, userId);
       setis_bought(!is_bought);
       confettiTrue();
     } catch (e) {
@@ -22,7 +23,7 @@ function FriendsProfileWishlist({ item }) {
     }
   };
 
-  console.log(item.id, !is_bought, assigned_user);
+  console.log(item.id, !is_bought, assigned_user, userId);
 
   function playSound() {
     if (is_bought === false) {
@@ -47,19 +48,16 @@ function FriendsProfileWishlist({ item }) {
           <div className="notiglow"></div>
           <div className="notiborderglow"></div>
 
-          <div className="notibody">
-            <label
-              className="container-checkmark"
-              style={
-                assigned_user !== id ? { opacity: "30%" } : {}
-              }
-            >
+          <div className="notibody"
+              style={assigned_user === userId || assigned_user === null ? {} : {opacity: "50%"}}
+          >
+            <label className="container-checkmark">
               <input
                 checked={is_bought}
                 type="checkbox"
                 onClick={(e) => playSound()}
                 onChange={updateItem}
-                disabled={assigned_user !== id && assigned_user === null ? true : false}
+                disabled={assigned_user === userId || assigned_user === null ? false : true}
               />
               <div className="checkmark"></div>
             </label>
@@ -72,7 +70,9 @@ function FriendsProfileWishlist({ item }) {
               target="_blank"
               className="friend-wish-list-item-link"
             >
-              <button className="button-friend-profile-wishlist">
+              <button className="button-friend-profile-wishlist"
+               disabled={assigned_user === userId || assigned_user === null ? false : true}
+              >
                 Buy Item
               </button>
             </Link>
