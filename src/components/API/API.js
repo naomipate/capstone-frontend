@@ -1,5 +1,12 @@
 import Axios from "./Axios";
 
+async function spinUpServer() {
+  try {
+    await Axios.get("/");
+  } catch (error) {
+    return error;
+  }
+}
 async function createUser(data) {
   try {
     let result = await Axios.post("/users", data);
@@ -142,4 +149,5 @@ export {
   updateItemBoughtByItemId,
   getSpecificUser,
   getSpecificUserWishlist,
+  spinUpServer,
 };

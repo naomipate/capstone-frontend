@@ -22,11 +22,6 @@ function Footer({ user, setUser }) {
         </div>
         <div>
           <ul className="navLink">
-            <li>
-              <NavLink className="link" to={"/"}>
-                Home
-              </NavLink>
-            </li>
             {user ? (
               <li>
                 <NavLink className={"link"} to={"/"} onClick={handleLogOut}>
@@ -35,6 +30,11 @@ function Footer({ user, setUser }) {
               </li>
             ) : (
               <>
+                <li>
+                  <NavLink className="link" to={"/"}>
+                    Home
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink className="link" to={"/login"}>
                     Login
@@ -47,7 +47,6 @@ function Footer({ user, setUser }) {
                 </li>
               </>
             )}
-
             <li>
               <NavLink className="link" to={"/about"}>
                 About Us
@@ -64,7 +63,7 @@ function Footer({ user, setUser }) {
           diverse array of options.
         </p>
         <p className="copyright">copyright ©</p>
-        < br/>
+        <br />
       </div>
     </footer>
   );
