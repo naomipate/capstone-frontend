@@ -35,6 +35,9 @@ const FriendList = React.lazy(() =>
 const FriendsProfile = React.lazy(() =>
   import("./components/FriendsProfile/FriendsProfile")
 );
+const EditableUserProfile = React.lazy(() =>
+  import("./components/Dashboard/EditableUserProfile/EditableUserProfile")
+);
 
 function App() {
   const [user, setUser] = useState(null);
@@ -91,6 +94,10 @@ function App() {
                   <FriendsProfile />
                 </RefreshContext.Provider>
               }
+            />
+            <Route
+              path="/dashboard/:id/editProfile"
+              element={<EditableUserProfile user={user} />}
             />
           </Routes>
         </main>
