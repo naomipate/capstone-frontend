@@ -1,32 +1,34 @@
-import { TbZodiacAquarius } from "react-icons/tb";
-import { TbZodiacPisces } from "react-icons/tb";
-import { TbZodiacAries } from "react-icons/tb";
-import { TbZodiacTaurus } from "react-icons/tb";
-import { TbZodiacGemini } from "react-icons/tb";
-import { TbZodiacCancer } from "react-icons/tb";
-import { TbZodiacLeo } from "react-icons/tb";
-import { TbZodiacVirgo } from "react-icons/tb";
-import { TbZodiacLibra } from "react-icons/tb";
-import { TbZodiacScorpio } from "react-icons/tb";
-import { TbZodiacSagittarius } from "react-icons/tb";
-import { TbZodiacCapricorn } from "react-icons/tb";
+import {
+  TbZodiacAquarius,
+  TbZodiacPisces,
+  TbZodiacAries,
+  TbZodiacTaurus,
+  TbZodiacGemini,
+  TbZodiacCancer,
+  TbZodiacLeo,
+  TbZodiacVirgo,
+  TbZodiacLibra,
+  TbZodiacScorpio,
+  TbZodiacSagittarius,
+  TbZodiacCapricorn,
+} from "react-icons/tb";
 
-function CalculateZodiacSign(dobInMili) {
+function CalculateZodiacSign({ dobInMili }) {
   let dobDate = new Date(dobInMili);
   const days = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
   const signs = [
-    TbZodiacAquarius,
-    TbZodiacPisces,
-    TbZodiacAries,
-    TbZodiacTaurus,
-    TbZodiacGemini,
-    TbZodiacCancer,
-    TbZodiacLeo,
-    TbZodiacVirgo,
-    TbZodiacLibra,
-    TbZodiacScorpio,
-    TbZodiacSagittarius,
-    TbZodiacCapricorn,
+    <TbZodiacAquarius />,
+    <TbZodiacPisces />,
+    <TbZodiacAries />,
+    <TbZodiacTaurus />,
+    <TbZodiacGemini />,
+    <TbZodiacCancer />,
+    <TbZodiacLeo />,
+    <TbZodiacVirgo />,
+    <TbZodiacLibra />,
+    <TbZodiacScorpio />,
+    <TbZodiacSagittarius />,
+    <TbZodiacCapricorn />,
   ];
   let month = dobDate.getMonth();
   let day = dobDate.getDate();
@@ -36,7 +38,7 @@ function CalculateZodiacSign(dobInMili) {
   } else if (day < days[month]) {
     month--;
   }
-  return signs[month];
+  return <>{signs[month]}</>;
 }
 
 export default CalculateZodiacSign;
