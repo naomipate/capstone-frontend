@@ -12,7 +12,7 @@ function FriendsProfileWishlist({ item }) {
   const { id } = useParams();
 
   const updateItem = async () => {
-    setAssigned_user(id)
+    setAssigned_user(id);
     try {
       await updateItemBoughtByItemId(item.id, !is_bought, id);
       setis_bought(!is_bought);
@@ -48,14 +48,18 @@ function FriendsProfileWishlist({ item }) {
           <div className="notiborderglow"></div>
 
           <div className="notibody">
-            <label className="container-checkmark">
+            <label
+              className="container-checkmark"
+              style={
+                assigned_user !== id ? { opacity: "30%" } : {}
+              }
+            >
               <input
                 checked={is_bought}
                 type="checkbox"
                 onClick={(e) => playSound()}
                 onChange={updateItem}
-                disabled={assigned_user !== id ? true : false}
-                
+                disabled={assigned_user !== id && assigned_user === null ? true : false}
               />
               <div className="checkmark"></div>
             </label>
