@@ -12,18 +12,7 @@ function FriendsProfileWishlist({ item }) {
   const { id } = useParams();
   let userId = parseInt(id)
 
-  const updateItem = async () => {
-    setAssigned_user(userId);
-    try {
-      await updateItemBoughtByItemId(item.id, !is_bought, userId);
-      setis_bought(!is_bought);
-      confettiTrue();
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  console.log(item.id, !is_bought, assigned_user, userId);
+  console.log(item.id, is_bought, userId, assigned_user);
 
   function playSound() {
     if (is_bought === false) {
@@ -41,6 +30,18 @@ function FriendsProfileWishlist({ item }) {
     }
   }
 
+  const updateItem = async () => {
+    setAssigned_user(userId)
+    try {
+      await updateItemBoughtByItemId(item.id, !is_bought, userId);
+      setis_bought(!is_bought);
+      confettiTrue();
+      playSound()
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <li key={item.id} className="friend-wishlist-list-item">
       <div className="tooltip">
@@ -49,15 +50,15 @@ function FriendsProfileWishlist({ item }) {
           <div className="notiborderglow"></div>
 
           <div className="notibody"
-              style={assigned_user === userId || assigned_user === null ? {} : {opacity: "50%"}}
+              style={is_bought && assigned_user !== userId ? {opacity: "50%"} : {}}
           >
             <label className="container-checkmark">
               <input
                 checked={is_bought}
                 type="checkbox"
-                onClick={(e) => playSound()}
+                // onClick={updateItem}
                 onChange={updateItem}
-                disabled={assigned_user === userId || assigned_user === null ? false : true}
+                disabled={is_bought && assigned_user !== userId ? true : false}
               />
               <div className="checkmark"></div>
             </label>
@@ -71,7 +72,7 @@ function FriendsProfileWishlist({ item }) {
               className="friend-wish-list-item-link"
             >
               <button className="button-friend-profile-wishlist"
-               disabled={assigned_user === userId || assigned_user === null ? false : true}
+               disabled={is_bought && assigned_user !== userId ? true : false}
               >
                 Buy Item
               </button>
@@ -81,7 +82,7 @@ function FriendsProfileWishlist({ item }) {
         <div
           className="right"
           style={
-            is_bought ? { visibility: "hidden" } : { visibility: "visible" }
+            is_bought && assigned_user !== userId ? { visibility: "hidden" } : { visibility: "visible" }
           }
         >
           <div className="text-content">
@@ -90,7 +91,7 @@ function FriendsProfileWishlist({ item }) {
           <i
             className="tooltip-triangle"
             style={
-              is_bought ? { visibility: "hidden" } : { visibility: "visible" }
+              is_bought && assigned_user !== userId ? { visibility: "hidden" } : { visibility: "visible" }
             }
           ></i>
         </div>
