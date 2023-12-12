@@ -13,7 +13,7 @@ function FriendsProfileWishlist({ item }) {
   let userId = parseInt(id)
 
   console.log(item.id, is_bought, userId, assigned_user);
-  
+
   function playSound() {
     if (is_bought === false) {
       new Audio(popSound).play();
@@ -82,7 +82,7 @@ function FriendsProfileWishlist({ item }) {
         <div
           className="right"
           style={
-            is_bought && assigned_user !== userId ? { visibility: "hidden" } : { visibility: "visible" }
+            is_bought ? { visibility: "hidden" } : { visibility: "visible" }
           }
         >
           <div className="text-content">
@@ -91,7 +91,7 @@ function FriendsProfileWishlist({ item }) {
           <i
             className="tooltip-triangle"
             style={
-              is_bought && assigned_user !== userId ? { visibility: "hidden" } : { visibility: "visible" }
+              is_bought ? { visibility: "hidden" } : { visibility: "visible" }
             }
           ></i>
         </div>
