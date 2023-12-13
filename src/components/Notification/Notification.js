@@ -6,7 +6,6 @@ import {
   getNotificationById,
   deleteNotification,
   addNewFriend,
-  deleteFriend,
 } from "../API/API";
 import { toast } from "react-toastify";
 import "./Notification.css";
@@ -27,6 +26,7 @@ function Notification() {
   async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
+      console.log(result);
       if (result?.response) {
         setNotiData([]);
       }
@@ -35,10 +35,9 @@ function Notification() {
       console.log(error);
     }
   }
-  async function handleDeleteNoti(id, sender_id) {
+  async function handleDeleteNoti(id) {
     try {
       await deleteNotification(id);
-      await deleteFriend(sender_id, currentUserId);
       let filterdNoti = notiData.filter((item) => item.id !== id);
       setNotiData(filterdNoti);
     } catch (error) {
@@ -51,13 +50,8 @@ function Notification() {
       user_id: user_id,
       friend_id: sender_id,
     };
-    const alternateData = {
-      user_id: sender_id,
-      sender_id: user_id,
-    };
     try {
       await addNewFriend(data);
-      await addNewFriend(alternateData);
       await deleteNotification(item_id);
       setToggleRefresh(true);
       toast.success("You Are now Friends!", toast.POSITION.TOP_CENTER);
