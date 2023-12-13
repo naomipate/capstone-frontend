@@ -1,8 +1,7 @@
 /* eslint-disable padded-blocks */
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
-import Giftune from "../../Assets/GituneLogoImage.png";
 import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
 import "./Dashboard.css";
 

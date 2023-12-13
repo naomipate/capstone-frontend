@@ -9,6 +9,7 @@ function FriendsProfileWishlist( {item, isMuted} ) {
   const [is_bought, setis_bought] = useState(item.is_bought);
   const [assigned_user, setAssigned_user] = useState(item.assigned_user);
 
+
   const { id } = useParams();
   let userId = parseInt(id)
 

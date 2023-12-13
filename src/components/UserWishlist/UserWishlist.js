@@ -122,18 +122,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
           formData={formData}
         />
       )}
-      {formData.length > 0 ? (
-        formData.map((item) => (
-          <WishListItem
-            key={item.id}
-            item={item}
-            deleteWishlistItem={deleteWishlistItem}
-            handleEditClick={handleEditClick}
-          />
-        ))
-      ) : (
-        <p className="ErrorMsg">No wishlist items found.</p>
-      )}
     </div>
   );
 }
