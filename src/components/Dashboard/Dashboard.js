@@ -8,7 +8,7 @@ import "./Dashboard.css";
 
 function Dashboard({ user }) {
   let navigate = useNavigate();
-  const [dashboardId, setDashboardId] = useState(null);
+  const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
 
