@@ -1,10 +1,16 @@
 import "./Home.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import couch from "../../Assets/couch.png";
 import calender from "../../Assets/calender.png";
+import { spinUpServer } from "../API/API";
 
 function Home() {
+  useEffect(() => {
+    spinUpServer();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className="home">
       <div className="hero-image">
