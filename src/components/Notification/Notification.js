@@ -26,7 +26,6 @@ function Notification() {
   async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
-      console.log(result);
       if (result?.response) {
         setNotiData([]);
       }

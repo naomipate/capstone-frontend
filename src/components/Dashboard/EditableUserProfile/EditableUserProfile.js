@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "../.././API/Axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { RefreshContext } from "../../common/context/context";
 
 import "./EditableUserProfile.css";
 
 function EditableUserProfile({ user }) {
   const navigate = useNavigate();
+  const { setToggleRefresh } = useContext(RefreshContext);
 
   const user_id = user?.id;
 
@@ -24,7 +26,6 @@ function EditableUserProfile({ user }) {
   };
 
   const updateProfile = async (e) => {
-    console.log(user_id);
     try {
       await Axios.put(`/users/${user_id}`, updatedUser);
     } catch (err) {
@@ -36,7 +37,8 @@ function EditableUserProfile({ user }) {
     e.preventDefault();
     try {
       await updateProfile();
-
+      window.localStorage.setItem("user", JSON.stringify(updatedUser));
+      setToggleRefresh(true);
       toast.success(
         "Your profile is updated successfully.",
         toast.POSITION.TOP_CENTER
@@ -58,7 +60,7 @@ function EditableUserProfile({ user }) {
             id="user_name"
             required
             onChange={handleOnChange}
-            value={updatedUser.username}
+            value={updatedUser?.username}
           />
           <input
             type="text"
@@ -66,7 +68,7 @@ function EditableUserProfile({ user }) {
             id="first_name"
             required
             onChange={handleOnChange}
-            value={updatedUser.first_name}
+            value={updatedUser?.first_name}
           />
           <input
             type="text"
@@ -74,7 +76,7 @@ function EditableUserProfile({ user }) {
             id="last_name"
             required
             onChange={handleOnChange}
-            value={updatedUser.last_name}
+            value={updatedUser?.last_name}
           />
           <input
             type="email"
@@ -83,7 +85,7 @@ function EditableUserProfile({ user }) {
             id="email"
             required
             onChange={handleOnChange}
-            value={updatedUser.email}
+            value={updatedUser?.email}
           />
           <div className="dateContainer">
             <label className="dateLabel">D.O.B:</label>
@@ -93,7 +95,7 @@ function EditableUserProfile({ user }) {
               id="dob"
               required
               onChange={handleOnChange}
-              value={new Date(updatedUser.dob).toISOString().split("T")[0]}
+              value={updatedUser?.dob}
             />
           </div>
         </div>
