@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
 import popSound from "../../../Assets/pop-sound.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
-function FriendsProfileWishlist({ item }) {
+function FriendsProfileWishlist( {item, isMuted} ) {
   const [is_bought, setis_bought] = useState(item.is_bought);
+  const [assigned_user, setAssigned_user] = useState(item.assigned_user);
 
-  let item_id = item.id;
 
-  const updateItem = async () => {
-    try {
-      let result = await updateItemBoughtByItemId(item_id, !is_bought);
-      console.log(result.is_bought);
-      setis_bought(!is_bought);
-      confettiTrue();
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const { id } = useParams();
+  let userId = parseInt(id)
+
+  console.log(item.id, is_bought, userId, assigned_user);
 
   function playSound() {
-    if (is_bought === false) {
+    if (is_bought === false && isMuted === false) {
       new Audio(popSound).play();
     }
   }
@@ -37,6 +31,18 @@ function FriendsProfileWishlist({ item }) {
     }
   }
 
+  const updateItem = async () => {
+    setAssigned_user(userId)
+    try {
+      await updateItemBoughtByItemId(item.id, !is_bought, userId);
+      setis_bought(!is_bought);
+      confettiTrue();
+      playSound()
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <li key={item.id} className="friend-wishlist-list-item">
       <div className="tooltip">
@@ -44,17 +50,20 @@ function FriendsProfileWishlist({ item }) {
           <div className="notiglow"></div>
           <div className="notiborderglow"></div>
 
-          <div className="notibody">
+          <div className="notibody"
+              style={is_bought && assigned_user !== userId ? {opacity: "50%"} : {}}
+          >
             <label className="container-checkmark">
               <input
                 checked={is_bought}
                 type="checkbox"
-                onClick={(e) => playSound()}
+                // onClick={updateItem}
                 onChange={updateItem}
-                // onClick={(e) => confettiTrue()}
+                disabled={is_bought && assigned_user !== userId ? true : false}
               />
               <div className="checkmark"></div>
             </label>
+
             <div className="notititle">
               {item.item_name.charAt(0).toUpperCase() + item.item_name.slice(1)}
             </div>
@@ -63,7 +72,9 @@ function FriendsProfileWishlist({ item }) {
               target="_blank"
               className="friend-wish-list-item-link"
             >
-              <button className="button-friend-profile-wishlist">
+              <button className="button-friend-profile-wishlist"
+               disabled={is_bought && assigned_user !== userId ? true : false}
+              >
                 Buy Item
               </button>
             </Link>

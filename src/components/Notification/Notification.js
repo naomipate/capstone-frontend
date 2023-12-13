@@ -48,7 +48,7 @@ function Notification() {
   async function handleAcceptFriendRequest(user_id, sender_id, item_id) {
     const data = {
       user_id: user_id,
-      sender_id: sender_id,
+      friend_id: sender_id,
     };
     try {
       await addNewFriend(data);
