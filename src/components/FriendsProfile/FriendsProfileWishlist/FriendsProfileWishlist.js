@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useId } from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
 import popSound from "../../../Assets/pop-sound.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
-function FriendsProfileWishlist({ item }) {
+function FriendsProfileWishlist( {item, isMuted} ) {
   const [is_bought, setis_bought] = useState(item.is_bought);
   const [assigned_user, setAssigned_user] = useState(item.assigned_user);
 
@@ -13,9 +13,9 @@ function FriendsProfileWishlist({ item }) {
   let userId = parseInt(id)
 
   console.log(item.id, is_bought, userId, assigned_user);
-  
+
   function playSound() {
-    if (is_bought === false) {
+    if (is_bought === false && isMuted === false) {
       new Audio(popSound).play();
     }
   }
@@ -82,7 +82,7 @@ function FriendsProfileWishlist({ item }) {
         <div
           className="right"
           style={
-            is_bought && assigned_user !== userId ? { visibility: "hidden" } : { visibility: "visible" }
+            is_bought ? { visibility: "hidden" } : { visibility: "visible" }
           }
         >
           <div className="text-content">
@@ -91,7 +91,7 @@ function FriendsProfileWishlist({ item }) {
           <i
             className="tooltip-triangle"
             style={
-              is_bought && assigned_user !== userId ? { visibility: "hidden" } : { visibility: "visible" }
+              is_bought ? { visibility: "hidden" } : { visibility: "visible" }
             }
           ></i>
         </div>
