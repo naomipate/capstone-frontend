@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishlist";
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
-import { TbArrowLeft } from "react-icons/tb";
+import { TbArrowLeft, TbCake } from "react-icons/tb";
 import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
 import { RefreshContext } from "../common/context/context";
+import userProfileImg from "../../Assets/profile-img-red.png"
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
@@ -53,13 +54,15 @@ function FriendsProfile() {
           <img
             alt="friend-user-profile"
             className="friend-user-profile"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdhnWROHccYu5AG4Ahi_WnaQgxINV9abPz1MqdYXFwT4txCA5"
+            src={userProfileImg}
           />
-          <div className="friend-user-names">
+          <div className="friend-profile-user-names">
             <h2>{friendInfoProfile.user_name}</h2>
             <p>
               {friendInfoProfile.first_name} {friendInfoProfile.last_name}
             </p>
+            <div className="friend-profile-dob-container" >
+            <TbCake id="cake" size={"1.3rem"}/>
             <p className="friend-user-dob">
               {new Date(friendInfoProfile.dob)
                 .toDateString()
@@ -67,6 +70,7 @@ function FriendsProfile() {
                 .splice(1, 2)
                 .join(" ")}
             </p>
+            </div>
           </div>
         </div>
 
