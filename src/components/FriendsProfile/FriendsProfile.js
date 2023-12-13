@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishlist";
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
 import { TbArrowLeft } from "react-icons/tb";
-import { IconContext } from "react-icons";
+import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
 import { RefreshContext } from "../common/context/context";
@@ -11,6 +11,7 @@ import { RefreshContext } from "../common/context/context";
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
+  const [isMuted, setIsMuted] = useState(false);
   const { setToggleRefresh } = useContext(RefreshContext);
 
   const { id, friendId } = useParams();
@@ -39,6 +40,10 @@ function FriendsProfile() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function mute() {
+    setIsMuted(!isMuted);
   }
 
   return (
@@ -74,18 +79,34 @@ function FriendsProfile() {
           </button>
         </div>
       </div>
+      <div className="friend-list-button-container">
+        <div onClick={() => navigate(-1)} id="back-button">
+          <TbArrowLeft size={"2rem"} />
+        </div>
+
+        {isMuted === false ? (
+          <div onClick={() => mute()} id="speaker-button">
+            <PiSpeakerHighBold size={"1.7rem"} />
+          </div>
+        ) : (
+          <div onClick={() => mute()} id="speaker-button">
+            <PiSpeakerXBold size={"1.7rem"} />
+          </div>
+        )}
+      </div>
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
           {friendInfoWishList.map((item) => {
-            return <FriendsProfileWishlist item={item} key={item.id} />;
+            return (
+              <FriendsProfileWishlist
+                item={item}
+                key={item.id}
+                isMuted={isMuted}
+              />
+            );
           })}
         </ul>
       </div>
-      <IconContext.Provider value={{ size: "2rem" }}>
-        <div onClick={() => navigate(-1)} className="back-left-arrow-container">
-          <TbArrowLeft />
-        </div>
-      </IconContext.Provider>
     </div>
   );
 }
