@@ -6,7 +6,6 @@ import {
   getNotificationById,
   deleteNotification,
   addNewFriend,
-  deleteFriend,
 } from "../API/API";
 import { toast } from "react-toastify";
 import "./Notification.css";
@@ -27,6 +26,7 @@ function Notification() {
   async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
+      console.log(result);
       if (result?.response) {
         setNotiData([]);
       }
@@ -35,10 +35,9 @@ function Notification() {
       console.log(error);
     }
   }
-  async function handleDeleteNoti(id, sender_id) {
+  async function handleDeleteNoti(id) {
     try {
       await deleteNotification(id);
-      await deleteFriend(sender_id, currentUserId);
       let filterdNoti = notiData.filter((item) => item.id !== id);
       setNotiData(filterdNoti);
     } catch (error) {
@@ -55,6 +54,7 @@ function Notification() {
       user_id: sender_id,
       sender_id: user_id,
     };
+    console.log(data, alternateData);
     try {
       await addNewFriend(data);
       await addNewFriend(alternateData);
