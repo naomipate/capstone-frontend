@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Notification from "../Notification/Notification";
 import { getUserProfile } from "../API/API";
@@ -8,12 +8,12 @@ import userProfileImg from "../../Assets/profile-img-yellow.png"
 import "./SidebarNav.css";
 
 function SidebarNav() {
-  const { setToggleRefresh, toggleRefresh } = useContext(RefreshContext);
   const [user, setUser] = useState({});
   const [friendsCount, setFriendsCount] = useState(0);
 
   async function fetchFriendsLength() {
     try {
+      // Query for this function, can be done with SELECT COUNT(id) FROM friends_list
       let result = await getUserProfile(user.id);
       setFriendsCount(result.data?.friendsOrderedByDOB?.length);
     } catch (error) {
@@ -33,13 +33,6 @@ function SidebarNav() {
     }
     // eslint-disable-next-line
   }, [user]);
-  useEffect(() => {
-    if (toggleRefresh) {
-      window.location.reload();
-      setToggleRefresh(false);
-    }
-    // eslint-disable-next-line
-  }, [toggleRefresh]);
 
   function formatDate(inputDate) {
     // Parse the input string into a Date object
