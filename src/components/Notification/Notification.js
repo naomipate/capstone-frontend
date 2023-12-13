@@ -50,14 +50,8 @@ function Notification() {
       user_id: user_id,
       sender_id: sender_id,
     };
-    const alternateData = {
-      user_id: sender_id,
-      sender_id: user_id,
-    };
-    console.log(data, alternateData);
     try {
       await addNewFriend(data);
-      await addNewFriend(alternateData);
       await deleteNotification(item_id);
       setToggleRefresh(true);
       toast.success("You Are now Friends!", toast.POSITION.TOP_CENTER);
