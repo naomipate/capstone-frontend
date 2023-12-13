@@ -60,23 +60,23 @@ function SidebarNav() {
         <hr className="sidebarDivider" />
         <div className="sidebarListContainer">
           <ul className="sidebarList">
-            <li className="sidebarItem">
+            <li key="dashboard" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}`}>Dashboard</NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="search" className="sidebarItem">
               <NavLink to={`/search-page`}>Find Friends</NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="friends" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}/friends`}>
                 Friends: {friendsCount ? friendsCount : 0}
               </NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="wishlist" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}/userwishlist`}>
                 Wish List
               </NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="notification" className="sidebarItem">
               <Notification />
             </li>
           </ul>
