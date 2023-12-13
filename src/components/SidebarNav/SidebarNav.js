@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Notification from "../Notification/Notification";
 import { getUserProfile } from "../API/API";
-import { RefreshContext } from "../common/context/context";
-import userProfileImg from "../../Assets/profile-img-yellow.png"
+import userProfileImg from "../../Assets/profile-img-yellow.png";
 
 import "./SidebarNav.css";
 
@@ -37,24 +36,18 @@ function SidebarNav() {
   function formatDate(inputDate) {
     // Parse the input string into a Date object
     const dateObject = new Date(inputDate);
-
     // Options for formatting the date
     const options = { month: "long", day: "numeric" };
 
     // Format the date using the specified options
     const formattedDate = dateObject.toLocaleDateString("en-US", options);
-
     return formattedDate;
   }
 
   return (
     <div className="sidebar-nav-container">
       <div className="sidebarUserInfo">
-        <img
-          className="sidebarImage"
-          src={userProfileImg}
-          alt="profile_img"
-        />
+        <img className="sidebarImage" src={userProfileImg} alt="profile_img" />
         <h2 className="sidebarUsername">{user.user_name}</h2>
         <p className="sidebarBirthday">
           {user.dob ? formatDate(user.dob) : ""} 🎈

@@ -52,6 +52,12 @@ function App() {
     let storedUser = JSON.parse(userFromStorage);
     setUser(storedUser);
   }, []);
+  useEffect(() => {
+    if (toggleRefresh) {
+      window.location.reload();
+      setToggleRefresh(false);
+    }
+  }, [toggleRefresh]);
 
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -95,9 +101,14 @@ function App() {
                 </RefreshContext.Provider>
               }
             />
+
             <Route
               path="/dashboard/:id/editProfile"
-              element={<EditableUserProfile user={user} />}
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <EditableUserProfile user={user} />
+                </RefreshContext.Provider>
+              }
             />
           </Routes>
         </main>
