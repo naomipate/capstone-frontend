@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Notification from "../Notification/Notification";
 import { getUserProfile } from "../API/API";
 import { RefreshContext } from "../common/context/context";
+import userProfileImg from "../../Assets/profile-img-yellow.png"
 
 import "./SidebarNav.css";
 
@@ -58,7 +59,7 @@ function SidebarNav() {
       <div className="sidebarUserInfo">
         <img
           className="sidebarImage"
-          src="https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2022%2F1119%2Fr1093133_1296x1296_1%2D1.jpg"
+          src={userProfileImg}
           alt="profile_img"
         />
         <h2 className="sidebarUsername">{user.user_name}</h2>
