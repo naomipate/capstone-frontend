@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Notification from "../Notification/Notification";
 import { getUserProfile } from "../API/API";
+import { RefreshContext } from "../common/context/context";
+import userProfileImg from "../../Assets/profile-img-yellow.png"
 
 import "./SidebarNav.css";
 
@@ -50,7 +52,7 @@ function SidebarNav() {
       <div className="sidebarUserInfo">
         <img
           className="sidebarImage"
-          src="https://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2022%2F1119%2Fr1093133_1296x1296_1%2D1.jpg"
+          src={userProfileImg}
           alt="profile_img"
         />
         <h2 className="sidebarUsername">{user.user_name}</h2>
@@ -60,23 +62,23 @@ function SidebarNav() {
         <hr className="sidebarDivider" />
         <div className="sidebarListContainer">
           <ul className="sidebarList">
-            <li className="sidebarItem">
+            <li key="dashboard" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}`}>Dashboard</NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="search" className="sidebarItem">
               <NavLink to={`/search-page`}>Find Friends</NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="friends" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}/friends`}>
                 Friends: {friendsCount ? friendsCount : 0}
               </NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="wishlist" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}/userwishlist`}>
                 Wish List
               </NavLink>
             </li>
-            <li className="sidebarItem">
+            <li key="notification" className="sidebarItem">
               <Notification />
             </li>
           </ul>
