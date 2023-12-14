@@ -81,6 +81,14 @@ function UserWishlist({ handleCreateWishlist, user }) {
             <button>Add Item</button>
           </Link>
         </div>
+        <IconContext.Provider value={{ size: "2rem" }}>
+          <div
+            onClick={() => navigate(`/dashboard/${user_id}`)}
+            className="back-left-arrow-container"
+          >
+            <TbArrowLeft />
+          </div>
+        </IconContext.Provider>
 
         {editingItemId !== null ? (
           <WishlistForm
@@ -105,14 +113,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
             )}
           </>
         )}
-        <IconContext.Provider value={{ size: "2rem" }}>
-          <div
-            onClick={() => navigate(`/dashboard/${user_id}`)}
-            className="back-left-arrow-container"
-          >
-            <TbArrowLeft />
-          </div>
-        </IconContext.Provider>
       </div>
       {(editingItemId !== null || formData.length === 0) && (
         <WishlistForm
