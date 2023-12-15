@@ -1,5 +1,4 @@
 import "./Signup.css";
-import Alert from "../common/AlertModal/Alert";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { createUser } from "../API/API";
@@ -7,7 +6,6 @@ import { toast } from "react-toastify";
 
 function Signup() {
   const navigate = useNavigate();
-  const [show] = useState(false);
   const [user, setUser] = useState({
     user_name: "",
     first_name: "",
@@ -28,13 +26,6 @@ function Signup() {
         dob: "",
         email: "",
       });
-
-      //TODO Import react toastify and add firstname and lastname to the user data in the form
-      // setShow(true);
-      // setTimeout(() => {
-      //   setShow(false);
-      //   navigate("/login");
-      // }, 3000);
       toast.success("Signup Successful", toast.POSITION.TOP_CENTER);
       navigate("/login");
     } catch (error) {
@@ -100,14 +91,18 @@ function Signup() {
             placeholder="Password"
             required
           />
-          <input
-            type="date"
-            className="input"
-            id="dob"
-            required
-            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
-            value={user.dob}
-          />
+          <div className="dateContainer">
+            <label className="dateLabel">D.O.B:</label>
+            <input
+              type="date"
+              className="input"
+              id="dob"
+              required
+              placeholder="Date of Birth"
+              onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+              value={user.dob}
+            />
+          </div>
         </div>
         <button className="formBtn" type="submit">
           Sign Up
@@ -118,7 +113,6 @@ function Signup() {
           </p>
         </div>
       </form>
-      {show && <Alert message={"Successfull Signup"} />}
     </div>
   );
 }

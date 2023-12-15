@@ -1,5 +1,12 @@
 import Axios from "./Axios";
 
+async function spinUpServer() {
+  try {
+    await Axios.get("/");
+  } catch (error) {
+    return error;
+  }
+}
 async function createUser(data) {
   try {
     let result = await Axios.post("/users", data);
@@ -89,12 +96,12 @@ async function deleteFriend(id, friendId) {
   }
 }
 
-async function updateItemBoughtByItemId(itemId, is_bought) {
-  console.log("is bought on api call", is_bought);
+async function updateItemBoughtByItemId(itemId, is_bought, assigned_user) {
   try {
     let result = await Axios.put(`/dashboard/item-details`, {
       id: itemId,
       is_bought: is_bought,
+      assigned_user: assigned_user
     });
     console.log(result.data);
     return result.data;
@@ -105,6 +112,22 @@ async function updateItemBoughtByItemId(itemId, is_bought) {
 async function addNewFriend(data) {
   try {
     let result = await Axios.post(`/dashboard/add-new-friend`, data);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function getSpecificUser(id) {
+  try {
+    let result = await Axios.get(`/users/${id}`);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
+async function getSpecificUserWishlist(id) {
+  try {
+    let result = await Axios.get(`/userwishlist/${id}`);
     return result.data;
   } catch (error) {
     return error;
@@ -124,4 +147,7 @@ export {
   deleteFriend,
   addNewFriend,
   updateItemBoughtByItemId,
+  getSpecificUser,
+  getSpecificUserWishlist,
+  spinUpServer,
 };

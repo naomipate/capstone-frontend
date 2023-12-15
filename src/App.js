@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Spinner from "./components/common/spinner/Spinner";
+import { RefreshContext } from "./components/common/context/context";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
 const UserWishlist = React.lazy(() =>
@@ -16,6 +17,7 @@ const AddWishlist = React.lazy(() =>
 const EditWishlist = React.lazy(() =>
   import("./components/EditWishlist/EditWishlist")
 );
+const FoundUser = React.lazy(() => import("./components/FoundUser/FoundUser"));
 
 // COMPONENTS
 const SignUpPage = React.lazy(() => import("./components/SignUpPage/Signup"));
@@ -33,15 +35,29 @@ const FriendList = React.lazy(() =>
 const FriendsProfile = React.lazy(() =>
   import("./components/FriendsProfile/FriendsProfile")
 );
+const EditableUserProfile = React.lazy(() =>
+  import("./components/Dashboard/EditableUserProfile/EditableUserProfile")
+);
 
 function App() {
   const [user, setUser] = useState(null);
+  const [toggleRefresh, setToggleRefresh] = useState(false);
+  const refreshContextValue = {
+    setToggleRefresh,
+    toggleRefresh,
+  };
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
     setUser(storedUser);
   }, []);
+  useEffect(() => {
+    if (toggleRefresh) {
+      window.location.reload();
+      setToggleRefresh(false);
+    }
+  }, [toggleRefresh]);
 
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -49,15 +65,22 @@ function App() {
         <ToastContainer autoClose={3000} />
         <Nav user={user} setUser={setUser} />
         <main className={user ? "page-content" : ""}>
-          {user && <Sidebar />}
+          <RefreshContext.Provider value={refreshContextValue}>
+            {user && <Sidebar />}
+          </RefreshContext.Provider>
           <Routes>
             <Route path="/search-page" element={<SearchPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/users/:id" element={<FoundUser />} />
             <Route
               path="/dashboard/:id/new"
-              element={<AddWishlist user={user} />}
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <AddWishlist user={user} />
+                </RefreshContext.Provider>
+              }
             />
             <Route
               path="/dashboard/:id/userwishlist"
@@ -65,10 +88,31 @@ function App() {
             />
             <Route path="/dashboard/:id/edit" element={<EditWishlist />} />
             <Route path="/dashboard/:id" element={<Dashboard user={user} />} />
-            <Route path="/dashboard/:id/friends" element={<FriendList />} />
+
+            <Route
+              path="/dashboard/:id/friends"
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <FriendList />
+                </RefreshContext.Provider>
+              }
+            />
             <Route
               path="/dashboard/:id/friends/:friendId"
-              element={<FriendsProfile />}
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <FriendsProfile />
+                </RefreshContext.Provider>
+              }
+            />
+
+            <Route
+              path="/dashboard/:id/editProfile"
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <EditableUserProfile user={user} />
+                </RefreshContext.Provider>
+              }
             />
           </Routes>
         </main>
