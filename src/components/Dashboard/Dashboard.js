@@ -103,6 +103,7 @@ function Dashboard({ user }) {
   };
 
   dashboardUser?.friendsOrderedByDOB?.forEach((friend) => {
+    console.log(friend.dob);
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
   let sortedfriendList = dashboardUser?.friendsOrderedByDOB?.sort(
