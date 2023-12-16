@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
 function Dashboard({ user }) {
@@ -109,11 +110,18 @@ function Dashboard({ user }) {
 
   let friendsList = sortedfriendList?.map((friendDetails, index) => {
     return (
-      <Friend
-        key={index}
-        friendDetails={friendDetails}
-        dashboardUserId={dashboardUser.id}
-      />
+      <>
+        <Friend
+          key={index}
+          friendDetails={friendDetails}
+          dashboardUserId={dashboardUser.id}
+        />
+        <Events
+          key={index}
+          friendId={friendDetails.id}
+          dashboardUserId={dashboardUser.id}
+        />
+      </>
     );
   });
 
