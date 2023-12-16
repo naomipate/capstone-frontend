@@ -25,6 +25,7 @@ function Dashboard({ user }) {
       setDashboardId(user.id);
       let response = await getUserProfile(dashboardId);
       setDashboardUser(response.data);
+      console.log(dashboardUser.dob);
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +35,7 @@ function Dashboard({ user }) {
   const upcomingDateCalc = (dob) => {
     // DOB date
     let date = new Date(dob);
+    console.log(date);
     // UpcomingDOBDate: calc dates with current year attached.
     let upcomingDateWithCurrentYear = new Date(
       date.setFullYear(currentDate.getFullYear())
