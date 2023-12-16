@@ -128,12 +128,12 @@ function Friend({ friendDetails, dashboardUserId }) {
   //     <a href={item.link}>{item.item_name}</a>
   //   </li>
   // ));
-
+  console.log(new Date(dobInMili));
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
   );
-
+  console.log(dayNumOfUpcomingBirthDay);
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {
@@ -157,7 +157,9 @@ function Friend({ friendDetails, dashboardUserId }) {
           <p className="dashboard-card-text">
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
           </p>
-          <CalculateZodiacSign dobInMili={dobInMili} />
+          <p>
+            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
+          </p>
         </div>
       </Link>
     </div>
