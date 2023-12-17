@@ -35,7 +35,7 @@ function Dashboard({ user }) {
   const upcomingDateCalc = (dob) => {
     // DOB date
     let date = new Date(dob);
-    console.log(date);
+    let upcomingDateESTTimeZoneOffset = date.getTimezoneOffset() * 60 * 1000;
     // UpcomingDOBDate: calc dates with current year attached.
     let upcomingDateWithCurrentYear = new Date(
       date.setFullYear(currentDate.getFullYear())
@@ -45,13 +45,17 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.getTime();
+      return upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() + upcomingDateESTTimeZoneOffset
+      );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.getTime();
+      return upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() + upcomingDateESTTimeZoneOffset
+      );
     }
   };
 
@@ -103,7 +107,6 @@ function Dashboard({ user }) {
   };
 
   dashboardUser?.friendsOrderedByDOB?.forEach((friend) => {
-    console.log(friend.dob);
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
   let sortedfriendList = dashboardUser?.friendsOrderedByDOB?.sort(
@@ -131,12 +134,10 @@ function Friend({ friendDetails, dashboardUserId }) {
   //     <a href={item.link}>{item.item_name}</a>
   //   </li>
   // ));
-  console.log(new Date(dobInMili));
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
   );
-  console.log(dayNumOfUpcomingBirthDay);
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {
@@ -158,7 +159,7 @@ function Friend({ friendDetails, dashboardUserId }) {
             </p>
           </div>
           <p className="dashboard-card-text">
-            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
+            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
           <p>
             Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
