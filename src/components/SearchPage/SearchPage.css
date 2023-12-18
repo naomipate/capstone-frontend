@@ -1,13 +1,19 @@
 .search-page-container {
   display: flex;
+  justify-content: center;
+  margin: 0px 50px ;
+}
+
+.search-page-container-not-signed-in{
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3em;
+  margin: 50px 0px;
 }
 
 .search-page-content {
   height: 600px;
-  width: 500px;
+  width: 45rem;
   background: #f1ebfa;
   border-radius: 25px;
   box-shadow: 9px 9px 28px #f5f5f5, -9px -9px 28px #ffffff;
