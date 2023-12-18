@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 5rem 3rem;
+    margin: 0px 50px;
 }
 
 .add-wishlist-page-container{
@@ -12,6 +12,7 @@
 }
 
 .add-wishlist-title{
+    margin: 0;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px ;
