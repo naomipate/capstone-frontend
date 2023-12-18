@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Notification from "../Notification/Notification";
 import { getUserProfile } from "../API/API";
 import userProfileImg from "../../Assets/profile-img-yellow.png";
+import { TbCake } from "react-icons/tb";
 
 import "./SidebarNav.css";
 
@@ -44,35 +45,53 @@ function SidebarNav() {
     return formattedDate;
   }
 
+  const itemCounter = (value, index) => {
+    return value.filter((x) => x == index).length;
+  };
+
   return (
     <div className="sidebar-nav-container">
       <div className="sidebarUserInfo">
         <img className="sidebarImage" src={userProfileImg} alt="profile_img" />
         <h2 className="sidebarUsername">{user.user_name}</h2>
         <p className="sidebarBirthday">
-          {user.dob ? formatDate(user.dob) : ""} 🎈
+           <TbCake id="cake" size={"1.3rem"}/>
+          {user.dob ? formatDate(user.dob) : ""}            
+
         </p>
         <hr className="sidebarDivider" />
         <div className="sidebarListContainer">
           <ul className="sidebarList">
             <li key="dashboard" className="sidebarItem">
-              <NavLink to={`/dashboard/${user?.id}`}>Dashboard</NavLink>
+              <NavLink
+                to={`/dashboard/${user?.id}/`}>
+                Dashboard
+              </NavLink>
             </li>
             <li key="search" className="sidebarItem">
-              <NavLink to={`/search-page`}>Find Friends</NavLink>
+              <NavLink
+                to={`/search-page`}>
+                Find Friends
+              </NavLink>
             </li>
             <li key="friends" className="sidebarItem">
-              <NavLink to={`/dashboard/${user?.id}/friends`}>
+              <NavLink
+                to={`/dashboard/${user?.id}/friends`}>
                 Friends: {friendsCount ? friendsCount : 0}
               </NavLink>
             </li>
             <li key="wishlist" className="sidebarItem">
-              <NavLink to={`/dashboard/${user?.id}/userwishlist`}>
+              <NavLink
+                to={`/dashboard/${user?.id}/userwishlist`}>
                 Wish List
               </NavLink>
             </li>
             <li key="notification" className="sidebarItem">
+            <NavLink
+                to={``}>
               <Notification />
+              </NavLink>
+
             </li>
           </ul>
         </div>

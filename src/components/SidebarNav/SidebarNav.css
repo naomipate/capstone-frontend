@@ -39,7 +39,7 @@
 
 .sidebarDivider {
     margin-top: 15px;
-    width: 80%;
+    width: 84%;
 }
 
 .sidebarListContainer {
@@ -60,14 +60,31 @@
 
 .sidebarList a:hover {
     font-weight: bolder;
-    color: rgb(90, 37, 225);
+    color: rgb(244, 88, 88);
 }
 
+
 .sidebarItem {
-    color: black;
+    letter-spacing: 1px;
+    color: rgb(61, 61, 61);
     text-decoration: none;
     background-color: transparent;
     transition: 0.3s ease-in-out;
     font-family: 'Hepta Slab', serif;
     margin: 10px 0;
 }
+
+a.active{
+    color: rgb(255, 87, 87);
+    font-weight: bolder;
+    
+}
+
+.sidebarBirthday{
+display: flex;
+align-items: end;
+}
+
+#cake{
+    padding-right: 6px;
+   }
