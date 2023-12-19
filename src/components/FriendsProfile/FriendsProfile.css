@@ -1,7 +1,7 @@
 .friend-profile-container{
     display: flex;
     flex-direction: column;
-    margin: 0px 50px;
+    margin: 0px 30px;
     height: auto;
 }
 
