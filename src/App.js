@@ -32,7 +32,7 @@ const SearchPage = React.lazy(() =>
   import("./components/SearchPage/SearchPage")
 );
 const Nav = React.lazy(() => import("./components/Nav/Nav"));
-const Sidebar = React.lazy(() => import("./components/Sidebar/Sidebar"));
+const SidebarNav = React.lazy(() => import("./components/SidebarNav/SidebarNav"));
 const Home = React.lazy(() => import("./components/Home/Home"));
 const Footer = React.lazy(() => import("./components/Footer/Footer"));
 const Login = React.lazy(() => import("./components/Login/Login"));

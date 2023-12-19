@@ -37,8 +37,15 @@
   }
 }
 
-.page-content {
-  display: grid;
-  grid-template-columns: 2fr 10fr;
+.page-content-container{
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.page-content {
+  margin: 3rem;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  width: 1000px;  
 }
