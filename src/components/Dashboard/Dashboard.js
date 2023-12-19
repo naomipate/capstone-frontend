@@ -1,8 +1,9 @@
 /* eslint-disable padded-blocks */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import { FriendsContext } from "../common/context/context";
 import "./Dashboard.css";
 
 function Dashboard({ user }) {
@@ -10,7 +11,7 @@ function Dashboard({ user }) {
   const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
-
+  const { setFriendsData } = useContext(FriendsContext);
   useEffect(() => {
     if (user === null) {
       navigate("/login");
@@ -22,10 +23,23 @@ function Dashboard({ user }) {
 
   async function fetchData() {
     try {
-      setDashboardId(user.id);
+      setDashboardId(user?.id);
       let response = await getUserProfile(dashboardId);
       setDashboardUser(response.data);
-      console.log(dashboardUser.dob);
+      let dataShorthand = response.data.friendsOrderedByDOB;
+      let formatFriends = dataShorthand.map(
+        ({ id, user_name, first_name, last_name, dob, email }) => {
+          return {
+            id: id,
+            user_name: user_name,
+            first_name: first_name,
+            last_name: last_name,
+            dob: dob,
+            email: email,
+          };
+        }
+      );
+      setFriendsData(formatFriends);
     } catch (error) {
       console.log(error);
     }

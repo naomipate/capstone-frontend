@@ -1,0 +1,6 @@
+& .__noti {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 10px;
+}
