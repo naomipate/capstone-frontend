@@ -1,27 +1,30 @@
 .dashboard-container {
+  align-self: flex-start;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   margin: 0rem 30px;
+  background-color: rgb(153, 73, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  gap: 1.5rem;
 }
 
 .dashboard-heading {
   align-self: flex-start;
-  margin: 0px 0px 10px 20px;
-  color: #7d7d7d;
-  font-size: 18px;
+  margin: 0;
+  color: #000000;
+  font-size: 1.5rem;
+  font-family: 'Hepta Slab', serif;
+  font-weight: bolder;
 }
 
 .dashboard-friend-card-container {
-  width: 45rem;
-  height: 125px;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
   background: #f1ebfa;
   border-radius: 10px;
-  border: 2px solid #f5ebff;
-  margin: 20px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
-    rgba(17, 17, 26, 0.02) 0px 4px 8px;
 }
 
 .dashboard-friend-card-container:hover {
@@ -34,26 +37,31 @@
   margin-top: 5px;
   border-radius: 50%;
   background: #e0e0e0;
-  box-shadow: 5px 5px 10px #caa5ff, -5px -5px 10px #f8f0fd;
 }
 
 .dashboard-friend-card-top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 15px;
   justify-content: space-between;
-  margin: 10px 55px;
   color: #232323;
-  width: 80%;
+  gap: 2rem;
 }
 
 .dashboard-card-text {
-  font-size: 17px;
+  font-size: 20px;
   cursor: pointer;
   color: #232323;
   text-decoration: none;
+}
+.dashboard-card-text-zodiac{
+  font-size: 20px;
+  cursor: pointer;
+  color: #232323;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 5px;
 }
 
 .dashboard-card-name {
@@ -63,7 +71,7 @@
 
 .dashboard-friend-card-left {
   display: flex;
-  justify-content: space-between;
+  flex: 1;
   gap: 20px;
 }
 
@@ -71,10 +79,10 @@ a {
   text-decoration: none;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .dashboard-friend-card-container {
-    width: 80%;
-    margin: 10px;
+    /* width: 80%; */
+    /* margin: 10px; */
   }
 }
 
@@ -87,12 +95,12 @@ a {
   }
   .dashboard-friend-card-top {
     flex-direction: column;
-    margin: 0px;
-    padding-top: 0px;
+    /* margin: 0px;
+    padding-top: 0px; */
   }
 
   .dashboard-card-text {
-    width: 200px;
+    /* width: 200px; */
   }
 }
 

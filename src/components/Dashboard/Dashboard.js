@@ -49,6 +49,7 @@ function Dashboard({ user }) {
   const upcomingDateCalc = (dob) => {
     // DOB date
     let date = new Date(dob);
+    let upcomingDateESTTimeZoneOffset = date.getTimezoneOffset() * 60 * 1000;
     // UpcomingDOBDate: calc dates with current year attached.
     let upcomingDateWithCurrentYear = new Date(
       date.setFullYear(currentDate.getFullYear())
@@ -58,13 +59,17 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.getTime();
+      return upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() + upcomingDateESTTimeZoneOffset
+      );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.getTime();
+      return upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() + upcomingDateESTTimeZoneOffset
+      );
     }
   };
 
@@ -94,7 +99,7 @@ function Dashboard({ user }) {
     );
   });
 
-  return <div>{todayDateCard(currentDate)}</div>;
+  return <>{todayDateCard(currentDate)}</>;
 }
 
 function Friend({ friendDetails, dashboardUserId }) {
@@ -105,12 +110,10 @@ function Friend({ friendDetails, dashboardUserId }) {
   //     <a href={item.link}>{item.item_name}</a>
   //   </li>
   // ));
-
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
   );
-
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {
@@ -132,9 +135,11 @@ function Friend({ friendDetails, dashboardUserId }) {
             </p>
           </div>
           <p className="dashboard-card-text">
-            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
+            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <CalculateZodiacSign dobInMili={dobInMili} />
+          <p className="dashboard-card-text-zodiac">
+            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
+          </p>
         </div>
       </Link>
     </div>

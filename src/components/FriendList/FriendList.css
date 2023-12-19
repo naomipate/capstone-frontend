@@ -1,12 +1,12 @@
 .friend-list-container{
     display: flex;
     justify-content: center;
-    margin: 0px 50px;
+    margin: 0px 30px;
 
 }
 
 .friend-list-wrapper {
-    width: 45rem;
+  width: 43rem;
     position: relative;
     --white: #303030;
     --bc: rgb(200, 154, 255);
