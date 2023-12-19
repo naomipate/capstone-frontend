@@ -6,14 +6,14 @@ import { TbArrowLeft, TbCake } from "react-icons/tb";
 import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
-import { RefreshContext } from "../common/context/context";
-import userProfileImg from "../../Assets/profile-img-red.png"
+import { FriendsContext } from "../common/context/context";
+import userProfileImg from "../../Assets/profile-img-red.png";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
-  const { setToggleRefresh } = useContext(RefreshContext);
+  const { setToggleUpdate } = useContext(FriendsContext);
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
@@ -35,8 +35,8 @@ function FriendsProfile() {
     try {
       await deleteFriend(friendId, id);
       await deleteFriend(id, friendId);
+      setToggleUpdate(true);
       toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
-      setToggleRefresh(true);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -61,15 +61,15 @@ function FriendsProfile() {
             <p>
               {friendInfoProfile.first_name} {friendInfoProfile.last_name}
             </p>
-            <div className="friend-profile-dob-container" >
-            <TbCake id="cake" size={"1.3rem"}/>
-            <p className="friend-user-dob">
-              {new Date(friendInfoProfile.dob)
-                .toDateString()
-                .split(" ")
-                .splice(1, 2)
-                .join(" ")}
-            </p>
+            <div className="friend-profile-dob-container">
+              <TbCake id="cake" size={"1.3rem"} />
+              <p className="friend-user-dob">
+                {new Date(friendInfoProfile.dob)
+                  .toDateString()
+                  .split(" ")
+                  .splice(1, 2)
+                  .join(" ")}
+              </p>
             </div>
           </div>
         </div>
