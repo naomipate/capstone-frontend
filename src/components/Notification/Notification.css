@@ -8,6 +8,7 @@
   cursor: pointer;
   line-height: 2px;
   font-family: "Hepta Slab", serif;
+  font-weight: bolder;
 }
 .dropBtn::before {
   content: "";
@@ -29,7 +30,6 @@
 .dropBtn:focus {
   /* background-color: #9949ff; */
   color: rgb(255, 87, 87);
-  font-weight: bolder;
 }
 
 .dropdown {

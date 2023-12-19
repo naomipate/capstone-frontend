@@ -85,7 +85,7 @@ function Dashboard({ user }) {
     );
   });
 
-  return <div>{todayDateCard(currentDate)}</div>;
+  return <>{todayDateCard(currentDate)}</>;
 }
 
 function Friend({ friendDetails, dashboardUserId }) {
@@ -123,7 +123,7 @@ function Friend({ friendDetails, dashboardUserId }) {
           <p className="dashboard-card-text">
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <p>
+          <p className="dashboard-card-text-zodiac">
             Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
           </p>
         </div>
