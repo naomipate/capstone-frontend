@@ -94,7 +94,7 @@ function Dashboard({ user }) {
       <Friend
         key={index}
         friendDetails={friendDetails}
-        dashboardUserId={dashboardUser.id}
+        dashboardUserId={dashboardId}
       />
     );
   });
