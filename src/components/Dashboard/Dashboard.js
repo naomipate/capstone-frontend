@@ -45,6 +45,9 @@ function Dashboard({ user }) {
     }
   }
 
+  const currentMonth = currentDate.getMonth() + 1;
+  console.log(currentMonth); 
+
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
     // DOB date
@@ -95,6 +98,7 @@ function Dashboard({ user }) {
         key={index}
         friendDetails={friendDetails}
         dashboardUserId={dashboardId}
+        currentMonth={currentMonth}
       />
     );
   });
@@ -102,7 +106,7 @@ function Dashboard({ user }) {
   return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId }) {
+function Friend({ friendDetails, dashboardUserId, currentMonth}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -120,14 +124,20 @@ function Friend({ friendDetails, dashboardUserId }) {
       month: "long",
     }
   );
+  let fullMonthOfUpcomingBirthdayNum = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    {
+      month: "numeric",
+    }
+  );
 
   return (
-    <div className="dashboard-friend-card-container">
+    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonth ? "dashboard-friend-card-container-this-month" : "dashboard-friend-card-container"}>
       <Link
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-        <div className="dashboard-friend-card-top">
+    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonth ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
@@ -142,7 +152,7 @@ function Friend({ friendDetails, dashboardUserId }) {
           </p>
         </div>
       </Link>
-    </div>
+      </div>
   );
 }
 
