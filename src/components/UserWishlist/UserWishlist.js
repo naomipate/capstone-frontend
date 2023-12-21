@@ -19,6 +19,8 @@ function UserWishlist({ handleCreateWishlist, user }) {
   const [editingItemId, setEditingItemId] = useState(null);
 
   const [selectedItem, setSelectedItem] = useState(null);
+  const [sortByPrice, setSortByPrice] = useState("asc");
+  const [sortedItems, setSortedItems] = useState([]);
 
   useEffect(() => {
     if (user_id) {
@@ -31,6 +33,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
     try {
       let response = await Axios.get(`/userwishlist/${user_id}`);
       setFormData(response.data);
+      console.log(formData);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +44,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
       await Axios.delete(`/userwishlist/${itemId}`);
       alert(`Wishlist item has been deleted`);
       let filterdList = formData.filter((item) => item.id !== itemId);
-
       setFormData(filterdList);
 
       navigate(`/dashboard/${user_id}/userwishlist`);
@@ -72,23 +74,61 @@ function UserWishlist({ handleCreateWishlist, user }) {
     }
   };
 
+  const sortItems = () => {
+    if (Array.isArray(formData)) {
+      const sortedItemsCopy = [...formData];
+      sortedItemsCopy.sort((a, b) => {
+        if (sortByPrice === "asc") {
+          return a.item_price - b.item_price;
+        } else {
+          return b.item_price - a.item_price;
+        }
+      });
+      setSortedItems(sortedItemsCopy);
+    }
+  };
+
+  useEffect(() => {
+    sortItems();
+  }, [sortByPrice, formData]);
+
+  const handleSortPriceChange = (newSortPrice) => {
+    setSortByPrice(newSortPrice);
+  };
+
   return (
     <div className="user-wishlist-container">
       <div className="user-wishlist">
         <div className="TitleBar" key={formData.id}>
           <h2>Wishlist</h2>
+
           <Link to={`/dashboard/${user_id}/new`}>
             <button>Add Item</button>
           </Link>
         </div>
-        <IconContext.Provider value={{ size: "2rem" }}>
-          <div
-            onClick={() => navigate(`/dashboard/${user_id}`)}
-            className="back-left-arrow-container"
-          >
-            <TbArrowLeft />
-          </div>
-        </IconContext.Provider>
+
+        <div className="back-sort-actions">
+          <IconContext.Provider value={{ size: "2rem" }}>
+            <div
+              onClick={() => navigate(`/dashboard/${user_id}`)}
+              className="back-left-arrow-container"
+            >
+              <TbArrowLeft />
+            </div>
+            {/* ------- Price sorting order ------ */}
+
+            <div className="SortByDropdown">
+              <label htmlFor="priceSortOrder">Sort by:</label>
+              <select
+                id="priceSortOrder"
+                onChange={(e) => handleSortPriceChange(e.target.value)}
+              >
+                <option value="asc">Lowest Price</option>
+                <option value="desc">Highest Price</option>
+              </select>
+            </div>
+          </IconContext.Provider>
+        </div>
 
         {editingItemId !== null ? (
           <WishlistForm
@@ -99,8 +139,8 @@ function UserWishlist({ handleCreateWishlist, user }) {
           />
         ) : (
           <>
-            {formData.length > 0 ? (
-              formData.map((item) => (
+            {sortedItems.length > 0 ? (
+              sortedItems.map((item) => (
                 <WishListItem
                   key={item.id}
                   item={item}
@@ -114,14 +154,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
           </>
         )}
       </div>
-      {(editingItemId !== null || formData.length === 0) && (
-        <WishlistForm
-          onSubmit={editingItemId ? handleEditSubmit : handleCreateWishlist}
-          initialValues={editingItemId ? selectedItem : {}}
-          setFormData={setFormData}
-          formData={formData}
-        />
-      )}
     </div>
   );
 }

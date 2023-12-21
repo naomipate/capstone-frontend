@@ -11,6 +11,7 @@ function EditWishlist() {
 
   const [formData, setFormData] = useState({
     item_name: "",
+    item_price: "",
     link: "",
   });
 

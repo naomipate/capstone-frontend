@@ -46,7 +46,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 50%;
 }
+
 .list-item-name-and-link p {
   text-align: left;
   font-weight: bold;

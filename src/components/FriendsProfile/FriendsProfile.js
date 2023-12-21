@@ -7,13 +7,15 @@ import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
 import { RefreshContext } from "../common/context/context";
-import userProfileImg from "../../Assets/profile-img-red.png"
+import userProfileImg from "../../Assets/profile-img-red.png";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
   const { setToggleRefresh } = useContext(RefreshContext);
+  const [sortByPrice, setSortByPrice] = useState("asc");
+  const [sortedItems, setSortedItems] = useState([]);
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
@@ -25,6 +27,7 @@ function FriendsProfile() {
   async function fetchList() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
+      console.log(result.data.friendsWishlist);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
     } catch (error) {
@@ -47,6 +50,30 @@ function FriendsProfile() {
     setIsMuted(!isMuted);
   }
 
+  const sortItems = () => {
+    if (Array.isArray(friendInfoWishList)) {
+      const sortedItemsCopy = [...friendInfoWishList];
+      console.log(sortedItemsCopy);
+      sortedItemsCopy.sort((a, b) => {
+        if (sortByPrice === "asc") {
+          return a.item_price - b.item_price;
+        } else {
+          return b.item_price - a.item_price;
+        }
+      });
+      setSortedItems(sortedItemsCopy);
+      console.log(sortedItems);
+    }
+  };
+
+  useEffect(() => {
+    sortItems();
+  }, [sortByPrice, friendInfoWishList]);
+
+  const handleSortPriceChange = (newSortPrice) => {
+    setSortByPrice(newSortPrice);
+  };
+
   return (
     <div className="friend-profile-container">
       <div className="friend-profile-info-top">
@@ -61,18 +88,30 @@ function FriendsProfile() {
             <p>
               {friendInfoProfile.first_name} {friendInfoProfile.last_name}
             </p>
-            <div className="friend-profile-dob-container" >
-            <TbCake id="cake" size={"1.3rem"}/>
-            <p className="friend-user-dob">
-              {new Date(friendInfoProfile.dob)
-                .toDateString()
-                .split(" ")
-                .splice(1, 2)
-                .join(" ")}
-            </p>
+            <div className="friend-profile-dob-container">
+              <TbCake id="cake" size={"1.3rem"} />
+              <p className="friend-user-dob">
+                {new Date(friendInfoProfile.dob)
+                  .toDateString()
+                  .split(" ")
+                  .splice(1, 2)
+                  .join(" ")}
+              </p>
             </div>
           </div>
         </div>
+
+        {/* ------- Price sorting order ------
+        <div>
+          <label htmlFor="priceSortOrder">Sort by:</label>
+          <select
+            id="priceSortOrder"
+            onChange={(e) => handleSortPriceChange(e.target.value)}
+          >
+            <option value="asc">Lowest Price</option>
+            <option value="desc">Highest Price</option>
+          </select>
+        </div> */}
 
         <div className="friend-wishlist-top-right-side">
           <button
@@ -88,6 +127,18 @@ function FriendsProfile() {
           <TbArrowLeft size={"2rem"} />
         </div>
 
+        {/* ------- Price sorting order ------ */}
+        <div>
+          <label htmlFor="priceSortOrder">Sort by:</label>
+          <select
+            id="priceSortOrder"
+            onChange={(e) => handleSortPriceChange(e.target.value)}
+          >
+            <option value="asc">Lowest Price</option>
+            <option value="desc">Highest Price</option>
+          </select>
+        </div>
+
         {isMuted === false ? (
           <div onClick={() => mute()} id="speaker-button">
             <PiSpeakerHighBold size={"1.7rem"} />
@@ -100,7 +151,7 @@ function FriendsProfile() {
       </div>
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
-          {friendInfoWishList.map((item) => {
+          {sortedItems.map((item) => {
             return (
               <FriendsProfileWishlist
                 item={item}
