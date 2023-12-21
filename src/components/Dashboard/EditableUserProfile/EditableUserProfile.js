@@ -2,16 +2,15 @@ import React, { useState, useContext } from "react";
 import Axios from "../.././API/Axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { RefreshContext } from "../../common/context/context";
+import { WishlistContext } from "../../common/context/context";
 
 import "./EditableUserProfile.css";
 
 function EditableUserProfile({ user }) {
   const navigate = useNavigate();
-  const { setToggleRefresh } = useContext(RefreshContext);
 
   const user_id = user?.id;
-
+  const { setToggleUpdate } = useContext(WishlistContext);
   const [updatedUser, setUpdatedUser] = useState({
     username: user?.user_name || "",
     first_name: user?.first_name || "",
@@ -38,11 +37,11 @@ function EditableUserProfile({ user }) {
     try {
       await updateProfile();
       window.localStorage.setItem("user", JSON.stringify(updatedUser));
-      setToggleRefresh(true);
       toast.success(
         "Your profile is updated successfully.",
         toast.POSITION.TOP_CENTER
       );
+      setToggleUpdate(true);
       navigate(`/dashboard/${user_id}`);
     } catch (err) {
       console.log(err);

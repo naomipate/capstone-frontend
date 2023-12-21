@@ -7,6 +7,7 @@ import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
 import { RefreshContext } from "../common/context/context";
+import { FriendsContext } from "../common/context/context";
 import userProfileImg from "../../Assets/profile-img-red.png";
 
 function FriendsProfile() {
@@ -16,6 +17,7 @@ function FriendsProfile() {
   const { setToggleRefresh } = useContext(RefreshContext);
   const [sortByPrice, setSortByPrice] = useState("asc");
   const [sortedItems, setSortedItems] = useState([]);
+  const { setToggleUpdate } = useContext(FriendsContext);
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
@@ -38,8 +40,8 @@ function FriendsProfile() {
     try {
       await deleteFriend(friendId, id);
       await deleteFriend(id, friendId);
+      setToggleUpdate(true);
       toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
-      setToggleRefresh(true);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -100,18 +102,6 @@ function FriendsProfile() {
             </div>
           </div>
         </div>
-
-        {/* ------- Price sorting order ------
-        <div>
-          <label htmlFor="priceSortOrder">Sort by:</label>
-          <select
-            id="priceSortOrder"
-            onChange={(e) => handleSortPriceChange(e.target.value)}
-          >
-            <option value="asc">Lowest Price</option>
-            <option value="desc">Highest Price</option>
-          </select>
-        </div> */}
 
         <div className="friend-wishlist-top-right-side">
           <button

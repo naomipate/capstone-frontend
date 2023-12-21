@@ -5,12 +5,10 @@ import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 import { toast } from "react-toastify";
 import "./AddWishList.css";
-import { RefreshContext } from "../common/context/context";
 
 function AddWishlist({ user, fetchWishlist }) {
   let navigate = useNavigate();
   const { id } = user;
-  const { setToggleRefresh } = useContext(RefreshContext);
 
   const [formData, setFormData] = useState({
     user_id: id,
@@ -31,7 +29,6 @@ function AddWishlist({ user, fetchWishlist }) {
         "Wishlist created successfully!",
         toast.POSITION.TOP_CENTER
       );
-      setToggleRefresh(true);
 
       setFormData({
         user_id: id,

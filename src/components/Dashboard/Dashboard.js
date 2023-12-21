@@ -1,8 +1,9 @@
 /* eslint-disable padded-blocks */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import { FriendsContext } from "../common/context/context";
 import "./Dashboard.css";
 
 function Dashboard({ user }) {
@@ -10,7 +11,7 @@ function Dashboard({ user }) {
   const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
-
+  const { setFriendsData } = useContext(FriendsContext);
   useEffect(() => {
     if (user === null) {
       navigate("/login");
@@ -22,9 +23,23 @@ function Dashboard({ user }) {
 
   async function fetchData() {
     try {
-      setDashboardId(user.id);
+      setDashboardId(user?.id);
       let response = await getUserProfile(dashboardId);
       setDashboardUser(response.data);
+      let dataShorthand = response.data.friendsOrderedByDOB;
+      let formatFriends = dataShorthand.map(
+        ({ id, user_name, first_name, last_name, dob, email }) => {
+          return {
+            id: id,
+            user_name: user_name,
+            first_name: first_name,
+            last_name: last_name,
+            dob: dob,
+            email: email,
+          };
+        }
+      );
+      setFriendsData(formatFriends);
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +49,7 @@ function Dashboard({ user }) {
   const upcomingDateCalc = (dob) => {
     // DOB date
     let date = new Date(dob);
+    let upcomingDateESTTimeZoneOffset = date.getTimezoneOffset() * 60 * 1000;
     // UpcomingDOBDate: calc dates with current year attached.
     let upcomingDateWithCurrentYear = new Date(
       date.setFullYear(currentDate.getFullYear())
@@ -43,60 +59,26 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.getTime();
+      return upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() + upcomingDateESTTimeZoneOffset
+      );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.getTime();
+      return upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() + upcomingDateESTTimeZoneOffset
+      );
     }
   };
 
-  const todayDateCard = (currentDate) => {
-    // ---------------------------------------Date for card
-    let currentDateDayName = currentDate.toLocaleDateString("en-US", {
-        weekday: "long",
-      }), // Full Day name from time
-      currentDateDayNum = currentDate.toLocaleDateString("en-US", {
-        day: "numeric",
-      }), // Numeric day from time
-      currentDateMonth = currentDate.toLocaleDateString("en-US", {
-        month: "long",
-      }), // Full Month name from time
-      currentDateYear = currentDate.toLocaleDateString("en-US", {
-        year: "numeric",
-      }); // Full Year from time
-
+  const todayDateCard = () => {
     return (
-      <div className="dashboard-container">
-        <div className="card">
-          <div className="card__content">
-            <div className="dashboard-date-container">
-              <div className="display-date">
-                <p className="todays-date-heading">Today's Date</p>
-                <hr className="dashboard-hr" />
-                <span id="daynum">{currentDateDayNum}</span>
-                <div className="bottom-date-card">
-                  <div id="day">{currentDateDayName}</div>
-                  <div className="month-and-year">
-                    <div id="month">{currentDateMonth}</div>
-                    <div id="year">{currentDateYear}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="blob"></div>
-          <div className="blob"></div>
-          <div className="blob"></div>
-          <div className="blob"></div>
-        </div>
-        <div className="dashboard-main-section">
-          <p className="dashboard-heading">Upcoming Dates</p>
+        <div className="dashboard-container">
+          <p className="dashboard-heading">Upcoming Birthdays</p>
           {friendsList}
         </div>
-      </div>
     );
   };
 
@@ -112,12 +94,12 @@ function Dashboard({ user }) {
       <Friend
         key={index}
         friendDetails={friendDetails}
-        dashboardUserId={dashboardUser.id}
+        dashboardUserId={dashboardId}
       />
     );
   });
 
-  return <div>{todayDateCard(currentDate)}</div>;
+  return <>{todayDateCard(currentDate)}</>;
 }
 
 function Friend({ friendDetails, dashboardUserId }) {
@@ -128,12 +110,10 @@ function Friend({ friendDetails, dashboardUserId }) {
   //     <a href={item.link}>{item.item_name}</a>
   //   </li>
   // ));
-
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
   );
-
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {
@@ -155,9 +135,11 @@ function Friend({ friendDetails, dashboardUserId }) {
             </p>
           </div>
           <p className="dashboard-card-text">
-            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
+            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <CalculateZodiacSign dobInMili={dobInMili} />
+          <p className="dashboard-card-text-zodiac">
+            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
+          </p>
         </div>
       </Link>
     </div>
