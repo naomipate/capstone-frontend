@@ -37,8 +37,8 @@
   border-radius: 10px;
   background-image:
   url("../../Assets/balloons.png"),
-  linear-gradient(rgba(205, 155, 255, 0.359), rgba(255, 204, 0, 0));
-  background-size: 30%, 100%;
+  linear-gradient(rgba(208, 162, 255, 0.608), rgba(255, 204, 0, 0));
+  background-size: 35%, 100%;
   background-position: top;
   background-repeat: no-repeat;
   position : relative;
