@@ -12,10 +12,8 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   const { setFriendsData } = useContext(FriendsContext);
-  //get current month to compare birhtday months to style tha card differently
   const currentMonthNum = currentDate.getMonth() + 1;
   const currentDayNum = currentDate.getDate();
-// console.log(currentMonth, currentDayNum);
 
   useEffect(() => {
     if (user === null) {
