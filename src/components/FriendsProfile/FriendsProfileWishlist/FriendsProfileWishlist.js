@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
 import popSound from "../../../Assets/pop-sound.mp3";
+import chime from "../../../Assets/chime.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
 function FriendsProfileWishlist({ item, isMuted }) {
@@ -16,7 +17,7 @@ function FriendsProfileWishlist({ item, isMuted }) {
 
   function playSound() {
     if (is_bought === false && isMuted === false) {
-      new Audio(popSound).play();
+      new Audio(chime).play();
     }
   }
 

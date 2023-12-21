@@ -37,7 +37,22 @@
   border-radius: 10px;
   background-image:
   url("../../Assets/balloons.png"),
-  linear-gradient(rgba(208, 162, 255, 0.608), rgba(255, 204, 0, 0));
+  linear-gradient(rgba(255, 204, 0, 0), rgba(208, 162, 255, 0.608));
+  background-size: 35%, 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  position : relative;
+}
+
+.dashboard-friend-card-container-today{
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px rgba(255, 47, 28, 0.492) solid;
+  border-radius: 10px;
+  background-image:
+  url("../../Assets/balloons.png"),
+  linear-gradient(rgba(255, 191, 0, 0.355), rgba(255, 162, 162, 0.608));
   background-size: 35%, 100%;
   background-position: top;
   background-repeat: no-repeat;
@@ -64,7 +79,6 @@
   justify-content: space-between;
   color: #232323;
   gap: 2rem;
-  /* backdrop-filter: blur(35px); */
 }
 .dashboard-friend-card-content-this-month{
   display: flex;
@@ -72,23 +86,40 @@
   justify-content: space-between;
   color: #232323;
   gap: 2rem;
-  /* backdrop-filter: blur(35px); */
   position : relative;
 }
 
+
 .dashboard-friend-card-container-this-month::after{
   position: absolute;
-  content: 'Birthday This Month';
-  top: -1rem;
+  content: 'Birthday Month';
+  top: -.7rem;
+  right: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  border-radius: 10px;
+  background: #b561ff;
+  color: white;
+  letter-spacing: .5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 4px 4px 15px rgba(81, 26, 126, 0.2);
+}
+
+.dashboard-friend-card-container-today::after{
+  position: absolute;
+  content: 'Birthday Today';
+  top: -.7rem;
   right: 1rem;
   padding: 0.5rem;
   width: 10rem;
   border-radius: 10px;
   background: #ff6161;
   color: white;
+  letter-spacing: .5px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
+  box-shadow: 4px 4px 15px rgba(81, 26, 126, 0.2);
 }
 
 .dashboard-card-text {

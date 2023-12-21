@@ -12,6 +12,11 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   const { setFriendsData } = useContext(FriendsContext);
+  //get current month to compare birhtday months to style tha card differently
+  const currentMonthNum = currentDate.getMonth() + 1;
+  const currentDayNum = currentDate.getDate();
+// console.log(currentMonth, currentDayNum);
+
   useEffect(() => {
     if (user === null) {
       navigate("/login");
@@ -45,8 +50,6 @@ function Dashboard({ user }) {
     }
   }
 
-  const currentMonth = currentDate.getMonth() + 1;
-  console.log(currentMonth); 
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
@@ -98,7 +101,8 @@ function Dashboard({ user }) {
         key={index}
         friendDetails={friendDetails}
         dashboardUserId={dashboardId}
-        currentMonth={currentMonth}
+        currentMonthNum={currentMonthNum}
+        currentDayNum={currentDayNum}
       />
     );
   });
@@ -106,7 +110,7 @@ function Dashboard({ user }) {
   return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId, currentMonth}) {
+function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -131,13 +135,24 @@ function Friend({ friendDetails, dashboardUserId, currentMonth}) {
     }
   );
 
+  function friendContentClassNames(){
+    if(parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum && dayNumOfUpcomingBirthDay == currentDayNum){
+      return "dashboard-friend-card-container-today"
+    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum){
+      return "dashboard-friend-card-container-this-month"
+    }else{
+      return "dashboard-friend-card-container"
+    }
+  }
+
   return (
-    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonth ? "dashboard-friend-card-container-this-month" : "dashboard-friend-card-container"}>
+    <div className={friendContentClassNames()}>
       <Link
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonth ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
+    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum 
+      ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
