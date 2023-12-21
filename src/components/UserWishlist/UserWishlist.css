@@ -17,13 +17,11 @@
 .TitleBar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
   color: rgb(23, 22, 22);
   width: 100%;
   align-items: center;
   padding-bottom: 30px;
   border-bottom: 1px solid #b3b3b3;
-  /* width: 80%; */
 }
 
 .TitleBar h2 {

@@ -4,11 +4,12 @@
   align-items: center;
   flex-direction: column;
   margin: 0rem 30px;
-  background-color: rgb(153, 73, 255, 0.2);
+  background-color: #f1ebfa;
   border-radius: 15px;
   padding: 1.5rem;
   gap: 1.5rem;
 }
+
 
 .dashboard-heading {
   align-self: flex-start;
@@ -23,11 +24,44 @@
   padding: 1rem 1.5rem;
   box-sizing: border-box;
   width: 100%;
-  background: #f1ebfa;
+  border: 1px rgba(160, 87, 255, 0.66) solid;
   border-radius: 10px;
+
 }
 
-.dashboard-friend-card-container:hover {
+.dashboard-friend-card-container-this-month{
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px rgba(127, 28, 255, 0.492) solid;
+  border-radius: 10px;
+  background-image:
+  url("../../Assets/balloons.png"),
+  linear-gradient(rgba(255, 204, 0, 0), rgba(208, 162, 255, 0.608));
+  background-size: 35%, 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  position : relative;
+}
+
+.dashboard-friend-card-container-today{
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px rgba(255, 47, 28, 0.492) solid;
+  border-radius: 10px;
+  background-image:
+  url("../../Assets/balloons.png"),
+  linear-gradient(rgba(255, 191, 0, 0.355), rgba(255, 162, 162, 0.608));
+  background-size: 35%, 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  position : relative;
+}
+
+
+.dashboard-friend-card-container:hover,
+.dashboard-friend-card-container-this-month:hover {
   background-color: rgb(153, 73, 255, 0.2);
 }
 
@@ -39,12 +73,53 @@
   background: #e0e0e0;
 }
 
-.dashboard-friend-card-top {
+.dashboard-friend-card-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #232323;
   gap: 2rem;
+}
+.dashboard-friend-card-content-this-month{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #232323;
+  gap: 2rem;
+  position : relative;
+}
+
+
+.dashboard-friend-card-container-this-month::after{
+  position: absolute;
+  content: 'Birthday Month';
+  top: -.7rem;
+  right: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  border-radius: 10px;
+  background: #b561ff;
+  color: white;
+  letter-spacing: .5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 4px 4px 15px rgba(81, 26, 126, 0.2);
+}
+
+.dashboard-friend-card-container-today::after{
+  position: absolute;
+  content: 'Birthday Today';
+  top: -.7rem;
+  right: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  border-radius: 10px;
+  background: #ff6161;
+  color: white;
+  letter-spacing: .5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 4px 4px 15px rgba(81, 26, 126, 0.2);
 }
 
 .dashboard-card-text {
