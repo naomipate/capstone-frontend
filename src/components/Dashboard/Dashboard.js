@@ -45,21 +45,30 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.setTime(
+      upcomingDateWithCurrentYear.setTime(
         upcomingDateWithCurrentYear.getTime() +
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
+      console.log(upcomingDateWithCurrentYear);
+      return upcomingDateWithCurrentYear;
+      // return upcomingDateWithCurrentYear.setTime(
+      //   upcomingDateWithCurrentYear.getTime() +
+      //     oneMiliBeforeTwentyFourHrs +
+      //     upcomingDateESTTimeZoneOffset
+      // );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.setTime(
+      upcomingDateWithNextYear.setTime(
         upcomingDateWithNextYear.getTime() +
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
+      console.log(upcomingDateWithNextYear);
+      return upcomingDateWithNextYear;
     }
   };
 
