@@ -39,7 +39,6 @@ function SidebarNav() {
     // EST DateTime Offset
     const dateObjectESTTimeOffset = dateObject.getTimezoneOffset() * 60 * 1000;
     dateObject.setTime(dateObject.getTime() + dateObjectESTTimeOffset);
-    console.log(dateObject);
     // Options for formatting the date
     const options = { month: "long", day: "numeric" };
 
