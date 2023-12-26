@@ -1,29 +1,67 @@
 .dashboard-container {
+  align-self: flex-start;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
-  margin: 3rem 3rem;
+  margin: 0rem 30px;
+  background-color: #f1ebfa;
+  border-radius: 15px;
+  padding: 1.5rem;
+  gap: 1.5rem;
 }
 
+
 .dashboard-heading {
-  margin: 60px 0px 10px 20px;
-  color: #7d7d7d;
-  font-size: 18px;
+  align-self: flex-start;
+  margin: 0;
+  color: #000000;
+  font-size: 1.5rem;
+  font-family: 'Hepta Slab', serif;
+  font-weight: bolder;
 }
 
 .dashboard-friend-card-container {
-  width: 45rem;
-  height: 125px;
-  background: #f1ebfa;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px rgba(160, 87, 255, 0.66) solid;
   border-radius: 10px;
-  border: 2px solid #f5ebff;
-  margin: 20px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
-    rgba(17, 17, 26, 0.02) 0px 4px 8px;
+
 }
 
-.dashboard-friend-card-container:hover {
+.dashboard-friend-card-container-this-month{
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px rgba(127, 28, 255, 0.492) solid;
+  border-radius: 10px;
+  background-image:
+  url("../../Assets/balloons.png"),
+  linear-gradient(rgba(255, 204, 0, 0), rgba(208, 162, 255, 0.608));
+  background-size: 35%, 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  position : relative;
+}
+
+.dashboard-friend-card-container-today{
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px rgba(255, 47, 28, 0.492) solid;
+  border-radius: 10px;
+  background-image:
+  url("../../Assets/balloons.png"),
+  linear-gradient(rgb(255, 210, 210), rgba(255, 103, 103, 0.656));
+  background-size: 35%, 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  position : relative;
+}
+
+
+.dashboard-friend-card-container:hover,
+.dashboard-friend-card-container-this-month:hover {
   background-color: rgb(153, 73, 255, 0.2);
 }
 
@@ -33,26 +71,72 @@
   margin-top: 5px;
   border-radius: 50%;
   background: #e0e0e0;
-  box-shadow: 5px 5px 10px #caa5ff, -5px -5px 10px #f8f0fd;
 }
 
-.dashboard-friend-card-top {
+.dashboard-friend-card-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 15px;
   justify-content: space-between;
-  margin: 10px 55px;
   color: #232323;
-  width: 80%;
+  gap: 2rem;
+}
+.dashboard-friend-card-content-this-month{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #232323;
+  gap: 2rem;
+  position : relative;
+}
+
+
+.dashboard-friend-card-container-this-month::after{
+  position: absolute;
+  content: 'Birthday Month';
+  top: -.7rem;
+  right: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  border-radius: 10px;
+  background: #b561ff;
+  color: white;
+  letter-spacing: .5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 4px 4px 15px rgba(81, 26, 126, 0.2);
+}
+
+.dashboard-friend-card-container-today::after{
+  position: absolute;
+  content: 'Birthday Today';
+  top: -.7rem;
+  right: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+  border-radius: 10px;
+  background: #ff6161;
+  color: white;
+  letter-spacing: .5px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 4px 4px 15px rgba(81, 26, 126, 0.2);
 }
 
 .dashboard-card-text {
-  font-size: 17px;
+  font-size: 20px;
   cursor: pointer;
   color: #232323;
   text-decoration: none;
+}
+.dashboard-card-text-zodiac{
+  font-size: 20px;
+  cursor: pointer;
+  color: #232323;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 5px;
 }
 
 .dashboard-card-name {
@@ -62,7 +146,7 @@
 
 .dashboard-friend-card-left {
   display: flex;
-  justify-content: space-between;
+  flex: 1;
   gap: 20px;
 }
 
@@ -70,10 +154,10 @@ a {
   text-decoration: none;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .dashboard-friend-card-container {
-    width: 80%;
-    margin: 10px;
+    /* width: 80%; */
+    /* margin: 10px; */
   }
 }
 
@@ -86,118 +170,12 @@ a {
   }
   .dashboard-friend-card-top {
     flex-direction: column;
-    margin: 0px;
-    padding-top: 0px;
+    /* margin: 0px;
+    padding-top: 0px; */
   }
 
   .dashboard-card-text {
-    width: 200px;
+    /* width: 200px; */
   }
 }
 
-/* -------------------DATE CSS--------------------- */
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-
-.display-date {
-  text-align: center;
-  margin: 0px 0px 0px 0px;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.todays-date-heading {
-  font-size: 20px;
-}
-
-.dashboard-hr {
-  width: 90%;
-}
-
-#daynum {
-  font-size: 6rem;
-}
-
-.month-and-year {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.bottom-date-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 14px;
-  margin-bottom: 20px;
-  font-size: 20px;
-}
-
-/*----------------time card background------------- */
-
-.card {
-  position: relative;
-  width: 350px;
-  height: 240px;
-  background: linear-gradient(to bottom left, #c23eff, #ff3232);
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  z-index: 1;
-  border-radius: 21px;
-  overflow: hidden;
-  padding: 10px;
-}
-
-.card__content {
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.15),
-    rgba(150, 150, 150, 0.1)
-  );
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 21px;
-  backdrop-filter: blur(35px);
-  font-weight: bold;
-  text-align: center;
-  color: #f8e7ff;
-}
-
-.card .blob {
-  position: absolute;
-  z-index: -1;
-  border-radius: 5em;
-  width: 200px;
-  height: 200px;
-  animation-name: blob-animation;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-.card .blob:nth-child(1) {
-  left: -50px;
-  top: -90px;
-  background: #ffffff;
-}
-
-.card .blob:nth-child(2) {
-  left: 200px;
-  top: -20px;
-  z-index: -1;
-  background: #aa27ce;
-}
-
-.card .blob:nth-child(3) {
-  left: 30px;
-  top: 60px;
-  background: #c362e3;
-}
-
-.card .blob:nth-child(4) {
-  left: 260px;
-  top: 130px;
-  background: #ffc95d;
-}
