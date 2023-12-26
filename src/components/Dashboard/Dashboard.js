@@ -25,7 +25,6 @@ function Dashboard({ user }) {
       setDashboardId(user.id);
       let response = await getUserProfile(dashboardId);
       setDashboardUser(response.data);
-      console.log(dashboardUser.dob);
     } catch (error) {
       console.log(error);
     }
@@ -41,21 +40,35 @@ function Dashboard({ user }) {
       date.setFullYear(currentDate.getFullYear())
     );
     // UpcomingDate - now = Time before each date.
+    let oneMiliBeforeTwentyFourHrs = 86399999;
     let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.setTime(
-        upcomingDateWithCurrentYear.getTime() + upcomingDateESTTimeZoneOffset
+      upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
       );
+      console.log(upcomingDateWithCurrentYear);
+      return upcomingDateWithCurrentYear;
+      // return upcomingDateWithCurrentYear.setTime(
+      //   upcomingDateWithCurrentYear.getTime() +
+      //     oneMiliBeforeTwentyFourHrs +
+      //     upcomingDateESTTimeZoneOffset
+      // );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.setTime(
-        upcomingDateWithNextYear.getTime() + upcomingDateESTTimeZoneOffset
+      upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
       );
+      console.log(upcomingDateWithNextYear);
+      return upcomingDateWithNextYear;
     }
   };
 
