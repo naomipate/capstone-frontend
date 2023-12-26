@@ -52,11 +52,6 @@ function Dashboard({ user }) {
       );
       console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear;
-      // return upcomingDateWithCurrentYear.setTime(
-      //   upcomingDateWithCurrentYear.getTime() +
-      //     oneMiliBeforeTwentyFourHrs +
-      //     upcomingDateESTTimeZoneOffset
-      // );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
