@@ -8,6 +8,7 @@ function Search() {
   const [usersData, setUsersData] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [mainUser, setMainUser] = useState({});
+  
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
@@ -44,8 +45,7 @@ function Search() {
   }
 
   return (
-    <div className="search-page">
-      <div className="search-page-container">
+      <div className={mainUser ? "search-page-container" : "search-page-container-not-signed-in"}>
         <div className="search-page-content">
           <div className="search-page-title">
             <p> Find Your Friend</p>
@@ -76,7 +76,6 @@ function Search() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

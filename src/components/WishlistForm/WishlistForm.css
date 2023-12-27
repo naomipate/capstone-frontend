@@ -1,7 +1,8 @@
 .wish-list-form-container {
   display: flex;
   justify-content: center;
-  margin: 2rem 3rem;
+  margin: 0px 43px;
+  width: 43rem;
 }
 .wish-list-form {
   width: 60%;

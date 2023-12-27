@@ -32,7 +32,7 @@ const SearchPage = React.lazy(() =>
   import("./components/SearchPage/SearchPage")
 );
 const Nav = React.lazy(() => import("./components/Nav/Nav"));
-const Sidebar = React.lazy(() => import("./components/Sidebar/Sidebar"));
+const SidebarNav = React.lazy(() => import("./components/SidebarNav/SidebarNav"));
 const Home = React.lazy(() => import("./components/Home/Home"));
 const Footer = React.lazy(() => import("./components/Footer/Footer"));
 const Login = React.lazy(() => import("./components/Login/Login"));
@@ -76,9 +76,10 @@ function App() {
       <Router>
         <ToastContainer autoClose={3000} />
         <Nav user={user} setUser={setUser} />
-        <main className={user ? "page-content" : ""}>
+        <main className={user ? "page-content-container" : ""}>
+          <div className={user ? "page-content" : ""}> 
           <FriendsContext.Provider value={FriendsContextValue}>
-            {user && <Sidebar />}
+            {user && <SidebarNav />}
           </FriendsContext.Provider>
           <Routes>
             <Route path="/search-page" element={<SearchPage />} />
@@ -146,6 +147,7 @@ function App() {
               }
             />
           </Routes>
+          </div>
         </main>
         <Footer user={user} setUser={setUser} />
       </Router>

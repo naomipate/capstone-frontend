@@ -12,6 +12,9 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   const { setFriendsData } = useContext(FriendsContext);
+  const currentMonthNum = currentDate.getMonth() + 1;
+  const currentDayNum = currentDate.getDate();
+
   useEffect(() => {
     if (user === null) {
       navigate("/login");
@@ -49,68 +52,44 @@ function Dashboard({ user }) {
   const upcomingDateCalc = (dob) => {
     // DOB date
     let date = new Date(dob);
+    let upcomingDateESTTimeZoneOffset = date.getTimezoneOffset() * 60 * 1000;
     // UpcomingDOBDate: calc dates with current year attached.
     let upcomingDateWithCurrentYear = new Date(
       date.setFullYear(currentDate.getFullYear())
     );
     // UpcomingDate - now = Time before each date.
+    let oneMiliBeforeTwentyFourHrs = 86399999;
     let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.getTime();
+      upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
+      );
+      console.log(upcomingDateWithCurrentYear);
+      return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.getTime();
+      upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
+      );
+      console.log(upcomingDateWithNextYear);
+      return upcomingDateWithNextYear;
     }
   };
 
-  const todayDateCard = (currentDate) => {
-    // ---------------------------------------Date for card
-    let currentDateDayName = currentDate.toLocaleDateString("en-US", {
-        weekday: "long",
-      }), // Full Day name from time
-      currentDateDayNum = currentDate.toLocaleDateString("en-US", {
-        day: "numeric",
-      }), // Numeric day from time
-      currentDateMonth = currentDate.toLocaleDateString("en-US", {
-        month: "long",
-      }), // Full Month name from time
-      currentDateYear = currentDate.toLocaleDateString("en-US", {
-        year: "numeric",
-      }); // Full Year from time
-
+  const todayDateCard = () => {
     return (
       <div className="dashboard-container">
-        <div className="card">
-          <div className="card__content">
-            <div className="dashboard-date-container">
-              <div className="display-date">
-                <p className="todays-date-heading">Today's Date</p>
-                <hr className="dashboard-hr" />
-                <span id="daynum">{currentDateDayNum}</span>
-                <div className="bottom-date-card">
-                  <div id="day">{currentDateDayName}</div>
-                  <div className="month-and-year">
-                    <div id="month">{currentDateMonth}</div>
-                    <div id="year">{currentDateYear}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="blob"></div>
-          <div className="blob"></div>
-          <div className="blob"></div>
-          <div className="blob"></div>
-        </div>
-        <div className="dashboard-main-section">
-          <p className="dashboard-heading">Upcoming Dates</p>
-          {friendsList}
-        </div>
+        <p className="dashboard-heading">Upcoming Birthdays</p>
+        {friendsList}
       </div>
     );
   };
@@ -127,15 +106,22 @@ function Dashboard({ user }) {
       <Friend
         key={index}
         friendDetails={friendDetails}
-        dashboardUserId={dashboardUser.id}
+        dashboardUserId={dashboardId}
+        currentMonthNum={currentMonthNum}
+        currentDayNum={currentDayNum}
       />
     );
   });
 
-  return <div>{todayDateCard(currentDate)}</div>;
+  return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId }) {
+function Friend({
+  friendDetails,
+  dashboardUserId,
+  currentMonthNum,
+  currentDayNum,
+}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -143,26 +129,49 @@ function Friend({ friendDetails, dashboardUserId }) {
   //     <a href={item.link}>{item.item_name}</a>
   //   </li>
   // ));
-
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
   );
-
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {
       month: "long",
     }
   );
+  let fullMonthOfUpcomingBirthdayNum = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    {
+      month: "numeric",
+    }
+  );
+
+  function friendContentClassNames() {
+    if (
+      parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum &&
+      dayNumOfUpcomingBirthDay == currentDayNum
+    ) {
+      return "dashboard-friend-card-container-today";
+    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum) {
+      return "dashboard-friend-card-container-this-month";
+    } else {
+      return "dashboard-friend-card-container";
+    }
+  }
 
   return (
-    <div className="dashboard-friend-card-container">
+    <div className={friendContentClassNames()}>
       <Link
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-        <div className="dashboard-friend-card-top">
+        <div
+          className={
+            parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum
+              ? "dashboard-friend-card-content-this-month"
+              : "dashboard-friend-card-content"
+          }
+        >
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
@@ -170,9 +179,11 @@ function Friend({ friendDetails, dashboardUserId }) {
             </p>
           </div>
           <p className="dashboard-card-text">
-            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
+            {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <CalculateZodiacSign dobInMili={dobInMili} />
+          <p className="dashboard-card-text-zodiac">
+            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
+          </p>
         </div>
       </Link>
     </div>
