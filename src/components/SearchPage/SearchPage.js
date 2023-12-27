@@ -34,11 +34,11 @@ function Search() {
 
   function handleFilter(input) {
     let filtered = usersData.filter((user) => {
-      return user.user_name.toLowerCase().includes(input);
+      return user?.user_name.toLowerCase().includes(input);
     });
     if (mainUser) {
       filtered = filtered.filter((element) => {
-        return element.user_name !== mainUser.user_name;
+        return element?.user_name !== mainUser?.user_name;
       });
     }
     setFilteredUsers(filtered.sort());
