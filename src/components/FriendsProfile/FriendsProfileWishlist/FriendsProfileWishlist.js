@@ -3,21 +3,21 @@ import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
 import popSound from "../../../Assets/pop-sound.mp3";
+import chime from "../../../Assets/chime.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
-function FriendsProfileWishlist( {item, isMuted} ) {
+function FriendsProfileWishlist({ item, isMuted }) {
   const [is_bought, setis_bought] = useState(item.is_bought);
   const [assigned_user, setAssigned_user] = useState(item.assigned_user);
 
-
   const { id } = useParams();
-  let userId = parseInt(id)
+  let userId = parseInt(id);
 
-  console.log(item.id, is_bought, userId, assigned_user);
+  // console.log(item.id, is_bought, userId, assigned_user);
 
   function playSound() {
     if (is_bought === false && isMuted === false) {
-      new Audio(popSound).play();
+      new Audio(chime).play();
     }
   }
 
@@ -32,12 +32,12 @@ function FriendsProfileWishlist( {item, isMuted} ) {
   }
 
   const updateItem = async () => {
-    setAssigned_user(userId)
+    setAssigned_user(userId);
     try {
       await updateItemBoughtByItemId(item.id, !is_bought, userId);
       setis_bought(!is_bought);
       confettiTrue();
-      playSound()
+      playSound();
     } catch (e) {
       console.log(e);
     }
@@ -50,8 +50,11 @@ function FriendsProfileWishlist( {item, isMuted} ) {
           <div className="notiglow"></div>
           <div className="notiborderglow"></div>
 
-          <div className="notibody"
-              style={is_bought && assigned_user !== userId ? {opacity: "50%"} : {}}
+          <div
+            className="notibody"
+            style={
+              is_bought && assigned_user !== userId ? { opacity: "50%" } : {}
+            }
           >
             <label className="container-checkmark">
               <input
@@ -72,8 +75,9 @@ function FriendsProfileWishlist( {item, isMuted} ) {
               target="_blank"
               className="friend-wish-list-item-link"
             >
-              <button className="button-friend-profile-wishlist"
-               disabled={is_bought && assigned_user !== userId ? true : false}
+              <button
+                className="button-friend-profile-wishlist"
+                disabled={is_bought && assigned_user !== userId ? true : false}
               >
                 Buy Item
               </button>

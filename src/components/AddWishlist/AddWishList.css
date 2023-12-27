@@ -2,16 +2,17 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 5rem 3rem;
+    margin: 0px 30px;
 }
 
 .add-wishlist-page-container{
-    width: 50rem;
+    width: 43rem;
     height: 40rem;
     margin: 0; 
 }
 
 .add-wishlist-title{
+    margin: 0;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px ;

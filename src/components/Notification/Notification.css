@@ -1,4 +1,5 @@
 .dropBtn {
+  letter-spacing: 1px;
   background-color: transparent; /*#9949ff;*/
   color: black; /*white;*/
   padding: 5px 5px 5px 0; /*16px;*/
@@ -7,6 +8,7 @@
   cursor: pointer;
   line-height: 2px;
   font-family: "Hepta Slab", serif;
+  font-weight: bolder;
 }
 .dropBtn::before {
   content: "";
@@ -27,7 +29,7 @@
 .dropBtn:hover,
 .dropBtn:focus {
   /* background-color: #9949ff; */
-  color: rgb(77, 15, 236);
+  color: rgb(255, 87, 87);
 }
 
 .dropdown {
