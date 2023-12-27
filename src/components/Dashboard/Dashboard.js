@@ -12,6 +12,9 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   const { setFriendsData } = useContext(FriendsContext);
+  const currentMonthNum = currentDate.getMonth() + 1;
+  const currentDayNum = currentDate.getDate();
+
   useEffect(() => {
     if (user === null) {
       navigate("/login");
@@ -44,6 +47,7 @@ function Dashboard({ user }) {
       console.log(error);
     }
   }
+
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
@@ -95,6 +99,8 @@ function Dashboard({ user }) {
         key={index}
         friendDetails={friendDetails}
         dashboardUserId={dashboardId}
+        currentMonthNum={currentMonthNum}
+        currentDayNum={currentDayNum}
       />
     );
   });
@@ -102,7 +108,7 @@ function Dashboard({ user }) {
   return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId }) {
+function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -120,14 +126,31 @@ function Friend({ friendDetails, dashboardUserId }) {
       month: "long",
     }
   );
+  let fullMonthOfUpcomingBirthdayNum = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    {
+      month: "numeric",
+    }
+  );
+
+  function friendContentClassNames(){
+    if(parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum && dayNumOfUpcomingBirthDay == currentDayNum){
+      return "dashboard-friend-card-container-today"
+    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum){
+      return "dashboard-friend-card-container-this-month"
+    }else{
+      return "dashboard-friend-card-container"
+    }
+  }
 
   return (
-    <div className="dashboard-friend-card-container">
+    <div className={friendContentClassNames()}>
       <Link
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-        <div className="dashboard-friend-card-top">
+    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum 
+      ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
@@ -142,7 +165,7 @@ function Friend({ friendDetails, dashboardUserId }) {
           </p>
         </div>
       </Link>
-    </div>
+      </div>
   );
 }
 
