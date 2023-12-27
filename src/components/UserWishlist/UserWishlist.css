@@ -39,15 +39,27 @@
   cursor: pointer;
 }
 
+.SortByDropdown {
+  margin-right: 140px;
+  margin-top: 5px;
+}
+
 .ErrorMsg {
   color: rgb(23, 22, 22);
 }
 
-.back-left-arrow-container {
+.back-sort-actions {
   display: flex;
   align-items: center;
   width: 50rem;
   padding: 25px;
+}
+
+.back-left-arrow-container {
+  display: flex;
+  align-items: left;
+  width: 50rem;
+  /* padding: 25px; */
 }
 
 @media screen and (max-width: 800px) {
