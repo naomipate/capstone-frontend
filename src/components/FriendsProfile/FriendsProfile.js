@@ -100,15 +100,25 @@ function FriendsProfile() {
       </div>
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
-          {friendInfoWishList.map((item) => {
-            return (
-              <FriendsProfileWishlist
-                item={item}
-                key={item.id}
-                isMuted={isMuted}
-              />
-            );
-          })}
+          <>
+            {friendInfoWishList.length === 0 ? (
+              <>
+                <li className="friend-wishlist-list-item">No wishlist items</li>
+              </>
+            ) : (
+              <>
+                {friendInfoWishList.map((item) => {
+                  return (
+                    <FriendsProfileWishlist
+                      item={item}
+                      key={item.id}
+                      isMuted={isMuted}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </>
         </ul>
       </div>
     </div>

@@ -1,5 +1,5 @@
 /* eslint-disable padded-blocks */
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";

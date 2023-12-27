@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
-import popSound from "../../../Assets/pop-sound.mp3";
+// import popSound from "../../../Assets/pop-sound.mp3";
 import chime from "../../../Assets/chime.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
