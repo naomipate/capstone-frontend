@@ -5,6 +5,7 @@
   align-items: center;
   text-align: center;
   margin: 5rem 3rem;
+  z-index: 0;
 }
 
 .user-wishlist {

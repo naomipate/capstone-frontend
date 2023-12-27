@@ -76,7 +76,11 @@ function App() {
             <Route path="/users/:id" element={<FoundUser />} />
             <Route
               path="/dashboard/:id/new"
-              element={<AddWishlist user={user} />}
+              element={
+                <RefreshContext.Provider value={refreshContextValue}>
+                  <AddWishlist user={user} />
+                </RefreshContext.Provider>
+              }
             />
             <Route
               path="/dashboard/:id/userwishlist"
