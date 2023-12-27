@@ -22,6 +22,7 @@ function EditableUserProfile({ user }) {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
     setUpdatedUser(storedUser);
+    //A comment
     //eslint-disable-next-line
   }, []);
   const handleOnChange = (id, value) => {
