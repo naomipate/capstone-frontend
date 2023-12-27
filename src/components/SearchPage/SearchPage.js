@@ -37,7 +37,7 @@ function Search() {
     });
     if (mainUser) {
       filtered = filtered.filter((element) => {
-        return element.user_name !== mainUser.user_name;
+        return element?.user_name !== mainUser?.user_name;
       });
     }
     setFilteredUsers(filtered.sort());
