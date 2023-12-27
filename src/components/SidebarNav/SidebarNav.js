@@ -83,7 +83,7 @@ function SidebarNav() {
               <Notification />
             </li> */}
             <li className="sidebarItem">
-              <NavLink to={"/dashboard/notification"}>Noti Page</NavLink>
+              <NavLink to={"/dashboard/notification"}>Notificiations</NavLink>
             </li>
           </ul>
         </div>

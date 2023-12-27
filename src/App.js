@@ -96,7 +96,11 @@ function App() {
             />
             <Route
               path="/dashboard/notification"
-              element={<NotificationPage />}
+              element={
+                <FriendsContext.Provider value={FriendsContextValue}>
+                  <NotificationPage />
+                </FriendsContext.Provider>
+              }
             />
             <Route
               path="/dashboard/:id/userwishlist"

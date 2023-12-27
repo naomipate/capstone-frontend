@@ -35,9 +35,11 @@ function Search() {
     let filtered = usersData.filter((user) => {
       return user.user_name.toLowerCase().includes(input);
     });
-    filtered = filtered.filter((element) => {
-      return element.user_name !== mainUser.user_name;
-    });
+    if (mainUser) {
+      filtered = filtered.filter((element) => {
+        return element.user_name !== mainUser.user_name;
+      });
+    }
     setFilteredUsers(filtered.sort());
   }
 

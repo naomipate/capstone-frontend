@@ -1,6 +1,32 @@
 & .__noti {
+  --mainColor: #9949ff;
+  --softPurple: #c89aff;
+  --lightPurple: #f1ebfa;
+  --darkPurple: #b561ff;
+  --mainFont: "Hepta slab";
+  font-family: var(--mainFont);
+  font-weight: 1rem;
+  font-size: 1.5rem;
   display: flex;
   flex-direction: row;
   text-align: center;
   margin: 10px;
+  max-width: 100%;
+  justify-content: space-between;
+  & .__btn {
+    color: white;
+    justify-content: center;
+    border-style: none;
+    background-color: var(--softPurple);
+    border-radius: 10px;
+    font-family: var(--mainFont);
+    font-weight: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    align-self: center;
+    padding: 10px;
+  }
+  & :hover {
+    color: var(--darkPurple);
+  }
 }
