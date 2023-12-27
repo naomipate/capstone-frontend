@@ -6,6 +6,7 @@ import { TbArrowLeft, TbCake } from "react-icons/tb";
 import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
+import { RefreshContext } from "../common/context/context";
 import { FriendsContext } from "../common/context/context";
 import userProfileImg from "../../Assets/profile-img-red.png";
 
@@ -13,6 +14,9 @@ function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
+  // const { setToggleRefresh } = useContext(RefreshContext);
+  const [sortByPrice, setSortByPrice] = useState("asc");
+  const [sortedItems, setSortedItems] = useState([]);
   const { setToggleUpdate } = useContext(FriendsContext);
 
   const { id, friendId } = useParams();
@@ -25,6 +29,7 @@ function FriendsProfile() {
   async function fetchList() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
+      console.log(result.data.friendsWishlist);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
     } catch (error) {
@@ -47,6 +52,45 @@ function FriendsProfile() {
     setIsMuted(!isMuted);
   }
 
+  function birthday(dob) {
+    // birthday set to new date
+    const dobObject = new Date(dob);
+    // EST DateTime Offset
+    const dateObjectESTTimeOffset = dobObject.getTimezoneOffset() * 60 * 1000;
+    // Set time to the EST offset
+    dobObject.setTime(dobObject.getTime() + dateObjectESTTimeOffset);
+    /* Changing month to a longer version and day to numeric so instead of Jan, 
+    we can get January and instead of 06, we can get 6. */
+    const dobMonthDay = dobObject.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+    });
+    return dobMonthDay;
+  }
+  const sortItems = () => {
+    if (Array.isArray(friendInfoWishList)) {
+      const sortedItemsCopy = [...friendInfoWishList];
+      console.log(sortedItemsCopy);
+      sortedItemsCopy.sort((a, b) => {
+        if (sortByPrice === "asc") {
+          return a.item_price - b.item_price;
+        } else {
+          return b.item_price - a.item_price;
+        }
+      });
+      setSortedItems(sortedItemsCopy);
+      console.log(sortedItems);
+    }
+  };
+
+  useEffect(() => {
+    sortItems();
+  }, [sortByPrice, friendInfoWishList]);
+
+  const handleSortPriceChange = (newSortPrice) => {
+    setSortByPrice(newSortPrice);
+  };
+
   return (
     <div className="friend-profile-container">
       <div className="friend-profile-info-top">
@@ -64,11 +108,7 @@ function FriendsProfile() {
             <div className="friend-profile-dob-container">
               <TbCake id="cake" size={"1.3rem"} />
               <p className="friend-user-dob">
-                {new Date(friendInfoProfile.dob)
-                  .toDateString()
-                  .split(" ")
-                  .splice(1, 2)
-                  .join(" ")}
+                {birthday(friendInfoProfile.dob)}
               </p>
             </div>
           </div>
@@ -88,6 +128,18 @@ function FriendsProfile() {
           <TbArrowLeft size={"2rem"} />
         </div>
 
+        {/* ------- Price sorting order ------ */}
+        <div>
+          <label htmlFor="priceSortOrder">Sort by:</label>
+          <select
+            id="priceSortOrder"
+            onChange={(e) => handleSortPriceChange(e.target.value)}
+          >
+            <option value="asc">Lowest Price</option>
+            <option value="desc">Highest Price</option>
+          </select>
+        </div>
+
         {isMuted === false ? (
           <div onClick={() => mute()} id="speaker-button">
             <PiSpeakerHighBold size={"1.7rem"} />
@@ -101,13 +153,13 @@ function FriendsProfile() {
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
           <>
-            {friendInfoWishList.length === 0 ? (
+            {sortedItems.length === 0 ? (
               <>
                 <li className="friend-wishlist-list-item">No wishlist items</li>
               </>
             ) : (
               <>
-                {friendInfoWishList.map((item) => {
+                {sortedItems.map((item) => {
                   return (
                     <FriendsProfileWishlist
                       item={item}
