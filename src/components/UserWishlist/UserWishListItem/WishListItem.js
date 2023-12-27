@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./WishListItem.css";
 import { IconContext } from "react-icons";
 import { TbEdit, TbTrash } from "react-icons/tb";
 
 function WishListItem({ item, handleEditClick, deleteWishlistItem }) {
+  const [sortByPrice, setSortByPrice] = useState("asc");
+
   return (
     <li key={item.id} className="user-wishlist-item-container">
       <div className="list-item-body">
@@ -30,6 +32,11 @@ function WishListItem({ item, handleEditClick, deleteWishlistItem }) {
                 ? item.link.slice(0, 21) + "..."
                 : item.link}
             </a>
+          </div>
+
+          <div className="list-item-price">
+            Price: ${item.item_price} <br />
+            (Approximate){" "}
           </div>
 
           <div>

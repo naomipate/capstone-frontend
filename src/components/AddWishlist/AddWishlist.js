@@ -13,6 +13,7 @@ function AddWishlist({ user, fetchWishlist }) {
   const [formData, setFormData] = useState({
     user_id: id,
     item_name: "",
+    item_price: "",
     link: "",
   });
 
@@ -32,6 +33,7 @@ function AddWishlist({ user, fetchWishlist }) {
       setFormData({
         user_id: id,
         item_name: "",
+        item_price: "",
         link: "",
       });
       navigate(`/dashboard/${id}/userwishlist`);

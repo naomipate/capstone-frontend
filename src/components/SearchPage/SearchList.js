@@ -26,7 +26,7 @@ function SearchList({ filteredUsers }) {
               to={`/users/${user.id}/`}
               className="search-list-profile-username"
             >
-              {user.user_name}
+              {user?.user_name}
             </Link>
             {toggleFullView && <SearchListBtn targetUser={user} />}
           </div>
