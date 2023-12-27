@@ -19,7 +19,7 @@
 
 .list-item-content {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 2fr 3fr 3fr 1fr;
   margin: 0 auto 0 auto;
   justify-content: space-evenly;
   padding: 0 1.25rem;

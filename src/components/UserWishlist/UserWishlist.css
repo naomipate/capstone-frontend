@@ -43,8 +43,8 @@
 }
 
 .SortByDropdown {
-  margin-left: 10px;
-  margin-left: 5px;
+  margin-right: 140px;
+  margin-top: 5px;
 }
 
 .ErrorMsg {
@@ -62,7 +62,7 @@
   display: flex;
   align-items: left;
   width: 50rem;
-  padding: 25px;
+  /* padding: 25px; */
 }
 
 @media screen and (max-width: 800px) {

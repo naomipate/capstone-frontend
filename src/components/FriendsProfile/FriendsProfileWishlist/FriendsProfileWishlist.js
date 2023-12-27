@@ -73,14 +73,14 @@ function FriendsProfileWishlist({ item, isMuted }) {
               to={item.link}
               target="_blank"
               className="friend-wish-list-item-link"
-            >
-              {/* ------- Price is added below -------------- */}
+            ></Link>
+            {/* ------- Price is added below -------------- */}
 
-              <div className="notititle">
-                ${item.item_price} <br /> (Approximate)
-              </div>
-              <div to={item.price} className="friend-wish-list-item-link"></div>
-
+            <div className="notititle">
+              ${item.item_price} <br /> (Approximate)
+            </div>
+            {/* <div to={item.price}></div> */}
+            <Link>
               <button
                 className="button-friend-profile-wishlist"
                 disabled={is_bought && assigned_user !== userId ? true : false}

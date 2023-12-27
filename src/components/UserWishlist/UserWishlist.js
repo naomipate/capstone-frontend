@@ -107,7 +107,9 @@ function UserWishlist({ handleCreateWishlist, user }) {
           </Link>
         </div>
 
+        {/* ------- Price sorting order ------ */}
         <div className="back-sort-actions">
+          {" "}
           <IconContext.Provider value={{ size: "2rem" }}>
             <div
               onClick={() => navigate(`/dashboard/${user_id}`)}
@@ -115,8 +117,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
             >
               <TbArrowLeft />
             </div>
-            {/* ------- Price sorting order ------ */}
-
             <div className="SortByDropdown">
               <label htmlFor="priceSortOrder">Sort by:</label>
               <select

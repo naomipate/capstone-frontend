@@ -57,12 +57,14 @@ function SidebarNav() {
     <div className="sidebar-nav-container">
       <div className="sidebar-nav-content">
         <div className="sidebar-user-info">
-          <img
-            className="sidebarImage"
-            src={userProfileImg}
-            alt="profile_img"
-          />
-          <h2 className="sidebarUsername">{user.user_name}</h2>
+          <NavLink to={`/dashboard/${user?.id}/editProfile`}>
+            <img
+              className="sidebarImage"
+              src={userProfileImg}
+              alt="profile_img"
+            />
+            <h2 className="sidebarUsername">{user.user_name}</h2>
+          </NavLink>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
             {user.dob ? formatDate(user.dob) : ""}
@@ -73,24 +75,22 @@ function SidebarNav() {
         <div className="sidebarListContainer">
           <ul className="sidebarList">
             <li key="dashboard" className="sidebarItem">
-              <NavLink 
-              end to={`/dashboard/${user?.id}`}
-              >Dashboard</NavLink>
+              <NavLink end to={`/dashboard/${user?.id}`}>
+                Dashboard
+              </NavLink>
             </li>
             <li key="search" className="sidebarItem">
-              <NavLink
-               to={`/search-page`}
-               >Find Friends</NavLink>
+              <NavLink to={`/search-page`}>Find Friends</NavLink>
             </li>
             <li key="friends" className="sidebarItem">
-              <NavLink to={`/dashboard/${user?.id}/friends`}
-              >Friends: {friendsCount ? friendsCount : 0}</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/friends`}>
+                Friends: {friendsCount ? friendsCount : 0}
+              </NavLink>
             </li>
             <li key="wishlist" className="sidebarItem">
-              <NavLink
-               to={`/dashboard/${user?.id}/userwishlist`}
-
-               >Wish List</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/userwishlist`}>
+                Wish List
+              </NavLink>
             </li>
             {/* <li key="notification" className="sidebarItem">
               <Notification />

@@ -119,11 +119,10 @@
 
 .notibody {
   display: grid;
-  grid-template-columns: 1fr 7fr 2fr;
   margin: auto 0 auto 0;
   align-items: center;
   justify-content: center;
-  grid-template-columns: 1fr 7fr 2fr;
+  grid-template-columns: 1fr 3fr 0.4fr 4fr 2fr;
   justify-content: space-evenly;
   color: #ededed;
   padding: 0 1.25rem;
@@ -216,7 +215,7 @@
   transform: translateX(0.15rem);
 }
 
-.notibody {
+/* .notibody {
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
   margin: auto 0 auto 0;
@@ -231,7 +230,7 @@
   height: 27px;
   width: auto;
   padding-left: 60px;
-}
+} */
 
 .friend-wish-list:hover .notibody {
   transform: translateX(0.25rem);

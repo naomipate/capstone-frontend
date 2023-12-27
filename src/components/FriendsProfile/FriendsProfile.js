@@ -14,7 +14,7 @@ function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
-  const { setToggleRefresh } = useContext(RefreshContext);
+  // const { setToggleRefresh } = useContext(RefreshContext);
   const [sortByPrice, setSortByPrice] = useState("asc");
   const [sortedItems, setSortedItems] = useState([]);
   const { setToggleUpdate } = useContext(FriendsContext);
