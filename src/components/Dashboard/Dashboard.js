@@ -147,6 +147,7 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
     }
   );
 
+
   function friendContentClassNames(){
     if(parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum && dayNumOfUpcomingBirthDay == currentDayNum){
       return "dashboard-friend-card-container-today"
