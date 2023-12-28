@@ -17,6 +17,7 @@ function SidebarNav() {
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
+    console.log(storedUser);
     setUser(storedUser);
     fetchFriends(storedUser?.id);
     // eslint-disable-next-line
@@ -27,6 +28,7 @@ function SidebarNav() {
       setToggleUpdate(false);
       let userFromStorage = localStorage.getItem("user");
       let storedUser = JSON.parse(userFromStorage);
+      console.log(storedUser);
       setUser(storedUser);
     }
     // eslint-disable-next-line
@@ -35,6 +37,9 @@ function SidebarNav() {
   function formatDate(inputDate) {
     // Parse the input string into a Date object
     const dateObject = new Date(inputDate);
+    // EST DateTime Offset
+    const dateObjectESTTimeOffset = dateObject.getTimezoneOffset() * 60 * 1000;
+    dateObject.setTime(dateObject.getTime() + dateObjectESTTimeOffset);
     // Options for formatting the date
     const options = { month: "long", day: "numeric" };
 
@@ -96,7 +101,7 @@ function SidebarNav() {
               <Notification />
             </li> */}
             <li className="sidebarItem">
-              <NavLink to={"/dashboard/notification"}>Noti Page</NavLink>
+              <NavLink to={"/dashboard/notification"}>Notificiations</NavLink>
             </li>
           </ul>
         </div>

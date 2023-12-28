@@ -52,6 +52,21 @@ function FriendsProfile() {
     setIsMuted(!isMuted);
   }
 
+  function birthday(dob) {
+    // birthday set to new date
+    const dobObject = new Date(dob);
+    // EST DateTime Offset
+    const dateObjectESTTimeOffset = dobObject.getTimezoneOffset() * 60 * 1000;
+    // Set time to the EST offset
+    dobObject.setTime(dobObject.getTime() + dateObjectESTTimeOffset);
+    /* Changing month to a longer version and day to numeric so instead of Jan, 
+    we can get January and instead of 06, we can get 6. */
+    const dobMonthDay = dobObject.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+    });
+    return dobMonthDay;
+  }
   const sortItems = () => {
     if (Array.isArray(friendInfoWishList)) {
       const sortedItemsCopy = [...friendInfoWishList];
@@ -93,11 +108,7 @@ function FriendsProfile() {
             <div className="friend-profile-dob-container">
               <TbCake id="cake" size={"1.3rem"} />
               <p className="friend-user-dob">
-                {new Date(friendInfoProfile.dob)
-                  .toDateString()
-                  .split(" ")
-                  .splice(1, 2)
-                  .join(" ")}
+                {birthday(friendInfoProfile.dob)}
               </p>
             </div>
           </div>
@@ -141,15 +152,25 @@ function FriendsProfile() {
       </div>
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
-          {sortedItems.map((item) => {
-            return (
-              <FriendsProfileWishlist
-                item={item}
-                key={item.id}
-                isMuted={isMuted}
-              />
-            );
-          })}
+          <>
+            {sortedItems.length === 0 ? (
+              <>
+                <li className="friend-wishlist-list-item">No wishlist items</li>
+              </>
+            ) : (
+              <>
+                {sortedItems.map((item) => {
+                  return (
+                    <FriendsProfileWishlist
+                      item={item}
+                      key={item.id}
+                      isMuted={isMuted}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </>
         </ul>
       </div>
     </div>
