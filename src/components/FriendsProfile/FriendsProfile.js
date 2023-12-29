@@ -13,12 +13,14 @@ import userProfileImg from "../../Assets/profile-img-red.png";
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
+  const [friendDob, setFriendDob] = useState("");
   const [isMuted, setIsMuted] = useState(false);
   const { setToggleUpdate } = useContext(FriendsContext);
   let currentDate = new Date(Date.now()); // Time from system
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
+
   useEffect(() => {
     fetchList();
     // eslint-disable-next-line
@@ -28,6 +30,7 @@ function FriendsProfile() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       setFriendInfoProfile(result.data.friendProfile);
+      setFriendDob(result.data.friendProfile.dob)
       setFriendInfoWishList(result.data.friendsWishlist);
       console.log(result);
     } catch (error) {
@@ -92,7 +95,7 @@ function FriendsProfile() {
     }
   };
 
-  let dobInMili = upcomingDateCalc(friendInfoProfile.dob);
+  let dobInMili = upcomingDateCalc(friendDob);
 
   let dayNumOfUpcomingBirthDay = new Date(
     friendInfoProfile.dob
@@ -104,7 +107,7 @@ function FriendsProfile() {
     month: "long",
   });
 
-  console.log(friendInfoProfile);
+  console.log(dobInMili);
 
   return (
     <div className="friend-profile-container">

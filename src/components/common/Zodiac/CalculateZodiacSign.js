@@ -74,9 +74,10 @@ function CalculateZodiacSign({ dobInMili }) {
   } else if (day < days[month]) {
     month--;
   }
+  
   return <>
   {signs[month].zodiacSign} 
-  {/* {signs[month].zodiacInfo} */}
+  {signs[month].zodiacInfo} 
   </>;
 }
 
