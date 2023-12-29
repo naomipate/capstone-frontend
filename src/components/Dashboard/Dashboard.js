@@ -48,7 +48,6 @@ function Dashboard({ user }) {
     }
   }
 
-
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
     // DOB date
@@ -59,30 +58,39 @@ function Dashboard({ user }) {
       date.setFullYear(currentDate.getFullYear())
     );
     // UpcomingDate - now = Time before each date.
+    let oneMiliBeforeTwentyFourHrs = 86399999;
     let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      return upcomingDateWithCurrentYear.setTime(
-        upcomingDateWithCurrentYear.getTime() + upcomingDateESTTimeZoneOffset
+      upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
       );
+      console.log(upcomingDateWithCurrentYear);
+      return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      return upcomingDateWithNextYear.setTime(
-        upcomingDateWithNextYear.getTime() + upcomingDateESTTimeZoneOffset
+      upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
       );
+      // console.log(upcomingDateWithNextYear);
+      return upcomingDateWithNextYear;
     }
   };
 
   const todayDateCard = () => {
     return (
-        <div className="dashboard-container">
-          <p className="dashboard-heading">Upcoming Birthdays</p>
-          {friendsList}
-        </div>
+      <div className="dashboard-container">
+        <p className="dashboard-heading">Upcoming Birthdays</p>
+        {friendsList}
+      </div>
     );
   };
 
@@ -108,7 +116,12 @@ function Dashboard({ user }) {
   return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum}) {
+function Friend({
+  friendDetails,
+  dashboardUserId,
+  currentMonthNum,
+  currentDayNum,
+}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -133,13 +146,16 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
     }
   );
 
-  function friendContentClassNames(){
-    if(parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum && dayNumOfUpcomingBirthDay == currentDayNum){
-      return "dashboard-friend-card-container-today"
-    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum){
-      return "dashboard-friend-card-container-this-month"
-    }else{
-      return "dashboard-friend-card-container"
+  function friendContentClassNames() {
+    if (
+      parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum &&
+      dayNumOfUpcomingBirthDay == currentDayNum
+    ) {
+      return "dashboard-friend-card-container-today";
+    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum) {
+      return "dashboard-friend-card-container-this-month";
+    } else {
+      return "dashboard-friend-card-container";
     }
   }
 
@@ -149,8 +165,13 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum 
-      ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
+        <div
+          className={
+            parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum
+              ? "dashboard-friend-card-content-this-month"
+              : "dashboard-friend-card-content"
+          }
+        >
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
@@ -165,7 +186,7 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
           </p>
         </div>
       </Link>
-      </div>
+    </div>
   );
 }
 

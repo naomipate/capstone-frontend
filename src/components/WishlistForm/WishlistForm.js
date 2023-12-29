@@ -55,6 +55,20 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             onChange={(e) => handleInputChange(e)}
             className="wish-list-form-input"
           />
+
+          <label htmlFor="itemPrice" className="wish-list-form-title">
+            Approximate price
+          </label>
+          <input
+            required
+            type="number"
+            id="item_price"
+            name="item_price"
+            value={formData?.item_price || ""}
+            onChange={(e) => handleInputChange(e)}
+            className="wish-list-form-input"
+          />
+
           <button className="wish-list-button-container" type="submit">
             Submit
           </button>

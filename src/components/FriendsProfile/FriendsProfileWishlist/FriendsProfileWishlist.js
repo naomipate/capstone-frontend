@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
-import popSound from "../../../Assets/pop-sound.mp3";
+// import popSound from "../../../Assets/pop-sound.mp3";
 import chime from "../../../Assets/chime.mp3";
 import { updateItemBoughtByItemId } from "../../API/API";
 
@@ -74,7 +74,14 @@ function FriendsProfileWishlist({ item, isMuted }) {
               to={item.link}
               target="_blank"
               className="friend-wish-list-item-link"
-            >
+            ></Link>
+            {/* ------- Price is added below -------------- */}
+
+            <div className="notititle">
+              ${item.item_price} <br /> (Approximate)
+            </div>
+            {/* <div to={item.price}></div> */}
+            <Link>
               <button
                 className="button-friend-profile-wishlist"
                 disabled={is_bought && assigned_user !== userId ? true : false}

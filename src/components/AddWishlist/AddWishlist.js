@@ -1,5 +1,5 @@
 /* eslint-disable padded-blocks */
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
@@ -13,6 +13,7 @@ function AddWishlist({ user, fetchWishlist }) {
   const [formData, setFormData] = useState({
     user_id: id,
     item_name: "",
+    item_price: "",
     link: "",
   });
 
@@ -32,6 +33,7 @@ function AddWishlist({ user, fetchWishlist }) {
       setFormData({
         user_id: id,
         item_name: "",
+        item_price: "",
         link: "",
       });
       navigate(`/dashboard/${id}/userwishlist`);

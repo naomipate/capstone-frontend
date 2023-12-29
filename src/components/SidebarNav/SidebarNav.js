@@ -17,6 +17,7 @@ function SidebarNav() {
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
+    console.log(storedUser);
     setUser(storedUser);
     fetchFriends(storedUser?.id);
     // eslint-disable-next-line
@@ -27,6 +28,7 @@ function SidebarNav() {
       setToggleUpdate(false);
       let userFromStorage = localStorage.getItem("user");
       let storedUser = JSON.parse(userFromStorage);
+      console.log(storedUser);
       setUser(storedUser);
     }
     // eslint-disable-next-line
@@ -35,6 +37,9 @@ function SidebarNav() {
   function formatDate(inputDate) {
     // Parse the input string into a Date object
     const dateObject = new Date(inputDate);
+    // EST DateTime Offset
+    const dateObjectESTTimeOffset = dateObject.getTimezoneOffset() * 60 * 1000;
+    dateObject.setTime(dateObject.getTime() + dateObjectESTTimeOffset);
     // Options for formatting the date
     const options = { month: "long", day: "numeric" };
 
@@ -57,12 +62,14 @@ function SidebarNav() {
     <div className="sidebar-nav-container">
       <div className="sidebar-nav-content">
         <div className="sidebar-user-info">
-          <img
-            className="sidebarImage"
-            src={userProfileImg}
-            alt="profile_img"
-          />
-          <h2 className="sidebarUsername">{user.user_name}</h2>
+          <NavLink to={`/dashboard/${user?.id}/editProfile`}>
+            <img
+              className="sidebarImage"
+              src={userProfileImg}
+              alt="profile_img"
+            />
+            <h2 className="sidebarUsername">{user.user_name}</h2>
+          </NavLink>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
             {user.dob ? formatDate(user.dob) : ""}
@@ -73,30 +80,28 @@ function SidebarNav() {
         <div className="sidebarListContainer">
           <ul className="sidebarList">
             <li key="dashboard" className="sidebarItem">
-              <NavLink 
-              end to={`/dashboard/${user?.id}`}
-              >Dashboard</NavLink>
+              <NavLink end to={`/dashboard/${user?.id}`}>
+                Dashboard
+              </NavLink>
             </li>
             <li key="search" className="sidebarItem">
-              <NavLink
-               to={`/search-page`}
-               >Find Friends</NavLink>
+              <NavLink to={`/search-page`}>Find Friends</NavLink>
             </li>
             <li key="friends" className="sidebarItem">
-              <NavLink to={`/dashboard/${user?.id}/friends`}
-              >Friends: {friendsCount ? friendsCount : 0}</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/friends`}>
+                Friends: {friendsCount ? friendsCount : 0}
+              </NavLink>
             </li>
             <li key="wishlist" className="sidebarItem">
-              <NavLink
-               to={`/dashboard/${user?.id}/userwishlist`}
-
-               >Wish List</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/userwishlist`}>
+                Wish List
+              </NavLink>
             </li>
             {/* <li key="notification" className="sidebarItem">
               <Notification />
             </li> */}
             <li className="sidebarItem">
-              <NavLink to={"/dashboard/notification"}>Noti Page</NavLink>
+              <NavLink to={"/dashboard/notification"}>Notificiations</NavLink>
             </li>
           </ul>
         </div>

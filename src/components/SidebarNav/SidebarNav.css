@@ -1,99 +1,95 @@
 .sidebar-nav-container {
-    background-color: #ffeeee;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 250px;
-    height: 450px;
-    border-radius: 15px;
-    /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
+  background-color: #ffeeee;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 250px;
+  height: 450px;
+  border-radius: 15px;
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
     rgba(17, 17, 26, 0.02) 0px 4px 8px; */
 }
 
-.sidebar-nav-content{
-    text-align: left;
-    padding-top: 30px;
+.sidebar-nav-content {
+  text-align: left;
+  padding-top: 30px;
 }
-.sidebar-user-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px;
-    letter-spacing: 1px;
-    
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  letter-spacing: 1px;
 }
 
 .sidebarImage {
-    height: 100px;
-    width: auto;
-    border-radius: 50px;
-      /* box-shadow: 5px 5px 10px #ffa5a5, -5px -5px 10px #f8f0fd; */
+  height: 100px;
+  width: auto;
+  border-radius: 50px;
+  /* box-shadow: 5px 5px 10px #ffa5a5, -5px -5px 10px #f8f0fd; */
 }
 
 .sidebarUsername {
-    /* font-family: 'Aleo', serif; */
-    font-family: 'Hepta Slab', serif;
-    margin: 0;
-    padding: 15px 0;
+  /* font-family: 'Aleo', serif; */
+  font-family: "Hepta Slab", serif;
+  margin: 0;
+  padding: 15px 0;
 }
 
 .sidebarBirthday {
-    font-family: 'Hepta Slab', serif;
-    margin: 0;
-    font-weight: bolder;
-
+  font-family: "Hepta Slab", serif;
+  margin: 0;
+  font-weight: bolder;
 }
 
 .sidebarDivider {
-    justify-content: center;
-    width: 75%;
-    margin-bottom: 20px;
+  justify-content: center;
+  width: 75%;
+  margin-bottom: 20px;
 }
 
 .sidebarListContainer {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .sidebarList {
-    list-style-type: none;
-    padding-left: 0;
-
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .sidebarList a {
-    color: black;
-    text-decoration: none;
-    background-color: transparent;
-    transition: 0.3s ease-in-out;
+  color: black;
+  text-decoration: none;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
 }
 
 .sidebarList a:hover {
-    font-weight: bolder;
-    color: rgb(244, 88, 88);
+  font-weight: bolder;
+  color: rgb(244, 88, 88);
 }
-
 
 .sidebarItem {
-    letter-spacing: 1px;
-    color: rgb(61, 61, 61);
-    text-decoration: none;
-    background-color: transparent;
-    transition: 0.3s ease-in-out;
-    font-family: 'Hepta Slab', serif;
-    margin: 13px 0;
-    font-weight: bolder;
+  letter-spacing: 1px;
+  color: rgb(61, 61, 61);
+  text-decoration: none;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+  font-family: "Hepta Slab", serif;
+  margin: 13px 0;
+  font-weight: bolder;
 }
 
-a.active{
-    color: rgb(255, 87, 87);
+a.active {
+  color: rgb(255, 87, 87);
 }
 
-.sidebarBirthday{
-display: flex;
-align-items: end;
+.sidebarBirthday {
+  display: flex;
+  align-items: flex-end;
 }
 
-#cake{
-    padding-right: 6px;
-   }
+#cake {
+  padding-right: 6px;
+}
