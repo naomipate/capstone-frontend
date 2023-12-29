@@ -158,7 +158,6 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
     }
   }
 
-
   return (
     <div className={friendContentClassNames()}>
       <Link
