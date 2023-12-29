@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "400px",
@@ -7,14 +7,14 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 40.7484415,
+  lng: -73.9882624,
 };
 
 function GoogleMapsAPI() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "YOUR_API_KEY",
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
   });
 
   const [map, setMap] = React.useState(null);
@@ -39,11 +39,14 @@ function GoogleMapsAPI() {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
+      <Marker position={center} />
       {/* Child components, such as markers, info windows, etc. */}
       <></>
     </GoogleMap>
   ) : (
-    <></>
+    <>
+      <p>Loading is in Progress</p>
+    </>
   );
 }
 
