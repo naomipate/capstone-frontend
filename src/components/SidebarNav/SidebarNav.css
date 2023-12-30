@@ -6,8 +6,6 @@
   width: 250px;
   height: 450px;
   border-radius: 15px;
-  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
-    rgba(17, 17, 26, 0.02) 0px 4px 8px; */
 }
 
 .sidebar-nav-content {
@@ -27,11 +25,9 @@
   height: 100px;
   width: auto;
   border-radius: 50px;
-  /* box-shadow: 5px 5px 10px #ffa5a5, -5px -5px 10px #f8f0fd; */
 }
 
 .sidebarUsername {
-  /* font-family: 'Aleo', serif; */
   font-family: "Hepta Slab", serif;
   margin: 0;
   padding: 15px 0;
