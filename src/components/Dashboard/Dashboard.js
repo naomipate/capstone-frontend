@@ -48,7 +48,6 @@ function Dashboard({ user }) {
     }
   }
 
-
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
     // DOB date
@@ -88,10 +87,10 @@ function Dashboard({ user }) {
 
   const todayDateCard = () => {
     return (
-        <div className="dashboard-container">
-          <p className="dashboard-heading">Upcoming Birthdays</p>
-          {friendsList}
-        </div>
+      <div className="dashboard-container">
+        <p className="dashboard-heading">Upcoming Birthdays</p>
+        {friendsList}
+      </div>
     );
   };
 
@@ -117,7 +116,12 @@ function Dashboard({ user }) {
   return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum}) {
+function Friend({
+  friendDetails,
+  dashboardUserId,
+  currentMonthNum,
+  currentDayNum,
+}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -142,14 +146,16 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
     }
   );
 
-
-  function friendContentClassNames(){
-    if(parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum && dayNumOfUpcomingBirthDay == currentDayNum){
-      return "dashboard-friend-card-container-today"
-    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum){
-      return "dashboard-friend-card-container-this-month"
-    }else{
-      return "dashboard-friend-card-container"
+  function friendContentClassNames() {
+    if (
+      parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum &&
+      dayNumOfUpcomingBirthDay == currentDayNum
+    ) {
+      return "dashboard-friend-card-container-today";
+    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum) {
+      return "dashboard-friend-card-container-this-month";
+    } else {
+      return "dashboard-friend-card-container";
     }
   }
 
@@ -159,8 +165,13 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum 
-      ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
+        <div
+          className={
+            parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum
+              ? "dashboard-friend-card-content-this-month"
+              : "dashboard-friend-card-content"
+          }
+        >
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
@@ -170,12 +181,12 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
           <p className="dashboard-card-text">
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <p className="dashboard-card-text-zodiac">
-            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
-          </p>
+          <div className="dashboard-card-text-zodiac">
+            <CalculateZodiacSign dobInMili={dobInMili} />
+          </div>
         </div>
       </Link>
-      </div>
+    </div>
   );
 }
 
