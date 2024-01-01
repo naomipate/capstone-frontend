@@ -11,6 +11,7 @@ import {
 } from "./components/common/context/context";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
+const Map = React.lazy(() => import("./components/common/GoogleMaps/Map"));
 
 const NotificationPage = React.lazy(() =>
   import("./components/Notification/NotificationPage")
@@ -147,6 +148,7 @@ function App() {
                   </WishlistContext.Provider>
                 }
               />
+              <Route path="/dashboard/events" element={<Map />} />
             </Routes>
           </div>
         </main>
