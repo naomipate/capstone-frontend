@@ -110,6 +110,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
 
   useEffect(() => {
     sortItems();
+    // eslint-disable-next-line
   }, [sortByPrice, formData]);
 
   const handleSortPriceChange = (newSortPrice) => {

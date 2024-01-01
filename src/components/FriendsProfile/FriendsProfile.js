@@ -6,7 +6,6 @@ import { TbArrowLeft, TbCake } from "react-icons/tb";
 import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
-import { RefreshContext } from "../common/context/context";
 import { FriendsContext } from "../common/context/context";
 import userProfileImg from "../../Assets/profile-img-red.png";
 
@@ -14,7 +13,6 @@ function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
-  // const { setToggleRefresh } = useContext(RefreshContext);
   const [sortByPrice, setSortByPrice] = useState("asc");
   const [sortedItems, setSortedItems] = useState([]);
   const { setToggleUpdate } = useContext(FriendsContext);
@@ -85,6 +83,7 @@ function FriendsProfile() {
 
   useEffect(() => {
     sortItems();
+    // eslint-disable-next-line
   }, [sortByPrice, friendInfoWishList]);
 
   const handleSortPriceChange = (newSortPrice) => {

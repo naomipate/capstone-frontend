@@ -33,7 +33,7 @@
         text-align: center;
         align-self: center;
         border: none;
-        color: white;
+        /* color: white; */
         background-color: var(--softPurple);
         width: 100px;
         height: 75%;

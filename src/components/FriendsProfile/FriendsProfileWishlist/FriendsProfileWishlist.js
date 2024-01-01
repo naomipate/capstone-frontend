@@ -13,8 +13,6 @@ function FriendsProfileWishlist({ item, isMuted }) {
   const { id } = useParams();
   let userId = parseInt(id);
 
-  // console.log(item.id, is_bought, userId, assigned_user);
-
   function playSound() {
     if (is_bought === false && isMuted === false) {
       new Audio(chime).play();
