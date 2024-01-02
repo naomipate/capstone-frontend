@@ -13,9 +13,20 @@
 .search-page-content {
   height: 600px;
   width: 43rem;
-  background: #f1ebfa;
-  border-radius: 25px;
-  box-shadow: 9px 9px 28px #f5f5f5, -9px -9px 28px #ffffff;
+  /* background-image: url("../../Assets/purple-glitter.png"); */
+  background-size: 200%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: #f1ebfa;
+  border-radius: 10px;
+}
+
+.search-page-content-background{
+  height: 600px;
+  width: 43rem;
+  /* border-radius: 10px; */
+  /* backdrop-filter: blur(3px); */
 }
 
 .search-page-title {
@@ -23,7 +34,7 @@
   font-size: 1.6rem;
   color: #010101;
   text-align: center;
-  margin-top: 30px;
+  padding-top: 30px;
 }
 
 .search-box {

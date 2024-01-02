@@ -4,8 +4,8 @@
   flex-direction: column;
   text-align: center;
   width: 250px;
-  height: 450px;
-  border-radius: 15px;
+  height: 470px;
+  border-radius: 10px;
   /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
     rgba(17, 17, 26, 0.02) 0px 4px 8px; */
 }

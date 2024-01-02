@@ -28,6 +28,13 @@ function FriendsProfileWishlist({ item, isMuted }) {
         spread: 70,
         origin: { y: 0.6 },
       });
+      // return confetti({
+      //   scalar: 2,
+      //   spread: 200,
+      //   particleCount: 50,
+      //   origin: { y: -0.1 },
+      //   startVelocity: -35
+      // });
     }
   }
 
@@ -70,18 +77,15 @@ function FriendsProfileWishlist({ item, isMuted }) {
             <div className="notititle">
               {item.item_name.charAt(0).toUpperCase() + item.item_name.slice(1)}
             </div>
-            <Link
-              to={item.link}
-              target="_blank"
-              className="friend-wish-list-item-link"
-            ></Link>
             {/* ------- Price is added below -------------- */}
 
             <div className="notititle">
               ${item.item_price} <br /> (Approximate)
             </div>
             {/* <div to={item.price}></div> */}
-            <Link>
+            <Link
+            to={item?.link}
+              target="_blank">
               <button
                 className="button-friend-profile-wishlist"
                 disabled={is_bought && assigned_user !== userId ? true : false}
