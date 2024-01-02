@@ -148,6 +148,10 @@ a {
   text-decoration: none;
 }
 
+zodiacInfo {
+  font-size: 1rem;
+}
+
 @media only screen and (max-width: 900px) {
   .dashboard-friend-card-container {
     /* width: 80%; */

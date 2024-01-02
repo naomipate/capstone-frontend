@@ -1,27 +1,10 @@
-import { hover } from "@testing-library/user-event/dist/hover";
-import {
-  TbZodiacAquarius,
-  TbZodiacPisces,
-  TbZodiacAries,
-  TbZodiacTaurus,
-  TbZodiacGemini,
-  TbZodiacCancer,
-  TbZodiacLeo,
-  TbZodiacVirgo,
-  TbZodiacLibra,
-  TbZodiacScorpio,
-  TbZodiacSagittarius,
-  TbZodiacCapricorn,
-} from "react-icons/tb";
-import "./Zodiac.css"
+import React from "react";
 
-export function calculateZodiacSign( dobInMili ){
+function ZodiacInfo({ dobInMili }) {
   let dobDate = new Date(dobInMili);
   const days = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
   const signs = [
     {
-      zodiacName: "Aquarius",
-      zodiacSign: <TbZodiacAquarius />,
       zodiacInfo: [
         "Innovative and Unique",
         "Humanitarian and Social Causes",
@@ -29,8 +12,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Pisces",
-      zodiacSign: <TbZodiacPisces />,
       zodiacInfo: [
         "Creative and Imaginative",
         "Compassionate and Spiritual",
@@ -38,8 +19,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Aries",
-      zodiacSign: <TbZodiacAries />,
       zodiacInfo: [
         "Adventure-Oriented",
         "Fitness and Activity",
@@ -47,8 +26,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Taurus",
-      zodiacSign: <TbZodiacTaurus />,
       zodiacInfo: [
         "Luxurious and Comfortable",
         "Practical and Long-lasting",
@@ -56,8 +33,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Gemini",
-      zodiacSign: <TbZodiacGemini />,
       zodiacInfo: [
         "Intellectually Stimulating",
         "Communication and Tech Gadgets",
@@ -65,8 +40,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Cancer",
-      zodiacSign: <TbZodiacCancer />,
       zodiacInfo: [
         "Sentimental and Personalized",
         " Home and Family-Oriented",
@@ -74,8 +47,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Leo",
-      zodiacSign: <TbZodiacLeo />,
       zodiacInfo: [
         "Regal and Glamorous",
         "Celebration and Entertainment",
@@ -83,8 +54,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Virgo",
-      zodiacSign: <TbZodiacVirgo />,
       zodiacInfo: [
         "Practical and Organized",
         "Health and Wellness",
@@ -92,8 +61,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Libra",
-      zodiacSign: <TbZodiacLibra />,
       zodiacInfo: [
         "Harmony and Aesthetics",
         "Social and Relationship-Oriented",
@@ -101,8 +68,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Scorpio",
-      zodiacSign: <TbZodiacScorpio />,
       zodiacInfo: [
         "Intense and Passionate",
         "Deep Emotional Connections",
@@ -110,8 +75,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Sagittarius",
-      zodiacSign: <TbZodiacSagittarius />,
       zodiacInfo: [
         "Adventure and Exploration",
         "Optimism and Learning",
@@ -119,8 +82,6 @@ export function calculateZodiacSign( dobInMili ){
       ],
     },
     {
-      zodiacName: "Capricorn",
-      zodiacSign: <TbZodiacCapricorn />,
       zodiacInfo: [
         "Ambitious and Practical",
         "Quality and Longevity",
@@ -137,10 +98,12 @@ export function calculateZodiacSign( dobInMili ){
     month--;
   }
 
-
-  // let array = [signs[month].zodiacSign, signs[month].zodiacInfo]
-  console.log(signs[month]);
-
-  return signs[month]
+  return (
+    <>
+      {signs[month].zodiacInfo[0]}, {signs[month].zodiacInfo[1]},{" "}
+      {signs[month].zodiacInfo[2]}
+    </>
+  );
 }
 
+export default ZodiacInfo;
