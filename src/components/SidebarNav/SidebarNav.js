@@ -17,7 +17,6 @@ function SidebarNav() {
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
-    console.log(storedUser);
     setUser(storedUser);
     fetchFriends(storedUser?.id);
     // eslint-disable-next-line
@@ -95,11 +94,8 @@ function SidebarNav() {
                 Wish List
               </NavLink>
             </li>
-            {/* <li key="notification" className="sidebarItem">
-              <Notification />
-            </li> */}
             <li className="sidebarItem">
-              <NavLink to={"/dashboard/notification"}>Notificiations</NavLink>
+              <NavLink to={"/dashboard/notification"}>Notifications</NavLink>
             </li>
             <li key="profile" className="sidebarItem">
               <NavLink to={`/dashboard/${user?.id}/editProfile`}>Profile</NavLink>

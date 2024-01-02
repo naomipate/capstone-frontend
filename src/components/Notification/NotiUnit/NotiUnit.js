@@ -4,12 +4,19 @@ import { addNewFriend, updateNotification } from "../../API/API";
 import { toast } from "react-toastify";
 import { FriendsContext } from "../../common/context/context";
 
+// Icon Imports
+import { IoMdMore } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
+
 function NotiUnit({ data, handleDeleteNoti }) {
   const { setToggleUpdate } = useContext(FriendsContext);
   const [collection, setCollection] = useState(data);
   const [formatDate, setFormatDate] = useState("");
   const [isReadValue, setIsReadValue] = useState(data?.is_read);
   const [notiId, setNotiId] = useState(null);
+  const [show, setShow] = useState(false);
   useEffect(() => {
     dateParser(collection.date_stamp);
     setIsReadValue(collection?.is_read);
@@ -66,9 +73,21 @@ function NotiUnit({ data, handleDeleteNoti }) {
             onChange={(e) => handleOnChange(e.target.checked)}
           />
           <p>{formatDate}</p>
-          <p>{collection?.msg_type}</p>
           <p>{collection?.messages}</p>
-          <button className="__btn">Delete</button>
+          <div className="__dropdown">
+            <button className="__options" onClick={() => setShow(!show)}>
+              <IoMdMore />
+            </button>
+            <div className={`__dropdownContent ${show ? "show" : ""}`}>
+              <div className="__contentList">
+                <button className="__item">
+                  <MdDelete />
+                  <span>&#8192;</span>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
         <>
@@ -80,26 +99,38 @@ function NotiUnit({ data, handleDeleteNoti }) {
                 onChange={(e) => handleOnChange(e.target.checked)}
               />
               <p>{formatDate}</p>
-              <p>{collection?.msg_type}</p>
               <p>{`${collection?.sender_name}: ${collection?.messages}`}</p>
-              <button
-                className="__btn"
-                onClick={() =>
-                  handleAcceptFriendRequest(
-                    collection?.user_id,
-                    collection?.sender_id,
-                    collection?.id
-                  )
-                }
-              >
-                Accept
-              </button>
-              <button
-                className="__btn"
-                onClick={() => handleDeleteNoti(collection?.id)}
-              >
-                Decline
-              </button>
+              <div className="__dropdown">
+                <button className="__options" onClick={() => setShow(!show)}>
+                  <IoMdMore />
+                </button>
+                <div className={`__dropdownContent ${show ? "show" : ""}`}>
+                  <div className="__contentList">
+                    <button
+                      className="__item"
+                      onClick={() =>
+                        handleAcceptFriendRequest(
+                          collection?.user_id,
+                          collection?.sender_id,
+                          collection?.id
+                        )
+                      }
+                    >
+                      <FaCheck />
+                      <span>&#8192;</span>
+                      Accept Friend
+                    </button>
+                    <button
+                      className="__item"
+                      onClick={() => handleDeleteNoti(collection?.id)}
+                    >
+                      <ImCross />
+                      <span>&#8192;</span>
+                      Decline Friend
+                    </button>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </>

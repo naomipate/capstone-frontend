@@ -30,20 +30,10 @@ function EditWishlist() {
     fetchWishlist();
   }, [id, item_id, navigate]);
 
-  const handleEditWishlist = async () => {
-    try {
-      await Axios.get(`/userwishlist/${id}/edit`, formData);
-      alert("Wishlist item updated successfully");
-      navigate(`/dashboard/${id}/userwishlist`);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className="edit-wishlist-page-container">
       <h2>item</h2>
-      <WishlistForm onSubmit={handleEditWishlist} wishlist={formData} />
+      <WishlistForm selectedItem={formData} setSelectedItem={setFormData} />
     </div>
   );
 }
