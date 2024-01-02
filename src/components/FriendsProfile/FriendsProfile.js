@@ -4,7 +4,7 @@ import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishl
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
 import { TbArrowLeft, TbCake } from "react-icons/tb";
 import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
-import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
 import { FriendsContext } from "../common/context/context";
@@ -13,7 +13,7 @@ import userProfileImg from "../../Assets/profile-img-red.png";
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
-  const [friendDob, setFriendDob] = useState("");
+  // const [friendDob, setFriendDob] = useState("");
   const [isMuted, setIsMuted] = useState(false);
   const { setToggleUpdate } = useContext(FriendsContext);
   let currentDate = new Date(Date.now()); // Time from system
@@ -30,9 +30,8 @@ function FriendsProfile() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       setFriendInfoProfile(result.data.friendProfile);
-      setFriendDob(result.data.friendProfile.dob)
+      // setFriendDob(result.data.friendProfile.dob)
       setFriendInfoWishList(result.data.friendsWishlist);
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +94,7 @@ function FriendsProfile() {
     }
   };
 
-  let dobInMili = upcomingDateCalc(friendDob);
+  let dobInMili = upcomingDateCalc(friendInfoProfile.dob);
 
   let dayNumOfUpcomingBirthDay = new Date(
     friendInfoProfile.dob
@@ -108,6 +107,8 @@ function FriendsProfile() {
   });
 
   console.log(dobInMili);
+
+  let sign = calculateZodiacSign(dobInMili);
 
   return (
     <div className="friend-profile-container">
@@ -133,7 +134,7 @@ function FriendsProfile() {
               <p className="friend-profile-zodiac">
                 Zodiac:{" "}
                 <span id="zodiac">
-                  <CalculateZodiacSign dobInMili={dobInMili} />
+                  {sign?.zodiacSign}
                 </span>
               </p>
             </div>
@@ -149,10 +150,10 @@ function FriendsProfile() {
           className="zodiac-right"
         >
           <div className="zodiac-text-content">
-            <h3>{friendInfoProfile.first_name} is a cancer, they might like:</h3>
-            <h3 className="list-item">• this type of gifts</h3>
-            <h3 className="list-item">• this type of gifts</h3>
-            <h3 className="list-item">• this type of gifts</h3>
+            <h3>{friendInfoProfile.first_name} is a {sign?.zodiacName}, they might like gifts that are:</h3>
+            <h3 className="list-item">• {sign?.zodiacInfo[0]}</h3>
+            <h3 className="list-item">• {sign?.zodiacInfo[1]}</h3>
+            <h3 className="list-item">• {sign?.zodiacInfo[2]}</h3>
             <h3>Note these are suggestions. Always consider the persons interest and preferences before purchasing outside of their wish list.</h3>
 
           </div>
