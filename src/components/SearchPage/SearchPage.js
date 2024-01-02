@@ -8,7 +8,6 @@ function Search() {
   const [usersData, setUsersData] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [mainUser, setMainUser] = useState({});
-  
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
@@ -34,46 +33,56 @@ function Search() {
 
   function handleFilter(input) {
     let filtered = usersData.filter((user) => {
-      return user.user_name.toLowerCase().includes(input);
+      return user?.user_name.toLowerCase().includes(input);
     });
-    filtered = filtered.filter((element) => {
-      return element.user_name !== mainUser.user_name;
-    });
+    if (mainUser) {
+      filtered = filtered.filter((element) => {
+        return element?.user_name !== mainUser?.user_name;
+      });
+    }
     setFilteredUsers(filtered.sort());
   }
 
   return (
-      <div className={mainUser ? "search-page-container" : "search-page-container-not-signed-in"}>
-        <div className="search-page-content">
-          <div className="search-page-title">
-            <p> Find Your Friend</p>
-          </div>
+    <div
+      className={
+        mainUser
+          ? "search-page-container"
+          : "search-page-container-not-signed-in"
+      }
+    >
+      <div className="search-page-content">
+        <div className="search-page-content-background">
+        <div className="search-page-title">
+          <p> Find Your Friend</p>
+        </div>
 
-          <div className="search-box">
-            <input
-              type="text"
-              className="search-page-search-input"
-              placeholder="Search by username"
-              value={input}
-              onChange={(e) => handleChange(e.target.value)}
+        <div className="search-box">
+          <input
+            type="text"
+            className="search-page-search-input"
+            placeholder="Search by username"
+            value={input}
+            onChange={(e) => handleChange(e.target.value)}
+          />
+
+          <button className="search-page-search-button">
+            <img
+              className="search-icon"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              src="./images/search-icon.png"
+              alt="Magnifying glass"
             />
-
-            <button className="search-page-search-button">
-              <img
-                className="search-icon"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                src="./images/search-icon.png"
-                alt="Magnifying glass"
-              />
-            </button>
-            <div></div>
-          </div>
-          <div className="search-page-results">
-            {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
-          </div>
+          </button>
+          <div></div>
+        </div>
+        <div className="search-page-results">
+          {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
         </div>
       </div>
+      </div>
+    </div>
   );
 }
 

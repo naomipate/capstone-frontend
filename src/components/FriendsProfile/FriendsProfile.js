@@ -15,6 +15,8 @@ function FriendsProfile() {
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   // const [friendDob, setFriendDob] = useState("");
   const [isMuted, setIsMuted] = useState(false);
+  const [sortByPrice, setSortByPrice] = useState("asc");
+  const [sortedItems, setSortedItems] = useState([]);
   const { setToggleUpdate } = useContext(FriendsContext);
   let currentDate = new Date(Date.now()); // Time from system
 
@@ -29,6 +31,7 @@ function FriendsProfile() {
   async function fetchList() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
+      console.log(result.data.friendsWishlist);
       setFriendInfoProfile(result.data.friendProfile);
       // setFriendDob(result.data.friendProfile.dob)
       setFriendInfoWishList(result.data.friendsWishlist);
@@ -169,6 +172,18 @@ function FriendsProfile() {
           <TbArrowLeft size={"2rem"} />
         </div>
 
+        {/* ------- Price sorting order ------ */}
+        <div>
+          <label htmlFor="priceSortOrder">Sort by: </label>
+          <select
+            id="priceSortOrder"
+            onChange={(e) => handleSortPriceChange(e.target.value)}
+          >
+            <option value="asc">Lowest Price</option>
+            <option value="desc">Highest Price</option>
+          </select>
+        </div>
+
         {isMuted === false ? (
           <div onClick={() => mute()} id="speaker-button">
             <PiSpeakerHighBold size={"1.7rem"} />
@@ -181,15 +196,25 @@ function FriendsProfile() {
       </div>
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
-          {friendInfoWishList.map((item) => {
-            return (
-              <FriendsProfileWishlist
-                item={item}
-                key={item.id}
-                isMuted={isMuted}
-              />
-            );
-          })}
+          <>
+            {sortedItems.length === 0 ? (
+              <>
+                <li className="friend-wishlist-list-item">No wishlist items</li>
+              </>
+            ) : (
+              <>
+                {sortedItems.map((item) => {
+                  return (
+                    <FriendsProfileWishlist
+                      item={item}
+                      key={item.id}
+                      isMuted={isMuted}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </>
         </ul>
       </div>
     </div>

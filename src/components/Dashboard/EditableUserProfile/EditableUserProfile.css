@@ -1,5 +1,5 @@
 .user-profile-container {
-  padding: 50px 0;
+  /* padding: 50px 0; */
   text-align: center;
   justify-content: center;
   display: flex;
@@ -8,12 +8,13 @@
   position: relative;
   text-align: center;
   display: flex;
+  height: 430px;
   gap: 16px;
   flex-direction: column;
   padding: 32px 24px 24px;
   max-width: 300px;
-  background: #f8f7fa;
-  border-radius: 16px;
+  background: #ede6fa;
+  border-radius: 10px;
   color: #010101;
   & .title {
     font-weight: bold;
@@ -27,7 +28,7 @@
 
 .form-container {
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #fff;
   margin: 1rem 0 0.5rem;
   width: 100%;

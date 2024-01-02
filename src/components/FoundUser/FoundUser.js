@@ -28,12 +28,13 @@ function FoundUser() {
     try {
       let result = await getSpecificUser(id);
       let wishlistData = await getSpecificUserWishlist(id);
-      if (!toggleFullView) {
-        delete result.first_name;
-        delete result.last_name;
-        delete result.email;
-      }
+      // if (!toggleFullView) {
+      //   delete result.first_name;
+      //   delete result.last_name;
+      //   delete result.email;
+      // }
       setUserwishlist(wishlistData);
+      console.log(result);
       setUserInfo(result);
     } catch (error) {
       toast("There was a server error", toast.POSITION.TOP_CENTER);
