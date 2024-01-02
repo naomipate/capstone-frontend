@@ -35,6 +35,9 @@ function SidebarNav() {
   function formatDate(inputDate) {
     // Parse the input string into a Date object
     const dateObject = new Date(inputDate);
+    // EST DateTime Offset
+    const dateObjectESTTimeOffset = dateObject.getTimezoneOffset() * 60 * 1000;
+    dateObject.setTime(dateObject.getTime() + dateObjectESTTimeOffset);
     // Options for formatting the date
     const options = { month: "long", day: "numeric" };
 
