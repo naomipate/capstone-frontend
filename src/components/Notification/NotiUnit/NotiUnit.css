@@ -1,0 +1,90 @@
+& .__noti {
+  --mainColor: #9949ff;
+  --softPurple: #c89aff;
+  --lightPurple: #f1ebfa;
+  --darkPurple: #b561ff;
+  --mainFont: "Hepta slab";
+  font-family: var(--mainFont);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 10px;
+  max-width: 100%;
+  justify-content: space-between;
+
+  & .__group {
+    display: flex;
+    & .__btn {
+      text-align: center;
+      align-self: center;
+      border: none;
+      background-color: var(--softPurple);
+      width: 70px;
+      height: 70%;
+      /* font-family: var(--mainFont); */
+      font-weight: 1rem;
+      font-size: 0.8rem;
+      /* color: white; */
+    }
+    & :first-child {
+      border-radius: 10px 0 0 10px;
+    }
+    & :last-child {
+      border-radius: 0 10px 10px 0;
+    }
+    & :hover {
+      background-color: var(--mainColor);
+    }
+  }
+  & .__btn {
+    background-color: var(--softPurple);
+    justify-content: center;
+    border-style: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    align-self: center;
+  }
+  & .__options {
+    background-color: var(--softPurple);
+    justify-content: center;
+    border-style: none;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    align-self: center;
+  }
+  & .__options:hover {
+    background-color: var(--mainColor);
+  }
+  & .show {
+    display: flex !important;
+    flex-direction: row;
+    padding-left: 10px;
+  }
+  & .__dropdownContent {
+    display: none;
+    position: absolute;
+    border-radius: 10px;
+    min-width: 100px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    & .__contentList {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      & .__item {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        border: none;
+        text-align: center;
+      }
+      & :hover {
+        color: var(--darkPurple);
+      }
+    }
+  }
+}

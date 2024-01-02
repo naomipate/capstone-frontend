@@ -1,5 +1,5 @@
 .formBox {
-  padding: 50px 0px 50px 0px;
+  padding: 110px 0px 130px 0px;
   text-align: center;
   justify-content: center;
   display: flex;
@@ -56,7 +56,7 @@
     & .Section {
       padding: 16px;
       font-size: 0.85rem;
-      background-color: #e5d8f9;
+      /* background-color: #e5d8f9; */
       border-radius: 10px;
       box-shadow: rgb(0, 0, 0/8%) 0 -1px;
       & .Text {

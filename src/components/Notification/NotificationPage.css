@@ -1,0 +1,87 @@
+.noti__Container {
+  --mainColor: #9949ff;
+  --softPurple: #c89aff;
+  --lightPurple: #f1ebfa;
+  --darkPurple: #b561ff;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 50px 20px;
+  border-radius: 10px;
+  padding: 0.5rem;
+
+  background-color: var(--lightPurple);
+  & .__title {
+    font-family: "Hepta slab";
+    font-weight: 1rem;
+    font-size: 1.5rem;
+    border-bottom: solid black;
+    padding-bottom: 1rem;
+  }
+  & .__functionals {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1rem;
+
+    text-align: center;
+    & .__group {
+      display: flex;
+
+      & .__btn {
+        text-align: center;
+        align-self: center;
+        border: none;
+        /* color: white; */
+        background-color: var(--softPurple);
+        width: 100px;
+        height: 75%;
+      }
+      & :first-child {
+        border-radius: 10px 0 0 10px;
+      }
+      & :last-child {
+        border-radius: 0 10px 10px 0;
+      }
+      & .active {
+        background-color: var(--mainColor);
+      }
+    }
+
+    & .__search {
+      flex-grow: 1;
+      background-color: #f5f5f5;
+      color: #242424;
+      padding: 0.15rem 0.5rem;
+      min-height: 40px;
+      border-radius: 4px;
+      outline: none;
+      border: none;
+      line-height: 1.15;
+      & :focus {
+        border-bottom: 2px solid #5b5fc7;
+        border-radius: 4px 4px 2px 2px;
+      }
+      & :hover {
+        outline: 1px solid lightgray;
+      }
+    }
+    & .__sort {
+    }
+  }
+  & .__sub-headers {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    column-gap: 1rem;
+    font-family: "Hepta slab";
+    font-weight: 1rem;
+    font-size: 1.2rem;
+  }
+  & .__content {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}

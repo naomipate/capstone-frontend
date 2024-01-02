@@ -1,66 +1,93 @@
 .sidebar-nav-container {
-    background-color: #FAFAFA;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  background-color: #ffeeee;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 250px;
+  height: 470px;
+  border-radius: 10px;
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
+    rgba(17, 17, 26, 0.02) 0px 4px 8px; */
 }
 
-.sidebarUserInfo{
-    text-align: left;
-    padding-top: 40px;
+.sidebar-nav-content {
+  text-align: left;
+  padding-top: 30px;
+}
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  letter-spacing: 1px;
 }
 
 .sidebarImage {
-    height: 80px;
-    width: auto;
-    border-radius: 45px;
-    margin-left: 15px;
+  height: 100px;
+  width: auto;
+  border-radius: 50px;
 }
 
 .sidebarUsername {
-    font-family: 'Aleo', serif;
-    margin: 0;
-    padding: 10px 0;
-    padding-left: 20px;
+  font-family: "Hepta Slab", serif;
+  margin: 0;
+  padding: 15px 0;
 }
 
 .sidebarBirthday {
-    font-family: 'Hepta Slab', serif;
-    margin: 0;
-    padding-left: 20px;
+  font-family: "Hepta Slab", serif;
+  margin: 0;
+  font-weight: bolder;
 }
 
 .sidebarDivider {
-    margin-top: 15px;
-    width: 80%;
+  justify-content: center;
+  width: 75%;
+  margin-bottom: 20px;
 }
 
 .sidebarListContainer {
-    margin-left: 20px;
+  margin-left: 30px;
 }
 
 .sidebarList {
-    list-style-type: none;
-    padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .sidebarList a {
-    color: black;
-    text-decoration: none;
-    background-color: transparent;
-    transition: 0.3s ease-in-out;
+  color: black;
+  text-decoration: none;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
 }
 
 .sidebarList a:hover {
-    font-weight: bolder;
-    color: rgb(90, 37, 225);
+  font-weight: bolder;
+  color: rgb(244, 88, 88);
 }
 
 .sidebarItem {
-    color: black;
-    text-decoration: none;
-    background-color: transparent;
-    transition: 0.3s ease-in-out;
-    font-family: 'Hepta Slab', serif;
-    margin: 10px 0;
+  letter-spacing: 1px;
+  color: rgb(61, 61, 61);
+  text-decoration: none;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+  font-family: "Hepta Slab", serif;
+  margin: 13px 0;
+  font-weight: bolder;
+}
+
+a.active {
+  color: rgb(255, 87, 87);
+}
+
+.sidebarBirthday {
+  display: flex;
+  align-items: flex-end;
+}
+
+#cake {
+  padding-right: 6px;
 }

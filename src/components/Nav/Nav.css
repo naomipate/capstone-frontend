@@ -1,7 +1,8 @@
 .topnav {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .topnav img {
@@ -10,9 +11,9 @@
 }
 
 .nav-links {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -21,6 +22,7 @@
   text-decoration: none;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: large;
+  width: 150px;
 }
 
 .nav-links a:hover {
@@ -36,6 +38,7 @@
   .nav-links {
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
+    justify-content: center;
   }
 
   .nav-links a {

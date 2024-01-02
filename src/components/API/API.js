@@ -101,7 +101,7 @@ async function updateItemBoughtByItemId(itemId, is_bought, assigned_user) {
     let result = await Axios.put(`/dashboard/item-details`, {
       id: itemId,
       is_bought: is_bought,
-      assigned_user: assigned_user
+      assigned_user: assigned_user,
     });
     console.log(result.data);
     return result.data;
@@ -133,6 +133,14 @@ async function getSpecificUserWishlist(id) {
     return error;
   }
 }
+async function updateNotification(data) {
+  try {
+    let result = await Axios.put(`/notification/update-notification`, data);
+    return result.data;
+  } catch (error) {
+    return error;
+  }
+}
 
 export {
   createUser,
@@ -150,4 +158,5 @@ export {
   getSpecificUser,
   getSpecificUserWishlist,
   spinUpServer,
+  updateNotification,
 };
