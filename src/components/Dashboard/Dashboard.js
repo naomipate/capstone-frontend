@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import ZodiacInfo from "../common/Zodiac/ZodiacInfo";
 import { FriendsContext } from "../common/context/context";
 import "./Dashboard.css";
 
@@ -48,7 +49,6 @@ function Dashboard({ user }) {
     }
   }
 
-
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
     // DOB date
@@ -71,11 +71,6 @@ function Dashboard({ user }) {
       );
       console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear;
-      // return upcomingDateWithCurrentYear.setTime(
-      //   upcomingDateWithCurrentYear.getTime() +
-      //     oneMiliBeforeTwentyFourHrs +
-      //     upcomingDateESTTimeZoneOffset
-      // );
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
@@ -93,10 +88,10 @@ function Dashboard({ user }) {
 
   const todayDateCard = () => {
     return (
-        <div className="dashboard-container">
-          <p className="dashboard-heading">Upcoming Birthdays</p>
-          {friendsList}
-        </div>
+      <div className="dashboard-container">
+        <p className="dashboard-heading">Upcoming Birthdays</p>
+        {friendsList}
+      </div>
     );
   };
 
@@ -122,7 +117,12 @@ function Dashboard({ user }) {
   return <>{todayDateCard(currentDate)}</>;
 }
 
-function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum}) {
+function Friend({
+  friendDetails,
+  dashboardUserId,
+  currentMonthNum,
+  currentDayNum,
+}) {
   let { first_name, last_name, wishlist, dobInMili } = friendDetails;
   // let wishlistItem = wishlist.map((item, index) => (
   //   <li key={index}>
@@ -147,14 +147,16 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
     }
   );
 
-
-  function friendContentClassNames(){
-    if(parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum && dayNumOfUpcomingBirthDay == currentDayNum){
-      return "dashboard-friend-card-container-today"
-    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum){
-      return "dashboard-friend-card-container-this-month"
-    }else{
-      return "dashboard-friend-card-container"
+  function friendContentClassNames() {
+    if (
+      parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum &&
+      dayNumOfUpcomingBirthDay == currentDayNum
+    ) {
+      return "dashboard-friend-card-container-today";
+    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum) {
+      return "dashboard-friend-card-container-this-month";
+    } else {
+      return "dashboard-friend-card-container";
     }
   }
 
@@ -164,8 +166,13 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
         to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
         className="friend-list-link"
       >
-    <div className={ parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum 
-      ? "dashboard-friend-card-content-this-month" : "dashboard-friend-card-content"}>
+        <div
+          className={
+            parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum
+              ? "dashboard-friend-card-content-this-month"
+              : "dashboard-friend-card-content"
+          }
+        >
           <div className="dashboard-friend-card-left">
             <div className="dashboard-img-placeholder"></div>
             <p className="dashboard-card-name">
@@ -175,12 +182,16 @@ function Friend({ friendDetails, dashboardUserId, currentMonthNum, currentDayNum
           <p className="dashboard-card-text">
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <p className="dashboard-card-text-zodiac">
-            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
-          </p>
+          <div className="dashboard-card-text-zodiac">
+            <CalculateZodiacSign
+              className="zodiac-sign"
+              dobInMili={dobInMili}
+            />
+            <ZodiacInfo className="zodiac-info" dobInMili={dobInMili} />
+          </div>
         </div>
       </Link>
-      </div>
+    </div>
   );
 }
 
