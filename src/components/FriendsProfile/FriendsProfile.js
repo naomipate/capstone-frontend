@@ -13,7 +13,6 @@ import userProfileImg from "../../Assets/profile-img-red.png";
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
-  // const [friendDob, setFriendDob] = useState("");
   const [isMuted, setIsMuted] = useState(false);
   const [sortByPrice, setSortByPrice] = useState("asc");
   const [sortedItems, setSortedItems] = useState([]);
@@ -22,7 +21,6 @@ function FriendsProfile() {
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
-
   useEffect(() => {
     fetchList();
     // eslint-disable-next-line
@@ -33,7 +31,6 @@ function FriendsProfile() {
       let result = await getFriendsAndTheirWishlists(id, friendId);
       console.log(result.data.friendsWishlist);
       setFriendInfoProfile(result.data.friendProfile);
-      // setFriendDob(result.data.friendProfile.dob)
       setFriendInfoWishList(result.data.friendsWishlist);
     } catch (error) {
       console.log(error);
@@ -54,6 +51,31 @@ function FriendsProfile() {
   function mute() {
     setIsMuted(!isMuted);
   }
+
+  const sortItems = () => {
+    if (Array.isArray(friendInfoWishList)) {
+      const sortedItemsCopy = [...friendInfoWishList];
+      console.log(sortedItemsCopy);
+      sortedItemsCopy.sort((a, b) => {
+        if (sortByPrice === "asc") {
+          return a.item_price - b.item_price;
+        } else {
+          return b.item_price - a.item_price;
+        }
+      });
+      setSortedItems(sortedItemsCopy);
+      console.log(sortedItems);
+    }
+  };
+
+  useEffect(() => {
+    sortItems();
+    // eslint-disable-next-line
+  }, [sortByPrice, friendInfoWishList]);
+
+  const handleSortPriceChange = (newSortPrice) => {
+    setSortByPrice(newSortPrice);
+  };
 
   // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
   const upcomingDateCalc = (dob) => {
