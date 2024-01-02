@@ -1,4 +1,14 @@
 .mapContainer {
-  left: 20%;
+  /* left: 20%; */
+
   margin: 10px;
+  & .__controls {
+    display: flex;
+    padding: 10px;
+    & .__userInput {
+      display: flex;
+
+      flex-direction: row;
+    }
+  }
 }

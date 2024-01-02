@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./FoundUser.css";
-import { getSpecificUser, getSpecificUserWishlist } from "../API/API";
+
+import {
+  getSpecificUser,
+  getSpecificUserWishlist,
+  getAllFriendsFromUser,
+} from "../API/API";
 import { TbArrowLeft } from "react-icons/tb";
 import { IconContext } from "react-icons";
 import { toast } from "react-toastify";
@@ -14,11 +19,15 @@ function FoundUser() {
   const [toggleFullView, setToggleFullView] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [userwishlist, setUserwishlist] = useState([]);
+  const [areFriends, setAreFriends] = useState(false);
+  // const [loggedInId, setLoggedInId] = useState(0);
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
     if (storedUser) {
       setToggleFullView(true);
+      // setLoggedInId(storedUser.id);
+      checkIfFriends(storedUser.id);
     } else setToggleFullView(false);
     fetchData();
     // eslint-disable-next-line
@@ -28,16 +37,21 @@ function FoundUser() {
     try {
       let result = await getSpecificUser(id);
       let wishlistData = await getSpecificUserWishlist(id);
-      // if (!toggleFullView) {
-      //   delete result.first_name;
-      //   delete result.last_name;
-      //   delete result.email;
-      // }
       setUserwishlist(wishlistData);
-      console.log(result);
       setUserInfo(result);
     } catch (error) {
       toast("There was a server error", toast.POSITION.TOP_CENTER);
+      console.log(error);
+    }
+  }
+  async function checkIfFriends(localId) {
+    try {
+      let { data } = await getAllFriendsFromUser(localId);
+      let checkRequest = !!data.find(
+        (element) => element.user_id === Number(id)
+      );
+      setAreFriends(checkRequest);
+    } catch (error) {
       console.log(error);
     }
   }
@@ -70,7 +84,11 @@ function FoundUser() {
           </div>
         </div>
         <div className="friend-wishlist-top-right-side">
-          {toggleFullView ? <SearchListBtn targetUser={userInfo} /> : <></>}
+          {toggleFullView ? (
+            <>{areFriends ? <SearchListBtn targetUser={userInfo} /> : <></>}</>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="friend-wishlist-list-container">

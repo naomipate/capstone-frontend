@@ -4,6 +4,7 @@ import Axios from ".././API/Axios";
 import { useNavigate, Link } from "react-router-dom";
 import { TbArrowLeft } from "react-icons/tb";
 import { IconContext } from "react-icons";
+import { toast } from "react-toastify";
 
 import WishlistForm from "../WishlistForm/WishlistForm";
 import WishListItem from "./UserWishListItem/WishListItem";
@@ -33,7 +34,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
     try {
       let response = await Axios.get(`/userwishlist/${user_id}`);
       setFormData(response.data);
-      console.log(formData);
     } catch (err) {
       console.log(err);
     }
@@ -42,7 +42,10 @@ function UserWishlist({ handleCreateWishlist, user }) {
   const deleteWishlistItem = async (itemId) => {
     try {
       await Axios.delete(`/userwishlist/${itemId}`);
-      alert(`Wishlist item has been deleted`);
+      toast.success(
+        `Wishlist item has been deleted`,
+        toast.POSITION.TOP_CENTER
+      );
       let filterdList = formData.filter((item) => item.id !== itemId);
       setFormData(filterdList);
 

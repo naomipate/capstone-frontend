@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
-
+import { toast } from "react-toastify";
 import "./EditWishlist.css";
 
 function EditWishlist() {
@@ -33,7 +33,10 @@ function EditWishlist() {
   const handleEditWishlist = async () => {
     try {
       await Axios.get(`/userwishlist/${id}/edit`, formData);
-      alert("Wishlist item updated successfully");
+      toast.success(
+        "Wishlist item updated successfully",
+        toast.POSITION.TOP_CENTER
+      );
       navigate(`/dashboard/${id}/userwishlist`);
     } catch (err) {
       console.log(err);
