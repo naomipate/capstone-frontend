@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import ZodiacInfo from "../common/Zodiac/ZodiacInfo";
 import { FriendsContext } from "../common/context/context";
 import "./Dashboard.css";
 
@@ -182,7 +183,11 @@ function Friend({
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
           <div className="dashboard-card-text-zodiac">
-            <CalculateZodiacSign dobInMili={dobInMili} />
+            <CalculateZodiacSign
+              className="zodiac-sign"
+              dobInMili={dobInMili}
+            />
+            <ZodiacInfo className="zodiac-info" dobInMili={dobInMili} />
           </div>
         </div>
       </Link>
