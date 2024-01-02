@@ -129,7 +129,7 @@ function FriendsProfile() {
 
         {/* ------- Price sorting order ------ */}
         <div>
-          <label htmlFor="priceSortOrder">Sort by:</label>
+          <label htmlFor="priceSortOrder">Sort by: </label>
           <select
             id="priceSortOrder"
             onChange={(e) => handleSortPriceChange(e.target.value)}

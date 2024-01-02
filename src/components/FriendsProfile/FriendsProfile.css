@@ -118,14 +118,13 @@
 }
 
 .notibody {
-  display: grid;
+  display: flex;
   margin: auto 0 auto 0;
   align-items: center;
   justify-content: center;
-  grid-template-columns: 1fr 4fr 4fr 2fr;
-  justify-content: space-evenly;
+  justify-content: space-between;
   color: #ededed;
-  padding: 0 1.25rem;
+  padding: 0 3rem;
   transition: transform 300ms ease;
   z-index: 5;
   height: 27px;

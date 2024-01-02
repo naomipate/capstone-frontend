@@ -52,6 +52,7 @@ function Search() {
       }
     >
       <div className="search-page-content">
+        <div className="search-page-content-background">
         <div className="search-page-title">
           <p> Find Your Friend</p>
         </div>
@@ -79,6 +80,7 @@ function Search() {
         <div className="search-page-results">
           {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
         </div>
+      </div>
       </div>
     </div>
   );
