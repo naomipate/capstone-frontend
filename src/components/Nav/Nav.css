@@ -1,12 +1,15 @@
 .topnav {
+  margin-top: -10px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  height: 80px;
+  background-color: rgb(255, 210, 202)
 }
 
 .topnav img {
-  width: 10rem;
+  width: 17rem;
   height: auto;
 }
 
@@ -17,16 +20,18 @@
 }
 
 .nav-links a {
+  display: flex;
+  justify-content: center;
   color: black;
   transition: 0.3s ease-in-out;
   text-decoration: none;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
   font-size: large;
   width: 150px;
 }
 
 .nav-links a:hover {
-  color: rgb(108, 72, 187);
+  color: rgb(255, 80, 80);
 }
 
 @media screen and (max-width: 600px) {
