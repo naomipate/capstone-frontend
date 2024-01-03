@@ -65,7 +65,6 @@ function FriendsProfileWishlist({ item, isMuted }) {
               <input
                 checked={is_bought}
                 type="checkbox"
-                // onClick={updateItem}
                 onChange={updateItem}
                 disabled={is_bought && assigned_user !== userId ? true : false}
               />

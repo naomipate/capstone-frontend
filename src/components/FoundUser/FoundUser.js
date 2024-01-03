@@ -20,13 +20,11 @@ function FoundUser() {
   const [userInfo, setUserInfo] = useState({});
   const [userwishlist, setUserwishlist] = useState([]);
   const [areFriends, setAreFriends] = useState(false);
-  // const [loggedInId, setLoggedInId] = useState(0);
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
     if (storedUser) {
       setToggleFullView(true);
-      // setLoggedInId(storedUser.id);
       checkIfFriends(storedUser.id);
     } else setToggleFullView(false);
     fetchData();
