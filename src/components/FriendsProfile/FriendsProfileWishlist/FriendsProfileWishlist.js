@@ -26,6 +26,13 @@ function FriendsProfileWishlist({ item, isMuted }) {
         spread: 70,
         origin: { y: 0.6 },
       });
+      // return confetti({
+      //   scalar: 2,
+      //   spread: 200,
+      //   particleCount: 50,
+      //   origin: { y: -0.1 },
+      //   startVelocity: -35
+      // });
     }
   }
 

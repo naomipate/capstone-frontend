@@ -1,12 +1,14 @@
-/* eslint-disable padded-blocks */
-import React, { useState } from "react";
+// /* eslint-disable padded-blocks */
+import React, { useState, useContext } from "react";
 import Axios from ".././API/Axios";
 import { useNavigate } from "react-router-dom";
 import WishlistForm from "../WishlistForm/WishlistForm";
 import { toast } from "react-toastify";
+import { WishlistContext } from "../common/context/context";
+
 import "./AddWishList.css";
 
-function AddWishlist({ user, fetchWishlist }) {
+function AddWishlist({ user }) {
   let navigate = useNavigate();
   const { id } = user;
 
@@ -17,14 +19,14 @@ function AddWishlist({ user, fetchWishlist }) {
     link: "",
   });
 
+  const { setToggleUpdate } = useContext(WishlistContext);
+
   const handleCreateWishlist = async () => {
-    let formatData = formData;
-    formatData.user_id = id;
-
     try {
-      await Axios.post(`/userwishlist`, formatData);
+      await Axios.post(`/userwishlist`, formData);
 
-      fetchWishlist();
+      setToggleUpdate(true);
+
       toast.success(
         "Wishlist created successfully!",
         toast.POSITION.TOP_CENTER
@@ -48,8 +50,8 @@ function AddWishlist({ user, fetchWishlist }) {
         <h2 className="add-wishlist-title">Add item</h2>
         <WishlistForm
           onSubmit={handleCreateWishlist}
-          formData={formData}
-          setFormData={setFormData}
+          selectedItem={formData}
+          setSelectedItem={setFormData}
         />
       </div>
     </div>

@@ -63,6 +63,7 @@ function App() {
   };
   const WishlistContextValue = {
     WishlistData,
+    toggleUpdate,
     setWishlistData,
     setToggleUpdate,
   };
@@ -113,7 +114,14 @@ function App() {
                   </WishlistContext.Provider>
                 }
               />
-              <Route path="/dashboard/:id/edit" element={<EditWishlist />} />
+              <Route
+                path="/dashboard/:id/edit"
+                element={
+                  <WishlistContext.Provider value={WishlistContextValue}>
+                    <EditWishlist />
+                  </WishlistContext.Provider>
+                }
+              />
               <Route
                 path="/dashboard/:id"
                 element={

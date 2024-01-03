@@ -61,14 +61,12 @@ function SidebarNav() {
     <div className="sidebar-nav-container">
       <div className="sidebar-nav-content">
         <div className="sidebar-user-info">
-          <NavLink to={`/dashboard/${user?.id}/editProfile`}>
             <img
               className="sidebarImage"
               src={userProfileImg}
               alt="profile_img"
             />
             <h2 className="sidebarUsername">{user.user_name}</h2>
-          </NavLink>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
             {user.dob ? formatDate(user.dob) : ""}
@@ -98,6 +96,9 @@ function SidebarNav() {
             </li>
             <li className="sidebarItem">
               <NavLink to={"/dashboard/notification"}>Notifications</NavLink>
+            </li>
+            <li key="profile" className="sidebarItem">
+              <NavLink to={`/dashboard/${user?.id}/editProfile`}>Profile</NavLink>
             </li>
           </ul>
         </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Axios from ".././API/Axios";
 import WishlistForm from "../WishlistForm/WishlistForm";
-import { toast } from "react-toastify";
 import "./EditWishlist.css";
 
 function EditWishlist() {
@@ -30,23 +29,10 @@ function EditWishlist() {
     fetchWishlist();
   }, [id, item_id, navigate]);
 
-  const handleEditWishlist = async () => {
-    try {
-      await Axios.get(`/userwishlist/${id}/edit`, formData);
-      toast.success(
-        "Wishlist item updated successfully",
-        toast.POSITION.TOP_CENTER
-      );
-      navigate(`/dashboard/${id}/userwishlist`);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div className="edit-wishlist-page-container">
       <h2>item</h2>
-      <WishlistForm onSubmit={handleEditWishlist} wishlist={formData} />
+      <WishlistForm selectedItem={formData} setSelectedItem={setFormData} />
     </div>
   );
 }

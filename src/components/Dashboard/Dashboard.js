@@ -2,9 +2,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
-import CalculateZodiacSign from "../common/Zodiac/CalculateZodiacSign";
+import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import { FriendsContext } from "../common/context/context";
-import Events from "../common/Events/Events";
+// import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
 function Dashboard({ user }) {
@@ -81,7 +81,7 @@ function Dashboard({ user }) {
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
-      // console.log(upcomingDateWithNextYear);
+      console.log(upcomingDateWithNextYear);
       return upcomingDateWithNextYear;
     }
   };
@@ -165,6 +165,8 @@ function Friend({
     }
   }
 
+  let sign = calculateZodiacSign(dobInMili);
+
   return (
     <div className={friendContentClassNames()}>
       <Link
@@ -188,7 +190,7 @@ function Friend({
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
           <p className="dashboard-card-text-zodiac">
-            Zodiac: <CalculateZodiacSign dobInMili={dobInMili} />
+            Zodiac: {sign.zodiacSign}
           </p>
         </div>
       </Link>
