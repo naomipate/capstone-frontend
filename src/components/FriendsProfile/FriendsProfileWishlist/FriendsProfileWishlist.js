@@ -21,18 +21,18 @@ function FriendsProfileWishlist({ item, isMuted }) {
 
   function confettiTrue() {
     if (is_bought === false) {
-      return confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
       // return confetti({
-      //   scalar: 2,
-      //   spread: 200,
-      //   particleCount: 50,
-      //   origin: { y: -0.1 },
-      //   startVelocity: -35
+      //   particleCount: 100,
+      //   spread: 70,
+      //   origin: { y: 0.6 },
       // });
+      return confetti({
+        scalar: 2,
+        spread: 200,
+        particleCount: 50,
+        origin: { y: -0.1 },
+        startVelocity: -35
+      });
     }
   }
 

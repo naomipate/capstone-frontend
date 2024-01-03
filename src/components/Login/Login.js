@@ -31,7 +31,7 @@ function Login({ setUser }) {
       setUser(user.data);
       window.localStorage.setItem("user", JSON.stringify(user.data));
       setPassword("");
-      toast.success("Login Successful", toast.POSITION.TOP_CENTER);
+      toast("Login Successful", {position: toast.POSITION.TOP_RIGHT});
 
       navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
     } catch (error) {
