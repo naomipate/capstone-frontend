@@ -1,11 +1,9 @@
 .topnav {
-  margin-top: -10px;
-  width: 100%;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  height: 80px;
-  /* background-color: rgb(255, 210, 202); */
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #bd8fd2;
 }
 
 .topnav img {
