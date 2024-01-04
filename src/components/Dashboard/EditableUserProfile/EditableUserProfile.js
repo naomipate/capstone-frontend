@@ -1,28 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Axios from "../.././API/Axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { RefreshContext } from "../../common/context/context";
+import { WishlistContext } from "../../common/context/context";
 
 import "./EditableUserProfile.css";
 
 function EditableUserProfile({ user }) {
   const navigate = useNavigate();
-  const { setToggleRefresh } = useContext(RefreshContext);
 
   const user_id = user?.id;
-
+  const { setToggleUpdate } = useContext(WishlistContext);
   const [updatedUser, setUpdatedUser] = useState({
-    username: user?.user_name || "",
-    first_name: user?.first_name || "",
-    last_name: user?.last_name || "",
-    dob: user?.dob,
-    email: user?.email || "",
+    user_name: "",
+    first_name: "",
+    last_name: "",
+    dob: "",
+    email: "",
   });
-
-  const handleOnChange = (e) => {
-    const { id, value } = e.target;
-    setUpdatedUser({ ...user, [id]: value });
+  useEffect(() => {
+    let userFromStorage = localStorage.getItem("user");
+    let storedUser = JSON.parse(userFromStorage);
+    setUpdatedUser(storedUser);
+    //A comment
+    //eslint-disable-next-line
+  }, []);
+  const handleOnChange = (id, value) => {
+    setUpdatedUser({ ...updatedUser, [id]: value });
   };
 
   const updateProfile = async (e) => {
@@ -38,12 +42,12 @@ function EditableUserProfile({ user }) {
     try {
       await updateProfile();
       window.localStorage.setItem("user", JSON.stringify(updatedUser));
-      setToggleRefresh(true);
       toast.success(
         "Your profile is updated successfully.",
         toast.POSITION.TOP_CENTER
       );
-      navigate(`/dashboard/${user_id}`);
+      setToggleUpdate(true);
+      navigate(`/dashboard/${updatedUser.id}`);
     } catch (err) {
       console.log(err);
     }
@@ -59,15 +63,15 @@ function EditableUserProfile({ user }) {
             className="input"
             id="user_name"
             required
-            onChange={handleOnChange}
-            value={updatedUser?.username}
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+            value={updatedUser?.user_name}
           />
           <input
             type="text"
             className="input"
             id="first_name"
             required
-            onChange={handleOnChange}
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
             value={updatedUser?.first_name}
           />
           <input
@@ -75,7 +79,7 @@ function EditableUserProfile({ user }) {
             className="input"
             id="last_name"
             required
-            onChange={handleOnChange}
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
             value={updatedUser?.last_name}
           />
           <input
@@ -84,7 +88,7 @@ function EditableUserProfile({ user }) {
             placeholder="Email"
             id="email"
             required
-            onChange={handleOnChange}
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
             value={updatedUser?.email}
           />
           <div className="dateContainer">
@@ -94,7 +98,7 @@ function EditableUserProfile({ user }) {
               className="input"
               id="dob"
               required
-              onChange={handleOnChange}
+              onChange={(e) => handleOnChange(e.target.id, e.target.value)}
               value={updatedUser?.dob}
             />
           </div>

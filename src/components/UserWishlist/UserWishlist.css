@@ -4,26 +4,23 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 5rem 3rem;
+  margin: 0px 30px;
   z-index: 0;
 }
 
 .user-wishlist {
-  width: 50rem;
-  height: 40rem;
+  width: 43rem;
   margin: 0;
 }
 
 .TitleBar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
   color: rgb(23, 22, 22);
   width: 100%;
   align-items: center;
   padding-bottom: 30px;
   border-bottom: 1px solid #b3b3b3;
-  /* width: 80%; */
 }
 
 .TitleBar h2 {
@@ -41,15 +38,27 @@
   cursor: pointer;
 }
 
+.SortByDropdown {
+  margin-right: 140px;
+  margin-top: 5px;
+}
+
 .ErrorMsg {
   color: rgb(23, 22, 22);
 }
 
-.back-left-arrow-container {
+.back-sort-actions {
   display: flex;
   align-items: center;
   width: 50rem;
   padding: 25px;
+}
+
+.back-left-arrow-container {
+  display: flex;
+  align-items: left;
+  width: 50rem;
+  /* padding: 25px; */
 }
 
 @media screen and (max-width: 800px) {

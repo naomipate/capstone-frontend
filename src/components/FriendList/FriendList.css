@@ -1,25 +1,23 @@
 .friend-list-container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    margin: 0px 30px;
+
 }
 
 .friend-list-wrapper {
-    width: 50rem;
+  width: 43rem;
     position: relative;
     --white: #303030;
     --bc: rgb(200, 154, 255);
     --bc-al: rgb(153, 73, 255, 0.1);
-    margin: 5rem 3rem;
-    max-width: 60rem;    
   }
   
   .friend-list-card {
     width: 100%;
     padding: 1rem 0;
     border: 1px solid var(--bc-al);
-    border-radius: .75rem;
+    border-radius: 10px;
     background: var(--bc-al);
     color: var(--white);
     backdrop-filter: blur(14px);

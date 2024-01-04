@@ -33,18 +33,26 @@ function Search() {
 
   function handleFilter(input) {
     let filtered = usersData.filter((user) => {
-      return user.user_name.toLowerCase().includes(input);
+      return user?.user_name.toLowerCase().includes(input);
     });
-    filtered = filtered.filter((element) => {
-      return element.user_name !== mainUser.user_name;
-    });
+    if (mainUser) {
+      filtered = filtered.filter((element) => {
+        return element?.user_name !== mainUser?.user_name;
+      });
+    }
     setFilteredUsers(filtered.sort());
   }
 
   return (
-    <div className="search-page">
-      <div className="search-page-container">
-        <div className="search-page-content">
+    <div
+      className={
+        mainUser
+          ? "search-page-container"
+          : "search-page-container-not-signed-in"
+      }
+    >
+      <div className="search-page-content">
+        <div className="search-page-content-background">
           <div className="search-page-title">
             <p> Find Your Friend</p>
           </div>
@@ -67,7 +75,6 @@ function Search() {
                 alt="Magnifying glass"
               />
             </button>
-            <div></div>
           </div>
           <div className="search-page-results">
             {input ? <SearchList filteredUsers={filteredUsers} /> : ""}

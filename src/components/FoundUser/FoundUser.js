@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./FoundUser.css";
-import { getSpecificUser, getSpecificUserWishlist } from "../API/API";
+import profileImg from "../../Assets/profile-img-red.png";
+
+import {
+  getSpecificUser,
+  getSpecificUserWishlist,
+  getAllFriendsFromUser,
+} from "../API/API";
 import { TbArrowLeft } from "react-icons/tb";
-import { IconContext } from "react-icons";
 import { toast } from "react-toastify";
 
 import SearchListBtn from "../SearchPage/SearchListBtn";
@@ -14,11 +19,15 @@ function FoundUser() {
   const [toggleFullView, setToggleFullView] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [userwishlist, setUserwishlist] = useState([]);
+  const [areFriends, setAreFriends] = useState(false);
+  const [loggedInID, setLoggedInID] = useState(0);
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
     if (storedUser) {
       setToggleFullView(true);
+      checkIfFriends(storedUser.id);
+      setLoggedInID(storedUser?.id);
     } else setToggleFullView(false);
     fetchData();
     // eslint-disable-next-line
@@ -28,18 +37,35 @@ function FoundUser() {
     try {
       let result = await getSpecificUser(id);
       let wishlistData = await getSpecificUserWishlist(id);
-      if (!toggleFullView) {
-        delete result.first_name;
-        delete result.last_name;
-        delete result.email;
-      }
       setUserwishlist(wishlistData);
       setUserInfo(result);
     } catch (error) {
-      toast("There was a server error", toast.POSITION.TOP_CENTER);
+      toast.error("There was a server error", toast.POSITION.TOP_CENTER);
       console.log(error);
     }
   }
+  async function checkIfFriends(localId) {
+    try {
+      let { data } = await getAllFriendsFromUser(localId);
+      let checkRequest = !!data.find(
+        (element) => element.user_id === Number(id)
+      );
+
+      setAreFriends(checkRequest);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  let dayNumOfUpcomingBirthDay = new Date(userInfo.dob).toLocaleDateString(
+    "en-US",
+    { day: "numeric" }
+  );
+  let fullMonthOfUpcomingBirthday = new Date(userInfo.dob).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+    }
+  );
 
   return (
     <div className="friend-profile-container">
@@ -48,7 +74,9 @@ function FoundUser() {
           <img
             alt="friend-user-profile"
             className="friend-user-profile"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdhnWROHccYu5AG4Ahi_WnaQgxINV9abPz1MqdYXFwT4txCA5"
+            src={`${
+              userInfo.user_picture ? userInfo.user_picture : profileImg
+            }`}
           />
           <div className="friend-user-names">
             <h2>
@@ -59,17 +87,29 @@ function FoundUser() {
             <p>{userInfo.user_name}</p>
             <p className="friend-user-dob">
               {toggleFullView
-                ? `${new Date(userInfo.dob)
-                    .toDateString()
-                    .split(" ")
-                    .splice(1, 2)
-                    .join(" ")}`
+                ? `${fullMonthOfUpcomingBirthday} ${dayNumOfUpcomingBirthDay}`
                 : "Please sign in or make an account to view their birthday"}
             </p>
+            {areFriends ? (
+              <button
+                className="expandedBtn"
+                onClick={() =>
+                  navigate(`/dashboard/${loggedInID}/friends/${userInfo.id}`)
+                }
+              >
+                More Details
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="friend-wishlist-top-right-side">
-          {toggleFullView ? <SearchListBtn targetUser={userInfo} /> : <></>}
+          {toggleFullView ? (
+            <>{!areFriends ? <SearchListBtn targetUser={userInfo} /> : <></>}</>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="friend-wishlist-list-container">
@@ -81,7 +121,6 @@ function FoundUser() {
               {userwishlist.map((item) => {
                 return (
                   <li key={item.id}>
-                    {/* <div className="userItemCard">{`${item?.item_name}`}</div> */}
                     <div className="wishlistItem">
                       <div className="itemGlow"></div>
                       <div className="itemBorderGlow"></div>
@@ -99,11 +138,9 @@ function FoundUser() {
           )}
         </ul>
       </div>
-      <IconContext.Provider value={{ size: "2rem" }}>
-        <div className="back-left-arrow-container" onClick={() => navigate(-1)}>
-          <TbArrowLeft />
-        </div>
-      </IconContext.Provider>
+      <div className="back-left-arrow-container" onClick={() => navigate(-1)}>
+        <TbArrowLeft size={65} />
+      </div>
     </div>
   );
 }

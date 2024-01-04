@@ -1,3 +1,14 @@
+.expandedBtn {
+  text-align: center;
+  margin-top: 5px;
+  /* margin: 5px 30px; */
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #9949ff;
+  max-width: 250px;
+  height: 30px;
+}
 .friend-profile-container {
   display: flex;
   align-items: center;
@@ -431,7 +442,7 @@ a.friend-wish-list-item-link {
 
   height: 8rem;
   background: #f1ebfa;
-  border-radius: 1rem;
+  border-radius: 10px;
   overflow: hidden;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 16px;

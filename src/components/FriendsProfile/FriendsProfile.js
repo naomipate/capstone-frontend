@@ -4,16 +4,20 @@ import FriendsProfileWishlist from "./FriendsProfileWishlist/FriendsProfileWishl
 import { getFriendsAndTheirWishlists, deleteFriend } from "../API/API";
 import { TbArrowLeft, TbCake } from "react-icons/tb";
 import { PiSpeakerHighBold, PiSpeakerXBold } from "react-icons/pi";
+import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import "./FriendsProfile.css";
 import { toast } from "react-toastify";
-import { RefreshContext } from "../common/context/context";
+import { FriendsContext } from "../common/context/context";
 import userProfileImg from "../../Assets/profile-img-red.png";
 
 function FriendsProfile() {
   const [friendInfoProfile, setFriendInfoProfile] = useState([]);
   const [friendInfoWishList, setFriendInfoWishList] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
-  const { setToggleRefresh } = useContext(RefreshContext);
+  const [sortByPrice, setSortByPrice] = useState("asc");
+  const [sortedItems, setSortedItems] = useState([]);
+  const { setToggleUpdate } = useContext(FriendsContext);
+  let currentDate = new Date(Date.now()); // Time from system
 
   const { id, friendId } = useParams();
   let navigate = useNavigate();
@@ -35,8 +39,8 @@ function FriendsProfile() {
     try {
       await deleteFriend(friendId, id);
       await deleteFriend(id, friendId);
-      toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
-      setToggleRefresh(true);
+      setToggleUpdate(true);
+      toast.success("Friend Unfollowed", toast.POSITION.TOP_CENTER);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -47,57 +51,140 @@ function FriendsProfile() {
     setIsMuted(!isMuted);
   }
 
-  function birthday(dob) {
-    // birthday set to new date
-    const dobObject = new Date(dob);
-    // EST DateTime Offset
-    const dateObjectESTTimeOffset = dobObject.getTimezoneOffset() * 60 * 1000;
-    // Set time to the EST offset
-    dobObject.setTime(dobObject.getTime() + dateObjectESTTimeOffset);
-    /* Changing month to a longer version and day to numeric so instead of Jan, 
-    we can get January and instead of 06, we can get 6. */
-    const dobMonthDay = dobObject.toLocaleDateString("en-US", {
+  const sortItems = () => {
+    if (Array.isArray(friendInfoWishList)) {
+      const sortedItemsCopy = [...friendInfoWishList];
+
+      sortedItemsCopy.sort((a, b) => {
+        if (sortByPrice === "asc") {
+          return a.item_price - b.item_price;
+        } else {
+          return b.item_price - a.item_price;
+        }
+      });
+      setSortedItems(sortedItemsCopy);
+    }
+  };
+
+  useEffect(() => {
+    sortItems();
+    // eslint-disable-next-line
+  }, [sortByPrice, friendInfoWishList]);
+
+  const handleSortPriceChange = (newSortPrice) => {
+    setSortByPrice(newSortPrice);
+  };
+
+  // Sorting DOB by positive/negative where we subtract the current date from an upcoming date
+  const upcomingDateCalc = (dob) => {
+    // DOB date
+    let date = new Date(dob);
+    let upcomingDateESTTimeZoneOffset = date.getTimezoneOffset() * 60 * 1000;
+    // UpcomingDOBDate: calc dates with current year attached.
+    let upcomingDateWithCurrentYear = new Date(
+      date.setFullYear(currentDate.getFullYear())
+    );
+    // UpcomingDate - now = Time before each date.
+    let oneMiliBeforeTwentyFourHrs = 86399999;
+
+    // positive is in the current year
+    upcomingDateWithCurrentYear.setTime(
+      upcomingDateWithCurrentYear.getTime() +
+        oneMiliBeforeTwentyFourHrs +
+        upcomingDateESTTimeZoneOffset
+    );
+
+    return upcomingDateWithCurrentYear;
+  };
+
+  let dobInMili = upcomingDateCalc(friendInfoProfile.dob);
+
+  let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    { day: "numeric" }
+  );
+
+  let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    {
       month: "long",
-      day: "numeric",
-    });
-    return dobMonthDay;
-  }
+    }
+  );
+
+  let sign = calculateZodiacSign(dobInMili, friendInfoProfile.id);
 
   return (
     <div className="friend-profile-container">
-      <div className="friend-profile-info-top">
-        <div className="friend-wishlist-top-left-side">
-          <img
-            alt="friend-user-profile"
-            className="friend-user-profile"
-            src={userProfileImg}
-          />
-          <div className="friend-profile-user-names">
-            <h2>{friendInfoProfile.user_name}</h2>
-            <p>
-              {friendInfoProfile.first_name} {friendInfoProfile.last_name}
-            </p>
-            <div className="friend-profile-dob-container">
-              <TbCake id="cake" size={"1.3rem"} />
-              <p className="friend-user-dob">
-                {birthday(friendInfoProfile.dob)}
+      <div className="zodiac-tooltip">
+        <div className="friend-profile-info-top">
+          <div className="friend-wishlist-top-left-side">
+            <img
+              alt="friend-user-profile"
+              className="friend-user-profile"
+              src={
+                friendInfoProfile.user_picture
+                  ? friendInfoProfile.user_picture
+                  : userProfileImg
+              }
+            />
+            <div className="friend-profile-user-names">
+              <h2>{friendInfoProfile.user_name}</h2>
+              <p>
+                {friendInfoProfile.first_name} {friendInfoProfile.last_name}
+              </p>
+              <div className="friend-profile-dob-container">
+                <p className="friend-user-dob">
+                  {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}
+                </p>
+                <TbCake id="cake" size={"1.3rem"} />
+              </div>
+              <p className="friend-profile-zodiac">
+                Zodiac: <span id="zodiac">{sign?.zodiacSign}</span>
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="friend-wishlist-top-right-side">
-          <button
-            className="button-friend-profile"
-            onClick={handleDeleteFriend}
-          >
-            Unfollow
-          </button>
+          <div className="friend-wishlist-top-right-side">
+            <button
+              className="button-friend-profile"
+              onClick={handleDeleteFriend}
+            >
+              Unfollow
+            </button>
+            <div className="zodiac-right">
+              <div className="zodiac-text-content">
+                <h3>
+                  {friendInfoProfile.first_name} is a {sign?.zodiacName}, they
+                  might like gifts that are:
+                </h3>
+                <h3 className="list-item">• {sign?.zodiacInfo[0]}</h3>
+                <h3 className="list-item">• {sign?.zodiacInfo[1]}</h3>
+                <h3 className="list-item">• {sign?.zodiacInfo[2]}</h3>
+                <h3>
+                  Note these are suggestions. Always consider the persons
+                  interest and preferences before purchasing outside of their
+                  wish list.
+                </h3>
+              </div>
+              <i className="zodiac-tooltip-triangle"></i>
+            </div>
+          </div>
         </div>
       </div>
       <div className="friend-list-button-container">
-        <div onClick={() => navigate(-1)} id="back-button">
+        <div onClick={() => navigate(`/dashboard/${id}`)} id="back-button">
           <TbArrowLeft size={"2rem"} />
+        </div>
+
+        {/* ------- Price sorting order ------ */}
+        <div>
+          <label htmlFor="priceSortOrder">Sort by: </label>
+          <select
+            id="priceSortOrder"
+            onChange={(e) => handleSortPriceChange(e.target.value)}
+          >
+            <option value="asc">Lowest Price</option>
+            <option value="desc">Highest Price</option>
+          </select>
         </div>
 
         {isMuted === false ? (
@@ -112,15 +199,25 @@ function FriendsProfile() {
       </div>
       <div className="friend-wishlist-list-container">
         <ul className="friend-wishlist-ul">
-          {friendInfoWishList.map((item) => {
-            return (
-              <FriendsProfileWishlist
-                item={item}
-                key={item.id}
-                isMuted={isMuted}
-              />
-            );
-          })}
+          <>
+            {sortedItems.length === 0 ? (
+              <>
+                <li className="friend-wishlist-list-item">No wishlist items</li>
+              </>
+            ) : (
+              <>
+                {sortedItems.map((item) => {
+                  return (
+                    <FriendsProfileWishlist
+                      item={item}
+                      key={item.id}
+                      isMuted={isMuted}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </>
         </ul>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import "./Nav.css";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import GiftuneLogo from "../../Assets/GiftuneLogo3Nav.png";
+import GiftuneLogo from "../../Assets/image_360.png";
 
 function Nav({ user, setUser }) {
   const navigate = useNavigate();
@@ -26,7 +26,6 @@ function Nav({ user, setUser }) {
             <NavLink to={"/search-page"}>Find Friend</NavLink>
           </>
         )}
-        <NavLink to={"/about"}>About Us</NavLink>
       </nav>
     </header>
   );

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { newNotification, getAllFriendsFromUser } from "../API/API";
-
+import "./SearchListBtn.css";
 function SearchListBtn({ targetUser }) {
   const [toggleBtn, setToggleBtn] = useState(false);
   const [user, setUser] = useState({
-    id: targetUser.id,
+    id: targetUser?.id,
     message: `Wants to be friends`,
     sender_id: 0,
     sender_name: "",
+    msg_type: "friend",
+    is_read: false,
+    date_stamp: "",
+    time_stamp: "",
   });
 
   useEffect(() => {
@@ -33,8 +37,19 @@ function SearchListBtn({ targetUser }) {
   }
 
   async function handleFriendRequest() {
+    let localUser = user;
+    let currentDate = new Date();
+    let formatDate = `${currentDate.getFullYear()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
+    let fTime = `${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}:${currentDate.getUTCSeconds()}`;
+    localUser = {
+      ...localUser,
+      date_stamp: formatDate,
+      time_stamp: fTime,
+    };
     try {
-      await newNotification(user);
+      await newNotification(localUser);
       setToggleBtn(!toggleBtn);
     } catch (error) {
       console.log(error);
@@ -42,7 +57,11 @@ function SearchListBtn({ targetUser }) {
   }
 
   return (
-    <button className="btn" onClick={handleFriendRequest} disabled={toggleBtn}>
+    <button
+      className="requestBtn"
+      onClick={handleFriendRequest}
+      disabled={toggleBtn}
+    >
       {toggleBtn ? "Already Sent ✓" : "Send Friend Request"}
     </button>
   );

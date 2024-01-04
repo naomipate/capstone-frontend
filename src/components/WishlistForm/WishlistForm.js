@@ -1,28 +1,26 @@
 /* eslint-disable padded-blocks */
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import "./WishlistForm.css";
 
-function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
+function WishlistForm({ onSubmit, selectedItem, setSelectedItem }) {
   const { id } = useParams();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setFormData(initialValues);
-    // eslint-disable-next-line
-  }, [initialValues]);
+  const [listData, setListData] = useState(selectedItem);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setListData({ ...listData, [name]: value });
+    setSelectedItem({ ...listData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit(formData);
+    onSubmit(listData);
     navigate(`/dashboard/${id}/userwishlist`);
   };
 
@@ -38,7 +36,7 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             type="text"
             id="item_name"
             name="item_name"
-            value={formData?.item_name || ""}
+            value={listData?.item_name || ""}
             onChange={(e) => handleInputChange(e)}
             className="wish-list-form-input"
           />
@@ -51,10 +49,24 @@ function WishlistForm({ onSubmit, initialValues, formData, setFormData }) {
             type="text"
             id="link"
             name="link"
-            value={formData?.link || ""}
+            value={listData?.link || ""}
             onChange={(e) => handleInputChange(e)}
             className="wish-list-form-input"
           />
+
+          <label htmlFor="itemPrice" className="wish-list-form-title">
+            Approximate price
+          </label>
+          <input
+            required
+            type="number"
+            id="item_price"
+            name="item_price"
+            value={listData?.item_price || ""}
+            onChange={(e) => handleInputChange(e)}
+            className="wish-list-form-input"
+          />
+
           <button className="wish-list-button-container" type="submit">
             Submit
           </button>

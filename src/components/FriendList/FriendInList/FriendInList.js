@@ -1,6 +1,7 @@
 import React from "react";
 import "./FriendInList.css";
 import { Link } from "react-router-dom";
+import profileImg from "../../../Assets/profile-img-yellow.png";
 
 function FriendInList({ id, friendsList }) {
   return (
@@ -15,7 +16,13 @@ function FriendInList({ id, friendsList }) {
               >
                 <div className="user-first-row">
                   <div className="user-first-row-left">
-                    <div className="friend-list-profile-img-placeholder"></div>
+                    <img
+                      className="friend-list-profile-img-placeholder"
+                      src={`${
+                        user.user_picture ? user.user_picture : profileImg
+                      }`}
+                      alt=""
+                    />
                     <div className="friend-list-all-names">
                       <span className="friend-list-user-name">
                         {user.user_name}
