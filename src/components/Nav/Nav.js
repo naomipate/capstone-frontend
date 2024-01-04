@@ -11,7 +11,8 @@ function Nav({ user, setUser }) {
     navigate("/");
   }
   return (
-    <header className="topnav">
+    <header className="topnav-container">
+      <div className="topnav">
       <img src={GiftuneLogo} alt="logo" />
       <nav className="nav-links">
         {user ? (
@@ -27,6 +28,7 @@ function Nav({ user, setUser }) {
           </>
         )}
       </nav>
+      </div>
     </header>
   );
 }

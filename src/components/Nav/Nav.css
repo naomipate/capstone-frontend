@@ -1,9 +1,15 @@
+.topnav-container{
+display: flex;
+justify-content: center;
+}
+
 .topnav {
+  margin-top: -10px;
+  width: 1000px;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: space-around;
-  width: 100%;
-  border-bottom: 1px solid #bd8fd2;
+  height: 80px;
 }
 
 .topnav img {

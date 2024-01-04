@@ -39,7 +39,6 @@
 }
 
 .SortByDropdown {
-  margin-right: 140px;
   margin-top: 5px;
 }
 
@@ -50,15 +49,13 @@
 .back-sort-actions {
   display: flex;
   align-items: center;
-  width: 50rem;
-  padding: 25px;
+  padding: 25px 0;
 }
 
 .back-left-arrow-container {
   display: flex;
   align-items: left;
   width: 50rem;
-  /* padding: 25px; */
 }
 
 @media screen and (max-width: 800px) {
