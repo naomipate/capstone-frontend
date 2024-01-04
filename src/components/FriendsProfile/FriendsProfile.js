@@ -131,9 +131,8 @@ function FriendsProfile() {
     month: "long",
   });
 
-  console.log(dobInMili);
-
   let sign = calculateZodiacSign(dobInMili);
+  console.log(sign?.zodiacSign);
 
   return (
     <div className="friend-profile-container">
@@ -172,8 +171,7 @@ function FriendsProfile() {
             Unfollow
           </button>
           <div
-          className="zodiac-right"
-        >
+          className="zodiac-right" style={{ backgroundImage: `url(${sign?.zodiacSign})` }} >
           <div className="zodiac-text-content">
             <h3>{friendInfoProfile.first_name} is a {sign?.zodiacName}, they might like gifts that are:</h3>
             <h3 className="list-item">• {sign?.zodiacInfo[0]}</h3>

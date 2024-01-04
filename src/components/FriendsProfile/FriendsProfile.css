@@ -474,7 +474,7 @@ width: 220px;
   transform:translate(0, -50%);
   padding:0;
   color:#EEEEEE;
-  background-color:#ff9090;
+  background-color:#F87C7C;
   font-weight:lighter;
   font-size:9px;
   border-radius:8px;
@@ -515,7 +515,7 @@ width: 220px;
   left:0;
   top:50%;
   transform:translate(50%,-50%) rotate(-45deg);
-  background-color:#ff9090;
+  background-color:#F87C7C;
 }
 
 
