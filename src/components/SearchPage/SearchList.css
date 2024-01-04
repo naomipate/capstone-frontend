@@ -9,6 +9,8 @@
   justify-content: center;
   max-height: 400px;
   overflow-y: auto;
+  position: relative;
+  z-index: 2;
 }
 /* SCROLL BAR CSS */
 .search-list-results-container::-webkit-scrollbar-track {

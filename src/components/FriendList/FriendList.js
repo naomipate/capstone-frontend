@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import "./FriendList.css";
 import { getAllFriendsFromUser } from "../API/API";
 import FriendInList from "./FriendInList/FriendInList";
-import profileImg from "../../Assets/profile-img-yellow.png";
 
 function FriendList() {
   const [input, setInput] = useState("");
