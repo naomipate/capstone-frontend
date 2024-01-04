@@ -1,11 +1,16 @@
+.topnav-container{
+display: flex;
+justify-content: center;
+background-color: #9d41f8;
+}
+
 .topnav {
   margin-top: -10px;
-  width: 100%;
+  width: 1000px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   height: 80px;
-  /* background-color: rgb(255, 210, 202); */
 }
 
 .topnav img {
