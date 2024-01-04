@@ -17,7 +17,9 @@ function SidebarNav() {
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
+    console.log(storedUser);
     setUser(storedUser);
+
     fetchFriends(storedUser?.id);
     // eslint-disable-next-line
   }, []);
@@ -61,12 +63,12 @@ function SidebarNav() {
     <div className="sidebar-nav-container">
       <div className="sidebar-nav-content">
         <div className="sidebar-user-info">
-            <img
-              className="sidebarImage"
-              src={userProfileImg}
-              alt="profile_img"
-            />
-            <h2 className="sidebarUsername">{user.user_name}</h2>
+          <img
+            className="sidebarImage"
+            src={user?.user_picture}
+            alt="profile_img"
+          />
+          <h2 className="sidebarUsername">{user.user_name}</h2>
           <p className="sidebarBirthday">
             <TbCake id="cake" size={"1.3rem"} />
             {user.dob ? formatDate(user.dob) : ""}
@@ -98,7 +100,9 @@ function SidebarNav() {
               <NavLink to={"/dashboard/notification"}>Notifications</NavLink>
             </li>
             <li key="profile" className="sidebarItem">
-              <NavLink to={`/dashboard/${user?.id}/editProfile`}>Profile</NavLink>
+              <NavLink to={`/dashboard/${user?.id}/editProfile`}>
+                Profile
+              </NavLink>
             </li>
           </ul>
         </div>

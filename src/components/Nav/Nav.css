@@ -5,7 +5,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   height: 80px;
-  background-color: rgb(255, 210, 202)
+  /* background-color: rgb(255, 210, 202); */
 }
 
 .topnav img {
@@ -25,13 +25,16 @@
   color: black;
   transition: 0.3s ease-in-out;
   text-decoration: none;
-  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: large;
   width: 150px;
 }
 
 .nav-links a:hover {
-  color: rgb(255, 80, 80);
+  /* color: rgb(255, 80, 80); */
+  color: rgb(254, 68, 68);
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 600px) {

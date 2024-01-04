@@ -15,7 +15,7 @@ import "./UserWishlist.css";
 function UserWishlist({ handleCreateWishlist, user }) {
   const navigate = useNavigate();
 
-  const { WishlistData, setWishlistData, setToggleUpdate, toggleUpdate } =
+  const { setWishlistData, setToggleUpdate, toggleUpdate } =
     useContext(WishlistContext);
 
   const user_id = user?.id;
@@ -39,6 +39,7 @@ function UserWishlist({ handleCreateWishlist, user }) {
       fetchWishlist();
       setToggleUpdate(false);
     }
+    // eslint-disable-next-line
   }, [toggleUpdate]);
 
   const fetchWishlist = async () => {
@@ -73,9 +74,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
     setEditingItemId(itemId);
     const selectedItem = formData.find((item) => item.id === itemId);
     setSelectedItem(selectedItem);
-    // if (selectedItem) {
-    //   setFormData(selectedItem);
-    // }
   };
 
   const handleEditSubmit = async (formData) => {

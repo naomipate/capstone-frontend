@@ -88,3 +88,23 @@
     }
   }
 }
+@media screen and (max-width: 760px) {
+  & .__noti {
+    /* display: grid;
+    grid-template-columns: 25% 25% 25% 25%; */
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: solid 2px var(--softPurple);
+    & .__read {
+      max-width: 20px;
+    }
+    & .__messages {
+      overflow: hidden;
+      white-space: nowrap;
+      /* width: 25%; */
+      text-overflow: ellipsis;
+    }
+  }
+}

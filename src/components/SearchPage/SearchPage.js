@@ -53,34 +53,33 @@ function Search() {
     >
       <div className="search-page-content">
         <div className="search-page-content-background">
-        <div className="search-page-title">
-          <p> Find Your Friend</p>
-        </div>
+          <div className="search-page-title">
+            <p> Find Your Friend</p>
+          </div>
 
-        <div className="search-box">
-          <input
-            type="text"
-            className="search-page-search-input"
-            placeholder="Search by username"
-            value={input}
-            onChange={(e) => handleChange(e.target.value)}
-          />
-
-          <button className="search-page-search-button">
-            <img
-              className="search-icon"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              src="./images/search-icon.png"
-              alt="Magnifying glass"
+          <div className="search-box">
+            <input
+              type="text"
+              className="search-page-search-input"
+              placeholder="Search by username"
+              value={input}
+              onChange={(e) => handleChange(e.target.value)}
             />
-          </button>
-          <div></div>
+
+            <button className="search-page-search-button">
+              <img
+                className="search-icon"
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                src="./images/search-icon.png"
+                alt="Magnifying glass"
+              />
+            </button>
+          </div>
+          <div className="search-page-results">
+            {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
+          </div>
         </div>
-        <div className="search-page-results">
-          {input ? <SearchList filteredUsers={filteredUsers} /> : ""}
-        </div>
-      </div>
       </div>
     </div>
   );

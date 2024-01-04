@@ -1,7 +1,6 @@
 /* eslint-disable padded-blocks */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { WishlistContext } from "../common/context/context";
 
 import "./WishlistForm.css";
 
@@ -11,13 +10,6 @@ function WishlistForm({ onSubmit, selectedItem, setSelectedItem }) {
   const navigate = useNavigate();
 
   const [listData, setListData] = useState(selectedItem);
-
-  const { WishlistData, setWishlistData } = useContext(WishlistContext);
-
-  useEffect(() => {
-    console.log(listData);
-    // eslint-disable-next-line
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
