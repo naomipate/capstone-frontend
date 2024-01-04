@@ -8,7 +8,7 @@ function SearchListBtn({ targetUser }) {
     message: `Wants to be friends`,
     sender_id: 0,
     sender_name: "",
-    msg_type: "friend",
+    msg_type: "request",
     is_read: false,
     date_stamp: "",
     time_stamp: "",

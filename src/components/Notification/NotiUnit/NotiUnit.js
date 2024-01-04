@@ -31,7 +31,7 @@ function NotiUnit({ data, handleDeleteNoti }) {
     const formattedDate = dateObject.toLocaleDateString("en-US", options);
     setFormatDate(formattedDate);
   }
-  async function handleAcceptFriendRequest(user_id, sender_id, item_id) {
+  async function handleAcceptFriendRequest(user_id, sender_id) {
     const data = {
       user_id: user_id,
       friend_id: sender_id,
@@ -53,6 +53,7 @@ function NotiUnit({ data, handleDeleteNoti }) {
     };
     try {
       let result = await updateNotification(newData);
+      console.log(result);
       setCollection(result);
     } catch (error) {
       console.log(error);
