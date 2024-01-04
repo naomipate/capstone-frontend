@@ -29,7 +29,6 @@ function FriendsProfile() {
   async function fetchList() {
     try {
       let result = await getFriendsAndTheirWishlists(id, friendId);
-      console.log(result.data.friendsWishlist);
       setFriendInfoProfile(result.data.friendProfile);
       setFriendInfoWishList(result.data.friendsWishlist);
     } catch (error) {
@@ -41,7 +40,7 @@ function FriendsProfile() {
       await deleteFriend(friendId, id);
       await deleteFriend(id, friendId);
       setToggleUpdate(true);
-      toast("Friend Unfollowed", toast.POSITION.TOP_CENTER);
+      toast.success("Friend Unfollowed", toast.POSITION.TOP_CENTER);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -55,7 +54,7 @@ function FriendsProfile() {
   const sortItems = () => {
     if (Array.isArray(friendInfoWishList)) {
       const sortedItemsCopy = [...friendInfoWishList];
-      console.log(sortedItemsCopy);
+
       sortedItemsCopy.sort((a, b) => {
         if (sortByPrice === "asc") {
           return a.item_price - b.item_price;
@@ -64,7 +63,6 @@ function FriendsProfile() {
         }
       });
       setSortedItems(sortedItemsCopy);
-      console.log(sortedItems);
     }
   };
 
@@ -88,52 +86,32 @@ function FriendsProfile() {
     );
     // UpcomingDate - now = Time before each date.
     let oneMiliBeforeTwentyFourHrs = 86399999;
-    let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
-    // Sort by this ^^^^^
-    if (upcomingDateDiff > 0) {
-      // positive is in the current year
-      upcomingDateWithCurrentYear.setTime(
-        upcomingDateWithCurrentYear.getTime() +
-          oneMiliBeforeTwentyFourHrs +
-          upcomingDateESTTimeZoneOffset
-      );
-      console.log(upcomingDateWithCurrentYear);
-      return upcomingDateWithCurrentYear;
-      // return upcomingDateWithCurrentYear.setTime(
-      //   upcomingDateWithCurrentYear.getTime() +
-      //     oneMiliBeforeTwentyFourHrs +
-      //     upcomingDateESTTimeZoneOffset
-      // );
-    } else {
-      // negative is next year
-      let upcomingDateWithNextYear = new Date(
-        date.setFullYear(currentDate.getFullYear() + 1)
-      );
-      upcomingDateWithNextYear.setTime(
-        upcomingDateWithNextYear.getTime() +
-          oneMiliBeforeTwentyFourHrs +
-          upcomingDateESTTimeZoneOffset
-      );
-      console.log(upcomingDateWithNextYear);
-      return upcomingDateWithNextYear;
-    }
+
+    // positive is in the current year
+    upcomingDateWithCurrentYear.setTime(
+      upcomingDateWithCurrentYear.getTime() +
+        oneMiliBeforeTwentyFourHrs +
+        upcomingDateESTTimeZoneOffset
+    );
+
+    return upcomingDateWithCurrentYear;
   };
 
   let dobInMili = upcomingDateCalc(friendInfoProfile.dob);
 
-  let dayNumOfUpcomingBirthDay = new Date(
-    friendInfoProfile.dob
-  ).toLocaleDateString("en-US", { day: "numeric" });
+  let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    { day: "numeric" }
+  );
 
-  let fullMonthOfUpcomingBirthday = new Date(
-    friendInfoProfile.dob
-  ).toLocaleDateString("en-US", {
-    month: "long",
-  });
+  let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
+    "en-US",
+    {
+      month: "long",
+    }
+  );
 
-  console.log(dobInMili);
-
-  let sign = calculateZodiacSign(dobInMili);
+  let sign = calculateZodiacSign(dobInMili, friendInfoProfile.id);
 
   return (
     <div className="friend-profile-container">
@@ -143,7 +121,11 @@ function FriendsProfile() {
             <img
               alt="friend-user-profile"
               className="friend-user-profile"
-              src={userProfileImg}
+              src={
+                friendInfoProfile.user_picture
+                  ? friendInfoProfile.user_picture
+                  : userProfileImg
+              }
             />
             <div className="friend-profile-user-names">
               <h2>{friendInfoProfile.user_name}</h2>
@@ -157,40 +139,39 @@ function FriendsProfile() {
                 <TbCake id="cake" size={"1.3rem"} />
               </div>
               <p className="friend-profile-zodiac">
-                Zodiac:{" "}
-                <span id="zodiac">
-                  {sign?.zodiacSign}
-                </span>
+                Zodiac: <span id="zodiac">{sign?.zodiacSign}</span>
               </p>
             </div>
           </div>
           <div className="friend-wishlist-top-right-side">
-          <button
-            className="button-friend-profile"
-            onClick={handleDeleteFriend}
-          >
-            Unfollow
-          </button>
-          <div
-          className="zodiac-right"
-        >
-          <div className="zodiac-text-content">
-            <h3>{friendInfoProfile.first_name} is a {sign?.zodiacName}, they might like gifts that are:</h3>
-            <h3 className="list-item">• {sign?.zodiacInfo[0]}</h3>
-            <h3 className="list-item">• {sign?.zodiacInfo[1]}</h3>
-            <h3 className="list-item">• {sign?.zodiacInfo[2]}</h3>
-            <h3>Note these are suggestions. Always consider the persons interest and preferences before purchasing outside of their wish list.</h3>
-
+            <button
+              className="button-friend-profile"
+              onClick={handleDeleteFriend}
+            >
+              Unfollow
+            </button>
+            <div className="zodiac-right">
+              <div className="zodiac-text-content">
+                <h3>
+                  {friendInfoProfile.first_name} is a {sign?.zodiacName}, they
+                  might like gifts that are:
+                </h3>
+                <h3 className="list-item">• {sign?.zodiacInfo[0]}</h3>
+                <h3 className="list-item">• {sign?.zodiacInfo[1]}</h3>
+                <h3 className="list-item">• {sign?.zodiacInfo[2]}</h3>
+                <h3>
+                  Note these are suggestions. Always consider the persons
+                  interest and preferences before purchasing outside of their
+                  wish list.
+                </h3>
+              </div>
+              <i className="zodiac-tooltip-triangle"></i>
+            </div>
           </div>
-          <i
-            className="zodiac-tooltip-triangle"
-          ></i>
-        </div>
-        </div>
         </div>
       </div>
       <div className="friend-list-button-container">
-        <div onClick={() => navigate(-1)} id="back-button">
+        <div onClick={() => navigate(`/dashboard/${id}`)} id="back-button">
           <TbArrowLeft size={"2rem"} />
         </div>
 

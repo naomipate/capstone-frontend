@@ -74,9 +74,6 @@ function UserWishlist({ handleCreateWishlist, user }) {
     setEditingItemId(itemId);
     const selectedItem = formData.find((item) => item.id === itemId);
     setSelectedItem(selectedItem);
-    // if (selectedItem) {
-    //   setFormData(selectedItem);
-    // }
   };
 
   const handleEditSubmit = async (formData) => {

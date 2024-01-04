@@ -69,18 +69,22 @@ function NotiUnit({ data, handleDeleteNoti }) {
         <>
           <input
             type="checkbox"
+            className="__read"
             checked={isReadValue}
             onChange={(e) => handleOnChange(e.target.checked)}
           />
-          <p>{formatDate}</p>
-          <p>{collection?.messages}</p>
+          <p className="__formatDate">{formatDate}</p>
+          <p className="__messages">{collection?.messages}</p>
           <div className="__dropdown">
             <button className="__options" onClick={() => setShow(!show)}>
               <IoMdMore />
             </button>
             <div className={`__dropdownContent ${show ? "show" : ""}`}>
               <div className="__contentList">
-                <button className="__item">
+                <button
+                  className="__item"
+                  onClick={() => handleDeleteNoti(collection?.id)}
+                >
                   <MdDelete />
                   <span>&#8192;</span>
                   Delete
@@ -95,11 +99,12 @@ function NotiUnit({ data, handleDeleteNoti }) {
             <>
               <input
                 type="checkbox"
+                className="__read"
                 checked={isReadValue}
                 onChange={(e) => handleOnChange(e.target.checked)}
               />
-              <p>{formatDate}</p>
-              <p>{`${collection?.sender_name}: ${collection?.messages}`}</p>
+              <p className="__formatDate">{formatDate}</p>
+              <p className="__messages">{`${collection?.sender_name}: ${collection?.messages}`}</p>
               <div className="__dropdown">
                 <button className="__options" onClick={() => setShow(!show)}>
                   <IoMdMore />
@@ -127,6 +132,11 @@ function NotiUnit({ data, handleDeleteNoti }) {
                       <ImCross />
                       <span>&#8192;</span>
                       Decline Friend
+                    </button>
+                    <button className="__item">
+                      <MdDelete />
+                      <span>&#8192;</span>
+                      Delete
                     </button>
                   </div>
                 </div>

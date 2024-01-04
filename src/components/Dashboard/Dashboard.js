@@ -13,15 +13,13 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   const { setFriendsData } = useContext(FriendsContext);
-  const currentMonthNum = currentDate.getMonth() + 1;
-  const currentDayNum = currentDate.getDate();
 
   useEffect(() => {
     if (user === null) {
       navigate("/login");
-    } else {
     }
     fetchData();
+    setFriendsData(dashboardUser.friendsOrderedByDOB);
     // eslint-disable-next-line
   }, [dashboardId]);
 
@@ -30,20 +28,6 @@ function Dashboard({ user }) {
       setDashboardId(user?.id);
       let response = await getUserProfile(dashboardId);
       setDashboardUser(response.data);
-      let dataShorthand = response.data.friendsOrderedByDOB;
-      let formatFriends = dataShorthand.map(
-        ({ id, user_name, first_name, last_name, dob, email }) => {
-          return {
-            id: id,
-            user_name: user_name,
-            first_name: first_name,
-            last_name: last_name,
-            dob: dob,
-            email: email,
-          };
-        }
-      );
-      setFriendsData(formatFriends);
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +53,6 @@ function Dashboard({ user }) {
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
-      // console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
@@ -83,15 +66,6 @@ function Dashboard({ user }) {
       );
       return upcomingDateWithNextYear;
     }
-  };
-
-  const todayDateCard = () => {
-    return (
-      <div className="dashboard-container">
-        <p className="dashboard-heading">Upcoming Birthdays</p>
-        {friendsList}
-      </div>
-    );
   };
 
   dashboardUser?.friendsOrderedByDOB?.forEach((friend) => {
@@ -108,6 +82,7 @@ function Dashboard({ user }) {
           key={index}
           friendDetails={friendDetails}
           dashboardUserId={dashboardId}
+          currentDate={currentDate}
         />
         {/* <Events
           key={index}
@@ -118,22 +93,18 @@ function Dashboard({ user }) {
     );
   });
 
-  return <>{todayDateCard(currentDate)}</>;
+  return (
+    <>
+      <div className="dashboard-container">
+        <p className="dashboard-heading">Upcoming Birthdays</p>
+        {friendsList}
+      </div>
+    </>
+  );
 }
 
-function Friend({
-  friendDetails,
-  dashboardUserId,
-  currentMonthNum,
-  currentDayNum,
-}) {
-  let { first_name, last_name, wishlist, dobInMili } = friendDetails;
-  // let wishlistItem = wishlist.map((item, index) => (
-  //   <li key={index}>
-  //     <img id="giftune-wishlist-item-logo" src={Giftune} alt="Giftune" />
-  //     <a href={item.link}>{item.item_name}</a>
-  //   </li>
-  // ));
+function Friend({ friendDetails, dashboardUserId, currentDate }) {
+  let { id, user_picture, first_name, last_name, dobInMili } = friendDetails;
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
@@ -144,43 +115,45 @@ function Friend({
       month: "long",
     }
   );
-  let fullMonthOfUpcomingBirthdayNum = new Date(dobInMili).toLocaleDateString(
-    "en-US",
-    {
-      month: "numeric",
-    }
-  );
+
+  let monthNumOfUpcomingBirthday = new Date(dobInMili).getMonth() + 1;
 
   function friendContentClassNames() {
     if (
-      parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum &&
-      dayNumOfUpcomingBirthDay == currentDayNum
+      monthNumOfUpcomingBirthday === currentDate.getMonth() + 1 &&
+      dayNumOfUpcomingBirthDay === currentDate.getDate()
     ) {
       return "dashboard-friend-card-container-today";
-    } else if (parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum) {
+    } else if (monthNumOfUpcomingBirthday === currentDate.getMonth() + 1) {
       return "dashboard-friend-card-container-this-month";
     } else {
       return "dashboard-friend-card-container";
     }
   }
 
-  let sign = calculateZodiacSign(dobInMili);
+  let sign = calculateZodiacSign(dobInMili, id);
 
   return (
-    <div className={friendContentClassNames()}>
+    <div className={friendContentClassNames()} key={id}>
       <Link
-        to={`/dashboard/${dashboardUserId}/friends/${wishlist[0].user_id}`}
+        to={`/dashboard/${dashboardUserId}/friends/${id}`}
         className="friend-list-link"
       >
         <div
-          className={
-            parseInt(fullMonthOfUpcomingBirthdayNum) === currentMonthNum
-              ? "dashboard-friend-card-content-this-month"
-              : "dashboard-friend-card-content"
-          }
+          className={`dashboard-friend-card-content${
+            monthNumOfUpcomingBirthday === currentDate.getMonth() + 1
+              ? "-this-month"
+              : ""
+          }`}
         >
           <div className="dashboard-friend-card-left">
-            <div className="dashboard-img-placeholder"></div>
+            {/* <div className="dashboard-img-placeholder"> */}
+            <img
+              className="dashboard-img-placeholder"
+              src={user_picture}
+              alt="profile_img"
+            />
+            {/* </div> */}
             <p className="dashboard-card-name">
               {first_name} {last_name}{" "}
             </p>
@@ -188,7 +161,7 @@ function Friend({
           <p className="dashboard-card-text">
             {fullMonthOfUpcomingBirthday} {dayNumOfUpcomingBirthDay}{" "}
           </p>
-          <p className="dashboard-card-text-zodiac">
+          <p className="dashboard-card-text-zodiac" key={sign.zodiacSign.key}>
             Zodiac: {sign.zodiacSign}
           </p>
         </div>

@@ -1,4 +1,3 @@
-import { hover } from "@testing-library/user-event/dist/hover";
 import {
   TbZodiacAquarius,
   TbZodiacPisces,
@@ -13,9 +12,9 @@ import {
   TbZodiacSagittarius,
   TbZodiacCapricorn,
 } from "react-icons/tb";
-import "./Zodiac.css"
+// import "./Zodiac.css";
 
-export function calculateZodiacSign( dobInMili ){
+export function calculateZodiacSign(dobInMili, id) {
   let dobDate = new Date(dobInMili);
   const days = [20, 19, 21, 20, 21, 21, 23, 23, 23, 23, 22, 22];
   const signs = [
@@ -136,11 +135,6 @@ export function calculateZodiacSign( dobInMili ){
   } else if (day < days[month]) {
     month--;
   }
-
-
-  // let array = [signs[month].zodiacSign, signs[month].zodiacInfo]
-  console.log(signs[month]);
-
-  return signs[month]
+  // signs[month].zodiacSign = { ...signs[month].zodiacSign, key: id };
+  return signs[month];
 }
-
