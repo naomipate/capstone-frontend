@@ -14,6 +14,7 @@ function NotificationPage() {
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
+    console.log(storedUser);
     fetchData(storedUser?.id);
     // eslint-disable-next-line
   }, []);
@@ -37,6 +38,7 @@ function NotificationPage() {
         return localMsg.includes(search);
       });
       format = sortByDate(format, sortCheck);
+
       setFilterData(format);
     } else {
       setFilterData(notiData);
