@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { newNotification, getAllFriendsFromUser } from "../API/API";
-
+import "./SearchListBtn.css";
 function SearchListBtn({ targetUser }) {
   const [toggleBtn, setToggleBtn] = useState(false);
   const [user, setUser] = useState({
@@ -57,7 +57,11 @@ function SearchListBtn({ targetUser }) {
   }
 
   return (
-    <button className="btn" onClick={handleFriendRequest} disabled={toggleBtn}>
+    <button
+      className="requestBtn"
+      onClick={handleFriendRequest}
+      disabled={toggleBtn}
+    >
       {toggleBtn ? "Already Sent ✓" : "Send Friend Request"}
     </button>
   );

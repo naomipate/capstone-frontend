@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import "./FriendList.css";
 import { getAllFriendsFromUser } from "../API/API";
 import FriendInList from "./FriendInList/FriendInList";
+import profileImg from "../../Assets/profile-img-yellow.png";
 
 function FriendList() {
   const [input, setInput] = useState("");
@@ -42,8 +43,8 @@ function FriendList() {
   return (
     <div className="friend-list-container">
       <div className="friend-list-wrapper">
-        <div className="circle-1"></div>
-        <div className="circle-2"></div>
+        {/* <div className="circle-1"></div>
+        <div className="circle-2"></div> */}
         <div className="friend-list-card">
           <section className="top">
             <span className="u-l">Friends List</span>

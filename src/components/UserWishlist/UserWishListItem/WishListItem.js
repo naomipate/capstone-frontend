@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./WishListItem.css";
 import { IconContext } from "react-icons";
 import { TbEdit, TbTrash } from "react-icons/tb";
 
 function WishListItem({ item, handleEditClick, deleteWishlistItem }) {
+  // eslint-disable-next-line
   const [sortByPrice, setSortByPrice] = useState("asc");
-
-  useEffect(() => {
-    console.log(item);
-  }, []);
 
   return (
     <li key={item?.id} className="user-wishlist-item-container">

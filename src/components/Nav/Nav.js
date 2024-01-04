@@ -26,7 +26,6 @@ function Nav({ user, setUser }) {
             <NavLink to={"/search-page"}>Find Friend</NavLink>
           </>
         )}
-        <NavLink to={"/about"}>About Us</NavLink>
       </nav>
     </header>
   );

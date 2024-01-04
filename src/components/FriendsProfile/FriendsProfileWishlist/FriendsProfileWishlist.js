@@ -65,7 +65,6 @@ function FriendsProfileWishlist({ item, isMuted }) {
               <input
                 checked={is_bought}
                 type="checkbox"
-                // onClick={updateItem}
                 onChange={updateItem}
                 disabled={is_bought && assigned_user !== userId ? true : false}
               />
@@ -75,15 +74,18 @@ function FriendsProfileWishlist({ item, isMuted }) {
             <div className="notititle">
               {item.item_name.charAt(0).toUpperCase() + item.item_name.slice(1)}
             </div>
+            <Link
+              to={item?.link}
+              target="_blank"
+              className="friend-wish-list-item-link"
+            ></Link>
             {/* ------- Price is added below -------------- */}
 
             <div className="notititle">
               ${item.item_price} <br /> (Approximate)
             </div>
             {/* <div to={item.price}></div> */}
-            <Link
-            to={item?.link}
-              target="_blank">
+            <Link to={item?.link} target="_blank">
               <button
                 className="button-friend-profile-wishlist"
                 disabled={is_bought && assigned_user !== userId ? true : false}

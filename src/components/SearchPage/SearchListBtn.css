@@ -1,0 +1,10 @@
+.requestBtn {
+  text-align: center;
+  margin: 5px 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #9949ff;
+  max-width: 250px;
+  height: 30px;
+}
