@@ -103,7 +103,7 @@ function FriendsProfile() {
     "en-US",
     { day: "numeric" }
   );
-  
+
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {

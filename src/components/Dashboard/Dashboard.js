@@ -89,15 +89,18 @@ function Dashboard({ user }) {
   });
 
   return (
-    <div className="dashboard-container">
-      <p className="dashboard-heading">Upcoming Birthdays</p>
-      {friendsList}
-    </div>
+    <>
+      <div className="dashboard-container">
+        <p className="dashboard-heading">Upcoming Birthdays</p>
+        {friendsList}
+      </div>
+    </>
   );
 }
 
 function Friend({ friendDetails, dashboardUserId, currentDate }) {
-  let { id, user_picture, first_name, last_name, dobInMili } = friendDetails;
+  let { user_id, user_picture, first_name, last_name, dobInMili } =
+    friendDetails;
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
@@ -124,12 +127,12 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
     }
   }
 
-  let sign = calculateZodiacSign(dobInMili, id);
+  let sign = calculateZodiacSign(dobInMili, user_id);
 
   return (
-    <div className={friendContentClassNames()} key={id}>
+    <div className={friendContentClassNames()} key={user_id}>
       <Link
-        to={`/dashboard/${dashboardUserId}/friends/${id}`}
+        to={`/dashboard/${dashboardUserId}/friends/${user_id}`}
         className="friend-list-link"
       >
         <div
