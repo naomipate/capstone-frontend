@@ -19,7 +19,7 @@ function Dashboard({ user }) {
       navigate("/login");
     }
     fetchData();
-    setFriendsData(dashboardUser.friendsOrderedByDOB);
+    setFriendsData(dashboardUser.friends);
     // eslint-disable-next-line
   }, [dashboardId]);
 
@@ -68,10 +68,10 @@ function Dashboard({ user }) {
     }
   };
 
-  dashboardUser?.friendsOrderedByDOB?.forEach((friend) => {
+  dashboardUser?.friends?.forEach((friend) => {
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
-  let sortedfriendList = dashboardUser?.friendsOrderedByDOB?.sort(
+  let sortedfriendList = dashboardUser?.friends?.sort(
     (a, b) => a.dobInMili - b.dobInMili
   );
 
@@ -84,11 +84,6 @@ function Dashboard({ user }) {
           dashboardUserId={dashboardId}
           currentDate={currentDate}
         />
-        {/* <Events
-          key={index}
-          friendId={friendDetails.id}
-          dashboardUserId={dashboardUser.id}
-        /> */}
       </>
     );
   });
@@ -104,7 +99,8 @@ function Dashboard({ user }) {
 }
 
 function Friend({ friendDetails, dashboardUserId, currentDate }) {
-  let { id, user_picture, first_name, last_name, dobInMili } = friendDetails;
+  let { user_id, user_picture, first_name, last_name, dobInMili } =
+    friendDetails;
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
@@ -131,12 +127,12 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
     }
   }
 
-  let sign = calculateZodiacSign(dobInMili, id);
+  let sign = calculateZodiacSign(dobInMili, user_id);
 
   return (
-    <div className={friendContentClassNames()} key={id}>
+    <div className={friendContentClassNames()} key={user_id}>
       <Link
-        to={`/dashboard/${dashboardUserId}/friends/${id}`}
+        to={`/dashboard/${dashboardUserId}/friends/${user_id}`}
         className="friend-list-link"
       >
         <div
