@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { newNotification, getAllFriendsFromUser } from "../API/API";
+import { checkIfFriendRequest } from "../common/FunctionsLibrary";
+import { NotificationContext } from "../common/context/context";
 import "./SearchListBtn.css";
 function SearchListBtn({ targetUser }) {
+  const { NotificationsData, setToggleUpdate } =
+    useContext(NotificationContext);
   const [toggleBtn, setToggleBtn] = useState(false);
+  const [hasRequest, setHasRequest] = useState(false);
   const [user, setUser] = useState({
     id: targetUser?.id,
     message: `Wants to be friends`,
@@ -22,9 +27,14 @@ function SearchListBtn({ targetUser }) {
       sender_name: storedUser.user_name,
       sender_id: storedUser.id,
     });
-    checkIfFriends(storedUser.id);
+    // checkIfFriends(storedUser.id);
+    toggleNotifications();
     // eslint-disable-next-line
   }, []);
+  function toggleNotifications() {
+    let result = checkIfFriendRequest(user.id, NotificationsData);
+    setHasRequest(result);
+  }
 
   async function checkIfFriends(localId) {
     try {
@@ -56,13 +66,22 @@ function SearchListBtn({ targetUser }) {
     }
   }
 
+  /* if toggleBtn is true and hasRequest true => 
+        
+        */
   return (
     <button
       className="requestBtn"
       onClick={handleFriendRequest}
       disabled={toggleBtn}
     >
-      {toggleBtn ? "Already Sent ✓" : "Send Friend Request"}
+      {toggleBtn
+        ? "Already Sent ✓"
+        : `${
+            hasRequest
+              ? "Friend Request in Notifications"
+              : "Send Friend Request"
+          }`}
     </button>
   );
 }

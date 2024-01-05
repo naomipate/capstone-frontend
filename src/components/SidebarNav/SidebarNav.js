@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 // import Notification from "../Notification/Notification";
 // import userProfileImg from "../../Assets/profile-img-yellow.png";
-import { FriendsContext } from "../common/context/context";
-import { getAllFriendsFromUser } from "../API/API";
+import { FriendsContext, NotificationContext } from "../common/context/context";
+import { getAllFriendsFromUser, getNotificationById } from "../API/API";
 import { TbCake } from "react-icons/tb";
 import "./SidebarNav.css";
 
@@ -13,14 +13,16 @@ function SidebarNav() {
 
   const { setFriendsData, toggleUpdate, setToggleUpdate } =
     useContext(FriendsContext);
+  const { setNotificationsData } = useContext(NotificationContext);
 
   useEffect(() => {
     let userFromStorage = localStorage.getItem("user");
     let storedUser = JSON.parse(userFromStorage);
-    console.log(storedUser);
     setUser(storedUser);
 
     fetchFriends(storedUser?.id);
+    getNotifications(storedUser?.id);
+
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
@@ -30,6 +32,7 @@ function SidebarNav() {
       let userFromStorage = localStorage.getItem("user");
       let storedUser = JSON.parse(userFromStorage);
       console.log(storedUser);
+      getNotifications(storedUser?.id);
       setUser(storedUser);
     }
     // eslint-disable-next-line
@@ -58,7 +61,14 @@ function SidebarNav() {
       console.log(error);
     }
   }
-
+  async function getNotifications(id) {
+    try {
+      let result = await getNotificationById(id);
+      setNotificationsData(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="sidebar-nav-container">
       <div className="sidebar-nav-content">
