@@ -84,11 +84,6 @@ function Dashboard({ user }) {
           dashboardUserId={dashboardId}
           currentDate={currentDate}
         />
-        {/* <Events
-          key={index}
-          friendId={friendDetails.id}
-          dashboardUserId={dashboardUser.id}
-        /> */}
       </>
     );
   });
