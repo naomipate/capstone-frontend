@@ -89,12 +89,10 @@ function Dashboard({ user }) {
   });
 
   return (
-    <>
-      <div className="dashboard-container">
-        <p className="dashboard-heading">Upcoming Birthdays</p>
-        {friendsList}
-      </div>
-    </>
+    <div className="dashboard-container">
+      <p className="dashboard-heading">Upcoming Birthdays</p>
+      {friendsList}
+    </div>
   );
 }
 
