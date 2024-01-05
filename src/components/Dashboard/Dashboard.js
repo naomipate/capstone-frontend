@@ -19,7 +19,7 @@ function Dashboard({ user }) {
       navigate("/login");
     }
     fetchData();
-    setFriendsData(dashboardUser.friendsOrderedByDOB);
+    setFriendsData(dashboardUser.friends);
     // eslint-disable-next-line
   }, [dashboardId]);
 
@@ -68,10 +68,10 @@ function Dashboard({ user }) {
     }
   };
 
-  dashboardUser?.friendsOrderedByDOB?.forEach((friend) => {
+  dashboardUser?.friends?.forEach((friend) => {
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
-  let sortedfriendList = dashboardUser?.friendsOrderedByDOB?.sort(
+  let sortedfriendList = dashboardUser?.friends?.sort(
     (a, b) => a.dobInMili - b.dobInMili
   );
 
