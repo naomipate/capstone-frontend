@@ -8,6 +8,8 @@ function SearchListBtn({ targetUser }) {
     useContext(NotificationContext);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [hasRequest, setHasRequest] = useState(false);
+  const [alreadySentRequest, setAlreadySentRequest] = useState(false);
+  const [verifyFriends, setVerifyFriends] = useState(false);
   const [user, setUser] = useState({
     id: targetUser?.id,
     message: `Wants to be friends`,
@@ -38,21 +40,28 @@ function SearchListBtn({ targetUser }) {
     setHasRequest(result);
   }
   function checkSentRequest(targetId) {
-    let sentRequestCheck = !!SentRequest.find((item) => item.id === targetId);
-    if (sentRequestCheck) {
-      setToggleBtn(true);
+    let sentRequestCheck;
+    if (!SentRequest) {
+      sentRequestCheck = false;
+    } else {
+      sentRequestCheck = !!SentRequest.find((item) => item.id === targetId);
     }
+    setAlreadySentRequest(sentRequestCheck);
   }
 
   async function checkIfFriends(localId) {
     try {
       let { data } = await getAllFriendsFromUser(localId);
       let checkRequest = !!data.find((element) => element.user_id === user.id);
-      if (checkRequest) setToggleBtn(true);
+      setVerifyFriends(checkRequest);
     } catch (error) {
       console.log(error);
     }
   }
+  useEffect(() => {
+    handleDisableBtn();
+    // eslint-disable-next-line
+  }, [alreadySentRequest, hasRequest, verifyFriends]);
 
   async function handleFriendRequest() {
     let localUser = user;
@@ -69,10 +78,26 @@ function SearchListBtn({ targetUser }) {
 
     try {
       await newNotification(localUser);
-      setToggleBtn(!toggleBtn);
+      setAlreadySentRequest(true);
       setSentRequest([...SentRequest, localUser]);
     } catch (error) {
       console.log(error);
+    }
+  }
+  function handleDisableBtn() {
+    /* three states:
+    1. One to see whether they've sent a friend request or have just sent the request
+    2. A state to verify if they already have a request in their notifications
+    3. A state to verify if they are already friends
+    Logic | hasRequest  | verifyFriends | alreadySentRequest  | Outcome(ToggleBtn)
+      1.  | true        | false         |   false             | true
+      2.  | false       | true          |   false             | true
+      3.  | false       | false         |   true              | true
+    */
+    if (alreadySentRequest || hasRequest || verifyFriends) {
+      setToggleBtn(true);
+    } else {
+      setToggleBtn(false);
     }
   }
 
@@ -85,13 +110,13 @@ function SearchListBtn({ targetUser }) {
       onClick={handleFriendRequest}
       disabled={toggleBtn}
     >
-      {toggleBtn
+      {alreadySentRequest
         ? "Already Sent ✓"
-        : `${
-            hasRequest
-              ? "Friend Request in Notifications"
-              : "Send Friend Request"
-          }`}
+        : hasRequest
+        ? "Friend Request in Notifications"
+        : verifyFriends
+        ? "Already Friends"
+        : "Send Friend Request"}
     </button>
   );
 }
