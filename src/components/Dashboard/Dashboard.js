@@ -13,7 +13,7 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   console.log("Before: " + currentDate);
-  currentDate.setTime(currentDate.getTime() - currentDate.getTimezoneOffset() * 60 * 1000);
+  currentDate.setTime(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60 * 1000) + 86399999);
   console.log("After: " + currentDate);
   const { setFriendsData } = useContext(FriendsContext);
 
@@ -47,15 +47,19 @@ function Dashboard({ user }) {
     );
     // UpcomingDate - now = Time before each date.
     let oneMiliBeforeTwentyFourHrs = 86399999;
-    let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
-    // Sort by this ^^^^^
-    if (upcomingDateDiff > 0) {
-      // positive is in the current year
-      upcomingDateWithCurrentYear.setTime(
+    let upcomingDateDiff = upcomingDateWithCurrentYear.setTime(
         upcomingDateWithCurrentYear.getTime() +
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
-      );
+      ) - currentDate;
+    // Sort by this ^^^^^
+    if (upcomingDateDiff > 0) {
+      // positive is in the current year
+      /* upcomingDateWithCurrentYear.setTime(
+        upcomingDateWithCurrentYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
+      ); */
       console.log(new Date(upcomingDateWithCurrentYear));
       return upcomingDateWithCurrentYear;
     } else {
@@ -63,11 +67,11 @@ function Dashboard({ user }) {
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      upcomingDateWithNextYear.setTime(
+      /* upcomingDateWithNextYear.setTime(
         upcomingDateWithNextYear.getTime() +
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
-      );
+      ); */
       console.log(new Date(upcomingDateWithNextYear));
       return upcomingDateWithNextYear;
     }
