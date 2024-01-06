@@ -8,10 +8,10 @@ import { pullUserFromLocal } from "../common/FunctionsLibrary";
 
 function NotificationPage() {
   const {
-    NotificationsData,
-    toggleUpdate,
+    // NotificationsData,
+    // toggleUpdate,
     setNotificationsData,
-    setToggleUpdate,
+    // setToggleUpdate,
   } = useContext(NotificationContext);
   // let currentDate = new Date(Date.now());
   const [notiData, setNotiData] = useState([]);

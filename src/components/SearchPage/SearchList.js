@@ -20,7 +20,7 @@ function SearchList({ filteredUsers }) {
   return (
     <div className="search-list-results-container">
       {filteredUsers.map((user, index) => {
-        let checkFriend = checkFriendsAgainstArr(user.id, FriendsData);
+        let checkFriend = checkFriendsAgainstArr(user.user_id, FriendsData);
         return (
           <div key={index} className="search-list-result">
             <img

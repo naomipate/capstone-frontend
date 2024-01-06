@@ -42,8 +42,8 @@ function FriendList() {
   return (
     <div className="friend-list-container">
       <div className="friend-list-wrapper">
-        <div className="circle-1"></div>
-        <div className="circle-2"></div>
+        {/* <div className="circle-1"></div>
+        <div className="circle-2"></div> */}
         <div className="friend-list-card">
           <section className="top">
             <span className="u-l">Friends List</span>
