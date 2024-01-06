@@ -5,22 +5,29 @@ import SearchListBtn from "./SearchListBtn";
 import profileImg from "../../Assets/profile-img-red.png";
 import { FriendsContext } from "../common/context/context";
 import {
-  checkFriendsAgainstArr,
+  // checkFriendsAgainstArr,
   pullUserFromLocal,
 } from "../common/FunctionsLibrary";
 
 function SearchList({ filteredUsers }) {
   const [toggleFullView, setToggleFullView] = useState(false);
-  const { FriendsData } = useContext(FriendsContext);
+  // const [LoggedInId, setLoggedInId] = useState(0);
+  const { FriendsData, setToggleUpdate } = useContext(FriendsContext);
   useEffect(() => {
     let storedUser = pullUserFromLocal();
-    if (storedUser) setToggleFullView(true);
+    if (storedUser) {
+      setToggleFullView(true);
+      // setLoggedInId(storedUser?.id);
+      setToggleUpdate(true);
+    }
   }, []);
 
   return (
     <div className="search-list-results-container">
       {filteredUsers.map((user, index) => {
-        let checkFriend = checkFriendsAgainstArr(user.user_id, FriendsData);
+        console.log(user);
+        // let checkFriend = checkFriendsAgainstArr(user.user_id, FriendsData);
+        // console.log(checkFriend);
         return (
           <div key={index} className="search-list-result">
             <img
@@ -30,18 +37,18 @@ function SearchList({ filteredUsers }) {
               style={{ maxHeight: "40px" }}
             />
             <Link
-              to={`/users/${user.id}/`}
+              to={
+                // !checkFriend ?
+                `/users/${user.id}/`
+                // : `/dashboard/${LoggedInId}/friends/${user.id}`
+              }
               className="search-list-profile-username"
             >
               {user?.user_name}
             </Link>
             {toggleFullView && (
               <>
-                {checkFriend ? (
-                  <p className="__confirmedFriends">Already Friends</p>
-                ) : (
-                  <SearchListBtn targetUser={user} />
-                )}
+                <SearchListBtn targetUser={user} />
               </>
             )}
           </div>

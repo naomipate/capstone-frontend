@@ -140,7 +140,10 @@ function NotiUnit({ data, handleDeleteNoti }) {
                       <span>&#8192;</span>
                       Decline Friend
                     </button>
-                    <button className="__item">
+                    <button
+                      className="__item"
+                      onClick={() => handleDeleteNoti(collection?.id)}
+                    >
                       <MdDelete />
                       <span>&#8192;</span>
                       Delete

@@ -12,6 +12,9 @@ function checkFriendsAgainstArr(targetId, friendsArr) {
 }
 
 function checkIfFriendRequest(id, targetArr) {
+  if (!targetArr) {
+    return false;
+  }
   let result = !!targetArr.find(
     (item) => item.sender_id === id && item.msg_type === "request"
   );
