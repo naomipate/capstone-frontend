@@ -55,11 +55,6 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      /* upcomingDateWithCurrentYear.setTime(
-        upcomingDateWithCurrentYear.getTime() +
-          oneMiliBeforeTwentyFourHrs +
-          upcomingDateESTTimeZoneOffset
-      ); */
       console.log(new Date(upcomingDateWithCurrentYear));
       return upcomingDateWithCurrentYear;
     } else {
@@ -67,12 +62,7 @@ function Dashboard({ user }) {
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      /* upcomingDateWithNextYear.setTime(
-        upcomingDateWithNextYear.getTime() +
-          oneMiliBeforeTwentyFourHrs +
-          upcomingDateESTTimeZoneOffset
-      ); */
-      console.log(new Date(upcomingDateWithNextYear));
+      console.log(upcomingDateWithNextYear);
       return upcomingDateWithNextYear;
     }
   };
