@@ -57,6 +57,7 @@ function App() {
   const [WishlistData, setWishlistData] = useState([]);
   const [toggleUpdate, setToggleUpdate] = useState(false);
   const [NotificationsData, setNotificationsData] = useState([]);
+  const [SentRequest, setSentRequest] = useState([]);
 
   const FriendsContextValue = {
     setFriendsData,
@@ -73,17 +74,16 @@ function App() {
   const NotificationContextValue = {
     NotificationsData,
     toggleUpdate,
+    SentRequest,
     setNotificationsData,
     setToggleUpdate,
+    setSentRequest,
   };
 
   useEffect(() => {
     let storedUser = pullUserFromLocal();
     setUser(storedUser);
   }, []);
-  useEffect(() => {
-    console.log(NotificationsData);
-  }, [NotificationsData]);
 
   return (
     <React.Suspense fallback={<Spinner />}>

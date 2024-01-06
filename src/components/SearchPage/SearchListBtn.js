@@ -4,7 +4,7 @@ import { checkIfFriendRequest } from "../common/FunctionsLibrary";
 import { NotificationContext } from "../common/context/context";
 import "./SearchListBtn.css";
 function SearchListBtn({ targetUser }) {
-  const { NotificationsData, setToggleUpdate } =
+  const { NotificationsData, setSentRequest, SentRequest } =
     useContext(NotificationContext);
   const [toggleBtn, setToggleBtn] = useState(false);
   const [hasRequest, setHasRequest] = useState(false);
@@ -27,13 +27,21 @@ function SearchListBtn({ targetUser }) {
       sender_name: storedUser.user_name,
       sender_id: storedUser.id,
     });
-    // checkIfFriends(storedUser.id);
+    checkIfFriends(storedUser.id);
     toggleNotifications();
+    checkSentRequest(targetUser?.id);
+
     // eslint-disable-next-line
   }, []);
   function toggleNotifications() {
     let result = checkIfFriendRequest(user.id, NotificationsData);
     setHasRequest(result);
+  }
+  function checkSentRequest(targetId) {
+    let sentRequestCheck = !!SentRequest.find((item) => item.id === targetId);
+    if (sentRequestCheck) {
+      setToggleBtn(true);
+    }
   }
 
   async function checkIfFriends(localId) {
@@ -58,9 +66,11 @@ function SearchListBtn({ targetUser }) {
       date_stamp: formatDate,
       time_stamp: fTime,
     };
+
     try {
       await newNotification(localUser);
       setToggleBtn(!toggleBtn);
+      setSentRequest([...SentRequest, localUser]);
     } catch (error) {
       console.log(error);
     }

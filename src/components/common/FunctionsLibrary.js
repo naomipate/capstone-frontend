@@ -5,6 +5,9 @@ function pullUserFromLocal() {
 }
 
 function checkFriendsAgainstArr(targetId, friendsArr) {
+  if (friendsArr === undefined) {
+    return false;
+  }
   return !!friendsArr.find((element) => element.user_id === targetId);
 }
 
