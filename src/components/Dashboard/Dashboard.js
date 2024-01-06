@@ -13,7 +13,7 @@ function Dashboard({ user }) {
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
   console.log("Before: " + currentDate);
-  currentDate.setTime(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60 * 1000));
+  currentDate.setTime(currentDate.getTime() + (currentDate.getTimezoneOffset() * 60 * 1000));
   console.log("After: " + currentDate);
   const { setFriendsData } = useContext(FriendsContext);
 
