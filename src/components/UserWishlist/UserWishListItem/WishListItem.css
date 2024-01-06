@@ -6,8 +6,8 @@
 }
 
 .list-item-body {
-  /* display: flex;
-    flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   width: 50rem;
   height: 8rem;
   border-radius: 1rem;
@@ -21,13 +21,11 @@
   display: grid;
   grid-template-columns: 2fr 3fr 3fr 1fr;
   margin: 0 auto 0 auto;
-  justify-content: space-evenly;
   padding: 0 1.25rem;
-  height: 27px;
+  height: 100%;
   width: auto;
   align-items: center;
   color: #1d1d1d;
-  padding-top: 30px;
 }
 
 .ImageContainer {
@@ -46,7 +44,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 50%;
+  width: 100%;
 }
 
 .list-item-name-and-link p {

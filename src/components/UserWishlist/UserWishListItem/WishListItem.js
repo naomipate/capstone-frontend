@@ -13,12 +13,10 @@ function WishListItem({ item, handleEditClick, deleteWishlistItem }) {
         <div className="list-item-content">
           <div className="EditDeletButtons">
             <IconContext.Provider value={{ size: "2rem" }}>
-              <div>
                 <TbEdit
                   className="EditButton"
                   onClick={() => handleEditClick(item?.id)}
                 />
-              </div>
             </IconContext.Provider>
           </div>
 
@@ -42,12 +40,10 @@ function WishListItem({ item, handleEditClick, deleteWishlistItem }) {
 
           <div>
             <IconContext.Provider value={{ size: "2rem" }}>
-              <div>
                 <TbTrash
                   className="DeleteButton"
                   onClick={() => deleteWishlistItem(item?.id)}
                 />
-              </div>
             </IconContext.Provider>
           </div>
         </div>

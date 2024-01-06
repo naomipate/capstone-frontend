@@ -1,9 +1,14 @@
+.topnav-container {
+  display: flex;
+  justify-content: center;
+}
+
 .topnav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
-  border-bottom: 1px solid #bd8fd2;
+  border-bottom: 1px, solid #bd8fd2;
 }
 
 .topnav img {

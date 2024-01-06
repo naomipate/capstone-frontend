@@ -14,6 +14,7 @@ function Search() {
     let storedUser = JSON.parse(userFromStorage);
     setMainUser(storedUser);
     fetchUsers();
+    // eslint-disable-next-line
   }, []);
 
   async function fetchUsers() {

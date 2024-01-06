@@ -12,6 +12,9 @@ function Dashboard({ user }) {
   const [dashboardId, setDashboardId] = useState(user.id);
   const [dashboardUser, setDashboardUser] = useState({});
   let currentDate = new Date(Date.now()); // Time from system
+  currentDate.setTime(
+    currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000
+  );
   const { setFriendsData } = useContext(FriendsContext);
 
   useEffect(() => {
@@ -19,7 +22,7 @@ function Dashboard({ user }) {
       navigate("/login");
     }
     fetchData();
-    setFriendsData(dashboardUser.friendsOrderedByDOB);
+    setFriendsData(dashboardUser.friends);
     // eslint-disable-next-line
   }, [dashboardId]);
 
@@ -44,34 +47,29 @@ function Dashboard({ user }) {
     );
     // UpcomingDate - now = Time before each date.
     let oneMiliBeforeTwentyFourHrs = 86399999;
-    let upcomingDateDiff = upcomingDateWithCurrentYear - currentDate;
-    // Sort by this ^^^^^
-    if (upcomingDateDiff > 0) {
-      // positive is in the current year
+    let upcomingDateDiff =
       upcomingDateWithCurrentYear.setTime(
         upcomingDateWithCurrentYear.getTime() +
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
-      );
+      ) - currentDate;
+    // Sort by this ^^^^^
+    if (upcomingDateDiff > 0) {
+      // positive is in the current year
       return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      upcomingDateWithNextYear.setTime(
-        upcomingDateWithNextYear.getTime() +
-          oneMiliBeforeTwentyFourHrs +
-          upcomingDateESTTimeZoneOffset
-      );
       return upcomingDateWithNextYear;
     }
   };
 
-  dashboardUser?.friendsOrderedByDOB?.forEach((friend) => {
+  dashboardUser?.friends?.forEach((friend) => {
     friend.dobInMili = upcomingDateCalc(friend.dob);
   });
-  let sortedfriendList = dashboardUser?.friendsOrderedByDOB?.sort(
+  let sortedfriendList = dashboardUser?.friends?.sort(
     (a, b) => a.dobInMili - b.dobInMili
   );
 
@@ -84,11 +82,6 @@ function Dashboard({ user }) {
           dashboardUserId={dashboardId}
           currentDate={currentDate}
         />
-        {/* <Events
-          key={index}
-          friendId={friendDetails.id}
-          dashboardUserId={dashboardUser.id}
-        /> */}
       </>
     );
   });
@@ -104,7 +97,8 @@ function Dashboard({ user }) {
 }
 
 function Friend({ friendDetails, dashboardUserId, currentDate }) {
-  let { id, user_picture, first_name, last_name, dobInMili } = friendDetails;
+  let { user_id, user_picture, first_name, last_name, dobInMili } =
+    friendDetails;
   let dayNumOfUpcomingBirthDay = new Date(dobInMili).toLocaleDateString(
     "en-US",
     { day: "numeric" }
@@ -131,12 +125,12 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
     }
   }
 
-  let sign = calculateZodiacSign(dobInMili, id);
+  let sign = calculateZodiacSign(dobInMili, user_id);
 
   return (
-    <div className={friendContentClassNames()} key={id}>
+    <div className={friendContentClassNames()} key={user_id}>
       <Link
-        to={`/dashboard/${dashboardUserId}/friends/${id}`}
+        to={`/dashboard/${dashboardUserId}/friends/${user_id}`}
         className="friend-list-link"
       >
         <div

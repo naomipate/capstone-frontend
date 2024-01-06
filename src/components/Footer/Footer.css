@@ -1,6 +1,6 @@
 .footer {
-  color: white;
-  background-color: black;
+  /* color: white; */
+  /* background-color: black; */
   margin-top: auto;
 }
 
@@ -65,7 +65,7 @@ hr {
 .link {
   text-decoration: none;
   padding: 3px;
-  color: white;
+  /* color: white; */
   transition: 0.3s ease-in-out;
 }
 
