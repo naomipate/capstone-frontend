@@ -68,7 +68,7 @@ function Dashboard({ user }) {
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
-      console.log(new Date(upcomingDateWithCurrentYear));
+      console.log(new Date(upcomingDateWithNextYear));
       return upcomingDateWithNextYear;
     }
   };
