@@ -56,6 +56,7 @@ function Dashboard({ user }) {
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
+      console.log(new Date(upcomingDateWithCurrentYear));
       return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
@@ -67,6 +68,7 @@ function Dashboard({ user }) {
           oneMiliBeforeTwentyFourHrs +
           upcomingDateESTTimeZoneOffset
       );
+      console.log(new Date(upcomingDateWithCurrentYear));
       return upcomingDateWithNextYear;
     }
   };
