@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { newNotification, getAllFriendsFromUser } from "../API/API";
+import React, { useEffect, useState, useContext } from "react";
+import { newNotification, deleteNotification } from "../API/API";
+import { checkIfFriendRequest } from "../common/FunctionsLibrary";
+import { NotificationContext } from "../common/context/context";
 import "./SearchListBtn.css";
 function SearchListBtn({ targetUser }) {
+  const { NotificationsData, setSentRequest, SentRequest } =
+    useContext(NotificationContext);
   const [toggleBtn, setToggleBtn] = useState(false);
+  const [hasRequest, setHasRequest] = useState(false);
+  const [alreadySentRequest, setAlreadySentRequest] = useState(false);
   const [user, setUser] = useState({
     id: targetUser?.id,
     message: `Wants to be friends`,
@@ -22,19 +28,29 @@ function SearchListBtn({ targetUser }) {
       sender_name: storedUser.user_name,
       sender_id: storedUser.id,
     });
-    checkIfFriends(storedUser.id);
+    toggleNotifications();
+    checkSentRequest(targetUser?.id);
+
     // eslint-disable-next-line
   }, []);
-
-  async function checkIfFriends(localId) {
-    try {
-      let { data } = await getAllFriendsFromUser(localId);
-      let checkRequest = !!data.find((element) => element.user_id === user.id);
-      if (checkRequest) setToggleBtn(true);
-    } catch (error) {
-      console.log(error);
-    }
+  function toggleNotifications() {
+    let result = checkIfFriendRequest(user.id, NotificationsData);
+    setHasRequest(result);
   }
+  function checkSentRequest(targetId) {
+    let sentRequestCheck;
+    if (!SentRequest) {
+      sentRequestCheck = false;
+    } else {
+      sentRequestCheck = !!SentRequest.find((item) => item.id === targetId);
+    }
+    setAlreadySentRequest(sentRequestCheck);
+  }
+
+  useEffect(() => {
+    handleDisableBtn();
+    // eslint-disable-next-line
+  }, [alreadySentRequest, hasRequest]);
 
   async function handleFriendRequest() {
     let localUser = user;
@@ -48,11 +64,21 @@ function SearchListBtn({ targetUser }) {
       date_stamp: formatDate,
       time_stamp: fTime,
     };
+
     try {
       await newNotification(localUser);
-      setToggleBtn(!toggleBtn);
+      setAlreadySentRequest(true);
+      setSentRequest([...SentRequest, localUser]);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  function handleDisableBtn() {
+    if (alreadySentRequest || hasRequest) {
+      setToggleBtn(true);
+    } else {
+      setToggleBtn(false);
     }
   }
 
@@ -62,7 +88,11 @@ function SearchListBtn({ targetUser }) {
       onClick={handleFriendRequest}
       disabled={toggleBtn}
     >
-      {toggleBtn ? "Already Sent ✓" : "Send Friend Request"}
+      {alreadySentRequest && !hasRequest
+        ? "Already Sent ✓"
+        : !alreadySentRequest && hasRequest
+        ? "Friend Request in Notifications"
+        : "Send Friend Request"}
     </button>
   );
 }

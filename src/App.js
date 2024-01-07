@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Spinner from "./components/common/spinner/Spinner";
+import { pullUserFromLocal } from "./components/common/FunctionsLibrary";
 import {
   FriendsContext,
   WishlistContext,
+  NotificationContext,
 } from "./components/common/context/context";
 
 const Dashboard = React.lazy(() => import("./components/Dashboard/Dashboard"));
@@ -54,6 +56,8 @@ function App() {
   const [FriendsData, setFriendsData] = useState(null);
   const [WishlistData, setWishlistData] = useState([]);
   const [toggleUpdate, setToggleUpdate] = useState(false);
+  const [NotificationsData, setNotificationsData] = useState([]);
+  const [SentRequest, setSentRequest] = useState([]);
 
   const FriendsContextValue = {
     setFriendsData,
@@ -67,10 +71,17 @@ function App() {
     setWishlistData,
     setToggleUpdate,
   };
+  const NotificationContextValue = {
+    NotificationsData,
+    toggleUpdate,
+    SentRequest,
+    setNotificationsData,
+    setToggleUpdate,
+    setSentRequest,
+  };
 
   useEffect(() => {
-    let userFromStorage = localStorage.getItem("user");
-    let storedUser = JSON.parse(userFromStorage);
+    let storedUser = pullUserFromLocal();
     setUser(storedUser);
   }, []);
 
@@ -81,11 +92,24 @@ function App() {
         <Nav user={user} setUser={setUser} />
         <main className={user ? "page-content-container" : ""}>
           <div className={user ? "page-content" : ""}>
-            <FriendsContext.Provider value={FriendsContextValue}>
-              {user && <SidebarNav />}
-            </FriendsContext.Provider>
+            <NotificationContext.Provider value={NotificationContextValue}>
+              <FriendsContext.Provider value={FriendsContextValue}>
+                {user && <SidebarNav />}
+              </FriendsContext.Provider>
+            </NotificationContext.Provider>
             <Routes>
-              <Route path="/search-page" element={<SearchPage />} />
+              <Route
+                path="/search-page"
+                element={
+                  <NotificationContext.Provider
+                    value={NotificationContextValue}
+                  >
+                    <FriendsContext.Provider value={FriendsContextValue}>
+                      <SearchPage />
+                    </FriendsContext.Provider>
+                  </NotificationContext.Provider>
+                }
+              />
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login setUser={setUser} />} />
@@ -101,9 +125,13 @@ function App() {
               <Route
                 path="/dashboard/notification"
                 element={
-                  <FriendsContext.Provider value={FriendsContextValue}>
-                    <NotificationPage />
-                  </FriendsContext.Provider>
+                  <NotificationContext.Provider
+                    value={NotificationContextValue}
+                  >
+                    <FriendsContext.Provider value={FriendsContextValue}>
+                      <NotificationPage />
+                    </FriendsContext.Provider>
+                  </NotificationContext.Provider>
                 }
               />
               <Route
