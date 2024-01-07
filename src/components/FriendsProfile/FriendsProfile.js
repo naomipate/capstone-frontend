@@ -103,7 +103,7 @@ function FriendsProfile() {
     "en-US",
     { day: "numeric" }
   );
-  
+
   let fullMonthOfUpcomingBirthday = new Date(dobInMili).toLocaleDateString(
     "en-US",
     {
@@ -148,7 +148,7 @@ function FriendsProfile() {
               className="button-friend-profile"
               onClick={handleDeleteFriend}
             >
-              Unfollow
+              Unfriend
             </button>
             <div className="zodiac-right">
               <div className="zodiac-text-content">

@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./NotificationPage.css";
 import { getNotificationById, deleteNotification } from "../API/API";
 import { toast } from "react-toastify";
 import NotiUnit from "./NotiUnit/NotiUnit";
+import { NotificationContext } from "../common/context/context";
+import { pullUserFromLocal } from "../common/FunctionsLibrary";
 
 function NotificationPage() {
+  const {
+    // NotificationsData,
+    // toggleUpdate,
+    setNotificationsData,
+    // setToggleUpdate,
+  } = useContext(NotificationContext);
   // let currentDate = new Date(Date.now());
   const [notiData, setNotiData] = useState([]);
   const [toggleActive, setToggleActive] = useState(false);
@@ -12,20 +20,20 @@ function NotificationPage() {
   const [search, setSearch] = useState("");
   const [sortCheck, setSortCheck] = useState(true);
   useEffect(() => {
-    let userFromStorage = localStorage.getItem("user");
-    let storedUser = JSON.parse(userFromStorage);
-    console.log(storedUser);
+    let storedUser = pullUserFromLocal();
     fetchData(storedUser?.id);
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
     //if toggleActive = false (Show all notifications)
-    if (!toggleActive) {
-      setFilterData(notiData);
-    } else {
-      let format = notiData.filter((item) => item.is_read === false);
-      format = sortByDate(format, sortCheck);
-      setFilterData(format);
+    if (notiData.length !== 0) {
+      if (!toggleActive) {
+        setFilterData(notiData);
+      } else {
+        let format = notiData.filter((item) => item.is_read === false);
+        format = sortByDate(format, sortCheck);
+        setFilterData(format);
+      }
     }
     //if toggleActive = true (Show unread messages)
     // eslint-disable-next-line
@@ -66,12 +74,17 @@ function NotificationPage() {
   async function fetchData(id) {
     try {
       let result = await getNotificationById(id);
-      if (result?.response) {
-        setNotiData([]);
+      if (result.length !== 0) {
+        if (result?.response) {
+          setNotiData([]);
+        }
+        let formatOrder = sortByDate(result, sortCheck);
+        setNotificationsData(formatOrder);
+        setNotiData(formatOrder);
+        setFilterData(formatOrder);
+      } else {
+        toast.info("No new notifications", toast.POSITION.TOP_CENTER);
       }
-      let formatOrder = sortByDate(result, sortCheck);
-      setNotiData(formatOrder);
-      setFilterData(formatOrder);
     } catch (error) {
       toast.error("Something Went Wrong", toast.POSITION.TOP_CENTER);
       console.log(error);
@@ -82,6 +95,7 @@ function NotificationPage() {
     try {
       await deleteNotification(id);
       let filterdNoti = notiData.filter((item) => item.id !== id);
+      setNotificationsData(filterdNoti);
       setNotiData(filterdNoti);
     } catch (error) {
       toast.error("Something Went Wrong", toast.POSITION.TOP_CENTER);
@@ -119,12 +133,6 @@ function NotificationPage() {
           <option value={"Descending"}>Descending</option>
         </select>
       </div>
-      {/* <div className="__sub-headers">
-        <p>Read</p>
-        <p>Message</p>
-        <p>Sender</p>
-        <p>Date</p>
-      </div> */}
       <div className="__content">
         <>
           {notiData.length === 0 ? (

@@ -25,18 +25,21 @@ function Login({ setUser }) {
     e.preventDefault();
     try {
       let user = await getUserData(email);
+      if (!user.data.id) {
+        throw Error;
+      } else {
+        setUser(user.data);
+        window.localStorage.setItem("user", JSON.stringify(user.data));
+        setPassword("");
+        toast.success("Login Successful", toast.POSITION.TOP_CENTER);
+        navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
+      }
       setEmail({
         email: "",
       });
-      setUser(user.data);
-      window.localStorage.setItem("user", JSON.stringify(user.data));
-      setPassword("");
-      toast(" 🎉  Login Successful", toast.POSITION.TOP_CENTER);
-
-      navigate(`/dashboard/${user.data.id}`); // This is to go to the dashboard page.
     } catch (error) {
       toast.error("User not found", toast.POSITION.TOP_CENTER);
-      console.log(error);
+      // console.log(error);
     }
   }
 
