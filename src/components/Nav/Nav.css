@@ -12,7 +12,7 @@ justify-content: center;
   height: 80px;
 }
 
-.topnav img {
+.logo-nav {
   width: 17rem;
   height: auto;
 }
@@ -21,6 +21,8 @@ justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .nav-links a {
@@ -32,13 +34,17 @@ justify-content: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: large;
-  width: 150px;
+  width: 100px;
 }
 
 .nav-links a:hover {
   /* color: rgb(255, 80, 80); */
   color: rgb(254, 68, 68);
   text-decoration: underline;
+}
+
+.hamburger{
+  
 }
 
 @media screen and (max-width: 600px) {
@@ -58,3 +64,17 @@ justify-content: center;
     font-size: medium; /* Adjust font size for smaller screens */
   }
 }
+
+@media screen and (max-width: 850px) {
+  .nav-links {
+    padding: 0 40px;
+    justify-content: space-evenly;
+  }
+
+  .logo-nav{
+    margin-right: -45px;
+  }
+}
+
+
+

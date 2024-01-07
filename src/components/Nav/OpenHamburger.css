@@ -1,0 +1,100 @@
+.hamburger-nav-container {
+    background-color: #ff9898;
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    margin-top: 80px;
+    padding: 0;
+    top: 0;
+    left: 0;
+
+    /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
+      rgba(17, 17, 26, 0.02) 0px 4px 8px; */
+  }
+  
+  .hamburger-nav-content {
+    text-align: left;
+    padding-top: 30px;
+  }
+  
+  .hamburger-user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .hamburgerImage {
+    height: 100px;
+    width: auto;
+    border-radius: 50px;
+  }
+  
+  .hamburgerUsername {
+    font-family: "Hepta Slab", serif;
+    margin: 0;
+    padding: 15px 0;
+  }
+  
+  .hamburgerBirthday {
+    font-family: "Hepta Slab", serif;
+    margin: 0;
+    font-weight: bolder;
+  }
+  
+  .hamburgerDivider {
+    /* justify-content: center; */
+    width: 75%;
+    margin-bottom: 20px;
+    /* color: #fe0000; */
+    border-top: 1px solid #ff9090;
+  }
+  
+  .hamburgerListContainer {
+    margin-left: 30px;
+  }
+  
+  .hamburgerList {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .hamburgerList a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .hamburgerList a:hover {
+    font-weight: bolder;
+    color: rgb(244, 88, 88);
+  }
+  
+  .hamburgerItem {
+    letter-spacing: 1px;
+    color: rgb(61, 61, 61);
+    text-decoration: none;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+    font-family: "Hepta Slab", serif;
+    margin: 13px 0;
+    font-weight: bolder;
+  }
+  
+  a.active {
+    color: rgb(255, 87, 87);
+  }
+  
+  .hamburgerBirthday {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  #cake {
+    padding-right: 6px;
+  }
+  
+  

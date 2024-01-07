@@ -93,3 +93,10 @@ a.active {
 #cake {
   padding-right: 6px;
 }
+
+
+@media only screen and (max-width: 850px) {
+  .sidebar-nav-container{
+    display: none;
+  }
+}

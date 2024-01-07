@@ -51,3 +51,9 @@
   grid-template-columns: 3fr 9fr;
   width: 1000px;
 }
+
+@media only screen and (max-width: 850px) {
+  .page-content {
+    grid-template-columns: 1fr;
+  }
+}
