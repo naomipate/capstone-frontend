@@ -6,8 +6,6 @@
   width: 250px;
   height: 470px;
   border-radius: 10px;
-  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
-    rgba(17, 17, 26, 0.02) 0px 4px 8px; */
 }
 
 .sidebar-nav-content {
@@ -42,10 +40,8 @@
 }
 
 .sidebarDivider {
-  /* justify-content: center; */
   width: 75%;
   margin-bottom: 20px;
-  /* color: #fe0000; */
   border-top: 1px solid #ff9090;
 }
 
@@ -92,4 +88,11 @@ a.active {
 
 #cake {
   padding-right: 6px;
+}
+
+
+@media only screen and (max-width: 850px) {
+  .sidebar-nav-container{
+    display: none;
+  }
 }
