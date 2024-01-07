@@ -60,6 +60,7 @@ hr {
   list-style-type: none;
   padding-left: 0;
   align-items: center;
+  text-align: center;
 }
 
 .link {
@@ -77,5 +78,11 @@ hr {
   .footerContent {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 420px) {
+  .navLink {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

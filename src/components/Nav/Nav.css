@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 1vh;
 }
 
 .nav-links a {
@@ -40,7 +41,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 615px) {
   .topnav {
     grid-template-columns: 1fr;
     justify-items: center;
