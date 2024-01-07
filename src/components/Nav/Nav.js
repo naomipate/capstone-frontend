@@ -16,7 +16,6 @@ function Nav({ user, setUser }) {
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen)
-    console.log("hamburger")
   }
   return (
     <header className="topnav-container">
@@ -25,8 +24,8 @@ function Nav({ user, setUser }) {
           {user ? (
             <>
             <div className="hamburger" onClick={toggleHamburger}>
-            {hamburgerOpen ? <OpenHamburger/> : 
-            <Hamburger/>}
+            {hamburgerOpen ? <><Hamburger hamburgerOpen={hamburgerOpen}/> <OpenHamburger/></> : 
+            <Hamburger hamburgerOpen={hamburgerOpen}/>}
             </div>
               <img className="logo-nav" src={GiftuneLogo} alt="logo" />
               <NavLink to={"/"} onClick={handleLogOut}>

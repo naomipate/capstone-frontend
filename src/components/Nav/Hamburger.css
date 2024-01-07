@@ -5,6 +5,7 @@
     justify-content: space-around;
     flex-flow: column nowrap;
     z-index: 10;
+    overflow: hidden;
 }
 .burger{
     width: 2rem;

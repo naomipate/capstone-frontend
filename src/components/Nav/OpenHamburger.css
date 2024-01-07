@@ -1,15 +1,14 @@
 .hamburger-nav-container {
-    background-color: #ff9898;
+    background-color: #ffe9e9;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     width: 50vw;
     height: 100vh;
-    margin-top: 80px;
-    padding: 0;
+    margin-top: 70px;
     top: 0;
     left: 0;
-
-    /* box-shadow: rgba(17, 17, 26, 0.1) 0px 2px 4px,
-      rgba(17, 17, 26, 0.02) 0px 4px 8px; */
   }
   
   .hamburger-nav-content {
@@ -45,23 +44,25 @@
   }
   
   .hamburgerDivider {
-    /* justify-content: center; */
     width: 75%;
     margin-bottom: 20px;
-    /* color: #fe0000; */
     border-top: 1px solid #ff9090;
   }
   
   .hamburgerListContainer {
-    margin-left: 30px;
+    margin-left: 15%;
   }
   
   .hamburgerList {
     list-style-type: none;
     padding-left: 0;
+    align-items: flex-start;
   }
   
   .hamburgerList a {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
     color: black;
     text-decoration: none;
     background-color: transparent;
@@ -96,5 +97,13 @@
   #cake {
     padding-right: 6px;
   }
+
+  @media only screen and (max-width: 400px) {
+    .hamburger-nav-container {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  
   
   
