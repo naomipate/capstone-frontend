@@ -1,0 +1,109 @@
+.hamburger-nav-container {
+    background-color: #ffe9e9;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 50vw;
+    height: 100vh;
+    margin-top: 70px;
+    top: 0;
+    left: 0;
+  }
+  
+  .hamburger-nav-content {
+    text-align: left;
+    padding-top: 30px;
+  }
+  
+  .hamburger-user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .hamburgerImage {
+    height: 100px;
+    width: auto;
+    border-radius: 50px;
+  }
+  
+  .hamburgerUsername {
+    font-family: "Hepta Slab", serif;
+    margin: 0;
+    padding: 15px 0;
+  }
+  
+  .hamburgerBirthday {
+    font-family: "Hepta Slab", serif;
+    margin: 0;
+    font-weight: bolder;
+  }
+  
+  .hamburgerDivider {
+    width: 75%;
+    margin-bottom: 20px;
+    border-top: 1px solid #ff9090;
+  }
+  
+  .hamburgerListContainer {
+    margin-left: 15%;
+  }
+  
+  .hamburgerList {
+    list-style-type: none;
+    padding-left: 0;
+    align-items: flex-start;
+  }
+  
+  .hamburgerList a {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .hamburgerList a:hover {
+    font-weight: bolder;
+    color: rgb(244, 88, 88);
+  }
+  
+  .hamburgerItem {
+    letter-spacing: 1px;
+    color: rgb(61, 61, 61);
+    text-decoration: none;
+    background-color: transparent;
+    transition: 0.3s ease-in-out;
+    font-family: "Hepta Slab", serif;
+    margin: 13px 0;
+    font-weight: bolder;
+  }
+  
+  a.active {
+    color: rgb(255, 87, 87);
+  }
+  
+  .hamburgerBirthday {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  #cake {
+    padding-right: 6px;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .hamburger-nav-container {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  
+  
+  
