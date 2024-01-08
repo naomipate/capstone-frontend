@@ -1,30 +1,27 @@
-import React, {
-  useState,
-  useEffect,
-  // useContext
-} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./SearchList.css";
 import SearchListBtn from "./SearchListBtn";
 import profileImg from "../../Assets/profile-img-red.png";
-// import { FriendsContext } from "../common/context/context";
 import { pullUserFromLocal } from "../common/FunctionsLibrary";
 import { getAllFriendsFromUser } from "../API/API";
 
 function SearchList({ filteredUsers }) {
+  const navigate = useNavigate();
   const [toggleFullView, setToggleFullView] = useState(false);
   const [LoggedInId, setLoggedInId] = useState(0);
   const [formattedUsers, setFormattedUsers] = useState([]);
-  // const { FriendsData, setToggleUpdate } = useContext(FriendsContext);
 
-  // const [copyFriendsData, setCopyFriendsData] = useState([]);
   useEffect(() => {
     let storedUser = pullUserFromLocal();
     if (storedUser) {
       setToggleFullView(true);
       setLoggedInId(storedUser?.id);
       GrabFriends(storedUser?.id);
+    } else {
+      setFormattedUsers(filteredUsers);
     }
+
     // eslint-disable-next-line
   }, []);
   function applyFriendStatus(friendsArr) {
@@ -71,7 +68,14 @@ function SearchList({ filteredUsers }) {
                 {!user.status ? (
                   <SearchListBtn targetUser={user} />
                 ) : (
-                  <p className="__confirmedFriends">View Profile</p>
+                  <button
+                    onClick={() => {
+                      navigate(`/dashboard/${LoggedInId}/friends/${user.id}`);
+                    }}
+                    className="__confirmedFriends"
+                  >
+                    View Profile
+                  </button>
                 )}
               </>
             )}
