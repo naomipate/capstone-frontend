@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { newNotification, deleteNotification } from "../API/API";
+import { newNotification } from "../API/API";
 import { checkIfFriendRequest } from "../common/FunctionsLibrary";
 import { NotificationContext } from "../common/context/context";
 import "./SearchListBtn.css";
