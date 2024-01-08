@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../FriendsProfile.css";
 import confetti from "canvas-confetti";
 // import popSound from "../../../Assets/pop-sound.mp3";
 import chime from "../../../Assets/chime.mp3";
-import { updateItemBoughtByItemId } from "../../API/API";
+import { updateItemBoughtByItemId, newNotification } from "../../API/API";
+import { pullUserFromLocal } from "../../common/FunctionsLibrary";
 
 function FriendsProfileWishlist({ item, isMuted }) {
   const [is_bought, setis_bought] = useState(item.is_bought);
   const [assigned_user, setAssigned_user] = useState(item.assigned_user);
+  const [BoughtNotification, setBoughtNotification] = useState({
+    id: 0,
+    message: `An Item has been bought`,
+    sender_id: 0,
+    sender_name: "",
+    msg_type: "purchase",
+    is_read: false,
+    date_stamp: "",
+    time_stamp: "",
+  });
 
   const { id } = useParams();
   let userId = parseInt(id);
+  useEffect(() => {
+    let storedUser = pullUserFromLocal();
+    setBoughtNotification({
+      ...BoughtNotification,
+      id: item.user_id,
+      sender_id: userId,
+      sender_name: storedUser.user_name,
+    });
+    // eslint-disable-next-line
+  }, []);
 
   function playSound() {
     if (is_bought === false && isMuted === false) {
@@ -38,8 +59,21 @@ function FriendsProfileWishlist({ item, isMuted }) {
 
   const updateItem = async () => {
     setAssigned_user(userId);
+    let localData = BoughtNotification;
+    let currentDate = new Date();
+    let fTime = `${currentDate.getUTCHours()}:${currentDate.getUTCMinutes()}:${currentDate.getUTCSeconds()}`;
+    let formatDate = `${currentDate.getFullYear()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
+    localData = {
+      ...localData,
+      date_stamp: formatDate,
+      time_stamp: fTime,
+    };
+    console.log(localData);
     try {
       await updateItemBoughtByItemId(item.id, !is_bought, userId);
+      await newNotification(localData);
       setis_bought(!is_bought);
       confettiTrue();
       playSound();

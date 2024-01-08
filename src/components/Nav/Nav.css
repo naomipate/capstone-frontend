@@ -1,9 +1,11 @@
-.topnav-container {
-  display: flex;
-  justify-content: center;
+.topnav-container{
+display: flex;
+justify-content: center;
+
 }
 
 .topnav {
+  width: 1000px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -11,16 +13,19 @@
   border-bottom: 1px, solid #bd8fd2;
 }
 
-.topnav img {
+.logo-nav {
   width: 17rem;
   height: auto;
 }
 
 .nav-links {
+  margin: -10px 30px 0 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding-bottom: 1vh;
+  /* padding-bottom: 1vh; */
+  width: 100%;
+  justify-content: space-between;
 }
 
 .nav-links a {
@@ -29,10 +34,9 @@
   color: black;
   transition: 0.3s ease-in-out;
   text-decoration: none;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Hepta Slab", serif;
   font-size: large;
-  width: 150px;
+  width: 100px;
 }
 
 .nav-links a:hover {
@@ -58,3 +62,25 @@
     font-size: medium; /* Adjust font size for smaller screens */
   }
 }
+
+@media screen and (max-width: 1050px) {
+  .nav-links {
+    margin: -10px 60px 0 30px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .nav-links {
+    padding: 0 40px;
+    justify-content: space-evenly;
+  }
+
+  .logo-nav{
+    margin-right: -45px;
+    padding: 0 20px;
+  }
+}
+
+
+
+
