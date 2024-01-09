@@ -8,3 +8,6 @@
   max-width: 250px;
   height: 30px;
 }
+.pending {
+  background-color: #f1c207 !important;
+}

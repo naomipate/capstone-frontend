@@ -68,21 +68,23 @@
   background: #e0e0e0;
 }
 
-.dashboard-friend-card-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #232323;
-  gap: 2rem;
-}
+.dashboard-friend-card-content,
 .dashboard-friend-card-content-this-month {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #232323;
   gap: 2rem;
-  position: relative;
 }
+
+/* .dashboard-friend-card-content-this-month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #232323;
+  gap: 2rem;
+  position: relative;
+} */
 
 .dashboard-friend-card-container-this-month::after {
   position: absolute;
@@ -157,7 +159,7 @@ a {
 
 @media only screen and (max-width: 600px) {
   .dashboard-friend-card-container {
-    width: 90%;
+    width: 100%;
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -171,4 +173,37 @@ a {
   /* .dashboard-card-text {
     width: 200px;
   } */
+}
+
+@media only screen and (max-width: 420px) {
+  .dashboard-container {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .dashboard-heading {
+    align-self: center;
+  }
+
+  .dashboard-friend-card-container {
+    margin: 0;
+  }
+
+  .dashboard-friend-card-left {
+    flex: auto;
+  }
+
+  .dashboard-friend-card-content,
+  .dashboard-friend-card-content-this-month {
+    gap: 0 2rem;
+  }
+
+  .dashboard-card-text {
+    margin: 0;
+  }
+
+  .dashboard-friend-card-container-this-month::after {
+    top: -0.8rem;
+    width: 5rem;
+  }
 }

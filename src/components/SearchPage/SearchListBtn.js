@@ -84,7 +84,9 @@ function SearchListBtn({ targetUser }) {
 
   return (
     <button
-      className="requestBtn"
+      className={`requestBtn ${
+        !alreadySentRequest && hasRequest ? "pending" : ""
+      }`}
       onClick={handleFriendRequest}
       disabled={toggleBtn}
     >
