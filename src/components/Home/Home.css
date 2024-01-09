@@ -1,14 +1,15 @@
 .home {
   padding-bottom: 4rem;
+  border-top: 1px solid #f8e8ff;
 }
 .top-main-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-items: center;
+  height: auto;
   width: 100%;
   margin: 0 auto;
-  height: 90vh;
 }
 
 .top-main-left {
@@ -24,6 +25,7 @@
   text-align: center;
   width: 70%;
   padding-right: 50px;
+  padding-bottom: 2vh;
 }
 
 .main-text h1 {
@@ -120,7 +122,7 @@
   }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 615px) {
   .content {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -147,7 +149,8 @@
     text-align: center;
     padding: 0%;
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-right: 50px;
+    padding-bottom: 2vh;
   }
 
   .top-main-container {
@@ -159,7 +162,7 @@
   .top-main-container {
     display: flex;
     flex-direction: column;
-    background-color: #f4e8ff;
+    /* background-color: #f4e8ff; */
   }
 
   .top-main-left,

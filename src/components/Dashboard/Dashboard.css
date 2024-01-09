@@ -148,16 +148,12 @@ a {
   text-decoration: none;
 }
 
-zodiacInfo {
-  font-size: 1rem;
-}
-
-@media only screen and (max-width: 900px) {
+/* @media only screen and (max-width: 900px) {
   .dashboard-friend-card-container {
-    /* width: 80%; */
-    /* margin: 10px; */
+    width: 80%;
+    margin: 10px;
   }
-}
+} */
 
 @media only screen and (max-width: 600px) {
   .dashboard-friend-card-container {
@@ -172,7 +168,7 @@ zodiacInfo {
     padding-top: 0px; */
   }
 
-  .dashboard-card-text {
-    /* width: 200px; */
-  }
+  /* .dashboard-card-text {
+    width: 200px;
+  } */
 }
