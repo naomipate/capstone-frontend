@@ -23,7 +23,7 @@
 
 .main-text {
   text-align: center;
-  width: 70%;
+  width: 100%;
   padding-right: 50px;
   padding-bottom: 2vh;
 }
@@ -173,5 +173,9 @@
 
   .top-main-container {
     margin-bottom: 40px;
+  }
+
+  .main-text {
+    padding: 5px 0 2vh 0;
   }
 }
