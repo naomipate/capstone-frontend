@@ -466,21 +466,23 @@ a.friend-wish-list-item-link {
 }
 
 .zodiac-tooltip .zodiac-right {
-width: 220px;
-  top:80%;
-  left:100%;
-  margin-left:20px;
-  transform:translate(0, -50%);
-  padding:0;
-  color:#EEEEEE;
-  background-color:#F87C7C;
-  font-weight:lighter;
-  font-size:9px;
-  border-radius:8px;
-  position:absolute;
-  z-index:99999999;
-  box-sizing:border-box;
-  visibility:hidden; opacity:0; transition:opacity 0.8s;
+  width: 220px;
+  top: 80%;
+  left: 100%;
+  margin-left: 20px;
+  transform: translate(0, -50%);
+  padding: 0;
+  color: #eeeeee;
+  background-color: #f87c7c;
+  font-weight: lighter;
+  font-size: 9px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 99999999;
+  box-sizing: border-box;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.8s;
 }
 
 .zodiac-tooltip:hover .zodiac-right {
@@ -507,14 +509,14 @@ width: 220px;
   overflow: hidden;
 }
 .zodiac-tooltip .zodiac-right i::after {
-  content:'';
-  position:absolute;
-  width:12px;
-  height:12px;
-  left:0;
-  top:50%;
-  transform:translate(50%,-50%) rotate(-45deg);
-  background-color:#F87C7C;
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 0;
+  top: 50%;
+  transform: translate(50%, -50%) rotate(-45deg);
+  background-color: #f87c7c;
 }
 
 /*---------------------Button friend profile--------------------  */

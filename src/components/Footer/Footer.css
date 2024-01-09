@@ -54,12 +54,16 @@ hr {
 }
 
 .navLink {
-  display: grid;
+  display: flex;
   gap: 30px;
-  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   list-style-type: none;
   padding-left: 0;
   align-items: center;
+  text-align: center;
 }
 
 .link {

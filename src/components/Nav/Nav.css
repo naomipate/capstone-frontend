@@ -23,6 +23,7 @@ justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  /* padding-bottom: 1vh; */
   width: 100%;
   justify-content: space-between;
 }
@@ -44,11 +45,7 @@ justify-content: center;
   text-decoration: underline;
 }
 
-.hamburger{
-  
-}
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 615px) {
   .topnav {
     grid-template-columns: 1fr;
     justify-items: center;
