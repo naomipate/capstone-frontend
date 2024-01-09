@@ -195,7 +195,11 @@ a {
 
   .dashboard-friend-card-content,
   .dashboard-friend-card-content-this-month {
-    gap: 0 2rem;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-card-text-zodiac {
+    margin: 0;
   }
 
   .dashboard-card-text {

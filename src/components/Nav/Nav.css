@@ -4,7 +4,7 @@
 }
 
 .topnav {
-  width: 1000px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -77,5 +77,11 @@
   .logo-nav {
     margin-right: -45px;
     padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    margin: -10px 60px 0 60px;
   }
 }
