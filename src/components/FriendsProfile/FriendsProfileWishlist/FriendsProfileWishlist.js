@@ -116,7 +116,7 @@ function FriendsProfileWishlist({ item, isMuted }) {
             {/* ------- Price is added below -------------- */}
 
             <div className="notititle">
-              ${item.item_price} <br /> (Approximate)
+              ~ ${item.item_price} <br />
             </div>
             <Link to={item?.link} target="_blank">
               <button
