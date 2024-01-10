@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 function Signup() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
+    user_picture: "",
     user_name: "",
     first_name: "",
     last_name: "",
@@ -20,6 +21,7 @@ function Signup() {
       await createUser(user);
 
       setUser({
+        user_picture: "",
         user_name: "",
         first_name: "",
         last_name: "",
@@ -49,6 +51,15 @@ function Signup() {
         <span className="title">Sign Up</span>
         <span className="subtitle">Create an account with your email</span>
         <div className="form-container">
+          <input
+            type="text"
+            className="input"
+            placeholder="User Picture URL"
+            id="user_picture"
+            required
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+            value={user.user_picture}
+          />
           <input
             type="text"
             className="input"
