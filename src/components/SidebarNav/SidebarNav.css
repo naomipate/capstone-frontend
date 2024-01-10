@@ -23,7 +23,8 @@
 
 .sidebarImage {
   height: 100px;
-  width: auto;
+  width: 100px;
+/*   width: auto; */
   border-radius: 50px;
 }
 
