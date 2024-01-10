@@ -92,3 +92,19 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+@media only screen and (max-width: 420px) {
+  .list-item-body {
+    width: auto;
+  }
+
+  .list-item-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  .EditButton {
+    padding: 0;
+    margin: 0;
+  }
+}

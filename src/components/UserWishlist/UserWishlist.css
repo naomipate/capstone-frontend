@@ -74,3 +74,26 @@
     align-items: flex-start;
   }
 }
+
+@media only screen and (max-width: 420px) {
+  .TitleBar {
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .TitleBar h2 {
+    text-align: center;
+  }
+
+  .user-wishlist-container {
+    margin: 0;
+  }
+
+  .back-left-arrow-container {
+    width: auto;
+  }
+
+  .back-sort-action {
+    justify-content: space-around;
+  }
+}
