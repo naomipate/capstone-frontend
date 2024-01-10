@@ -213,3 +213,13 @@
     width: 10rem;
   }
 }
+
+@media only screen and (max-width: 420px) {
+  .friend-list-container {
+    margin: 0;
+  }
+
+  .friend-list-wrapper {
+    width: 100%;
+  }
+}

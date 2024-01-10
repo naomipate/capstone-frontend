@@ -15,6 +15,7 @@ function Dashboard({ user }) {
   currentDate.setTime(
     currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000
   );
+  console.log(currentDate);
   const { setFriendsData } = useContext(FriendsContext);
 
   useEffect(() => {
@@ -56,12 +57,14 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
+      console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
+      console.log(upcomingDateWithNextYear);
       return upcomingDateWithNextYear;
     }
   };
@@ -111,6 +114,7 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
   );
 
   let monthNumOfUpcomingBirthday = new Date(dobInMili).getMonth() + 1;
+  let yearNumOfUpcomingBirthday = new Date(dobInMili).getYear();
 
   function friendContentClassNames() {
     if (
@@ -118,7 +122,10 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
       dayNumOfUpcomingBirthDay === currentDate.getDate()
     ) {
       return "dashboard-friend-card-container-today";
-    } else if (monthNumOfUpcomingBirthday === currentDate.getMonth() + 1) {
+    } else if (
+      monthNumOfUpcomingBirthday === currentDate.getMonth() + 1 &&
+      yearNumOfUpcomingBirthday === currentDate.getYear()
+    ) {
       return "dashboard-friend-card-container-this-month";
     } else {
       return "dashboard-friend-card-container";

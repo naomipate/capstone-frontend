@@ -24,8 +24,7 @@
 .main-text {
   text-align: center;
   width: 100%;
-  padding-right: 50px;
-  padding-bottom: 2vh;
+  padding: 2vh;
 }
 
 .main-text h1 {
