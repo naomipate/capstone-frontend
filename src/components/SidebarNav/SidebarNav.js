@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 // import Notification from "../Notification/Notification";
-import userProfileImg from "../../Assets/profile-img-yellow.png";
+// import userProfileImg from "../../Assets/profile-img-yellow.png";
 import { FriendsContext, NotificationContext } from "../common/context/context";
 import { getAllFriendsFromUser, getNotificationById } from "../API/API";
 import { TbCake } from "react-icons/tb";
@@ -70,7 +70,7 @@ function SidebarNav() {
     }
   }
   
-  let userPic = user?.user_picture.includes("http")? user?.user_picture : userProfileImg;
+  // let userPic = user?.user_picture.includes("http")? user?.user_picture : userProfileImg;
   
   return (
     <div className="sidebar-nav-container">
@@ -78,7 +78,7 @@ function SidebarNav() {
         <div className="sidebar-user-info">
           <img
             className="sidebarImage"
-            src={userPic}
+            src={user?.user_picture}
             alt="profile_img"
           />
           <h2 className="sidebarUsername">{user.user_name}</h2>
