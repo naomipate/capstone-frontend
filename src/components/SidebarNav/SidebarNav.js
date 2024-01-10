@@ -78,7 +78,7 @@ function SidebarNav() {
         <div className="sidebar-user-info">
           <img
             className="sidebarImage"
-            src={profileImg}
+            src={userPic}
             alt="profile_img"
           />
           <h2 className="sidebarUsername">{user.user_name}</h2>
