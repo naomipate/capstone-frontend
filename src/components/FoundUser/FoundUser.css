@@ -14,7 +14,7 @@
   align-items: center;
   flex-direction: column;
   margin: 5rem 3rem;
-  height: 600px;
+  /* height: 600px; */
 }
 
 .friend-profile-info-top {
@@ -64,7 +64,7 @@
 .friend-wishlist-list-container {
   position: relative;
   margin-top: 20px;
-  height: 500px;
+  /* height: 500px; */
 }
 
 .friend-wishlist-list-item {
@@ -389,7 +389,7 @@ a.friend-wish-list-item-link {
   }
 
   .friend-wish-list {
-    width: 600px;
+    /* width: 600px; */
   }
 }
 
@@ -399,7 +399,7 @@ a.friend-wish-list-item-link {
   }
 
   .friend-wish-list {
-    width: 450px;
+    /* width: 450px; */
   }
 }
 
@@ -409,7 +409,37 @@ a.friend-wish-list-item-link {
   }
 
   .friend-wish-list {
-    width: 250px;
+    /* width: 250px; */
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .friend-wishlist-list-container {
+    width: 100vw;
+  }
+
+  .friend-profile-container {
+    margin: 0;
+  }
+
+  .friend-profile-info-top {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .itembody {
+    display: flex;
+    justify-content: start;
+    height: auto;
+  }
+
+  .wishlistItem {
+    height: 5rem;
+  }
+
+  .back-left-arrow-container {
+    width: auto;
   }
 }
 
@@ -421,7 +451,7 @@ a.friend-wish-list-item-link {
   }
 
   .friend-wish-list {
-    width: 190px;
+    /* width: 190px; */
   }
   .notibody {
     display: flex;
@@ -437,7 +467,7 @@ a.friend-wish-list-item-link {
   flex-direction: column;
   isolation: isolate;
   position: relative;
-  width: 50rem;
+  /* width: 50rem; */
   margin-bottom: 20px;
 
   height: 8rem;
@@ -451,7 +481,7 @@ a.friend-wish-list-item-link {
   & :after {
     position: absolute;
     content: "";
-    width: 0.25rem;
+    /* width: 0.25rem; */
     inset: 0.65rem auto 0.65rem 0.5rem;
     border-radius: 0.125rem;
     background: var(--gradient);
@@ -483,10 +513,10 @@ a.friend-wish-list-item-link {
   transition: opacity 300ms ease;
 }
 .itemBody {
-  display: grid;
-  grid-template-columns: 1fr 7fr 2fr;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 7fr 2fr; */
   margin: auto 0 auto 0;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   color: #ededed;
   padding: 0 1.25rem;
   transition: transform 300ms ease;
