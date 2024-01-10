@@ -1,6 +1,7 @@
 .topnav-container {
   display: flex;
   justify-content: center;
+  border-bottom: 1px, solid #bd8fd2;
 }
 
 .topnav {
@@ -9,7 +10,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width: 100%;
-  border-bottom: 1px, solid #bd8fd2;
+/*   border-bottom: 1px, solid #bd8fd2; */
   margin-left: 10%;
   margin-right: 10%;
 }
