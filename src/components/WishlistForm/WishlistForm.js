@@ -55,7 +55,7 @@ function WishlistForm({ onSubmit, selectedItem, setSelectedItem }) {
           />
 
           <label htmlFor="itemPrice" className="wish-list-form-title">
-            ~
+            Approximate Price
           </label>
           <input
             required
