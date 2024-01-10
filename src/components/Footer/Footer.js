@@ -47,11 +47,6 @@ function Footer({ user, setUser }) {
                 </li>
               </>
             )}
-            // <li>
-            //   <NavLink className="link" to={"/about"}>
-            //     About Us
-            //   </NavLink>
-            // </li>
           </ul>
         </div>
       </div>
