@@ -61,6 +61,7 @@ function EditableUserProfile({ user }) {
           <input
             type="text"
             className="input"
+            placeholder="Username"
             id="user_name"
             required
             onChange={(e) => handleOnChange(e.target.id, e.target.value)}
@@ -69,6 +70,7 @@ function EditableUserProfile({ user }) {
           <input
             type="text"
             className="input"
+            placeholder="First Name"
             id="first_name"
             required
             onChange={(e) => handleOnChange(e.target.id, e.target.value)}
@@ -77,6 +79,7 @@ function EditableUserProfile({ user }) {
           <input
             type="text"
             className="input"
+            placeholder="Last Name"
             id="last_name"
             required
             onChange={(e) => handleOnChange(e.target.id, e.target.value)}
