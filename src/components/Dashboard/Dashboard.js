@@ -121,7 +121,7 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
   function friendContentClassNames() {
     if (
       monthNumOfUpcomingBirthday === currentDate.getMonth() + 1 &&
-      dayNumOfUpcomingBirthDay === currentDate.getDate()
+      Number(dayNumOfUpcomingBirthDay) === currentDate.getDate()
     ) {
       return "dashboard-friend-card-container-today";
     } else if (
