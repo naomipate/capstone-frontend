@@ -70,7 +70,7 @@ function SidebarNav() {
     }
   }
   
-  let userPic = user?.user_picture.includes("http")? user?.user_picture : profileImg;
+  let userPic = user?.user_picture.includes("http")? user?.user_picture : userProfileImg;
   
   return (
     <div className="sidebar-nav-container">
