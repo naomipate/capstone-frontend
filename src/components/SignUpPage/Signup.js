@@ -56,7 +56,6 @@ function Signup() {
             className="input"
             placeholder="User Picture URL"
             id="user_picture"
-            required
             onChange={(e) => handleOnChange(e.target.id, e.target.value)}
             value={user.user_picture}
           />
