@@ -12,6 +12,7 @@ function EditableUserProfile({ user }) {
   const user_id = user?.id;
   const { setToggleUpdate } = useContext(WishlistContext);
   const [updatedUser, setUpdatedUser] = useState({
+    user_picture: "",
     user_name: "",
     first_name: "",
     last_name: "",
@@ -58,6 +59,14 @@ function EditableUserProfile({ user }) {
       <form className="form" onSubmit={handleEditSubmit}>
         <span className="title">Edit your profile</span>
         <div className="form-container">
+          <input
+            type="text"
+            className="input"
+            placeholder="User Picture URL"
+            id="user_picture"
+            onChange={(e) => handleOnChange(e.target.id, e.target.value)}
+            value={updatedUser?.user_picture}
+          />
           <input
             type="text"
             className="input"
