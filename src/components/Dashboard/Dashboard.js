@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUserProfile } from "../API/API";
 import { calculateZodiacSign } from "../common/Zodiac/CalculateZodiacSign";
 import { FriendsContext } from "../common/context/context";
+import profileImg from "../../Assets/profile-img-yellow.png";
 // import Events from "../common/Events/Events";
 import "./Dashboard.css";
 
@@ -135,6 +136,7 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
   }
 
   let sign = calculateZodiacSign(dobInMili, user_id);
+  let userPic = user_picture.includes("http")? user_picture : profileImg;
 
   return (
     <div className={friendContentClassNames()} key={user_id}>
@@ -153,7 +155,7 @@ function Friend({ friendDetails, dashboardUserId, currentDate }) {
             {/* <div className="dashboard-img-placeholder"> */}
             <img
               className="dashboard-img-placeholder"
-              src={user_picture}
+              src={userPic}
               alt="profile_img"
             />
             {/* </div> */}
