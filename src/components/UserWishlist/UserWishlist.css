@@ -96,4 +96,8 @@
   .back-sort-action {
     justify-content: space-around;
   }
+
+  .user-wishlist {
+    width: auto;
+  }
 }

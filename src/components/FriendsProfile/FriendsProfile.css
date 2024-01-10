@@ -596,6 +596,41 @@ a.friend-wish-list-item-link {
   }
 }
 
+@media only screen and (max-width: 420px) {
+  .friend-profile-container {
+    margin: 0;
+  }
+
+  .friend-profile-info-top {
+    width: 100vw;
+    padding-bottom: 10px;
+    flex-direction: column;
+  }
+
+  .friend-wishlist-top-left-side {
+    padding-bottom: 15px;
+  }
+
+  .friend-list-button-container {
+    justify-content: space-around;
+    width: auto;
+    gap: 30px;
+  }
+
+  .friend-wish-list {
+    width: auto;
+  }
+
+  .notibody {
+    padding: 0;
+    flex-direction: row;
+  }
+
+  .tooltip {
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .friend-profile-info-top {
     width: 80%;

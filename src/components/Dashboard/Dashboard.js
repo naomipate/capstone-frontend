@@ -15,7 +15,6 @@ function Dashboard({ user }) {
   currentDate.setTime(
     currentDate.getTime() + currentDate.getTimezoneOffset() * 60 * 1000
   );
-  console.log(currentDate);
   const { setFriendsData } = useContext(FriendsContext);
 
   useEffect(() => {
@@ -57,14 +56,17 @@ function Dashboard({ user }) {
     // Sort by this ^^^^^
     if (upcomingDateDiff > 0) {
       // positive is in the current year
-      console.log(upcomingDateWithCurrentYear);
       return upcomingDateWithCurrentYear;
     } else {
       // negative is next year
       let upcomingDateWithNextYear = new Date(
         date.setFullYear(currentDate.getFullYear() + 1)
       );
-      console.log(upcomingDateWithNextYear);
+      upcomingDateWithNextYear.setTime(
+        upcomingDateWithNextYear.getTime() +
+          oneMiliBeforeTwentyFourHrs +
+          upcomingDateESTTimeZoneOffset
+      );
       return upcomingDateWithNextYear;
     }
   };
