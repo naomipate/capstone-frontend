@@ -1,14 +1,17 @@
 import "./Home.css";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import couch from "../../Assets/couch.png";
 import calender from "../../Assets/calender.png";
 import giftPhone from "../../Assets/gift-phone.png";
 import { spinUpServer } from "../API/API";
 
-function Home() {
+function Home({ user }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     spinUpServer();
+    if (window.localStorage.getItem("user")) navigate(`/dashboard/${user.id}`);
     // eslint-disable-next-line
   }, []);
 

@@ -29,6 +29,8 @@ function UserWishlist({ handleCreateWishlist, user }) {
 
   useEffect(() => {
     if (user_id) {
+      if (window.localStorage.getItem("user").id !== user_id)
+        navigate(`/userwishlist/${user_id}`);
       fetchWishlist();
     }
     // eslint-disable-next-line

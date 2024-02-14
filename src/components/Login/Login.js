@@ -1,17 +1,21 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getUserData } from "../API/API";
 
 import "./Login.css";
 
-function Login({ setUser }) {
+function Login({ setUser, user }) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (window.localStorage.getItem("user")) navigate(`/dashboard/${user.id}`);
+  }, []);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);

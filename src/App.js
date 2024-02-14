@@ -111,8 +111,11 @@ function App() {
                 }
               />
               <Route path="/signup" element={<SignUpPage />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login setUser={setUser} />} />
+              <Route path="/" element={<Home user={user} />} />
+              <Route
+                path="/login"
+                element={<Login setUser={setUser} user={user} />}
+              />
               <Route path="/users/:id" element={<FoundUser />} />
               <Route
                 path="/dashboard/:id/new"

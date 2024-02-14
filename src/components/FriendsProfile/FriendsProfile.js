@@ -20,8 +20,10 @@ function FriendsProfile() {
   let currentDate = new Date(Date.now()); // Time from system
 
   const { id, friendId } = useParams();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (id === friendId) navigate(`/dashboard/${id}/editProfile`);
     fetchList();
     // eslint-disable-next-line
   }, []);
